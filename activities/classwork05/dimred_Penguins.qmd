@@ -1,0 +1,232 @@
+---
+title: "Dimension Reduction using tidymodels"
+author: "Lindsay N. Hayes"
+date: 2025-07-14
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork05/PCA_Penguins.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover Principal Component Analysis (PCA) and UMAP using tidymodels.
+
+
+## Load the Packages
+```{r}
+#| message: false
+#| error: false
+
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+```
+
+## `glimpse` at the data
+```{r}
+glimpse(penguins)
+```
+
+## Prep the Data and Perform the PCA
+```{r}
+
+# set a seed. Not really necessary for PCA because it is a reproducible analysis and doesn't use random data to model the data. But it is good practice. You can use any number your heart desires. 
+
+set.seed(956)
+
+# don't need to split data for the PCA because its an exploratory data analysis and we want to use all the data. 
+
+
+# Build a Recipe: this is an instruction manual does not perform any actual analysis, yet. 
+
+penguin_recipe <-
+  
+  # we want to use all the data to build the analysis so we us ~  and . to include all data numeric variables
+  recipe( ~ ., data = penguins) |> 
+  
+  # we want to maintain the categorical data so we give it a new role of id to identify the data
+  update_role(species, island, sex, new_role = "id") |> 
+  
+  # we want to omit rows with missing data because it can't be properly used by the PCA
+  step_naomit(all_predictors()) |> 
+  
+  # to make sure all the data is normally distributed and centered we want to normalize the data before running PCA
+  step_normalize(all_predictors()) |>
+  
+  # finally we want to actually run a PCA analysis on all the data or predictors
+  step_pca(all_predictors(), id = "pca")
+
+penguin_recipe
+
+
+# Prep Data: pull in the variables from the penguins data and runs PCA
+
+penguin_prep <- prep(penguin_recipe, penguins)
+
+penguin_prep
+
+penguin_prep |> tidy(id = "pca", type = "coef")
+penguin_prep |> tidy(id = "pca", type = "variance")
+
+# Bake Data: Extract the data from the PCA
+
+penguin_bake <- bake(penguin_prep, new_data = NULL)
+
+penguin_bake
+
+```
+
+
+## Evaluate the PCA
+```{r}
+# tidy type can be: "coef", "variance", 
+
+# Plot the percent of variance explained by each principal component
+penguin_prep |> 
+  tidy(id = "pca", type = "variance") |> 
+  dplyr::filter(terms == "percent variance") |> 
+  ggplot(aes(x = component, y = value)) + 
+  geom_col(fill = "#b6dfe2") + 
+  xlim(c(0, 5)) + 
+  ylab("% of total variance") +
+  geom_text(aes(label=round(value,1)), vjust = 1.5)
+```
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+
+# Plot which predictors/variables are explained in each principal component
+penguin_prep |>
+  tidy(id = "pca", type = "coef") |> 
+  ggplot(aes(abs(value), terms, fill = value > 0)) +
+  geom_col() +
+  facet_wrap(~component, scales = "free_y") +
+  scale_fill_manual(values = c("#b6dfe2", "#0A537D")) +
+  labs(
+    x = "Absolute value of contribution",
+    y = NULL, fill = "Pos Affil") 
+```
+
+```{r}
+# Plot the PCA
+pca_plot <- penguin_bake |> 
+  ggplot(aes(PC1, PC2)) +
+  geom_point(aes(color = species, shape = species), 
+             alpha = 0.8, 
+             size = 2) +
+  scale_colour_manual(values = c("darkorange","purple","cyan4")) +
+  theme_bw()
+
+pca_plot
+
+
+# Add the vectors for how the variables are explained by each PC
+
+pca_wider <- penguin_prep |> 
+              tidy(id = "pca", type = "coef") |>
+              pivot_wider(names_from = component, id_cols = terms)
+
+arrow_style <- arrow(length = unit(.05, "inches"), type = "closed")
+
+pca_plot +
+  geom_segment(data = pca_wider,
+               aes(xend = PC1, yend = PC2), 
+               x = 0, 
+               y = 0, 
+               arrow = arrow_style) + 
+  geom_text(data = pca_wider,
+            aes(x = PC1, y = PC2, label = terms), 
+            hjust = 0, 
+            vjust = 1,
+            size = 5, 
+            color = '#0A537D') 
+
+```
+#### We can see that year is having a large impact of PC2 and obscuring the effect of the other metrics. So we can exclude PC2 and plot PC1 and PC3 instead. 
+
+```{r}
+
+pca_plot <- penguin_bake |> 
+  ggplot(aes(PC1, PC3)) +
+  geom_point(aes(color = species, shape = species), 
+             alpha = 0.8, 
+             size = 2) +
+  scale_colour_manual(values = c("darkorange","purple","cyan4")) +
+  theme_bw()
+
+pca_plot
+
+arrow_style <- arrow(length = unit(.05, "inches"), type = "closed")
+
+pca_plot +
+  geom_segment(data = pca_wider,
+               aes(xend = PC1, yend = PC3), 
+               x = 0, 
+               y = 0, 
+               arrow = arrow_style) + 
+  geom_text(data = pca_wider,
+            aes(x = PC1, y = PC3, label = terms), 
+            hjust = 0, 
+            vjust = 1,
+            size = 5, 
+            color = '#0A537D') 
+```
+
+
+## Prep the Data and Perform the UMAP instead
+```{r}
+library(embed)
+set.seed(956)
+
+glimpse(penguins)
+
+penguin_recipe <-
+  recipe(species ~ ., data = penguins) |> 
+  update_role(species, island, sex, new_role = "id") |> 
+  step_rm(year) |>
+  step_naomit(all_predictors()) |> 
+  step_normalize(all_predictors()) |>
+  step_umap(all_numeric_predictors(), num_comp = 3)
+
+penguin_recipe
+
+
+# Prep Data: pull in the variables from the penguins data and runs PCA
+
+penguin_prep <- prep(penguin_recipe, penguins)
+
+penguin_prep
+
+
+# Bake Data: Extract the data from the UMAP
+
+penguin_bake <- bake(penguin_prep, new_data = NULL)
+
+penguin_bake
+
+```
+
+```{r}
+penguin_bake |> ggplot(aes(x = UMAP1, y = UMAP2, color = species)) +
+  geom_point(alpha = .5)
+
+penguin_bake |> ggplot(aes(x = UMAP1, y = UMAP3, color = species)) +
+  geom_point(alpha = .5)
+
+penguin_bake |> ggplot(aes(x = UMAP2, y = UMAP3, color = species)) +
+  geom_point(alpha = .5)
+
+
+# lets go back and try it without year and see how it looks? add in a step to the recipe: step_rm(year)
+```
+
+```{r}
+sessionInfo()
+```

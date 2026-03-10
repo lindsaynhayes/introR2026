@@ -1,0 +1,23 @@
+---
+title: "Welcome"
+---
+
+Welcome to the Course Website for Cell 6351 Intro to Reproducible Data Analysis Using R!
+
+## Overview 
+
+Current biomedical research regularly generates large datasets that require increasing computational skills to process and analyze including in genomics, behavior, imaging, and molecular biology. As a result, scientists today require fundamental computational and programming skill-sets to efficiently perform data analyses, generate complex models for testing, develop reproducible data analyses, and effectively communicate results through clear and meaningful graphics. However, these skills are often challenging due to a lack of structured training in data science. 
+
+Intro to Reproducible Data Analysis Using R is a hands-on course that will introduce the R statistical software including data structures, wrangling data, plotting data, basic statistics, data modeling, and literate coding practices. There is no textbook for the course. All course materials will be provided on Canvas or this website. While no formal background in statistics or programming is necessary, a general knowledge of basic statistics, experimental design, and computer file storage systems will be helpful. All classes will involve active learning/coding activities so a laptop with power cord is required for all sessions. Students will be expected to complete readings prior to class, attend lectures to dive deeper into those topics in class, participate in classroom activities, complete projects practicing and reinforcing the computing and programming skills. There will be a final project, which will include a class presentation. 
+
+## Course Information
+
+- Course Staff: [Prof. Lindsay Hayes](https://lindsaynhayes.github.io)
+- Course Staff: TA. Eleana Cabello
+- Lectures: 10:30am-noon
+- Location: BMSB 324
+- Office Hours: by email
+
+## Course Details
+
+All course details are available on the [Course](lectures.qmd) page. The syllabus is available [online here](syllabus.qmd), [download here](CELL 6351-Intro to R Syllabus_SU2025-updated dates.docx), or on [Canvas](https://canvas.ou.edu).

@@ -1,0 +1,39 @@
+---
+title: "Data Visualization with ggplot2"
+description: "Reading for Class 04"
+author: 
+  - name: Lindsay Hayes
+    url: https://lindsaynhayes.github.io
+    affiliation: Department of Cell Biology, OUHSC
+date: 2025-07-10
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-note
+### Learning objectives
+
+**At the end of this lesson you will be able to:**
+
+-   Distinguish between good and bad plots
+-   Match the type of plots with the type of data input
+-   List the features of the grammer of graphics
+-   Build complex graphics in ggplot2
+:::
+
+
+Before class, read chapter 4 titled *"Visualizing Data in the Tidyverse"* from the **Tidyverse Skills for Data Science** Book by Carrie Wright, Shannon E. Ellis, Stephanie C. Hicks, and Roger D. Peng.
+
+Reading: [Visualizing Data in the Tidyverse](https://jhudatascience.org/tidyversecourse/dataviz.html)
+
+For more examples, you can checkout a YouTube video series on ggplot from Dr. Lace Padilla.
+
+1. [Mastering ggplot2 in R](https://youtu.be/iYGDhcNCWDI?si=npvVMpihW-0puqy1)     [17 min]
+2. [Mastering Axes in ggplot2](https://youtu.be/Iw3LEa7nxQE?si=B0UTEifi9y1-vLIz)  [16 min]
+3. [Color Magic in ggplot2](https://youtu.be/50o5UQHbkdI?si=WeGH8WBP2pNRkTsz)     [12.5 min]
+4. [Mastering Facet_Wrap in ggplot2](https://youtu.be/U7i5FozHkW8?si=7wkiGp65r_lQgdit) [15 min]
+
+
+
+

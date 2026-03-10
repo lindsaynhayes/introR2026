@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Hayes">
+<meta name="dcterms.date" content="2025-07-08">
+<meta name="description" content="Reading for Class 03">
+
+<title>Intro to Reproducible Data Analysis Using R - Data Wrangling with tidyverse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> <i class="bi bi-home" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
+</i> 
+<span class="menu-text">Course</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-box-seam-fill" role="img">
+</i> 
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../readings.html">
+ <span class="dropdown-text">Pre-reading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../activities.html">
+ <span class="dropdown-text">In-Class Activities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lindsaynhayes/introR2025"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-problem-with-messy-data" id="toc-the-problem-with-messy-data" class="nav-link active" data-scroll-target="#the-problem-with-messy-data">The problem with messy data</a></li>
+  <li><a href="#the-principles-of-tidydata" id="toc-the-principles-of-tidydata" class="nav-link" data-scroll-target="#the-principles-of-tidydata">The principles of <code>tidydata</code></a></li>
+  <li><a href="#the-tidyverse" id="toc-the-tidyverse" class="nav-link" data-scroll-target="#the-tidyverse">The Tidyverse</a></li>
+  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The BIG picture</a></li>
+  <li><a href="#examples-of-some-not-so-tidy-data" id="toc-examples-of-some-not-so-tidy-data" class="nav-link" data-scroll-target="#examples-of-some-not-so-tidy-data">Examples of some not so tidy data</a></li>
+  <li><a href="#tidy-data-with-tidyr" id="toc-tidy-data-with-tidyr" class="nav-link" data-scroll-target="#tidy-data-with-tidyr">Tidy data with <code>tidyr</code></a>
+  <ul class="collapse">
+  <li><a href="#wide-vs-long" id="toc-wide-vs-long" class="nav-link" data-scroll-target="#wide-vs-long">Wide vs Long</a></li>
+  <li><a href="#unite-vs-separate" id="toc-unite-vs-separate" class="nav-link" data-scroll-target="#unite-vs-separate">Unite vs Separate</a></li>
+  <li><a href="#nesting-and-unnesting" id="toc-nesting-and-unnesting" class="nav-link" data-scroll-target="#nesting-and-unnesting">Nesting and Unnesting</a></li>
+  </ul></li>
+  <li><a href="#transform-data-with-dplyr" id="toc-transform-data-with-dplyr" class="nav-link" data-scroll-target="#transform-data-with-dplyr">Transform data with <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#summary-functions" id="toc-summary-functions" class="nav-link" data-scroll-target="#summary-functions">Summary functions</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">mutate()</a></li>
+  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename">rename()</a></li>
+  </ul></li>
+  <li><a href="#stringr-lubridate-forcats-purrr" id="toc-stringr-lubridate-forcats-purrr" class="nav-link" data-scroll-target="#stringr-lubridate-forcats-purrr">stringr, lubridate, forcats, purrr</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Wrangling with tidyverse</h1>
+</div>
+
+<div>
+  <div class="description">
+    Reading for Class 03
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://lindsaynhayes.github.io">Lindsay Hayes</a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Cell Biology, OUHSC
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 8, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>At the end of this lesson you will be able to:</strong></p>
+<ul>
+<li>Recognize and define an untidy dataset</li>
+<li>Recognize and convert between long and wide data formats</li>
+<li>Understand when to use both formats</li>
+<li>Pipe functions together to perform multiple commands in sequence</li>
+</ul>
+</div>
+</div>
+<section id="the-problem-with-messy-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-with-messy-data">The problem with messy data</h2>
+<p>Most scientists are not trained to collect and organize data using <code>tidydata</code> principles. The results are data sets which are hard to follow, difficult to repeat, and challenging to report to journals. Understanding how to organize and store your data and analyses will make your life easier! Moreover, many journals request raw data submissions along with your manuscript. If you’ve analyzed and organized all your data in <code>R</code> using <code>tidydata</code> principles this process becomes a super simple, rather than tracking all the data across messy spreadsheets.</p>
+<blockquote class="blockquote">
+<p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.”<br>
+— Hadley Wickham</p>
+</blockquote>
+</section>
+<section id="the-principles-of-tidydata" class="level2">
+<h2 class="anchored" data-anchor-id="the-principles-of-tidydata">The principles of <code>tidydata</code></h2>
+<ol type="1">
+<li><strong>Treat your raw data as immutable.</strong></li>
+</ol>
+<p><em>Try to manipulate the original form of the data as little as possible. The reason is to make the whole data analysis pipeline reproducible and transparent. If you start changing fields on the data spreadsheet you can’t track where those values came from. Manipulating data with code also decreases the chances for errors being introduced to the raw data.</em></p>
+<ol start="2" type="1">
+<li><p><strong>Each variable is a column; each column is a variable.</strong></p></li>
+<li><p><strong>Each observation is a row; each row is an observation.</strong></p></li>
+<li><p><strong>Each value is a cell; each cell is a single value.</strong></p></li>
+</ol>
+<p>For example, take the following data</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      groups val
+1   Con_male 134
+2 CON_female 106
+3      Exp_m  84
+4      Exp_F 105</code></pre>
+</div>
+</div>
+<p><strong>Why might this data be a problem?</strong></p>
+<ul>
+<li>combining 2 observations into one field (group and sex).</li>
+<li>changing the notation styles</li>
+</ul>
+<p>Here’s another example</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  groups      val2
+1    CON  78_ug/ul
+2    CON  67_ug/ul
+3    EXP  69_ug/ul
+4    EXP 115_ug/ul</code></pre>
+</div>
+</div>
+<p><strong>Why might this data be a problem?</strong></p>
+<ul>
+<li>the data field contains 2 values the numeric value and the units</li>
+</ul>
+<p>The second step after getting your data into R is <strong>data wrangling</strong> in order to modify the data so that you can perform an analysis. Luckily R has a whole suite of tools to makes this process easy and most importantly reproducible. This less will teach you practices for effective data wrangling.</p>
+</section>
+<section id="the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="the-tidyverse">The Tidyverse</h2>
+<p><img src="figs/tidy_hex.png" width="50%" style="float:right"></p>
+<p>The <a href="https://www.tidyverse.org">Tidyverse</a> which is a collection of R packages that share an underlying design, syntax, and grammer to streamline many main functions used in data science. You can install the complete tidyverse with <code>install.packages("tidyverse")</code>, once the package is installed you can load it using <code>library(tidyverse)</code>.</p>
+<p>The packages installed in tidyverse include:</p>
+<ul>
+<li><code>dplyr</code> and <code>tidyr</code> are packages for data manipulation to subset, re-arrange, and format your dataset.</li>
+<li><code>tibble</code> is a tidy way of displaying data frames that are easier to view.</li>
+<li><code>readr</code> is a tidy way to input or read in data into R that we covered last class.</li>
+<li><code>purrr</code> is a functional programming toolkit to handle looping functions.</li>
+<li><code>stringr</code> is a way of handling text and character strings.</li>
+<li><code>forcats</code> is a package providing tools to handle categorical variables and discrete (non-continuous) variables.</li>
+<li><code>lubridate</code> is a package for working with times and dates.</li>
+<li><code>ggplot2</code> is a graphic package to plot your data. We will cover this package in the next class!</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are nice <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a> for each of the packages to demonstrate what they do in detail!</p>
+<p>Don’t forget to check out the <em>Help</em> section in RStudio for any function you come across.</p>
+</div>
+</div>
+</section>
+<section id="the-big-picture" class="level2">
+<h2 class="anchored" data-anchor-id="the-big-picture">The BIG picture</h2>
+<p>We have now progressed to the Tidy part of the data analysis pipeline!</p>
+<p><img src="figs/tidy.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"></p>
+<figcaption>
+Figure 1: In our model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans.
+</figcaption>
+</section>
+<section id="examples-of-some-not-so-tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-some-not-so-tidy-data">Examples of some not so tidy data</h2>
+<p>Have you seen or even generated data that looks like this?</p>
+<section id="example-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1">example 1</h4>
+<div class="img-float">
+<p><img src="figs/untidy1.png" width="90%" style="float:center"></p>
+</div>
+</section>
+<section id="example-2" class="level4">
+<h4 class="anchored" data-anchor-id="example-2">example 2</h4>
+<div class="img-float">
+<p><img src="figs/untidy2.png" width="90%" style="float:center"></p>
+</div>
+</section>
+<section id="example-3" class="level4">
+<h4 class="anchored" data-anchor-id="example-3">example 3</h4>
+<p>some of my data!</p>
+<div class="img-float">
+<p><img src="figs/untidy3.png" width="90%" style="float:center"></p>
+</div>
+</section>
+</section>
+<section id="tidy-data-with-tidyr" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data-with-tidyr">Tidy data with <code>tidyr</code></h2>
+<p><code>tidyr</code> is a package with tools that help you create <strong>tidy data</strong>. <code>tidyr</code> functions reform the data so that other R functions can perform manipulation or analysis on it.</p>
+<section id="wide-vs-long" class="level3">
+<h3 class="anchored" data-anchor-id="wide-vs-long">Wide vs Long</h3>
+<p>Wide data puts many variables for each observation in the same row. An example is a time series, where each time point for an observation is in a different column. Data in this format can be easier to data enter when the data is collected. However, it is difficult for R to then plot or evaluate across time, but we need to convert it in R.</p>
+<p>Here is an example of wide data, you can see different metrics across time are represented across the columns for each country.</p>
+<p><img src="figs/tidyr-wide.png" class="img-fluid"></p>
+<p>This is an example of long data. Now each value is in a single column. The next step would be to split the observation type and the year into 2 separate columns that we’ll cover below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/tidyr-long.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="341"></p>
+</figure>
+</div>
+<p>To convert between wide to longer we use the function <code>pivot_longer()</code> and to convert between long to wide we use the function <code>pivot_wider()</code>. The <code>pivot_longer()</code> function takes the main arguments <code>data</code>, <code>cols</code>, <code>names_to</code>, and <code>values_to</code>. <code>data</code> is the input data (the wide data frame). <code>cols</code> is the columns of the data you want to convert, you don’t have to use the whole data set you can only select a few columns if you want. <code>names_to</code> is what you want to name the header of the new variable you are creating this is often called the “key” or for example the observation type in the above example. <code>values_to</code> is what you want to call the actual data “value” this could be the concentration or the units of the measurement.</p>
+<p><img src="figs/tidyr-wide_long2.png" class="img-fluid"></p>
+<p>Lets look at an example in code!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wide_data.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data) <span class="co"># first look at the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10
+Columns: 11
+$ Dam               &lt;chr&gt; "HFD-25-01", "HFD-25-02", "HFD-25-03", "HFD-25-04", …
+$ Group             &lt;chr&gt; "CON", "CON", "CON", "CON", "CON", "HFD", "HFD", "HF…
+$ `Baseline Weight` &lt;dbl&gt; 21.1, 22.4, 22.4, 22.8, 22.8, 21.8, 23.0, 23.6, 22.0…
+$ `Wk1 Weight`      &lt;dbl&gt; 20.0, 20.9, 22.2, 22.4, 21.8, 23.8, 25.8, 22.7, 23.2…
+$ `Wk2 Weight`      &lt;dbl&gt; 20.0, 21.2, 22.6, 23.1, 22.5, 23.6, 26.4, 21.8, 22.7…
+$ `Wk3 Weight`      &lt;dbl&gt; 19.9, 22.2, 22.3, 22.4, 22.0, 26.2, 29.4, 24.9, 25.4…
+$ `Wk4 Weight`      &lt;dbl&gt; 20.3, 21.7, 22.3, 24.1, 21.8, 28.1, 31.6, 22.9, 26.7…
+$ `Wk5 Weight`      &lt;dbl&gt; 20.7, 22.4, 22.6, 25.0, 21.9, 27.8, 35.8, 23.8, 31.5…
+$ `Wk6 Weight`      &lt;dbl&gt; 21.4, 22.7, 23.4, 23.1, 23.4, 31.6, 34.8, 25.5, 33.8…
+$ `Wk7 Weight`      &lt;dbl&gt; 21.1, 22.0, 23.2, 24.1, 23.0, 32.0, 36.7, 28.5, 30.8…
+$ `Wk8 Weight`      &lt;dbl&gt; 21.1, 21.0, 22.0, 23.2, 22.8, 32.8, 38.2, 25.3, 33.3…</code></pre>
+</div>
+</div>
+<p>You can see the weight each week but its spread across columns lets convert to long format</p>
+<p>Using the <code>pivot_longer()</code> function we tell it to take columns 3 through 11 and put the column names into a new column called week and the weights into a new column called grams using this code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>long.data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">11</span>), <span class="at">names_to =</span> <span class="st">"week"</span>, <span class="at">values_to =</span> <span class="st">"grams"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(long.data) <span class="co"># this is what the new data looks like. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 90
+Columns: 4
+$ Dam   &lt;chr&gt; "HFD-25-01", "HFD-25-01", "HFD-25-01", "HFD-25-01", "HFD-25-01",…
+$ Group &lt;chr&gt; "CON", "CON", "CON", "CON", "CON", "CON", "CON", "CON", "CON", "…
+$ week  &lt;chr&gt; "Baseline Weight", "Wk1 Weight", "Wk2 Weight", "Wk3 Weight", "Wk…
+$ grams &lt;dbl&gt; 21.1, 20.0, 20.0, 19.9, 20.3, 20.7, 21.4, 21.1, 21.1, 22.4, 20.9…</code></pre>
+</div>
+</div>
+<p>The data is separated into weeks and weight. Now we could plot it across time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_R03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Other times we need the data to be <strong>wide</strong> format if we want to do computations on the data. For example, maybe we want to determine the percent weight change from baseline and plot that instead of the absolute weight. Lets convert it back to wide format using <code>pivot_wider()</code>.</p>
+<p>We tell <code>pivot_wider()</code> it to take the “week” column and make a new columnn for each unique value and put the value of grams in the cells as the values for each unique week column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wide.data <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(long.data, <span class="at">names_from =</span> week, <span class="at">values_from =</span> grams)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wide.data) <span class="co"># look at the data again</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10
+Columns: 11
+$ Dam               &lt;chr&gt; "HFD-25-01", "HFD-25-02", "HFD-25-03", "HFD-25-04", …
+$ Group             &lt;chr&gt; "CON", "CON", "CON", "CON", "CON", "HFD", "HFD", "HF…
+$ `Baseline Weight` &lt;dbl&gt; 21.1, 22.4, 22.4, 22.8, 22.8, 21.8, 23.0, 23.6, 22.0…
+$ `Wk1 Weight`      &lt;dbl&gt; 20.0, 20.9, 22.2, 22.4, 21.8, 23.8, 25.8, 22.7, 23.2…
+$ `Wk2 Weight`      &lt;dbl&gt; 20.0, 21.2, 22.6, 23.1, 22.5, 23.6, 26.4, 21.8, 22.7…
+$ `Wk3 Weight`      &lt;dbl&gt; 19.9, 22.2, 22.3, 22.4, 22.0, 26.2, 29.4, 24.9, 25.4…
+$ `Wk4 Weight`      &lt;dbl&gt; 20.3, 21.7, 22.3, 24.1, 21.8, 28.1, 31.6, 22.9, 26.7…
+$ `Wk5 Weight`      &lt;dbl&gt; 20.7, 22.4, 22.6, 25.0, 21.9, 27.8, 35.8, 23.8, 31.5…
+$ `Wk6 Weight`      &lt;dbl&gt; 21.4, 22.7, 23.4, 23.1, 23.4, 31.6, 34.8, 25.5, 33.8…
+$ `Wk7 Weight`      &lt;dbl&gt; 21.1, 22.0, 23.2, 24.1, 23.0, 32.0, 36.7, 28.5, 30.8…
+$ `Wk8 Weight`      &lt;dbl&gt; 21.1, 21.0, 22.0, 23.2, 22.8, 32.8, 38.2, 25.3, 33.3…</code></pre>
+</div>
+</div>
+<p>Next, we want to calculate the percent weight gain by performing this calculation for each row <code>Wk8 Weight</code>/<code>Baseline Weight</code> * 100 to determine the percent of weight gain. This computation is done more easily if the data is in wide format.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wide.data <span class="ot">&lt;-</span> wide.data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">perc.gain =</span> <span class="st">`</span><span class="at">Wk8 Weight</span><span class="st">`</span><span class="sc">/</span><span class="st">`</span><span class="at">Baseline Weight</span><span class="st">`</span><span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wide.data) <span class="co"># check it out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10
+Columns: 12
+$ Dam               &lt;chr&gt; "HFD-25-01", "HFD-25-02", "HFD-25-03", "HFD-25-04", …
+$ Group             &lt;chr&gt; "CON", "CON", "CON", "CON", "CON", "HFD", "HFD", "HF…
+$ `Baseline Weight` &lt;dbl&gt; 21.1, 22.4, 22.4, 22.8, 22.8, 21.8, 23.0, 23.6, 22.0…
+$ `Wk1 Weight`      &lt;dbl&gt; 20.0, 20.9, 22.2, 22.4, 21.8, 23.8, 25.8, 22.7, 23.2…
+$ `Wk2 Weight`      &lt;dbl&gt; 20.0, 21.2, 22.6, 23.1, 22.5, 23.6, 26.4, 21.8, 22.7…
+$ `Wk3 Weight`      &lt;dbl&gt; 19.9, 22.2, 22.3, 22.4, 22.0, 26.2, 29.4, 24.9, 25.4…
+$ `Wk4 Weight`      &lt;dbl&gt; 20.3, 21.7, 22.3, 24.1, 21.8, 28.1, 31.6, 22.9, 26.7…
+$ `Wk5 Weight`      &lt;dbl&gt; 20.7, 22.4, 22.6, 25.0, 21.9, 27.8, 35.8, 23.8, 31.5…
+$ `Wk6 Weight`      &lt;dbl&gt; 21.4, 22.7, 23.4, 23.1, 23.4, 31.6, 34.8, 25.5, 33.8…
+$ `Wk7 Weight`      &lt;dbl&gt; 21.1, 22.0, 23.2, 24.1, 23.0, 32.0, 36.7, 28.5, 30.8…
+$ `Wk8 Weight`      &lt;dbl&gt; 21.1, 21.0, 22.0, 23.2, 22.8, 32.8, 38.2, 25.3, 33.3…
+$ perc.gain         &lt;dbl&gt; 100.00000, 93.75000, 98.21429, 101.75439, 100.00000,…</code></pre>
+</div>
+</div>
+<p>now you can see the new column of data called perc.gain as a new column at the end. We’ll talk more about the <code>mutate()</code> function below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_R03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="unite-vs-separate" class="level3">
+<h3 class="anchored" data-anchor-id="unite-vs-separate">Unite vs Separate</h3>
+<p>As we saw in countries data above sometimes we get data that has multiple pieces of data in one field. We can fix this problem with <code>separate_wider_delim()</code> function that will split a cell into 2 columns based on a specified delimiter. If you’ve ever used the “text to columns” feature in excel its essentially the same thing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data) <span class="co"># lets look at the countries data.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,112
+Columns: 4
+$ country      &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan…
+$ continent    &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi…
+$ obstype_year &lt;chr&gt; "pop_1952", "lifeExp_1952", "gdpPercap_1952", "pop_1957",…
+$ obs_value    &lt;dbl&gt; 8.425333e+06, 2.880100e+01, 7.794453e+02, 9.240934e+06, 3…</code></pre>
+</div>
+</div>
+<p>As you can see the “obstype_year” has too many pieces of information in it. Before we can <code>pivot_wider()</code>, we need to split out the observation by type and the year using the <code>separate_wider_delim()</code> function. We tell the function which column to split, what the names of the splits will be, and how the fields are deliminated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">separate_wider_delim</span>(data, <span class="at">cols =</span> obstype_year, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"obstype"</span>, <span class="st">"year"</span>), <span class="at">delim =</span> <span class="st">"_"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,112
+Columns: 5
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ obstype   &lt;chr&gt; "pop", "lifeExp", "gdpPercap", "pop", "lifeExp", "gdpPercap"…
+$ year      &lt;chr&gt; "1952", "1952", "1952", "1957", "1957", "1957", "1962", "196…
+$ obs_value &lt;dbl&gt; 8.425333e+06, 2.880100e+01, 7.794453e+02, 9.240934e+06, 3.03…</code></pre>
+</div>
+</div>
+<p>Now the data is in a format that can be put into pivot_wider() to get out each of the observation types.</p>
+</section>
+<section id="nesting-and-unnesting" class="level3">
+<h3 class="anchored" data-anchor-id="nesting-and-unnesting">Nesting and Unnesting</h3>
+<p>Another cool function related to spliting data is a function called <code>unnest_longer</code>. We talked a little in the first class about a class of data called list which is very flexible on what can be put there, but you need special functions to access that data. Unnest is a way to unnest the listed items that are embedded into a dataframe. Lets look at the taylor swift data as an example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taylor)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>taylor <span class="ot">&lt;-</span> taylor_album_songs</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(taylor) <span class="co"># look at some data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 240
+Columns: 29
+$ album_name          &lt;chr&gt; "Taylor Swift", "Taylor Swift", "Taylor Swift", "T…
+$ ep                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+$ album_release       &lt;date&gt; 2006-10-24, 2006-10-24, 2006-10-24, 2006-10-24, 2…
+$ track_number        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
+$ track_name          &lt;chr&gt; "Tim McGraw", "Picture To Burn", "Teardrops On My …
+$ artist              &lt;chr&gt; "Taylor Swift", "Taylor Swift", "Taylor Swift", "T…
+$ featuring           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ bonus_track         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+$ promotional_release &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ single_release      &lt;date&gt; 2006-06-19, 2008-02-03, 2007-02-19, NA, NA, NA, N…
+$ track_release       &lt;date&gt; 2006-06-19, 2006-10-24, 2006-10-24, 2006-10-24, 2…
+$ danceability        &lt;dbl&gt; 0.580, 0.658, 0.621, 0.576, 0.418, 0.589, 0.479, 0…
+$ energy              &lt;dbl&gt; 0.491, 0.877, 0.417, 0.777, 0.482, 0.805, 0.578, 0…
+$ key                 &lt;int&gt; 0, 7, 10, 9, 5, 5, 2, 8, 4, 2, 2, 8, 7, 4, 10, 5, …
+$ loudness            &lt;dbl&gt; -6.462, -2.098, -6.941, -2.881, -5.769, -4.055, -4…
+$ mode                &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ speechiness         &lt;dbl&gt; 0.0251, 0.0323, 0.0231, 0.0324, 0.0266, 0.0293, 0.…
+$ acousticness        &lt;dbl&gt; 0.57500, 0.17300, 0.28800, 0.05100, 0.21700, 0.004…
+$ instrumentalness    &lt;dbl&gt; 0.00e+00, 0.00e+00, 0.00e+00, 0.00e+00, 0.00e+00, …
+$ liveness            &lt;dbl&gt; 0.1210, 0.0962, 0.1190, 0.3200, 0.1230, 0.2400, 0.…
+$ valence             &lt;dbl&gt; 0.425, 0.821, 0.289, 0.428, 0.261, 0.591, 0.192, 0…
+$ tempo               &lt;dbl&gt; 76.009, 105.586, 99.953, 115.028, 175.558, 112.982…
+$ time_signature      &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
+$ duration_ms         &lt;int&gt; 232107, 173067, 203040, 199200, 239013, 207107, 24…
+$ explicit            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+$ key_name            &lt;chr&gt; "C", "G", "A#", "A", "F", "F", "D", "G#", "E", "D"…
+$ mode_name           &lt;chr&gt; "major", "major", "major", "major", "major", "majo…
+$ key_mode            &lt;chr&gt; "C major", "G major", "A# major", "A major", "F ma…
+$ lyrics              &lt;list&gt; [&lt;tbl_df[55 x 4]&gt;], [&lt;tbl_df[33 x 4]&gt;], [&lt;tbl_df[…</code></pre>
+</div>
+</div>
+<p>If you look at the last line the lyrics is a list which is a tibble (or table) that is the all the lines of lyrics for each song. Since each line is a song and the lyrics can be many lines long its a nice way to be able to store a table inside a data frame. cool huh! If you wanted to access the lyrics you need to unnest the lyric data in the table. The function unnest_longer() does that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lyr <span class="ot">&lt;-</span> taylor <span class="sc">|&gt;</span> <span class="fu">select</span>(album_name, track_name, lyrics) <span class="sc">|&gt;</span> <span class="fu">unnest_longer</span>(lyrics)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lyr) <span class="co"># the dimensions of the data number of rows and number of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12151     3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  album_name   track_name lyrics$line $lyric            $element $element_artist
+  &lt;chr&gt;        &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;          
+1 Taylor Swift Tim McGraw           1 "He said the way… Verse 1  Taylor Swift   
+2 Taylor Swift Tim McGraw           2 "Put those Georg… Verse 1  Taylor Swift   
+3 Taylor Swift Tim McGraw           3 "I said, \"That'… Verse 1  Taylor Swift   
+4 Taylor Swift Tim McGraw           4 "Just a boy in a… Verse 1  Taylor Swift   
+5 Taylor Swift Tim McGraw           5 "That had a tend… Verse 1  Taylor Swift   
+6 Taylor Swift Tim McGraw           6 "On backroads at… Verse 1  Taylor Swift   </code></pre>
+</div>
+</div>
+<p>You can see the dataframe is much longer (12,151 rows) as each row is a lyric. If you wanted to see how many times specific words were used this is how you could do it.</p>
+</section>
+</section>
+<section id="transform-data-with-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="transform-data-with-dplyr">Transform data with <code>dplyr</code></h2>
+<p><img src="figs/transform.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"></p>
+<p>Once the data is tidy we can do transformation and calculations for downstream analysis. You’ve already seen some of these tools in action throughout the course. We’ll formally go over them now so you’ll recognize it when you see it!</p>
+<p>The functions we’ll use <em>in combinations</em> include:</p>
+<ul>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>arrange()</code></li>
+<li><code>distinct()</code></li>
+<li><code>count()</code></li>
+<li><code>summarize()</code></li>
+<li><code>group_by()</code></li>
+<li><code>mutate()</code></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remember your pipes!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>%&gt;%</code> &amp; <code>|&gt;</code> These allow you to link functions together</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A note on style
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When using pipes it is tidy style to put everything after a pipe on a new line so each line of code is noting one operation so its easier to understand. This may seem silly when you’re only doing one operation, but the standard style is for it to be on a new line.</p>
+</div>
+</div>
+<section id="summary-functions" class="level3">
+<h3 class="anchored" data-anchor-id="summary-functions">Summary functions</h3>
+<section id="select" class="level4">
+<h4 class="anchored" data-anchor-id="select">select()</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins) <span class="co"># lets look at the penguins data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 8
+$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+</div>
+<p>If we only want to look at the penguin body mass we can use the <code>select()</code> function to pull out only the data we want to see.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(species, island, body_mass_g) <span class="co">#(example, on one line of code)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   species island    body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;
+ 1 Adelie  Torgersen        3750
+ 2 Adelie  Torgersen        3800
+ 3 Adelie  Torgersen        3250
+ 4 Adelie  Torgersen          NA
+ 5 Adelie  Torgersen        3450
+ 6 Adelie  Torgersen        3650
+ 7 Adelie  Torgersen        3625
+ 8 Adelie  Torgersen        4675
+ 9 Adelie  Torgersen        3475
+10 Adelie  Torgersen        4250
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="filter" class="level4">
+<h4 class="anchored" data-anchor-id="filter">filter()</h4>
+<p>Next, if we want to select only certain rows that meet a specific criteria we use the <code>filter()</code> function to filter out only the data we want. We can combine this with <code>select()</code> too.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 172 × 3
+   species island    body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;
+ 1 Adelie  Torgersen        4675
+ 2 Adelie  Torgersen        4250
+ 3 Adelie  Torgersen        4400
+ 4 Adelie  Torgersen        4500
+ 5 Adelie  Torgersen        4200
+ 6 Adelie  Dream            4150
+ 7 Adelie  Dream            4650
+ 8 Adelie  Dream            4400
+ 9 Adelie  Dream            4600
+10 Adelie  Dream            4150
+# ℹ 162 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="arrange" class="level4">
+<h4 class="anchored" data-anchor-id="arrange">arrange()</h4>
+<p>arrange will re-order the data based on a specific column or columns. It we want to quickly see the lightest or heaviest penguins, for example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lighest</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   species   island    body_mass_g
+   &lt;fct&gt;     &lt;fct&gt;           &lt;int&gt;
+ 1 Chinstrap Dream            2700
+ 2 Adelie    Biscoe           2850
+ 3 Adelie    Biscoe           2850
+ 4 Adelie    Biscoe           2900
+ 5 Adelie    Dream            2900
+ 6 Adelie    Torgersen        2900
+ 7 Chinstrap Dream            2900
+ 8 Adelie    Biscoe           2925
+ 9 Adelie    Dream            2975
+10 Adelie    Dream            3000
+# ℹ 334 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># heaviest using the `desc()` descending function.</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   species island body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;        &lt;int&gt;
+ 1 Gentoo  Biscoe        6300
+ 2 Gentoo  Biscoe        6050
+ 3 Gentoo  Biscoe        6000
+ 4 Gentoo  Biscoe        6000
+ 5 Gentoo  Biscoe        5950
+ 6 Gentoo  Biscoe        5950
+ 7 Gentoo  Biscoe        5850
+ 8 Gentoo  Biscoe        5850
+ 9 Gentoo  Biscoe        5850
+10 Gentoo  Biscoe        5800
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="distinct" class="level4">
+<h4 class="anchored" data-anchor-id="distinct">distinct()</h4>
+<p>distinct is a function similar to unique. It identifies the distinct or unique features across one or multiple columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the distinct islands in the data? Note it is not counting the occurances (thats a different function)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  island   
+  &lt;fct&gt;    
+1 Torgersen
+2 Biscoe   
+3 Dream    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the distinct islands and species?</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(island, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  island    species  
+  &lt;fct&gt;     &lt;fct&gt;    
+1 Torgersen Adelie   
+2 Biscoe    Adelie   
+3 Dream     Adelie   
+4 Biscoe    Gentoo   
+5 Dream     Chinstrap</code></pre>
+</div>
+</div>
+</section>
+<section id="count" class="level4">
+<h4 class="anchored" data-anchor-id="count">count()</h4>
+<p>count is similar to the <code>table()</code> function in base R. It will tally the number of times that unique variable is listed. So its similar to distinct, but it includes the count of the number of occurances.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(island, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  island    species       n
+  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
+1 Biscoe    Adelie       44
+2 Biscoe    Gentoo      124
+3 Dream     Adelie       56
+4 Dream     Chinstrap    68
+5 Torgersen Adelie       52</code></pre>
+</div>
+</div>
+</section>
+<section id="summarize" class="level4">
+<h4 class="anchored" data-anchor-id="summarize">summarize</h4>
+<p>summarize is a powerful tool that summarizes many variables across the data. It can calculate mean, median, standard deviation, variance, sum, and many more features. It outputs a new table that includes just the summary data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets look at the average mass of all the penguins</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_mass
+     &lt;dbl&gt;
+1       NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this doesn't work... why? because there are missing values! We have to add a special note to remove the NA values using the na.rm = TRUE setting. We can also look at more than one summary data at a time!</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  avg_mass    sd
+     &lt;dbl&gt; &lt;dbl&gt;
+1    4202.  802.</code></pre>
+</div>
+</div>
+</section>
+<section id="group_by" class="level4">
+<h4 class="anchored" data-anchor-id="group_by">group_by</h4>
+<p>If we wanted to summarize the data across categorical variables in the data we use the <code>group_by()</code> function that will first group the data and then perform a summary function on each grouping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># just running group_by() you won't see any difference, but under the hood it is sorting the observations.</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+# Groups:   island, species [5]
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species) <span class="sc">|&gt;</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'island'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+# Groups:   island [3]
+  island    species   mean_mass
+  &lt;fct&gt;     &lt;fct&gt;         &lt;dbl&gt;
+1 Biscoe    Adelie        3710.
+2 Biscoe    Gentoo        5076.
+3 Dream     Adelie        3688.
+4 Dream     Chinstrap     3733.
+5 Torgersen Adelie        3706.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can also add in multiple variables for spread or count</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species) <span class="sc">|&gt;</span> </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(), </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'island'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+# Groups:   island [3]
+  island    species       n mean_mass    sd
+  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
+1 Biscoe    Adelie       44     3710.  488.
+2 Biscoe    Gentoo      124     5076.  504.
+3 Dream     Adelie       56     3688.  455.
+4 Dream     Chinstrap    68     3733.  384.
+5 Torgersen Adelie       52     3706.  445.</code></pre>
+</div>
+</div>
+<p>Example calculations you can run in summarize: n(), sum(),mean(), median(), min(), max(), IQR(), sd(), var()</p>
+<p>These commands output a new table and did not modify the original data. However, sometimes you need to add a new calculation or mutate how the data is presented you can do that with the mutate function. If you paid attention above when we looked at the percent weight gain on high fat diet we used the <code>mutate()</code> function to add the new variable to the data.</p>
+</section>
+</section>
+<section id="mutate" class="level3">
+<h3 class="anchored" data-anchor-id="mutate">mutate()</h3>
+<p><code>mutate()</code> takes all the same functions that summarize did above. The big difference is that instead of returning a new table or a single value it returns the whole dataset with a new column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if we run the same command as above but with mutate instead of summarize look at how the results differ</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 9
+Groups: island, species [5]
+$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+$ mean_mass         &lt;dbl&gt; 3706.373, 3706.373, 3706.373, 3706.373, 3706.373, 37…</code></pre>
+</div>
+</div>
+<p><strong>Note the mean_mass column that has now put the mean value in every row. Be aware of the type of output you will get out of the functions you implement!!</strong></p>
+<section id="lets-look-at-another-example" class="level4">
+<h4 class="anchored" data-anchor-id="lets-look-at-another-example">Lets look at another example</h4>
+<p>remember our wide.data that was weight measurements of animals on a high fat diet</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>wide.data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/wide_data.csv"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wide.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10
+Columns: 11
+$ Dam             &lt;chr&gt; "HFD-25-01", "HFD-25-02", "HFD-25-03", "HFD-25-04", "H…
+$ Group           &lt;chr&gt; "CON", "CON", "CON", "CON", "CON", "HFD", "HFD", "HFD"…
+$ Baseline.Weight &lt;dbl&gt; 21.1, 22.4, 22.4, 22.8, 22.8, 21.8, 23.0, 23.6, 22.0, …
+$ Wk1.Weight      &lt;dbl&gt; 20.0, 20.9, 22.2, 22.4, 21.8, 23.8, 25.8, 22.7, 23.2, …
+$ Wk2.Weight      &lt;dbl&gt; 20.0, 21.2, 22.6, 23.1, 22.5, 23.6, 26.4, 21.8, 22.7, …
+$ Wk3.Weight      &lt;dbl&gt; 19.9, 22.2, 22.3, 22.4, 22.0, 26.2, 29.4, 24.9, 25.4, …
+$ Wk4.Weight      &lt;dbl&gt; 20.3, 21.7, 22.3, 24.1, 21.8, 28.1, 31.6, 22.9, 26.7, …
+$ Wk5.Weight      &lt;dbl&gt; 20.7, 22.4, 22.6, 25.0, 21.9, 27.8, 35.8, 23.8, 31.5, …
+$ Wk6.Weight      &lt;dbl&gt; 21.4, 22.7, 23.4, 23.1, 23.4, 31.6, 34.8, 25.5, 33.8, …
+$ Wk7.Weight      &lt;dbl&gt; 21.1, 22.0, 23.2, 24.1, 23.0, 32.0, 36.7, 28.5, 30.8, …
+$ Wk8.Weight      &lt;dbl&gt; 21.1, 21.0, 22.0, 23.2, 22.8, 32.8, 38.2, 25.3, 33.3, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mutate is doing the calculation of percent gain for each row so the output is a unique value in each row instead of repeating the mean of a column of data. </span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>wide.data <span class="sc">|&gt;</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc.gain =</span> Wk8.Weight<span class="sc">/</span>Baseline.Weight<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Dam Group Baseline.Weight Wk1.Weight Wk2.Weight Wk3.Weight Wk4.Weight
+1  HFD-25-01   CON            21.1       20.0       20.0       19.9       20.3
+2  HFD-25-02   CON            22.4       20.9       21.2       22.2       21.7
+3  HFD-25-03   CON            22.4       22.2       22.6       22.3       22.3
+4  HFD-25-04   CON            22.8       22.4       23.1       22.4       24.1
+5  HFD-25-05   CON            22.8       21.8       22.5       22.0       21.8
+6  HFD-25-06   HFD            21.8       23.8       23.6       26.2       28.1
+7  HFD-25-07   HFD            23.0       25.8       26.4       29.4       31.6
+8  HFD-25-08   HFD            23.6       22.7       21.8       24.9       22.9
+9  HFD-25-09   HFD            22.0       23.2       22.7       25.4       26.7
+10 HFD-25-10   HFD            21.0       22.1       22.2       24.6       23.3
+   Wk5.Weight Wk6.Weight Wk7.Weight Wk8.Weight perc.gain
+1        20.7       21.4       21.1       21.1 100.00000
+2        22.4       22.7       22.0       21.0  93.75000
+3        22.6       23.4       23.2       22.0  98.21429
+4        25.0       23.1       24.1       23.2 101.75439
+5        21.9       23.4       23.0       22.8 100.00000
+6        27.8       31.6       32.0       32.8 150.45872
+7        35.8       34.8       36.7       38.2 166.08696
+8        23.8       25.5       28.5       25.3 107.20339
+9        31.5       33.8       30.8       33.3 151.36364
+10       22.7       25.3       25.4       25.9 123.33333</code></pre>
+</div>
+</div>
+<p>This is what we wanted a unique variable for every row rather than a summary data such as mean.</p>
+</section>
+</section>
+<section id="rename" class="level3">
+<h3 class="anchored" data-anchor-id="rename">rename()</h3>
+<p>Another cool function is <code>rename()</code>. There are many ways to rename columns in R, but <code>rename()</code> is in the convenient tidy style. In the weight data the word “weight” is repeated over and over and in the graph it can clutter the axis. We can rename it for brevity. For <code>rename()</code> the function takes the format new_name = old_name. Alternatively, you can use the column number too</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>wide.data <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">baseline =</span> Baseline.Weight,</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk1 =</span> <span class="dv">4</span>,</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk2 =</span> <span class="dv">5</span>,</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk3 =</span> <span class="dv">6</span>,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk4 =</span> <span class="dv">7</span>,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk5 =</span> <span class="dv">8</span>,</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk6 =</span> <span class="dv">9</span>,</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk7 =</span> <span class="dv">10</span>,</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Wk8 =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Dam Group baseline  Wk1  Wk2  Wk3  Wk4  Wk5  Wk6  Wk7  Wk8
+1  HFD-25-01   CON     21.1 20.0 20.0 19.9 20.3 20.7 21.4 21.1 21.1
+2  HFD-25-02   CON     22.4 20.9 21.2 22.2 21.7 22.4 22.7 22.0 21.0
+3  HFD-25-03   CON     22.4 22.2 22.6 22.3 22.3 22.6 23.4 23.2 22.0
+4  HFD-25-04   CON     22.8 22.4 23.1 22.4 24.1 25.0 23.1 24.1 23.2
+5  HFD-25-05   CON     22.8 21.8 22.5 22.0 21.8 21.9 23.4 23.0 22.8
+6  HFD-25-06   HFD     21.8 23.8 23.6 26.2 28.1 27.8 31.6 32.0 32.8
+7  HFD-25-07   HFD     23.0 25.8 26.4 29.4 31.6 35.8 34.8 36.7 38.2
+8  HFD-25-08   HFD     23.6 22.7 21.8 24.9 22.9 23.8 25.5 28.5 25.3
+9  HFD-25-09   HFD     22.0 23.2 22.7 25.4 26.7 31.5 33.8 30.8 33.3
+10 HFD-25-10   HFD     21.0 22.1 22.2 24.6 23.3 22.7 25.3 25.4 25.9</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="stringr-lubridate-forcats-purrr" class="level2">
+<h2 class="anchored" data-anchor-id="stringr-lubridate-forcats-purrr">stringr, lubridate, forcats, purrr</h2>
+<p>These packages contain function to handle other tricky data or processes in R that we won’t cover as heavily here. I wanted to just give a few notes.</p>
+<section id="stringr" class="level4">
+<h4 class="anchored" data-anchor-id="stringr">stringr</h4>
+<p>stringr is for handing text and character strings to perform operations such as</p>
+<ul>
+<li>find character strings (ie, find the work “love” in song lyrics)</li>
+<li>subset strings of characters (ie, extract the first or last 5 characters of a string)</li>
+<li>join or split charcter strings (ie, extract the year, month, and day from a date string</li>
+</ul>
+</section>
+<section id="lubridate" class="level4">
+<h4 class="anchored" data-anchor-id="lubridate">lubridate</h4>
+<p>lubridate is used to more easily handle dates and times. It can handle am/pm/24-h time notations, and change dates from yymmdd to mmddyy and more formats.</p>
+</section>
+<section id="forcats" class="level4">
+<h4 class="anchored" data-anchor-id="forcats">forcats</h4>
+<p>forcats is for working with factors and categorical data in R. Some of the functions are factoring or converting a character vector to a factor vector. Setting the levels of the factors, such as which group is the reference group. It can combine 2 sets of factors or reorder how the factors are plotted.</p>
+</section>
+<section id="purrr" class="level4">
+<h4 class="anchored" data-anchor-id="purrr">purrr</h4>
+<p>purrr is a powerful set of functions for performing for loops or iterations of operations across your data either row-wise or column-wise. This is commonly done in data science, but is a slighly more advanced topic. I encourage you to read about purrr and for loops in R. If we have time at the end of the course we can cover this topic.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do you learn better by listening? Check out these videos covering some of this material.</p>
+<p><a href="https://www.youtube.com/watch?v=MKwyauo8nSI">Intro to Tidyverse</a></p>
+<p><a href="https://posit.co/resources/videos/data-wrangling-with-r-and-rstudio/">Data Wrangling</a> this video is a little older and has some different syntax on the functions, but its all the same logic given by Garrett Grolemund himself (co-author of R for Data Science book)</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

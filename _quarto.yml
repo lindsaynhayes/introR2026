@@ -1,0 +1,39 @@
+project:
+  type: website
+  execute-dir: file
+  render:
+    - "*.qmd"
+    
+website:
+  title: "Intro to Reproducible Data Analysis Using R"
+  navbar:
+    search: true
+    right:
+      - icon: home
+        text: "Home"
+        file: index.qmd
+      - icon: book-half
+        text: "Course"
+        href: lectures.qmd
+      - icon: box-seam-fill
+        text: "Resources"
+        menu:
+          - text: "Pre-reading"
+            href: readings.qmd
+          - text: "In-Class Activities"
+            href: activities.qmd
+          - text: "Assignments"
+            href: projects.qmd
+      - icon: github
+        href: https://github.com/lindsaynhayes/introR2025
+format:
+  html:
+    theme: simplex
+    toc: true
+    css: styles.css
+    code-overflow: wrap
+
+editor: source
+
+execute:
+  freeze: auto

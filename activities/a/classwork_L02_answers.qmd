@@ -1,0 +1,156 @@
+---
+title: "Navigating Data Types in R - Answers"
+author: "Lindsay N. Hayes"
+date: 2025-07-03
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Create a new Quarto document and erase the base text. You can keep the YAML header and rename it for yourself.
+
+2)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork02/classwork_L02.qmd) from the [github repository for the course](https://github.com/lindsaynhayes/introR2025).
+
+3)  Copy and paste the content into your new Quarto Document. Make sure the code chunks copied correctly.
+
+We will work our way through this quarto document together during class. The activity will cover using R as a calculator, creating R objects, and exploring the features of a data set.
+
+## First Load the Tidyverse Package
+
+```{r}
+#| label: packages
+
+library(tidyverse)
+```
+
+## Ways to Use R
+
+### 1. Arithmetic
+
+```{r}
+# example: addition/subtraction/multiplication/division
+
+193 + 45
+2050 - 2025
+50/250 * 100
+
+# activity: assign the variable my_age as the current year minus your year of birth. 
+```
+
+### 2. Create R objects
+
+```{r}
+# vector
+# c(..., recursive = FALSE, use.names = TRUE)
+x <- c(1:225)
+class(x)
+
+# matrix
+# matrix(data, nrow, ncol, byrow, dimnames)
+y <- matrix(1:225, nrow=15, ncol=15, byrow = FALSE)
+class(y)
+
+# logical
+# testing each variable in the vector and outputting TRUE or FALSE
+over100 <- x>100
+table(over100)
+```
+
+### Your Turn
+
+### A. Create a vector of all the `homeworlds` in starwars using the `starwars` data.
+
+```{r}
+
+# create vector called "homeworlds" and assign it the value "homeworld" from the starwars data set
+homeworlds <- starwars$homeworld
+
+# how many worlds are there? hint: use the unique() function
+unique(homeworlds)
+
+# is there a world called "Ohio"? how would you test this with code?
+table(homeworlds == "Ohio")
+
+# How many characters live on Naboo?
+table(homeworlds == "Naboo")
+
+starwars |> filter(homeworld == "Naboo") |> count(homeworld, .drop = FALSE)
+
+# Who lives on Naboo? (hint use the "name" variable in the starwars data and the "which" function)
+unique(starwars$name[homeworlds == "Naboo"])
+which(homeworlds == "Naboo")
+starwars$name[which(homeworlds == "Naboo")]
+```
+
+### B. Import the `taylor` package and explore the `taylor_album_songs` dataframe
+
+```{r}
+
+# Try loading in the taylor package and viewing the taylor_album_songs dataframe
+library(taylor)
+taylor_album_songs
+
+# what is the "class" of the object taylor_album_songs?
+class(taylor_album_songs)
+
+# what types of data are in the object taylor_album_songs?
+glimpse(taylor_album_songs)
+as.data.frame(map_chr(taylor_album_songs, class))
+
+# change the "key_mode" from class "character" to class "factor"
+taylor_album_songs$key_mode <- factor(taylor_album_songs$key_mode)
+
+# How many albums are in the data set & how many songs on each album?
+taylor_album_songs |> count(album_name)
+```
+
+### C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
+
+```{r}
+# pick what features of the data you want to explore
+colnames(taylor_album_songs)
+
+# create a matrix of those features
+mat <- taylor_album_songs[,c(1,10,11,12,13,14,15,17,18,19,20,21,22)]
+colnames(mat)
+
+# evaluate the correlation matrix
+mat |> GGally::ggpairs()
+
+# Which values show a positive correlation? Which values show a negative correlation?
+
+#var1 <-
+#var2 <-
+#var3 <- 
+#var4 <- 
+
+
+# Plot the correlations
+
+#ggplot(taylor, aes(x=var1, y=var2)) + geom_point(size=3)
+#ggplot(taylor, aes(x=var3, y=var4)) + geom_point(size=3)
+
+# plot loudness vs energy
+ggplot(taylor_album_songs, aes(x=loudness, y=energy)) + 
+  geom_point(size=3)
+
+# plot acousticness vs energy
+ggplot(taylor_album_songs, aes(x=acousticness, y=energy)) + 
+  geom_point(size=3)
+
+# plot loudness vs energy, color by album, facet by album
+ggplot(taylor_album_songs, aes(x=loudness, y=energy, color = album_name)) + 
+  geom_point(size=3) + 
+  scale_color_albums() + 
+  facet_wrap(~album_name)
+
+# plot acousticness vs energy, color by album, facet by album
+ggplot(taylor_album_songs, aes(x=acousticness, y=energy, color = album_name)) +
+  geom_point(size=3) + 
+  scale_color_albums() + 
+  facet_wrap(~album_name)
+
+```
+

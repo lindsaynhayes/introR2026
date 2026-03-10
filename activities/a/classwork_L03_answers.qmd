@@ -1,0 +1,143 @@
+---
+title: "Data Wrangling with tidyverse - Answers"
+author: "Lindsay N. Hayes"
+date: 2025-07-08
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork03/classwork_L03.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover using R as a calculator, creating R objects, and exploring the features of a data set.
+
+## Load the Tidyverse Package
+
+```{r}
+#| label: packages
+
+library(tidyverse)
+library(cowplot)
+```
+
+
+## Reshaping and Summarizing Data
+A common type of data that requires reshaping is time course data. 
+
+Using tidyverse principles answer the questions below:
+
+**1. Which month had the most and least passengers in the `AirPassengers` data?**
+The `AirPassengers` data which is a time-series of data representing the monthly international airline passenger numbers from January 1949 to December 1960. Search for AirPassengers in the Help to learn more about the dataset. 
+
+```{r}
+# Load and inspect the data, a little reshaping to get in to an easy to read format for you.
+AP_matrix <- matrix(AirPassengers, nrow = length(unique(floor(time(AirPassengers)))), byrow = TRUE)
+colnames(AP_matrix) <- month.abb
+rownames(AP_matrix) <- unique(floor(time(AirPassengers)))
+AP_df <- as.data.frame(AP_matrix)
+AP_df$Year <- rownames(AP_matrix)
+dim(AP_df)
+
+# A. Is the data long or wide? What form does it need to be in?
+
+dat <- AP_df |>
+  pivot_longer(cols = 1:12, names_to = "month", values_to = "count")
+
+glimpse(dat)
+dat$month <- factor(dat$month, levels = month.abb)
+
+
+# B. How can we extract the the most and least traveled months of the year? 
+
+dat |>
+  group_by(Year) |>
+  summarise(max = max(count),
+            max_month = month[which.max(count)],
+            min = min(count),
+            min_month = month[which.min(count)],)
+
+dat |>
+  group_by(Year) |>
+  ggplot(aes (x = month, y = count, group = Year, color = Year)) + geom_line()
+```
+
+**2. What was the percent increase in passengers each year between Aug and Nov?**
+```{r}
+# To answer this question we need to find the ratio of Aug and Nov travelers. We need the data in the wide format.
+
+AP_df
+
+# how can we add the ratio?
+AP_df |> mutate(ratio = ((Aug/Nov)-1)*100) |>
+  ggplot(aes(x = Year, y = ratio)) + geom_point(size = 3)
+
+```
+
+
+3. Which diet caused the chicks to grow more?
+We will use the `ChickWeight` data. Use the help to read more about the data. 
+```{r}
+# First lets just look at the data.
+glimpse(ChickWeight)
+
+# Second, look at the distribution of the data. Count how many timepoints was measured nad how many chicks were in each Diet. 
+
+ChickWeight |> count(Diet)
+ChickWeight |> count(Chick)
+n_distinct(ChickWeight$Chick)
+
+ChickWeight |> count(Time)
+
+
+ChickWeight |> 
+  group_by(Diet) |>
+  count(Chick)
+
+ChickWeight |> 
+  filter(Time == 0) |>
+  count(Diet)
+
+ChickWeight |> 
+  group_by(Diet) |>
+  summarize(no.chicks = n_distinct(Chick))
+
+```
+Ok so we know there are 4 diets with 20 chicks on Diet 1, and 10 chicks each on diets 2-4.
+
+Now lets figure out which diet leads to the heaviest chicks.
+```{r}
+# we can plot it to get a first view
+
+ChickWeight |>
+  ggplot(aes(x = Time, y = weight, group = Chick, color = Diet)) + 
+  geom_line() +
+  theme_cowplot()
+
+ChickWeight |>
+  pivot_wider(names_from = Time, names_prefix = "day_", values_from = weight) |>
+  mutate(weight.gain = day_18 - day_0) |>
+  ggplot(aes(x = Diet, y = weight.gain, fill = Diet)) + geom_boxplot()
+
+data <- ChickWeight |>
+  pivot_wider(names_from = Time, names_prefix = "day_", values_from = weight) |>
+  mutate(weight.gain = day_18 - day_0)
+
+mod <- aov(weight.gain ~ Diet, data = data)
+summary(mod)
+TukeyHSD(mod)
+pairwise.t.test(data$weight.gain, data$Diet, p.adjust.method = "BH")
+
+library(lme4)
+library(lmerTest)
+
+mod <- lmer(weight ~ Diet * Time + (1|Chick), data = ChickWeight)
+summary(mod)
+
+```

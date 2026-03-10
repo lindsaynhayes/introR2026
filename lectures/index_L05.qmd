@@ -1,0 +1,46 @@
+---
+title: "Dimension Reduction with tidymodels"
+author: 
+  - name: Lindsay Hayes
+    url: https://lindsaynhayes.github.io
+    affiliation: Department of Cell Biology, OUHSC
+date: 2025-07-14
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Pre-lecture activities
+
+Before class, watch this [video](https://juliasilge.com/blog/best-hip-hop/) from Data Scientists [Julie Silge](https://juliasilge.com) from RStudio. She does a real-time data analysis using Principal Component Analysis (PCA) of the **best hip hop songs of all time** according to critics ratings. This video is not a detailed explanation of what PCA is or how it works *(there is a lot of that maths on the internet if you want)*. In contrast, it is a live, real-time, analysis that asks the question what song features make a hip hop song the best. I want you to see that PCA is often a first line of inquiry when exploring a dataset.
+
+-   For background, [TidyTuesday](https://github.com/rfordatascience/tidytuesday) is a weekly podcast and community activity that brings an interesting dataset to the data science community each week to do some cool plotting or analysis on. It provides interesting data to use for teaching purposes or code testing.
+
+-   This video goes pretty fast but all the code she uses is below the video.
+
+# Lecture
+
+## Learning objectives
+
+::: callout-note
+### Learning objectives
+
+**At the end of class you will be able to:**
+
+-   Define dimension reduction
+-   Explain why dimension reduction is used
+-   Build a model to perform PCA on a dataset
+
+:::
+
+## Slides
+
+-   [Lecture 05: Dimension Reduction in tidymodels](https://docs.google.com/presentation/d/1qXvqQSIotCCkQNO3O-3AIlM9QfIXIwzCjKL35xqYwPk/edit?usp=sharing)
+
+-   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork05/dimred_Penguins.html)
+
+
+# Post-lecture Practice
+- Homework Assigment 3 will cover a tutorial on PCA and dimension reduction. [here](https://lindsaynhayes.github.io/introR2025/projects/index_A03.html)
+- If that wasn't enough dimension reduction you can read more [here](https://www.tmwr.org/dimensionality), [here](https://juliasilge.com/blog/cocktail-recipes-umap/), or [here](https://www.alexcookson.com/post/2020-11-19-applying-pca-to-fictional-character-personalities/).
+

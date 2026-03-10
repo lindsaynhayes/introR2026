@@ -1,0 +1,273 @@
+---
+title: "Syllabus"
+knitr: true
+---
+
+# Course Information
+
+-   Location: In person, Summer 2025
+-   Dates: 7/1/2025 - 7/28/2025
+-   Course time: 10:30am - noon CST
+-   Course location: BMSB 324
+-   Office hours: Tuesdays from 12:00-1:00pm CST
+
+## Instructor
+
+-   Prof. Lindsay Hayes (<https://lindsaynhayes.github.io>)
+    -   Office Location: BMSB 103
+    -   Email: Lindsay-Hayes\@ouhsc.edu
+
+I am an Assistant Professor in the [Department of Cell Biology](https://basicsciences.ouhsc.edu/cb/) at the [University of Oklahoma Health Sciences Center](https://www.ouhsc.edu). I am affiliated with the Graduate Programs in [Cell Biology](https://basicsciences.ouhsc.edu/cb/) and [Neuroscience](https://graduate.ouhsc.edu/Programs/PhD-Programs/Graduate-Program-in-Biomedical-Sciences/Programs/Neuroscience) as part of the [Graduate Program in Biomedical Sciences](https://graduate.ouhsc.edu/Graduate-Programs/PhD-Programs/Graduate-Program-in-Biomedical-Sciences).
+
+My research field is in developmental neurobiology and neuroimmunology. My lab studies how developmental inflammation leads to impaired brain development and reprogramming of the brain resident immune cells called microglia. We primarily use mouse model systems, but also use human resources to study how neuroinflammation impacts brain function and contributes to risks for neurodevelopmental and psychiatric disorders. My lab uses big data science primary based on genomics data we generate in the lab, but I encourage my lab members to organize and analyze **ALL** data generated using the principles of reproducible and literate coding.
+
+If you want, you can find me on [Bluesky](https://bsky.app/profile/lnhayeslab.bsky.social).
+
+## Teaching Assistants
+
+-   Eleana Cabello
+    -   Office Location: IRCF
+    -   Email: eleana-cabello\@ouhsc.edu
+
+## Important Links
+
+-   Course website: <https://lindsaynhayes.github.io/introR2025>
+-   GitHub repository with all course material: <https://github.com/lindsaynhayes/introR2025>
+
+## Course Description
+
+Intro to Reproducible Data Analysis Using R will prepare students to explore large datasets, generate publication-quality graphics, perform reproducible and literate data analysis pipelines, and communicate analysis results. The ultimate goal is to teach novice programmers to write modular and descriptive code using R to address relevant scientific questions. The students will use publicly available data as well as apply reproducible scripts to data generated in their laboratories.
+
+## Learning Objectives
+
+Upon successfully completing this course, students will be able to:
+
+1.  **Import** and **summarize** data in R using reproducible and literate programming principles
+2.  **Analyze and evaluate** data manipulations and outcomes
+3.  **Seek help** for roadblocks, **debug** problems, and **communicate results** to a broad audience
+4.  Take appropriate steps to **evaluate data quality** and choose appropriate analyzes
+
+The goal of this course is to teach novice programmers to write modular code and impart best practices for using R for data analysis. R is commonly used across many scientific disciplines and will be useful to a wide array of students across campus. The course will focus on teaching the fundamentals of the programming language R including data analysis and plotting but will not teach statistical analyses.
+
+# Course Logistics
+
+::: callout-warning
+This syllabus is intended as a guide for this course. Dates, assignments, and evaluation are subject to revision by the instructor. Any such revisions will be announced in advance.
+:::
+
+## Computer Requirements
+
+A **laptop is required** for the course. The laptop requirements set forth by the College of Medicine can be found [here](https://itsupport.ou.edu/TDClient/30/Unified/KB/ArticleDet?ID=2333). Specifically, laptops must be encrypted in accordance with University policy. It is the student’s responsibility to ensure that one’s laptop is connected to the OUHSC wireless network.
+
+In addition, students need to have **R** and **R Studio** installed on their computers before the first class session. Detailed information on this can be found on the course Canvas site.
+
+::: callout-tip
+### Be Prepared
+
+Since this is a short course it is essential your computers are ready to start working on the first day of class.
+:::
+
+## Class Preparation
+
+Before each class, there will be a set of pre-lecture activities and/or readings to complete. It is important these activities be done before class so that the students can benefit the most from the in-class activities. Students are responsible for completing all assigned readings and materials, whether discussed in class or not (including any written or verbal updates, all lecture material, case studies, independent study, other information provided, etc.). Students are responsible for processing and analyzing data outside of the instruction time, so the student and the data are ready for in-class activities.
+
+::: callout-note
+### Tip
+
+You will get as much out of the course as you put into it!
+:::
+
+## Attendance
+
+The course design is as a traditional, face-to-face contact where instructors interact with students in the same physical space.
+
+::: callout-important
+### This is important
+
+Attendance is required for all class sessions.
+:::
+
+All anticipated absences should be requested in writing at least 24 hours in advance. A limited number of reasons will justify excused absences. These include, but are not limited to, an illness, a personal emergency, a family emergency, or presentation or representation in a leadership capacity at a professional meeting. Students may be required to provide documentation of the reason for the absence and may be required to complete supplementary assignments to make up for missed activities, but the course director and/or instructors are not required to provide make-up opportunities for missed discussions. Each unexcused absence will trigger a 10 point reduction in attendance points (see evaluation and grading below). If a session cannot be in person due to illness or weather, the session may be given by zoom. In such cases, every effort will be made to communicate any changes and to record the session for those that cannot attend synchronously.
+
+Unexcused lateness of more than 10 minutes will be recorded as an absence. Egregious lack of engagement (e.g., work unrelated to the course, messaging/texting, or using social media for more than 10 minutes of class) will be counted as an absence.
+
+## Participation
+
+Students are required to process and analyze data provided during the course. Students are required to write their own scripts and analyze data independently. Students will be required to submit a final project processing their own data or publicly available data using literate programming concepts.
+
+## Canvas
+
+The primary communication for the class will go through Canvas. That is where we will post course announcements, grading, course discussions, and as the primary means of communication between course participants and course instructors.
+
+## Getting Help
+
+In order of preference, here is a preferred list of ways to get help:
+
+1.  We **strongly encourage** you to use Canvas to ask questions first, before joining office hours. The reason for this is so that other students in the class (who likely have similar questions) can also benefit from the questions and answers asked by your colleagues.
+2.  You are welcome to join office hours to get feedback.
+3.  If you are not able to make the office hours, appointments can be made by email with the instructor.
+
+## Textbook and Other Course Material
+
+There is no required textbook. We will make use of several freely available textbooks and other online materials. All course materials will be provided. Required readings will be posted online before the relevant course sessions.
+
+## Software
+
+We will make heavy use of R in this course, so you should have R installed before the first class. You can obtain R from the [Comprehensive R Archive Network](https://cran.r-project.org). There are versions available for Mac, Windows, and Unix/Linux. This software is **required** for this course.
+
+It is important that you have the latest version of R installed. For this course we will be using **R version `r paste(version$major, version$minor, sep = ".")`**. You can determine what version of R you have by starting up R and typing into the console `R.version.string` and hitting the `return`/`enter` key. If you do not have this version of R installed, go to [CRAN](https://cran.r-project.org) and download and install the latest version. Newer versions may also work but considerably older versions should be avoided.
+
+We will work primarily in **RStudio** which is an interactive development environment (IDE) for R. RStudio requires that R be installed, and so is an "add-on" to R. You can obtain the RStudio Desktop for free from the [RStudio web site](https://www.rstudio.com/). In particular, we will make heavy use of it when developing R packages. It is also essential that you have the latest release of RStudio. You can determine the version of RStudio by looking at menu item `Help > About RStudio`. You should be using **RStudio version 2023.09.1+494 (2023.09.1+494) or higher**, which requires R version 3.3.0 or higher.
+
+## Assignments
+
+-   Homework assignments and final projects will be completed independently by students.
+
+-   Turn in Homework on canvas as a quarto markdown file and the corresponding html report.
+
+-   The Final project is to identify a data processing problem or question, develop a script to solve the problem, and present the process in a final 10-minute presentation.
+
+-   There are no exams in the course.
+
+## Grading
+
+Grades will be issued via the Canvas grade book.
+
+### Relative weights
+
+| Assignment    | \% of Final Grade |
+|---------------|-------------------|
+| Homework 1    | 15                |
+| Homework 2    | 15                |
+| Homework 3    | 15                |
+| Final Project | 35                |
+| Attendance    | 20                |
+| **Total**     | **100**           |
+
+### Grading Rubrics
+
+For *homework* & *final project*:
+
+-   Did the student successfully complete the analysis and script? Was the correct output generated?
+-   Did the final project have a clearly stated analysis goal?
+-   Did the final project successfully achieve that goal? Why or why not?
+    -   A == Phenomenal/Excellent
+    -   B == Passing
+    -   C == Needs Improvement
+    -   D/F == Did not complete the assignment
+
+### Course evaluation
+
+We will allocate 15 minutes in the last course session for students to perform the standard course evaluation, along with comments for the instructor.
+
+## Course Schedule
+
+| Date | Class | Topic                               | Homework                    |
+|:----:|:-----:|-------------------------------------|-----------------------------|
+| 7/1  |  01   | Intro to R/RStudio                  |                             |
+| 7/3  |  02   | Navigating Data Types in R          | Homework 1 (due 7/25)       |
+| 7/8  |  03   | Data Wrangling with tidyverse       |                             |
+| 7/10 |  04   | Data Visualization with ggplot2     | Homework 2 (due 7/25)       |
+| 7/14 |  05   | Dimension Reduction with tidymodels | Homework 3 (due 7/25)       |
+| 7/16 |  06   | Machine Learning with tidymodels    |                             |
+| 7/18 |  07   | Building a Portfolio in GitHub      |                             |
+| 7/22 |  08   | In-Class Work on Final              | Final project proposal due  |
+| 7/24 |  09   | Final Project Presentations         | presentation                |
+| 7/28 |  10   | Final Project Presentations         | presentation and evaluation |
+
+# Policies
+
+::: callout-tip
+## Important
+
+Students and faculty will treat each other with respect by 1) showing up on time, 2) being prepared to participate in class, and 3) demonstrating collegiality and civility in all discussions.
+:::
+
+## Collaboration
+
+Please feel free to study together and talk to one another about project assignments. The mutual instruction that students give each other is among the most valuable that can be achieved.
+
+However, it is expected that **assignments will be implemented and written up independently**. Specifically, please do not share analytic code or output. Please do not collaborate on write-up and interpretation. Please do not access or use solutions from any source before your project assignment is submitted for grading.
+
+## Late Work
+
+Due to the short duration of the course and the compounding nature of the materials late work will not be accepted.
+
+## Use of AI Tools
+
+Use of AI tools (including ChatGPT, Bard, Microsoft Copilot, etc) to assist in completing this assignment/exam is permitted with your writing and/or programming. Be aware, however, that such tools often introduce errors or fabricate information; it is your responsibility to ensure the factual accuracy of whatever you claim as your writing/code. I recommend using such tools particularly for learning to code, just make sure the code does what it is supposed to, and that you understand what the code does.
+
+With respect to writing, as with all sources, proper references and use of quotation marks should be used (if precise language generated by the software is used). The reference must include the website and specific prompts used to generate the referenced output.
+
+::: callout-tip
+## For more information:
+
+Refer to the LLM section of the syllabus on canvas for more information on use of LLMs.
+:::
+
+# Academic Ethics and Student Conduct Code
+
+## Course Code of Conduct
+
+We are committed to providing a welcoming, inclusive, and harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), political beliefs/leanings, or technology choices. We do not tolerate harassment of course participants in any form. Sexual language and imagery is not appropriate for any work event, including group meetings, conferences, talks, parties, Twitter/X and other online media. This code of conduct applies to all course participants, including instructors and TAs, and applies to all modes of interaction, both in-person and online, including GitHub project repos, Slack channels, and Twitter/X.
+
+Course participants violating these rules will be referred the Title IX coordinator and may face expulsion from the class.
+
+All class participants agree to:
+
+-   **Be considerate** in speech and actions, and actively seek to acknowledge and respect the boundaries of other members.
+-   **Be respectful**. Disagreements happen, but do not require poor behavior or poor manners. Frustration is inevitable, but it should never turn into a personal attack. A community where people feel uncomfortable or threatened is not a productive one. Course participants should be respectful both of the other course participants and those outside the course.
+-   **Refrain from demeaning, discriminatory, or harassing behavior and speech**. Harassment includes, but is not limited to: deliberate intimidation; stalking; unwanted photography or recording; sustained or willful disruption of talks or other events; inappropriate physical contact; use of sexual or discriminatory imagery, comments, or jokes; and unwelcome sexual attention. If you feel that someone has harassed you or otherwise treated you inappropriately, please alert Lindsay Hayes.
+-   **Take care of each other**. Refrain from advocating for, or encouraging, any of the above behavior. And, if someone asks you to stop, then stop. Alert Lindsay Hayes if you notice a dangerous situation, someone in distress, or violations of this code of conduct, even if they seem inconsequential.
+
+## Copyright
+
+This syllabus and all related course material are protected under US Copyright Law and may not be further disseminated in any form or format without the prior explicit written consent of the faculty member. Failure to comply with this provision may subject the student to disciplinary action and/or state or federal action.
+
+## Student Professional Behavior in an Academic Program
+
+Ethical and professional behaviors are considered a core competency in an academic program and thus are key factors in a student’s good academic standing. Upon acceptance of an offer of admission, the student commits to comply with all professional conduct regulations established by the University, respective college, and program. The complete [Student Professional Behavior in an Academic Program policy](www.ouhsc.edu/provost/documents/FacultyHandbookOUHSC.pdf).
+
+## Academic Misconduct Code
+
+The Academic Misconduct Code describes academic misconduct as any acts intended to improperly affect the evaluation of a student’s academic performance or achievement. Academic Misconduct includes but is not limited to cheating, plagiarism, fabrication, fraud, destruction, bribery or intimidation, assisting others in any act proscribed by the Code, or attempting to engage in such acts. The policy and procedures related to academic misconduct are detailed in the Academic Misconduct Code found in Appendix C of the [Faculty Handbook](www.ouhsc.edu/provost/documents/FacultyHandbookOUHSC.pdf).
+
+## Academic Appeals
+
+The Academic Appeals policy outlines the procedure a student must follow to request a hearing for appeals related to evaluation in a course, thesis or dissertation defense, or general or comprehensive exam. It also outlines the appeal process for a suspension or dismissal or under the Student Professional Behavior in an Academic Program Policy and for appeals of decisions resulting in dismissal, expulsion, or suspension from a program or of being required to repeat a semester of year. The sole basis for an academic appeal is an alleged prejudiced or capricious academic evaluation or decision. Policy and procedure details are in Appendix C of the [Faculty Handbook](www.ouhsc.edu/provost/documents/FacultyHandbookOUHSC.pdf).
+
+## Accommodation on the Basis of Disability
+
+The University of Oklahoma is committed to the goal of achieving equal educational opportunity and full participation for students with disabilities. Accommodations on the basis of disability are available by contacting the Accessibility and Disability Resource Center (ADRC) by email at adrc\@ou.edu or by calling (405) 325-3852 or Voice (405) 217-3494 (VP). Information on policies and registration with the Accessibility and Disability Resource Center may be found on the [ADRC website](www.ou.edu/adrc). Students requesting accommodations related to work in a course must contact the ADRC as soon as possible; accommodations are not made retroactively.
+
+## Sexual Misconduct
+
+For issues regarding gender-based discrimination, sexual harassment, sexual misconduct, stalking, or intimate partner violence, the University offers a variety of resources, including Advocates-On-Call 24/7, counseling services, mutual “No Contact orders,” scheduling adjustments, and disciplinary sanctions against the perpetrator. Information is available from the Institutional Equity Office at (405) 325-2215 (8AM-5PM) or the OU Advocates at (405) 615-0013 (24/7).
+
+## Adjustment for Pregnancy/Childbirth Related Issues
+
+Students needing modifications or adjustments to course requirements because of documented pregnancy-related or childbirth-related issues should contact the college’s Assistant/Associate Dean for Student Affairs (or academic advisor) or the [Accessibility and Disability Resources Center](www.ou.edu/adrc) as soon as possible to discuss. Generally, modifications will be made where medically necessary and similar in scope to accommodations based on temporary disability. See [FAQs](www.ou.edu/content/eoo/faqs/pregnancy-faqs.html).
+
+## Course Drop/University Withdrawal
+
+The student is responsible to submit required University paperwork before the deadlines to drop or withdraw from a course, shown in the [Academic Calendar](http://admissions.ouhsc.edu/AcademicCalendar.aspx). Missed homework and examination grades will be entered as a grade of zero if a student fails to formally drop the course or withdraw from the University.
+
+## Laptop/Device Encryption and Anti-Virus Software
+
+In advance of examinations, students must check that their laptop or PC includes up-to-date encryption software and the necessary programs for securing the device. Students who obtain new or replacement devices at any time can request access to the [Student Virtual Desktop](http://ouhsc.edu/sde). OU IT will grant student access within 24 hours of request submission. Students can log in [here](https://mydesk.ou.edu). All students should continue to encrypt their devices with Windows 10 and MacOS encryption tools and install anti-virus software. Instructions and recommendations are linked at: Windows 10 Encryption, MacOS Encryption, and Anti-Virus Software.
+
+## Absences
+
+If you will be absent from a course activity for any reason, it is your responsibility to notify the instructor as specified by the course syllabus.
+
+## COVID-19
+
+See Related Academic Policy Addendum.
+
+## Responsible Conduct of Research
+
+Students, as members of the University community, have the responsibility to ensure the integrity and ethical standards of any research activity with which they are associated directly or of which they have sufficient knowledge to determine its appropriateness. Students are governed by the Policy on Ethics in Research [Faculty Handbook Section 3.25](www.ouhsc.edu/provost/documents/FacultyHandbookOUHSC.pdf).
+
+### License and attribution
+
+This Code of Conduct is distributed under a Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license. Portions of above text comprised of language from the Codes of Conduct adopted by rOpenSci and Django, which are licensed by CC BY-SA 4.0 and CC BY 3.0. This work was further inspired by Ada Initiative's ''how to design a code of conduct for your community'' and Geek Feminism's Code of conduct evaluations and expanded by Ashley Johnson and Shannon Ellis in the Jeff Leek group, and Stephanie C. Hicks.

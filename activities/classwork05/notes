@@ -1,0 +1,46 @@
+
+Dimension Reduction
+data transformation; 
+M: transformed predictors
+P: number of predictors
+N: number of observations
+
+Curse of dimensionality: 
+  as the dimenstionality inccreassa, space increases so fast the data become too sparseMatrixStats.
+  cant distinguish signal from noise.
+
+
+Feature Selection
+Feature Extraction
+
+PCA: Principal component analysis
+Euclidean, orthogonal and uncorrelated, linear
+
+IDC: Independent Component Analysis
+Cocktail party problem
+
+MDS: Multidimensional Scaling
+non-linear dimension reduction
+preserves pairwise distance
+computationally expensive
+
+t-SNE
+probability that two points are similar, non-linear
+
+UMAP
+non-linear
+geometry based, preserve global structure
+manifold
+
+
+
+10.1038/s41592-021-01171-x
+
+
+Tidymodels
+
+
+
+
+
+

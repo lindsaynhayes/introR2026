@@ -1,0 +1,102 @@
+---
+title: "Final Project"
+author: 
+  - name: Eleana Cabello
+    affiliation: Department of Microbiology and Immunology, OUHS
+date: 2025-7-18
+draft: FALSE
+---
+
+# Background
+
+Throughout this summer course, you have gained hands-on experience programming in R, performing initial exploratory data analysis, and applying commonly used unsupervised learning methods to better understand complex datasets.
+
+The goal of the final project is to give you an opportunity to put these skills into practice by working with real-world data that is relevant to your own research or interests. To support this, we are giving you the freedom to choose your own dataset and the methods you find most applicable.
+
+# Project
+
+1. Select a dataset you want to work with, either your own data or a publicly available data set.
+
+2. Identify a question, hypothesis, or problem to solve with the data.
+
+::: {.callout-important}
+
+- Submit a brief paragraph of your project proposal to Canvas by July 21, 2024.
+- Present your project proposal in 2-3 sentences to the class on July 22, 2024.
+
+:::
+
+3. Make a literate coding quarto document that combines the question, your approaches to solve the problem or answer the question, informative graphics of the dataset that demonstrate your findings, and your conclusions. Knit to an html and present your report in class.
+
+
+Below are key dates and deadlines:
+
+### Timeline and Deliverables
+
+```{=html}
+<table style="width:100%">
+    <tr>
+    <th style="width:20%">07/22/25</th>
+    <th style="width:30%">Project Proposal</th>
+    <th style="width:50%">**DUE**: Brief paragraph on the data set you will be using for the project including goals of the analysis</th>
+    </tr>
+    <tr>
+    <td>07/22/25</td>
+    <td>Project Work Day</td>
+    <td>Get help from instructors on any tasks you may be stuck on</td>
+    </tr>
+    <tr>
+    <td>07/24/25 07/28/25</td>
+    <td>Presentations </td>
+    <td>5-10 min limit</td>
+    </tr>
+</table>
+```
+# Submission
+
+Project submission will be done through your Github website that you will create. Have your project file (.qmd file) in your website directory. However you would like to accomplish this: copying file into the directory, creating a new file and copying text over into the new file, or creating new qmd file in the directory and redoing your project). Whichever method is used what matters is you push the new file changes (your new project file) to your Github repository, where these changes will be changed to HTML files and displayed on your website. Afterwards, **submit a link to your project page on your website to Canvas**. Alternatively, you can submit the zipped qmd, folder, and html output to Canvas.
+
+# Need More Data?
+
+There are a few data sets already installed in R and that come with the packages we used in this course. To view them run `data()` in the console of RStudio. Give them a look and if your are interested there is more information on them online.
+
+Another option is online repositories that store datasets like [Kaggle](https://www.kaggle.com/datasets) and [UC Irvine's Machine Learning Repository](https://archive.ics.uci.edu/). Below are a few that might be interesting to look further into:
+
+-   [CAIR-CVD-2025: Cardiovascular Risk from Bangladesh](https://www.kaggle.com/datasets/jocelyndumlao/cair-cvd-2025-cardiovascular-risk-from-bangladesh)
+
+-   [Thyroid Disease Data from the Garavan Institute in Sydney, Australia](https://archive.ics.uci.edu/dataset/102/thyroid+disease)
+
+-   [Maternal Health Risks from Bangladesh](https://archive.ics.uci.edu/dataset/863/maternal+health+risk)
+
+-   [Formula One Race Results 2025](https://www.kaggle.com/datasets/makslypko/f1-race-result-2025)
+
+# Rubric
+
+```{=html}
+<table border="0">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+    <th style="width:20%"></th>
+    <th style="width:40%">Did the final project have a clearly stated analysis goal?</th>
+    <th style="width:40%">Did the final project successfully achieve that goal?</th>
+    </tr>
+    <tr>
+    <td>15pts (Good)</td>
+    <td>Student understood the assignment, picked a task that could be completed by data science, and clearly communicated the problem and goals.</td>
+    <td>The student was able to write a script to address their problem and present the problem, logic and organization of the script, and achieved the stated goals.</td>
+    </tr>
+    <tr>
+    <td>9pts (Fair)</td>
+    <td>The student attempted the assignment, identified a problem, and was able to partially communicate the goals of the project.</td>
+    <td>The student was able to communicate the problem, attempted a script to achieve the goal, but was only partially able to achieve the stated goals.</td>
+    </tr>
+    <tr>
+    <td>3pt (Poor)</td>
+    <td>The student did not understand the assignment, was not able to communicate a problem or identify achievable goals.</td>
+    <td>The student poorly communicated the problem, did not find a logical solution, and was not able to achieve the stated goals.</td>
+    </tr>
+  </tbody>
+</table>
+```

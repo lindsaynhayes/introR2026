@@ -1,0 +1,62 @@
+---
+title: "Assignment 3"
+author: 
+  - name: Eleana Cabello
+    affiliation: Department of Microbiology and Immunology, OUHS
+description: "Week 3 Practice - Dimension Reduction using Tidymodels"
+date: 2025-7-18
+---
+
+# Overview
+
+**Due date: 07/25/25 at 11:59pm**
+
+This week we will use a different package called `LearnR` to gain practice in dimension reduction using `tidymodels`.
+
+The lesson will cover using `tidymodels` for:
+
+-   PCA Dimension reduction
+-   UMAP Dimension reduction
+
+# Install the Tutorial Course Setup
+
+1.  The course is available on [GitHub](https://github.com/tidymodels/learntidymodels).
+
+2.  Open RStudio.
+
+3.  Install `devtools` using the command below on the R Console
+
+    `install.packages("devtools")`
+
+4.  Install the github lesson using the command below on the R Console
+
+    `devtools::install_github("tidymodels/learntidymodels")`
+
+::: callout-tip
+
+- You will be asked to do a lot of updates. Not all of these are necessary. Try selecting no to the first one (option 3). Then it will ask you again with a shorter list then you can say All (option 1).
+
+- A lot of text with fly by during the installation of the packages, that is ok and expected.
+
+:::
+
+# Run the Tutorial Course Setup
+
+5.  Run the tutorial by running the command below on the R Console. You may be asked to install an additional package say "yes". 
+
+    `learnr::run_tutorial("pca_recipes", package = "learntidymodels")`
+
+::: callout-important
+-   It is best to complete the tutorial in one setting because each step builds on the other.
+
+-   Since you submitting the final plot and not through google forms, you can comeback and do the tutorial across multiple settings.
+:::
+
+# Submission
+
+6.  Submit a screenshot of the final UMAP plot to canvas for homework #3.
+
+
+::: callout-note
+If you have problems installing or deploying the tutorial please contact your instructors as soon as possible. 
+:::

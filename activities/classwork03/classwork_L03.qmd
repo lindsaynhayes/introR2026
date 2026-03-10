@@ -1,0 +1,177 @@
+---
+title: "Data Wrangling with tidyverse"
+author: "Lindsay N. Hayes"
+date: 2025-07-08
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork03/classwork_L03.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover reshaping, filtering, and summarizing data using tidyverse principles.
+
+## Load the Tidyverse Package
+```{r}
+#| label: packages
+#| message: false
+
+library(tidyverse)
+library(cowplot)
+```
+
+
+# Reshaping and Summarizing Data
+A common type of data that requires reshaping is time course data. 
+
+Using tidyverse principles answer the questions below:
+
+## 1. Which month had the most and least passengers in the `AirPassengers` data?
+
+The `AirPassengers` data which is a time-series of data representing the monthly international airline passenger numbers from January 1949 to December 1960. Search for AirPassengers in the `Help` to learn more about the dataset. 
+
+```{r}
+# Load and inspect the data, a little reshaping here to get in to an easy to read format for you.
+AP_matrix <- matrix(AirPassengers, nrow = length(unique(floor(time(AirPassengers)))), byrow = TRUE)
+colnames(AP_matrix) <- month.abb
+rownames(AP_matrix) <- unique(floor(time(AirPassengers)))
+AP_df <- as.data.frame(AP_matrix)
+AP_df$Year <- rownames(AP_matrix)
+
+```
+
+### A. Is the data long or wide? What form does it need to be in? How can you convert to the form you need?
+```{r}
+AP_df
+
+AP_long <- AP_df |> pivot_longer(cols = 1:12, names_to = "months", values_to = "count")
+
+```
+
+### B. How can we extract the the most and least traveled months each year? 
+```{r}
+
+AP_long |> 
+  group_by(months) |>
+  summarise(max_travel = max(count)) |>
+  arrange(max_travel) |>
+  ggplot(aes(x = months, y = max_travel)) + geom_col()
+
+
+```
+
+## 2. What was the percent increase in passengers each year between Aug and Nov?
+```{r}
+# To answer this question we need to find the ratio of Aug and Nov travelers. We need the data in the wide format.
+
+# how can we add the ratio to get the percent increase?
+
+AP_long
+
+AP_df |> mutate(ratio = ((Aug/Nov)-1) *100) |>
+  select(ratio)
+
+```
+
+
+## 3. Which diet lead to heavier chicks?
+We will use the `ChickWeight` data. Use the help to read more about the data. 
+```{r}
+# First look at the data.
+glimpse(ChickWeight)
+```
+
+### A. Count how many timepoints were measured and how many chicks were on each Diet. 
+```{r}
+# How can you count the timepoints, chicks, and diets, and chicks nested in diets?
+
+ChickWeight |> count(Diet)
+
+ChickWeight |> count(Time)
+
+ChickWeight |> count(Chick)
+
+
+ChickWeight |> 
+  filter(Time == "0") |>
+  count(Diet) 
+
+ChickWeight |>
+  group_by(Diet) |>
+  summarise(no.chicks = n_distinct(Chick))
+
+
+table(ChickWeight$Time, ChickWeight$Diet)
+  
+
+
+```
+
+
+### B. Now figure out which diet leads to the heaviest chicks.
+```{r}
+# we can plot it to get a first view
+ChickWeight |>
+  ggplot(aes(x = Time, y = weight, group = Chick, color = Diet)) + 
+  geom_line() +
+  theme_cowplot()
+
+
+
+ChickWeight |>
+  ggplot(aes(x = Time, y = weight, group = Chick, color = Diet)) + 
+  geom_line() +
+  theme_cowplot() +
+  facet_wrap(~ Diet)
+
+
+
+
+
+
+```
+
+
+# How much weight gain from each Diet
+```{r}
+
+data <- ChickWeight |> 
+  pivot_wider(names_from = Time, names_prefix = "day_", values_from = weight)
+
+
+data <- data |> mutate(weight.gain = day_18 - day_0)
+
+data |>
+  ggplot(aes(x = Diet, y = weight.gain, fill = Diet)) + 
+  geom_boxplot() + 
+  geom_point()
+
+
+
+mod <- aov(weight.gain ~ Diet, data = data)
+
+summary(mod)
+TukeyHSD(mod)
+pairwise.t.test(data$weight.gain, data$Diet, p.adjust.method = "BH")
+
+
+library(lme4)
+library(lmerTest)
+
+
+mod2 <- lmer(weight ~ Diet * Time + (1 | Chick), data = ChickWeight)
+summary(mod2)
+
+```
+
+
+
+
+
+

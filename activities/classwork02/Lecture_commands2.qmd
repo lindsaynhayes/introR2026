@@ -1,0 +1,210 @@
+---
+title: "Navigating Data Types in R"
+description: "commands used in lecture"
+author: "Lindsay N. Hayes"
+date: 2025-07-03
+draft: true
+editor_options: 
+  chunk_output_type: console
+eval: false
+---
+
+# Lecture
+```{r}
+library(tidyverse)
+```
+
+import
+```{r}
+data <- read.csv(file = "activities/a/taylorswift.csv",
+                      header = TRUE, 
+                      sep = ",", 
+                      stringsAsFactors = TRUE)
+
+
+data <- read_csv(file = "activities/a/taylorswift.csv",
+                      col_names = TRUE)
+```
+
+export
+```{r}
+# base R
+write.csv(data, file = "data/taylorswift.csv")
+
+# Tidyverse
+write_csv(data, file = "data/taylorswift.csv")
+```
+
+R Syntax 1
+```{r}
+x <- 3 + 4
+election_years <- c(1980, 1984, 1988, 1992, 1996)
+capital_cities <- c("Bismarck", "Salem", "Cheyenne")
+
+# this allows you to explain the code with narrative text next to the code.
+
+```
+
+
+R Syntax 2
+```{r}
+# A function is an operator or a “verb” performed on data
+mean(1:10)
+seq(from = 1, to = 100)
+
+```
+
+
+
+```{r}
+
+library(nycflights13)
+
+# Pipes are a tool to send the output of one operation directly into a second operation (or third …)
+
+# Conventional pipe symbol: |>
+# Older pipe version you may see: %>%
+
+flights |> 
+  filter(dest == "IAH") |> 
+  mutate(speed = distance / air_time * 60) |> 
+  select(year:day, dep_time, carrier, flight, speed) |> 
+  arrange(desc(speed))
+
+
+```
+
+
+```{r}
+library(palmerpenguins)
+
+# There are many way to access select parts of your data
+# To get a specific column of data use “$”
+penguins$species
+
+# You can also access parts of the data using “[]”
+dim(penguins)
+
+x <- 1:10
+
+
+
+
+# there are 344 rows of data and 8 observations
+penguins[1:5, 1:2] 
+penguins[5,] 
+penguins[,4] 
+penguins[,"species"] 
+
+
+
+
+```
+
+
+```{r}
+# Subset and Filter the data to perform operations
+
+penguins |> filter(species == "Gentoo")
+subset(penguins, species == "Gentoo")
+
+penguins |> filter(bill_length_mm > 50)
+
+# A longer approach but can sometimes be useful
+# this command will give you a list of TRUE and FALSE
+
+penguins$bill_length_mm > 50
+
+# the which() command will then turn those T/F into rownumbers or a numerical vector
+which(penguins$bill_length_mm > 50)
+
+penguins[which(penguins$bill_length_mm > 50),]
+
+
+
+
+```
+
+
+EXPLORE 1
+```{r}
+# Categorical data: characters and factors
+
+table(penguins$species)
+
+penguins |> count(species)
+
+plot(table(penguins$species))
+barplot(table(penguins$species))
+boxplot(table(penguins$species))
+
+penguins |> 
+  count(species) |> 
+  ggplot(aes(x=species, y=n)) + 
+    geom_col(, fill = "red")
+
+
+
+
+```
+
+
+EXPLORE 2
+```{r}
+summary(penguins$body_mass_g)
+
+boxplot(penguins$body_mass_g)
+hist(penguins$body_mass_g)
+
+ggplot(penguins, aes(y = body_mass_g)) + 
+geom_boxplot(fill = "purple") + 
+theme_cowplot() + 
+scale_x_discrete( )
+
+ggplot(penguins, aes(x = body_mass_g)) + 
+geom_histogram(fill = "deepskyblue") + 
+theme_cowplot()
+
+```
+
+CONVERT to Factor
+```{r}
+
+# characters
+months <- c("Mar","Sep", "Jun", "Dec", "Oct","Nov", "Jan","Apr","Jul","Feb","May","Aug")
+
+months_factor <- factor(months)
+
+class(months_factor)
+
+months_factor <- factor(months_factor, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+
+# numeric, i.e. time uneven spacing
+
+hours <- c(0, 0.5, 1, 3, 6, 12, 18, 24, 48, 72, 96, 200)
+hours <- factor(hours)
+
+
+
+# numeric, i.e. group assignments, treatment data
+
+group <- c(1,2,1,2,1,2,1,2,1,2,1,2)
+group <- factor(group)
+
+
+
+data$album_name <- factor(data$album_name, levels = unique(data$album_name[order(data$album_release)]))
+
+```
+
+
+
+
+
+
+
+
+
+
+

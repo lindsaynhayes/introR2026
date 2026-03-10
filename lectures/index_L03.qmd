@@ -1,0 +1,40 @@
+---
+title: "Data Wrangling with tidyverse"
+author: 
+  - name: Lindsay Hayes
+    url: https://lindsaynhayes.github.io
+    affiliation: Department of Cell Biology, OUHSC
+date: 2025-07-08
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Pre-lecture activities
+
+Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R03.html).
+
+# Lecture
+
+## Learning objectives
+
+::: callout-note
+### Learning objectives
+
+**At the end of class you will be able to:**
+
+-   Recognize and define an untidy dataset
+-   Recognize and convert between long and wide data formats
+-   Understand when to use both formats
+-   Pipe functions together to perform multiple commands in sequence
+:::
+
+## Slides
+
+-   [Lecture 03: Data Wrangling](https://docs.google.com/presentation/d/1CvrEcEF3C8ONxAdxeeFEl-AS_QRERKnlYdNjv6HGkm4/edit?slide=id.g34006f07791_0_0#slide=id.g34006f07791_0_0)
+
+-   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork03/classwork_L03.html)
+
+# Post-lecture Practice
+
+- Want to learn by listening? David Robinson a Data Scientist has a free lecture on [DataCamp](https://app.datacamp.com/learn/courses/exploratory-data-analysis-in-r-case-study). The first lecture on Data cleaning and summarizing with dplyr is free. You do need to sign up for a free datacamp account.

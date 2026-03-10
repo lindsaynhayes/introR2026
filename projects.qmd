@@ -1,0 +1,21 @@
+---
+title: "Assignments and Project"
+listing:
+  id: project-listings
+  contents: projects
+  sort: "date asc"
+  type: table
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  exclude:
+    title: "*Template"
+page-layout: full
+title-block-banner: false
+date-format: iso
+---
+
+Assignments: 
+
+::: {#lecture-listings}
+:::

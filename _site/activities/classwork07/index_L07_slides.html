@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Eleana Cabello">
+<meta name="dcterms.date" content="2025-07-18">
+
+<title>Intro to Reproducible Data Analysis Using R - Building a Quarto Website and Using GitHub</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> <i class="bi bi-home" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures.html"> <i class="bi bi-book-half" role="img">
+</i> 
+<span class="menu-text">Course</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-box-seam-fill" role="img">
+</i> 
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../readings.html">
+ <span class="dropdown-text">Pre-reading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../activities.html">
+ <span class="dropdown-text">In-Class Activities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projects.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lindsaynhayes/introR2025"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#class-reminders" id="toc-class-reminders" class="nav-link active" data-scroll-target="#class-reminders">Class Reminders</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">Github</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#project-benefits-of-using-github-and-quarto" id="toc-project-benefits-of-using-github-and-quarto" class="nav-link" data-scroll-target="#project-benefits-of-using-github-and-quarto">Project Benefits of using Github and Quarto</a></li>
+  <li><a href="#example-websites" id="toc-example-websites" class="nav-link" data-scroll-target="#example-websites">Example Websites</a></li>
+  <li><a href="#setting-up-your-first-quarto-website-on-github" id="toc-setting-up-your-first-quarto-website-on-github" class="nav-link" data-scroll-target="#setting-up-your-first-quarto-website-on-github">Setting Up Your First Quarto Website on GitHub</a></li>
+  <li><a href="#create-a-github-folder-for-all-your-future-projects" id="toc-create-a-github-folder-for-all-your-future-projects" class="nav-link" data-scroll-target="#create-a-github-folder-for-all-your-future-projects">0 - Create a GitHub Folder for all your future projects</a></li>
+  <li><a href="#setup-repository-online" id="toc-setup-repository-online" class="nav-link" data-scroll-target="#setup-repository-online">1 - Setup Repository Online</a></li>
+  <li><a href="#set-up-remote-repository-locally-through-github-desktop" id="toc-set-up-remote-repository-locally-through-github-desktop" class="nav-link" data-scroll-target="#set-up-remote-repository-locally-through-github-desktop">2 - Set Up Remote Repository Locally through Github Desktop</a></li>
+  <li><a href="#open-rstudio-and-set-repository-as-working-directory" id="toc-open-rstudio-and-set-repository-as-working-directory" class="nav-link" data-scroll-target="#open-rstudio-and-set-repository-as-working-directory">3 - Open RStudio and Set Repository as Working Directory</a></li>
+  <li><a href="#setting-up-quarto-website-project-in-repository" id="toc-setting-up-quarto-website-project-in-repository" class="nav-link" data-scroll-target="#setting-up-quarto-website-project-in-repository">4 - Setting Up Quarto Website Project in Repository</a></li>
+  <li><a href="#setting-up-quarto-website-project-in-repository-1" id="toc-setting-up-quarto-website-project-in-repository-1" class="nav-link" data-scroll-target="#setting-up-quarto-website-project-in-repository-1">4 - Setting Up Quarto Website Project in Repository</a></li>
+  <li><a href="#commiting-and-pushing-to-github-repository" id="toc-commiting-and-pushing-to-github-repository" class="nav-link" data-scroll-target="#commiting-and-pushing-to-github-repository">5 - Commiting and Pushing to Github Repository</a></li>
+  <li><a href="#setting-up-to-publish-to-github-pages-using-a-gh-pages-branch" id="toc-setting-up-to-publish-to-github-pages-using-a-gh-pages-branch" class="nav-link" data-scroll-target="#setting-up-to-publish-to-github-pages-using-a-gh-pages-branch">6 - Setting Up to Publish to Github Pages using a gh-pages branch</a></li>
+  <li><a href="#setting-up-github-pages-and-workflows-locally" id="toc-setting-up-github-pages-and-workflows-locally" class="nav-link" data-scroll-target="#setting-up-github-pages-and-workflows-locally">7 - Setting Up Github Pages and Workflows Locally</a></li>
+  <li><a href="#commit-and-push-changes-to-host-website-on-github-pages" id="toc-commit-and-push-changes-to-host-website-on-github-pages" class="nav-link" data-scroll-target="#commit-and-push-changes-to-host-website-on-github-pages">8 - Commit and Push Changes to Host Website on Github Pages</a></li>
+  <li><a href="#check-settings-and-website" id="toc-check-settings-and-website" class="nav-link" data-scroll-target="#check-settings-and-website">9 - Check Settings and Website</a></li>
+  <li><a href="#visit-your-website" id="toc-visit-your-website" class="nav-link" data-scroll-target="#visit-your-website">10 - Visit Your Website!</a></li>
+  <li><a href="#customizing-your-website" id="toc-customizing-your-website" class="nav-link" data-scroll-target="#customizing-your-website">Customizing Your Website</a></li>
+  <li><a href="#lets-edit-your-home-page-index.qmd" id="toc-lets-edit-your-home-page-index.qmd" class="nav-link" data-scroll-target="#lets-edit-your-home-page-index.qmd">Lets edit your Home Page: <code>index.qmd</code></a></li>
+  <li><a href="#setting-up-your-project" id="toc-setting-up-your-project" class="nav-link" data-scroll-target="#setting-up-your-project">Setting up your project</a></li>
+  <li><a href="#changing-your-publish.yml-to-run-r-code" id="toc-changing-your-publish.yml-to-run-r-code" class="nav-link" data-scroll-target="#changing-your-publish.yml-to-run-r-code">Changing your <code>publish.yml</code> to run R code</a></li>
+  <li><a href="#add-your-dataset-to-your-working-directory" id="toc-add-your-dataset-to-your-working-directory" class="nav-link" data-scroll-target="#add-your-dataset-to-your-working-directory">Add your dataset to your working directory</a></li>
+  <li><a href="#since-we-have-time---make-it-more-personal" id="toc-since-we-have-time---make-it-more-personal" class="nav-link" data-scroll-target="#since-we-have-time---make-it-more-personal">Since we have time - Make it more personal</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index_L07_slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Building a Quarto Website and Using GitHub</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eleana Cabello </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 18, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="class-reminders" class="level2 center" data-background-image="figures/template/border_1.png">
+<h2 class="center anchored" data-background-image="figures/template/border_1.png" data-anchor-id="class-reminders">Class Reminders</h2>
+<ul>
+<li><strong>Final Project Proposal</strong>
+<ul>
+<li>Submit to Canvas by July 22nd</li>
+<li>~5 min presentation on July 22nd</li>
+</ul></li>
+<li><strong><a href="https://lindsaynhayes.github.io/introR2025/projects/index_P01.html">Final Project Presentations</a></strong>
+<ul>
+<li>Dates - July 24th and 28th</li>
+<li>5-10 min walkthrough of your .qmd file from your website</li>
+</ul></li>
+<li><strong>Assignment 1-3 due July 25th!</strong></li>
+</ul>
+<hr>
+</section>
+<section id="github" class="level2 center" data-background-image="figures/template/border_1.png">
+<h2 class="center anchored" data-background-image="figures/template/border_1.png" data-anchor-id="github">Github</h2>
+<ul>
+<li><p>Online based platform that is used, along with git, for version control of software projects and makes collaboration easier between developers</p></li>
+<li><p>Version control means tracking modifications, creations, and deletions of project files</p></li>
+<li><p>Connects your local development enviroment, or local repository, to online/cloud based storage, remote repository, to keep track of modifications and make it easier to share with others</p></li>
+</ul>
+<hr>
+</section>
+<section id="quarto" class="level2 center" data-background-image="figures/template/border_1.png">
+<h2 class="center anchored" data-background-image="figures/template/border_1.png" data-anchor-id="quarto">Quarto</h2>
+<ul>
+<li><p>Open-source scientific and technical publishing system that allows for the use of narrative text with code</p></li>
+<li><p>However not just limited to a singular file, allows for easy setup of other types of project like websites, presentations, dashboards, books, etc.</p></li>
+<li><p>The ability to change formats easily and incoporate other languages than only R removes previous limitations and allows for better communication of projects and workflows</p></li>
+</ul>
+<hr>
+</section>
+<section id="project-benefits-of-using-github-and-quarto" class="level2 center" data-background-image="figures/template/border_1.png">
+<h2 class="center anchored" data-background-image="figures/template/border_1.png" data-anchor-id="project-benefits-of-using-github-and-quarto">Project Benefits of using Github and Quarto</h2>
+<ul>
+<li><p><strong>Easier Publication Submission</strong> - Everything is together and well documented (hopefully🤞) to be submitted for publication</p></li>
+<li><p><strong>Reproducibility</strong> - allows others to easily have access to how an analysis was done and be able to replicate it</p></li>
+<li><p><strong>Branding</strong> - Having an online resume/cv of all your projects and those you have collaborated on with others</p></li>
+</ul>
+<hr>
+</section>
+<section id="example-websites" class="level2 center" data-background-image="figures/template/border_1.png">
+<h2 class="center anchored" data-background-image="figures/template/border_1.png" data-anchor-id="example-websites">Example Websites</h2>
+<ul>
+<li><a href="https://lindsaynhayes.github.io/" target="_blank">Dr.&nbsp;Hayes Website</a></li>
+<li><a href="https://sta210-s22.github.io/website/" target="_blank">Course Website</a></li>
+<li><a href="https://realworlddatascience.net/" target="_blank">Community and Sharing Information</a></li>
+<li><a href="https://quarto.org/docs/gallery/#websites" target="_blank">Gallery of Quarto Websites</a></li>
+</ul>
+</section>
+<section id="setting-up-your-first-quarto-website-on-github" class="level2 center" data-background-image="figures/template/title_1.png">
+<h2 class="center anchored" data-background-image="figures/template/title_1.png" data-anchor-id="setting-up-your-first-quarto-website-on-github">Setting Up Your First Quarto Website on GitHub</h2>
+</section>
+<section id="create-a-github-folder-for-all-your-future-projects" class="level2 center">
+<h2 class="center anchored" data-anchor-id="create-a-github-folder-for-all-your-future-projects">0 - Create a GitHub Folder for all your future projects</h2>
+</section>
+<section id="setup-repository-online" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="setup-repository-online">1 - Setup Repository Online</h2>
+<p>Log in to your GitHub account.</p>
+<p>Click on the New Repo button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_new_repo_button.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Name your repo with purpose (your name for a personal website, a project name, a course name, etc.)</p>
+<p>Click the Create Repository button.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_repo_create.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Once on the page below, click Set up in Desktop.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_repo_setup.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+</section>
+<section id="set-up-remote-repository-locally-through-github-desktop" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="set-up-remote-repository-locally-through-github-desktop">2 - Set Up Remote Repository Locally through Github Desktop</h2>
+<p>Once in Github Desktop, pick what directory you would like to store the repository locally. This action will create a remote repository connecting it to the one you have online.</p>
+<p>Try to keep organized and do this in a directory dedicated to your GitHub projects.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_desktop_setup.png" class="quarto-figure quarto-figure-center figure-img" height="500"></p>
+</figure>
+</div>
+</section>
+<section id="open-rstudio-and-set-repository-as-working-directory" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="open-rstudio-and-set-repository-as-working-directory">3 - Open RStudio and Set Repository as Working Directory</h2>
+<p>Navigate to your remote repository through the files window.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/rstudio_files_window.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Once in the remote repository, click the gears icon and Set As Working Directory.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/rstudio_set_wd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="setting-up-quarto-website-project-in-repository" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="setting-up-quarto-website-project-in-repository">4 - Setting Up Quarto Website Project in Repository</h2>
+<p><strong>Make sure your working directory is in your local repository</strong></p>
+<p>Find the terminal tab in your RStudio window:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/quarto_create_project_terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="setting-up-quarto-website-project-in-repository-1" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="setting-up-quarto-website-project-in-repository-1">4 - Setting Up Quarto Website Project in Repository</h2>
+<p>Type the following command in the terminal to create an RProject and setup a quarto website, a new window of RStudio will appear:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project website</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When asked for <strong>Directory</strong> put <code>.</code> for the current directory and when asked for a <strong>Title</strong> give it the title of your project with no spaces (use _ instead):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/quarto_project_qs.png" class="quarto-figure quarto-figure-center figure-img" height="200"></p>
+</figure>
+</div>
+<p>On the new Rstudio window refresh and check out the new files by refreshing the files window:</p>
+<ul>
+<li>_quarto.yml</li>
+<li>index.qmd</li>
+<li>about.qmd</li>
+<li>styles.css</li>
+</ul>
+<hr>
+</section>
+<section id="commiting-and-pushing-to-github-repository" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="commiting-and-pushing-to-github-repository">5 - Commiting and Pushing to Github Repository</h2>
+<p>In Github desktop type a commit message and commit to main.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_desktop_commit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>After commiting your changes and message, hit publish to origin.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/github_desktop_publish.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Back in your GitHub account, you should see the brown circle indicating GitHub is going through your workflow file and setting up your website:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/publish_progress.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>After it has completed successfully the brown circle should turn to a green check mark, if it is not successful it will turn into a red x:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/publish_completed.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="setting-up-to-publish-to-github-pages-using-a-gh-pages-branch" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="setting-up-to-publish-to-github-pages-using-a-gh-pages-branch">6 - Setting Up to Publish to Github Pages using a gh-pages branch</h2>
+<p>In Github website refresh and view all branches in the repository by following the steps below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/branch_button.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/branch_new_button.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Make sure to name it gh-pages, it has to be named this in order for your website to work.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/branch_create_button.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="setting-up-github-pages-and-workflows-locally" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="setting-up-github-pages-and-workflows-locally">7 - Setting Up Github Pages and Workflows Locally</h2>
+<p>Back in R studio do the following:</p>
+<ul>
+<li>Create text file named <code>.nojekyll</code>, it does not need to contain anything</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/select_text_file.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/nojekyll_naming.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<ul>
+<li><p>Create <code>.github</code> folder in your working directory</p></li>
+<li><p>Create a folder named <code>workflows</code> inside the <code>.github</code> folder</p></li>
+<li><p>Create a text file named <code>publish.yml</code> inside the folder <code>.github/workflows</code></p></li>
+<li><p>Copy and paste below into the <code>publish.yml</code>:</p></li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>publish.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="publish.yml"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">on:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">workflow_dispatch:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">push:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">branches:</span> main</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">name:</span> Quarto Publish</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">jobs:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">build-deploy:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">runs-on:</span> ubuntu-latest</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">permissions:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="ex">contents:</span> write</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">steps:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Check out repository</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> actions/checkout@v4</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Set up Quarto</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> quarto-dev/quarto-actions/setup@v2</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Render and Publish</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> quarto-dev/quarto-actions/publish@v2</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="ex">with:</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>          <span class="ex">target:</span> gh-pages</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="ex">env:</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          <span class="ex">GITHUB_TOKEN:</span> <span class="va">${</span><span class="er">{ secrets.GITHUB_TOKEN </span><span class="va">}</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="commit-and-push-changes-to-host-website-on-github-pages" class="level2 center">
+<h2 class="center anchored" data-anchor-id="commit-and-push-changes-to-host-website-on-github-pages">8 - Commit and Push Changes to Host Website on Github Pages</h2>
+<hr>
+</section>
+<section id="check-settings-and-website" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="check-settings-and-website">9 - Check Settings and Website</h2>
+<p>Navigate to settings of your repository.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/repo_settings.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>Then navigate to pages.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/repo_pages.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<p>In pages make sure that under Build and Deployment Source is Deploy from Branch. Also make sure that under Branch that gh-pages is selected from /(root) like below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/repo_pages_setup.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="visit-your-website" class="level2 center">
+<h2 class="center anchored" data-anchor-id="visit-your-website">10 - Visit Your Website!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/L07/slides/website_link.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="customizing-your-website" class="level2 center" data-background-image="figures/template/title_1.png">
+<h2 class="center anchored" data-background-image="figures/template/title_1.png" data-anchor-id="customizing-your-website">Customizing Your Website</h2>
+</section>
+<section id="lets-edit-your-home-page-index.qmd" class="level2 center" data-background-image="figures/template/border_2.png">
+<h2 class="center anchored" data-background-image="figures/template/border_2.png" data-anchor-id="lets-edit-your-home-page-index.qmd">Lets edit your Home Page: <code>index.qmd</code></h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>index.qmd</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="index.qmd"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">title:</span> <span class="st">"NAME"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">toc:</span> false</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">about:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">template:</span> trestles</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">links:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-</span> text: GitHub</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">href:</span> link</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-</span> text: Email</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="ex">href:</span> link</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span> {.column-page}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Bio</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">## Research Goals</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">## Experience</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="setting-up-your-project" class="level2 scrollable" data-background-image="figures/template/border_2.png">
+<h2 class="scrollable anchored" data-background-image="figures/template/border_2.png" data-anchor-id="setting-up-your-project">Setting up your project</h2>
+<ul>
+<li>Create a new Quarto document named projects - <code>projects.qmd</code> - with the following content:</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>projects.qmd</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="projects.qmd"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">title:</span> <span class="st">"Projects"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">listing:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">id:</span> projects-listings</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">contents:</span> projects</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">sort:</span> <span class="st">"date asc"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">type:</span> table</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">categories:</span> false</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">sort-ui:</span> false</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">filter-ui:</span> false</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">page-layout:</span> full</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">title-block-banner:</span> false</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">date-format:</span> <span class="st">"MM-DD-YYYY"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span> {#Projects-listings}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Create a <strong>projects</strong> folder</p></li>
+<li><p>Move <code>about.qmd</code> to the projects folder and rename it to your <strong>project_title.qmd</strong> (Change to your project title or something descriptive!)</p></li>
+<li><p>Now change the listing in the <code>_quarto.yml</code>:</p></li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="_quarto.yml"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">website:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">title:</span> <span class="st">"Test_website"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">navbar:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">right:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> href: index.qmd</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">text:</span> Home</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> href: projects.qmd</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="ex">text:</span> Projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Change the title of your website here as well!</strong></li>
+</ul>
+</section>
+<section id="changing-your-publish.yml-to-run-r-code" class="level2 scrollable" data-background-image="figures/template/border_2.png">
+<h2 class="scrollable anchored" data-background-image="figures/template/border_2.png" data-anchor-id="changing-your-publish.yml-to-run-r-code">Changing your <code>publish.yml</code> to run R code</h2>
+<p>To run your Quarto R code cells/blocks and have their output displayed on your website (without errors) you must add R enviroment development step to your workflow file:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>publish.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="publish.yml"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">name:</span> Quarto Publish</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">on:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">workflow_dispatch:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">push:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">branches:</span> main</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">jobs:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">build-deploy:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">runs-on:</span> ubuntu-latest</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">permissions:</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="ex">contents:</span> write</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">steps:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Check out repository</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> actions/checkout@v4</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Set up R</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> r-lib/actions/setup-r@v2</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="ex">with:</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>          <span class="ex">r-version:</span> <span class="st">'4.2'</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Set up R Dependencies </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> r-lib/actions/setup-r-dependencies@v2</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="ex">with:</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>          <span class="ex">packages:</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::knitr</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::rmarkdown</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::tidyverse</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::tidymodels</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::GGally</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::ggstats</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::cowplot</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::lme4</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::lmerTest</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            <span class="ex">any::psycModel</span> </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Set up Quarto</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> quarto-dev/quarto-actions/setup@v2</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      <span class="ex">-</span> name: Render and Publish</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        <span class="ex">uses:</span> quarto-dev/quarto-actions/publish@v2</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        <span class="ex">with:</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>          <span class="ex">target:</span> gh-pages</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        <span class="ex">env:</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>          <span class="ex">GITHUB_TOKEN:</span> <span class="va">${</span><span class="er">{ secrets.GITHUB_TOKEN </span><span class="va">}</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-your-dataset-to-your-working-directory" class="level2 center" data-background-image="figures/template/border_2.png">
+<h2 class="center anchored" data-background-image="figures/template/border_2.png" data-anchor-id="add-your-dataset-to-your-working-directory">Add your dataset to your working directory</h2>
+</section>
+<section id="since-we-have-time---make-it-more-personal" class="level2 scrollable" data-background-image="figures/template/border_3.png">
+<h2 class="scrollable anchored" data-background-image="figures/template/border_3.png" data-anchor-id="since-we-have-time---make-it-more-personal">Since we have time - Make it more personal</h2>
+<ul>
+<li>Change .css to .scss and change the file to the following:</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>styles.scss</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="styles.scss"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/*--</span> scss:defaults <span class="at">--</span><span class="pp">*</span>/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> Colors</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="va">$dark</span><span class="ex">-green:</span> <span class="co">#596b57;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">$light</span><span class="ex">-green:</span> <span class="co">#D1D9CE;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">$cream</span><span class="ex">:</span> <span class="co">#FDFBF7;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">$gray</span><span class="ex">:</span> <span class="co">#64605f;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">$orange</span><span class="ex">:</span> <span class="co">#ad7237;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">$black</span><span class="ex">:</span> <span class="co">#151617;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> Base document colors</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="va">$navbar</span><span class="ex">-bg:</span> <span class="va">$dark</span>-green<span class="kw">;</span> <span class="ex">//</span> navbar</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="va">$navbar</span><span class="ex">-fg:</span> <span class="va">$cream</span><span class="kw">;</span> <span class="ex">//</span> navbar foreground elements</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="va">$navbar</span><span class="ex">-hl:</span> <span class="va">$light</span>-green<span class="kw">;</span> <span class="ex">//</span> highlight color when hovering over navbar links</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">$body</span><span class="ex">-bg:</span> <span class="va">$cream</span><span class="kw">;</span> <span class="ex">//</span> page background </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="va">$body</span><span class="ex">-color:</span> <span class="va">$black</span><span class="kw">;</span> <span class="ex">//</span> page text </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="va">$footer</span><span class="ex">-bg:</span> <span class="va">$cream</span><span class="kw">;</span> <span class="ex">//</span> footer </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> Inline code</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="va">$code</span><span class="ex">-bg:</span> <span class="va">$cream</span><span class="kw">;</span> <span class="ex">//</span> inline code background color</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="va">$code</span><span class="ex">-color:</span> <span class="va">$orange</span><span class="kw">;</span> <span class="ex">//</span> inline code text color</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>In <code>_quarto.yml</code> change the following:</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="_quarto.yml"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">format:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">html:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">theme:</span> styles.scss</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">toc:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="other-resources" class="level2 center" data-background-image="figures/template/border_2.png">
+<h2 class="center anchored" data-background-image="figures/template/border_2.png" data-anchor-id="other-resources">Other Resources</h2>
+<ul>
+<li><p><a href="https://quarto.org/docs/websites/">Quarto Guide</a></p></li>
+<li><p><a href="https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide">UCSB Guide</a></p></li>
+</ul>
+</section>
+<section id="section" class="level2" data-background-image="figures/template/title_2.png">
+<h2 data-background-image="figures/template/title_2.png" class="anchored" data-anchor-id="section"></h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

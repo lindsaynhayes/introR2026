@@ -1,0 +1,30 @@
+---
+title: "Building a Quarto Website and Using GitHub"
+author: 
+  - name: Eleana Cabello
+date: 2025-07-18
+draft: false
+---
+
+# Pre-lecture activities
+
+Before class, complete the tasks listed in the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R07.html).
+
+# Lecture
+
+## Learning objectives
+
+::: callout-note
+### Learning objectives
+
+**At the end of this lesson you will be able to:**
+
+- Create a Github repository 
+- Setup a Quarto Website
+- Publish your Quarto website through Github Pages
+- Customize your Quarto Website
+:::
+
+## Slides
+
+-   [Lecture 07: Building a Quarto Website and Using GitHub](https://lindsaynhayes.github.io/introR2025/activities/classwork07/index_L07_slides.html)

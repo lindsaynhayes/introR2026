@@ -1,0 +1,25 @@
+---
+title: "Fan Favorite & Course Evaluation"
+author: 
+  - name: Lindsay Hayes
+    url: https://lindsaynhayes.github.io
+    affiliation: Department of Cell Biology, OUHSC
+date: 2025-07-28
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Survey for Fan Favorite Final Presentation
+
+*hope you like my made up titles*
+
+[survey](https://ousurvey.qualtrics.com/jfe/form/SV_5oiKzZOwwTfRqIe)
+
+![](images/FanFavorite.png)
+
+## Course Survey
+
+[survey](https://ousurvey.qualtrics.com/jfe/form/SV_9RJm8pIuPnUEcxU)
+
+![](images/CourseSurvey_QR.png)

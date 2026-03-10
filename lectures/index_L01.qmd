@@ -1,0 +1,84 @@
+---
+title: "Welcome to the Course!"
+author: 
+  - name: Lindsay Hayes
+    url: https://lindsaynhayes.github.io
+    affiliation: Department of Cell Biology, OUHSC
+description: "Getting Ready for Your First Day!"
+date: 2025-07-01
+---
+
+# Pre-lecture activities
+
+The course will *exclusively* use R in the integrated development environment (IDE) called R Studio. Since the summer semester is only 1 month (10 classes), it is **critical to have your computer set up and ready to go before the first day of class**.
+
+Throughout the course, there will be a set of pre-lecture activities and/or readings for you to complete. **These activities prepare you for the in-class activities**. Failure to complete them will put you behind in an already compressed course.
+
+To prepare for the first class:
+
+1.  Install R and R Studio
+    -   [installation video tutorial](https://www.youtube.com/watch?v=eQFu_zzF96o)
+    -   Detailed instructions on installing R and R Studio are available on [swirl](https://swirlstats.com/students.html).
+        -   Complete step 1 and step 2
+
+::: callout-tip
+
+Swirl is a great tool to learn R interactively that we will use in the course. Feel free to explore more.
+:::
+
+2. In the first class, we will begin to get familiar with R. Complete the [Pre-reading material about R](https://lindsaynhayes.github.io/introR2025/readings/index_R01.html). Pre-reading materials for each class are located under **Resources**. Sometimes, pre-reading materials are direct links to external resources for you to read in advance of the lecture.
+
+
+# Lecture
+
+## Learning objectives
+
+::: callout-note
+### Learning objectives
+
+**At the end of this lesson you will:**
+
+-   Get an overview of the course (including staff, format, grading, etc)
+-   Be able to recognize and operate an Integrated Developer Environment (IDE). 
+-   Be able to recognize a Quarto document and describe reasons why to use a unified authoring framework.
+-   Be able to create a R project & Quarto document.
+
+:::
+
+## Slides 
+
+- [Lecture 01: Welcome and Introductions](https://docs.google.com/presentation/d/12EGF_lMFltLHzngleEi6jxZ3phncEhTl5vm05-y_cLI/edit?usp=sharing)
+
+- [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork01/palmerpenguins_intro.html)
+
+## Acknowledgements
+
+Material for this lecture was borrowed and adopted from
+
+-   sw carpentry: <https://carpentries-incubator.github.io/bioc-intro/20-r-rstudio.html>
+-   data carpentry: <https://datacarpentry.github.io/genomics-r-intro/00-introduction.html>
+
+
+# Post-lecture Practice
+
+## Summary 
+
+- Access all course material on the course website (<https://lindsaynhayes.github.io/introR2025/>).
+- **RStudio** makes you a more efficient programmer and gives you easy access to all the components of data analysis.
+- **Quarto** is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more. During the course we will primarily use the HTML output format.
+
+## Additional practice
+
+Here are some additional practice questions to help you think about the material discussed.
+
+Check out this article on the 10 Best Practices for Data Science [here](https://medium.com/bitgrit-data-science-publication/10-best-practices-for-data-science-21a748a410e4)
+
+::: callout-caution
+### Practice Tasks
+
+1.  In RStudio, create a new R project and then create a new Quarto document in that R project. Read the instructions. Practice running the chunks individually using the "play" button and the keyboard short cut. 
+
+2.  Change the settings of the Quarto document to display the output "inline" or in the "console". 
+
+3.  Render the document and view the HTML output. Verify that you can modify the code, re-run it, and see modified output.
+:::

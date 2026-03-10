@@ -1,0 +1,55 @@
+---
+title: "Data Wrangling with tidyverse"
+author: "Lindsay N. Hayes"
+date: 2025-07-08
+draft: true
+editor_options: 
+  chunk_output_type: console
+eval: false
+---
+
+
+```{r}
+
+glimpse(starwars)
+
+# lets look at the first row of starwars
+starwars[1,11:14]
+
+starwars$starships[1]
+
+starwars |>
+  select(name, films) |>
+  unnest_longer(films)
+
+taylor |> select(track_name, lyrics) |> 
+  unnest_longer(lyrics)
+
+```
+
+
+```{r}
+table(starwars$sex)
+
+
+starwars |>
+  group_by(sex) 
+
+
+starwars |> count(sex)
+
+starwars |>
+  group_by(sex) |>
+  summarize(mean_height = mean(height),
+            sd_height = sd(height))
+
+
+
+starwars |>
+  drop_na(height, sex) |>
+  group_by(sex) |>
+  summarize(mean_height = mean(height),
+            sd_height = sd(height))
+
+```
+

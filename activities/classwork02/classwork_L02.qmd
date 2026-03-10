@@ -1,0 +1,156 @@
+---
+title: "Navigating Data Types in R"
+author: "Lindsay N. Hayes"
+date: 2025-07-03
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork02/classwork_L02.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover using R as a calculator, creating R objects, and exploring the features of a data set.
+
+## First Load the Tidyverse Package
+
+```{r}
+#| label: packages
+library(tidyverse)
+```
+
+## Ways to Use R
+
+### 1. Arithmetic
+
+```{r}
+# example: addition/subtraction/multiplication/division
+
+193 + 45
+2050 - 2025
+50/250 * 100
+
+# activity: assign the variable my_age as the current year minus your year of birth. 
+
+```
+
+### 2. Create R objects
+
+```{r}
+# vector
+# c(..., recursive = FALSE, use.names = TRUE)
+x <- c(1:225)
+class(x)
+
+# matrix
+# matrix(data, nrow, ncol, byrow, dimnames)
+y <- matrix(1:225, nrow=15, ncol=15, byrow = FALSE)
+class(y)
+
+# logical
+# testing each variable in the vector and outputting TRUE or FALSE
+over100 <- x > 100
+table(over100)
+```
+
+### Your Turn
+
+### A. Create a vector of all the `homeworlds` in starwars using the `starwars` data.
+
+```{r}
+
+# create vector called "homeworlds" and assign it the value "homeworld" from the starwars data set
+
+glimpse(starwars)
+
+homeworlds <- starwars$homeworld
+
+homeworlds
+
+# how many worlds are there? hint: use the unique function
+
+unique(homeworlds)
+
+starwars |> count(homeworld) # NOTE IT INCLUDES missing values (NA)
+
+# is there a world called "Ohio"? how would you test this with code?
+
+starwars |> count(homeworld == "Ohio")
+
+table(homeworlds == "Ohio")
+
+
+# How many characters live on Naboo?
+
+table(homeworlds == "Naboo")
+starwars |> filter(homeworld == "Naboo") |> count(homeworld)
+
+# Who lives on Naboo? (hint use the "names" variable in the starwars data and the "which" function)
+
+starwars |> filter(homeworld == "Naboo") |> select(name)
+
+homeworlds == "Naboo"
+which(homeworlds == "Naboo")
+starwars$name[which(homeworlds == "Naboo")]
+```
+
+### B. Import the `taylor` package and explore the `taylor_album_songs` dataframe
+
+```{r}
+
+# Try loading in the taylor package and viewing the taylor_album_songs dataframe
+
+# install.packages("taylor")
+
+library(taylor)
+taylor <- taylor_album_songs
+
+# what is the "class" of the object taylor?
+
+
+
+# what is the "class" of the object taylor_album_songs?
+
+
+# what types of data are in the object taylor_album_songs?
+
+
+# change the "key_mode" from class "character" to class "factor"
+
+
+# How many albums are in the data set & how many songs on each album?
+
+
+```
+
+
+### C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
+
+```{r}
+# look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)
+
+# create a matrix of those features
+
+# pipe the matrix into GGally::ggpairs(), evaluate the correlation matrix
+
+# Which values show a positive correlation? Which values show a negative correlation?
+
+#var1 <-
+#var2 <-
+#var3 <- 
+#var4 <- 
+
+
+# Plot the correlations
+
+#ggplot(taylor_album_songs, aes(x=var1, y=var2)) + geom_point(size=3)
+
+#ggplot(taylor_album_songs, aes(x=var3, y=var4)) + geom_point(size=3)
+
+
+```

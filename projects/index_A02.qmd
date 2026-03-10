@@ -1,0 +1,85 @@
+---
+title: "Assignment 2"
+author: 
+  - name: Eleana Cabello
+    affiliation: Department of Microbiology and Immunology, OUHS
+description: "Week 2 Practice - Exploratory Data Analysis"
+date: 2025-7-10
+---
+
+# Overview
+
+**Due date: 07/15/25 at 11:59pm**
+
+This week we introduced the Tidyverse collection of R packages. The packages covered are commonly used in biomedical research data analysis. These packages are well-documented online by their creators and user communities. If you have a question about any of the packages, googling will likely give you a solution from a forum of someone else having the same question or issue.
+
+In this week's Swirl lessons, you'll explore one of the core Tidyverse packages: ggplot2. This powerful package makes it easy to transform tidydata into informative visualizations while allowing easy plot management and customization.
+
+Through the lessons for this week, you will learn the following:
+
+-   Using base methods to produce plots
+-   Customizing plots
+-   The basics of GGPlot2 and a little more
+
+# Swirl Course Setup
+
+1.  In RStudio, load in the swirl package
+
+    `library("swirl")`
+
+2.  **Navigate** to this [link](https://github.com/lindsaynhayes/introR2025/tree/main/swirl). **Download** the Swirl lesson file `2_Exploratory_Data_Analysis.swc`. **Move** it into your working directory for the class.
+
+3.  Once you have the file in your working directory, in the console of RStudio type the command below and after the `swc_path =` type `"` and then hit `tab` to interactively choose the `2_Exploratory_Data_Analysis.swc` file you just downloaded from your working directory. The command will look something like `install_course(swc_path = "2_Exploratory_Data_Analysis.swc")`. Run the command to install the course.
+
+    `install_course(swc_path = )`
+
+4.  Start Swirl by typing the following command
+
+    `swirl()`
+
+# Working through the Lessons
+
+1.  Please enter your **full name** together when asked what you want to be called by e.g. JaneDoe
+
+2.  Complete all lessons
+
+-   1: Principles of Analytic Graphs
+-   2: Exploratory Graphs
+-   3: Graphics Devices in R
+-   4: Plotting Systems
+-   5: Base Plotting System
+-   6: Lattice Plotting System
+-   7: Working with Colors
+-   8: GGPlot2 Part1
+-   9: GGPlot2 Part2
+-   10: GGPlot2 Extras
+
+::: callout-important
+-   You can take breaks **between** lessons (like shutting down Swirl and exiting RStudio), just use the same name when logging in for documenting purposes on the instructor's end.
+
+-   If you start a lesson, please complete it fully before taking a break. If you stop RStudio in the middle of a lesson, your progress for that lesson may still be saved in the history for that package locally, but will not be saved or sent to us on the instructor's end.
+
+-   If you do not get to the Google Form end of any lesson, please email one of the instructors as soon as possible.
+:::
+
+# Submission
+
+::: callout-note
+-   FYI: You need a google account to submit the assignment.
+
+-   Swirl will navigate you to the submission Google Form of each lesson. However, review the instructions below before submitting to make sure you are able to submit correctly.
+
+-   When submitting please make sure the box is not empty, if it is please email one of the instructors.
+:::
+
+1.  At the end of each lesson the following question will appear, **enter the selection Yes** to be redirected to your autofilled Google Form submission
+
+    ![](../images/L02/index_L02/google_form_redirect.png){width="500"}
+
+2.  Once you've been redirected, your Swirl activity will be autofilled into the submission box, just hit the Submit button
+
+    ![](../images/L02/index_L02/google_form_submission.png){width="500"}
+
+::: callout-important
+-   If you do not get to the Google Form at the end of any lesson, please email one of the instructors as soon as possible.
+:::
