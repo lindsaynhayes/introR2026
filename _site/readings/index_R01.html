@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Hayes">
+<meta name="dcterms.date" content="2025-07-01">
+<meta name="description" content="Reading for Class 01">
+
+<title>R &amp; RStudio – Intro to Reproducible Data Analysis Using R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0733d8a825269eefe2dee5ff332940e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> <i class="bi bi-home" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
+</i> 
+<span class="menu-text">Course</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-box-seam-fill" role="img">
+</i> 
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../readings.html">
+ <span class="dropdown-text">Pre-reading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../activities.html">
+ <span class="dropdown-text">In-Class Activities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
+</i> 
+<span class="menu-text">References</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#welcome-to-rrstudio" id="toc-welcome-to-rrstudio" class="nav-link active" data-scroll-target="#welcome-to-rrstudio">Welcome to R/RStudio</a>
+  <ul class="collapse">
+  <li><a href="#what-is-r-why-learn-it" id="toc-what-is-r-why-learn-it" class="nav-link" data-scroll-target="#what-is-r-why-learn-it">What is R &amp; Why learn it??</a>
+  <ul class="collapse">
+  <li><a href="#r-does-not-involve-lots-of-pointing-and-clicking-thats-a-good-thing" id="toc-r-does-not-involve-lots-of-pointing-and-clicking-thats-a-good-thing" class="nav-link" data-scroll-target="#r-does-not-involve-lots-of-pointing-and-clicking-thats-a-good-thing">R does not involve lots of pointing and clicking, <em>that’s a good thing</em></a></li>
+  <li><a href="#r-code-is-reproducibile" id="toc-r-code-is-reproducibile" class="nav-link" data-scroll-target="#r-code-is-reproducibile">R code is reproducibile</a></li>
+  <li><a href="#r-is-interdisciplinary-and-extensible" id="toc-r-is-interdisciplinary-and-extensible" class="nav-link" data-scroll-target="#r-is-interdisciplinary-and-extensible">R is interdisciplinary and extensible</a></li>
+  <li><a href="#r-works-on-data-of-all-shapes-and-sizes" id="toc-r-works-on-data-of-all-shapes-and-sizes" class="nav-link" data-scroll-target="#r-works-on-data-of-all-shapes-and-sizes">R works on data of all shapes and sizes</a></li>
+  <li><a href="#r-produces-high-quality-graphics" id="toc-r-produces-high-quality-graphics" class="nav-link" data-scroll-target="#r-produces-high-quality-graphics">R produces high-quality graphics</a></li>
+  <li><a href="#r-has-a-large-and-welcoming-community" id="toc-r-has-a-large-and-welcoming-community" class="nav-link" data-scroll-target="#r-has-a-large-and-welcoming-community">R has a large and welcoming community</a></li>
+  <li><a href="#r-free-and-open-source" id="toc-r-free-and-open-source" class="nav-link" data-scroll-target="#r-free-and-open-source">R free and open-source!!</a></li>
+  </ul></li>
+  <li><a href="#navigating-r-in-rstudio" id="toc-navigating-r-in-rstudio" class="nav-link" data-scroll-target="#navigating-r-in-rstudio">Navigating R in RStudio</a></li>
+  <li><a href="#managing-projects-in-rstudio" id="toc-managing-projects-in-rstudio" class="nav-link" data-scroll-target="#managing-projects-in-rstudio">Managing Projects in RStudio</a>
+  <ul class="collapse">
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The Problem</a></li>
+  <li><a href="#the-solutions" id="toc-the-solutions" class="nav-link" data-scroll-target="#the-solutions">The Solutions</a></li>
+  </ul></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R &amp; RStudio</h1>
+</div>
+
+<div>
+  <div class="description">
+    Reading for Class 01
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://lindsaynhayes.github.io">Lindsay Hayes</a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Cell Biology, OUHSC
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="welcome-to-rrstudio" class="level1">
+<h1>Welcome to R/RStudio</h1>
+<p>What is R and RStudio and why is it important to learn and implement in all your data analysis pipelines from simple to complex? The reading below and the the materials covered during this course will answer this very question.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>At the end of this lesson you will:</strong></p>
+<ul>
+<li>Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.</li>
+<li>Organize files and directories for a set of analyses as an R project.</li>
+<li>Use the built-in RStudio help interface to search for more information on R functions.</li>
+</ul>
+</div>
+</div>
+<section id="what-is-r-why-learn-it" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-r-why-learn-it">What is R &amp; Why learn it??</h2>
+<p>The term <a href="https://www.r-project.org/">R</a> is used to refer to the <em>programming language</em>, the <em>environment for statistical computing</em>, and <em>the software</em> that interprets the scripts written using it.</p>
+<p><a href="https://rstudio.com">RStudio</a> is currently a very popular way to not only write your R scripts but also to interact with the R software<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. To function correctly, RStudio needs R and therefore both need to be installed on your computer.</p>
+<p>The <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf">RStudio IDE Cheat Sheet</a> provides much more information than will be covered here, but can be useful to learn keyboard shortcuts and discover new features.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/L01/cartoon_data.jpg" class="img-fluid figure-img" width="300"></p>
+<figcaption>Why you need R</figcaption>
+</figure>
+</div>
+<section id="r-does-not-involve-lots-of-pointing-and-clicking-thats-a-good-thing" class="level3">
+<h3 class="anchored" data-anchor-id="r-does-not-involve-lots-of-pointing-and-clicking-thats-a-good-thing">R does not involve lots of pointing and clicking, <em>that’s a good thing</em></h3>
+<p>The learning curve might be steeper than with other software, but with R, the results of your analysis do not rely on remembering a succession of pointing and clicking, but instead on a series of written commands, and that’s a good thing! So, if you want to redo your analysis because you collected more data, you don’t have to remember which button you clicked in which order to obtain your results; you just have to run your script again.</p>
+<p>Working with scripts makes the steps you used in your analysis clear, and the code you write can be inspected by someone else who can give you feedback and spot mistakes.</p>
+<p>Working with scripts forces you to have a deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use.</p>
+</section>
+<section id="r-code-is-reproducibile" class="level3">
+<h3 class="anchored" data-anchor-id="r-code-is-reproducibile">R code is reproducibile</h3>
+<p>Reproducibility means that someone else (including your future self) can obtain the same results from the same dataset when using the same analysis code.</p>
+<p>R integrates with other tools to generate manuscripts or reports from your code. If you collect more data, or fix a mistake in your dataset, the figures and the statistical tests in your manuscript or report are updated automatically.</p>
+<p>An increasing number of journals and funding agencies expect analyses to be reproducible, so knowing R will give you an edge with these requirements.</p>
+</section>
+<section id="r-is-interdisciplinary-and-extensible" class="level3">
+<h3 class="anchored" data-anchor-id="r-is-interdisciplinary-and-extensible">R is interdisciplinary and extensible</h3>
+<p>With 10,000+ packages that can be installed to extend R’s capabilities, R provides a framework that allows you to combine statistical approaches from many scientific disciplines to best suit the analytical framework you need to analyse your data.</p>
+</section>
+<section id="r-works-on-data-of-all-shapes-and-sizes" class="level3">
+<h3 class="anchored" data-anchor-id="r-works-on-data-of-all-shapes-and-sizes">R works on data of all shapes and sizes</h3>
+<p>The skills you learn with R scale easily with the size of your dataset. Whether your dataset has tens, hundreds, or millions of lines, it won’t make much difference to you as the programmer.</p>
+<p>R is designed for data analysis. It comes with special data structures and data types that make handling of missing data and statistical factors convenient. <em>We will cover this more in the section on data structures.</em></p>
+<p>R can connect to spreadsheets, databases, and many other data formats, on your computer or on the web.</p>
+</section>
+<section id="r-produces-high-quality-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="r-produces-high-quality-graphics">R produces high-quality graphics</h3>
+<p>The plotting functions in R are extensive, and allow you to adjust any aspect of your graph to convey most effectively the message from your data.</p>
+</section>
+<section id="r-has-a-large-and-welcoming-community" class="level3">
+<h3 class="anchored" data-anchor-id="r-has-a-large-and-welcoming-community">R has a large and welcoming community</h3>
+<p>Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as <a href="https://stackoverflow.com/">Stack Overflow</a>, or on the <a href="https://community.rstudio.com/">RStudio community</a>. These broad user communities extend to specialized areas such as bioinformatics. One such subset of the R community is <a href="https://bioconductor.org/">Bioconductor</a>, a scientific project for analysis of data from current and emerging biological assays.</p>
+</section>
+<section id="r-free-and-open-source" class="level3">
+<h3 class="anchored" data-anchor-id="r-free-and-open-source">R free and open-source!!</h3>
+<p>Anyone can inspect the source code to see how R works. Because of this transparency, there is less chance for mistakes, and if you (or someone else) find some, you can report and fix bugs.</p>
+</section>
+</section>
+<section id="navigating-r-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-r-in-rstudio">Navigating R in RStudio</h2>
+<p>We will use the RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/L01/rstudio_session_4pane_layout.png" class="img-fluid figure-img"></p>
+<figcaption>A schematic representing the layout of RStudio</figcaption>
+</figure>
+</div>
+<p>The RStudio window is divided into 4 “Panes”:</p>
+<ul>
+<li>Source code for your scripts and documents (top-left)</li>
+<li>Environment/History (top-right)</li>
+<li>Files/Plots/Packages/Help/Viewer (bottom-right)</li>
+<li>R Console, or outputs (bottom-left).</li>
+</ul>
+<p>The placement of these panes and their content can be customized <em>(Tools &gt; Global Options &gt; Pane Layout)</em>.</p>
+<p>Advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many <strong>shortcuts</strong>, <strong>autocompletion</strong>, and <strong>highlighting</strong> RStudio makes typing easier and less error-prone. This very text was written in RStudio!</p>
+</section>
+<section id="managing-projects-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="managing-projects-in-rstudio">Managing Projects in RStudio</h2>
+<section id="the-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem">The Problem</h3>
+<p>The scientific process is naturally incremental and many projects start life as random notes, some data, some code, then a manuscript, and eventually everything is a bit mixed together. Properly managing the progression of files as a project matures can be challenging. Good data management at the start will save you an <em>immeasurable</em> amount of time at the end.</p>
+<p>Most people tend to organize their projects like this:</p>
+<p><img src="../images/L01/bad_layout.png" class="img-fluid" alt="Bad File Structure"> There are many reasons why we should ALWAYS avoid this:</p>
+<ul>
+<li>It is hard to tell which version of the data is the original and which is the modified.</li>
+<li>It is messy because it mixes files with various extensions together.</li>
+<li>It takes a lot of time to actually find things, and relate the correct figures to the exact code used to generate it.</li>
+</ul>
+<p><strong>A good project layout will ultimately make your life easier!!</strong></p>
+<ul>
+<li>It ensure the integrity of your data.</li>
+<li>It is simpler to share your code with someone else (a lab-mate, collaborator, supervisor, and most importantly the future-you!).</li>
+<li>It allows you to easily upload your data and code with your manuscript submission.</li>
+<li>It makes it easier to pick the project back up after a break.</li>
+</ul>
+</section>
+<section id="the-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="the-solutions">The Solutions</h3>
+<ol type="1">
+<li>One day, you will need to quit R, go do something else, and return to your analysis later. Creating an <code>RStudio project</code> will keep your data analysis environment organized and accessible. Creating a <code>RStudio project</code> file will:</li>
+</ol>
+<ul>
+<li>Create a <code>.Rproj</code> file.</li>
+<li>Opens a RStudio session and sets the directory as the working directory.</li>
+<li>Loads any <code>.RData</code> files to restore previously imported data.</li>
+<li>Loads an open scripts from the previous session.</li>
+<li>Loads a <code>.Rhistory</code> file to save the history of previous commands used.</li>
+<li>Restores any RStudio settings.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With Rstudio projects you don’t have to keep your session running all the time. You can easily pick up where you left off.</p>
+</div>
+</div>
+<p>Read about how to create a <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">RStudio project</a></p>
+<ol start="2" type="1">
+<li>R Project Directory Structure (for data science and for life)</li>
+</ol>
+<p>Here are examples of project data management.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/L01/tree1.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>File Structure for Data Analysis</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/L01/tree2.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>File Structure for Experiments</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Advice on File Naming</p>
+<ul>
+<li>Avoid spaces in a name (ie: project 1.Rproj)</li>
+<li>Do use dashes (-), underscores (_), or periods (filename_project1.qmd)</li>
+<li>Avoid quotes and special characters (“, $, #)</li>
+<li>Use dates in year-month-day format for better file sorting (250701_plot.png)</li>
+<li>Use a numbering system to order steps in a pipeline (1.first.qmd, 2.second.qmd, 3.third.qmd)</li>
+<li>📢 <strong>ANNOTATE, LOG, and NOTEKEEP</strong></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
+<p>Finally, there are many ways to get help in the R community. The first choice is always to click on the <code>Help</code> tab in the Files pane. You can enter a R function and it will pull up the manual for that command along with the package its a part of. Alternatively you can type <code>?</code> before function name in the Console. For example, <code>?mean</code> will pull up the help page for the mean function.</p>
+<p>Second you can reach out to many online communities. Most of your questions have probably already been asked so a quick google search will yield many results. Here a few of those resources:</p>
+<ul>
+<li><p>Stack Overflow: <a href="https://stackoverflow.com/questions" class="uri">https://stackoverflow.com/questions</a></p>
+<ul>
+<li>be sure to read the instructions on <a href="https://stackoverflow.com/help/how-to-ask">how to ask a good question</a></li>
+</ul></li>
+<li><p>Posit Community: <a href="https://forum.posit.co/t/rstudio-community-find-help-guide/86831" class="uri">https://forum.posit.co/t/rstudio-community-find-help-guide/86831</a></p></li>
+<li><p>Bioconductor: <a href="https://bioconductor.org/help/" class="uri">https://bioconductor.org/help/</a></p></li>
+<li><p>Stats specific (not R specific): Stack Exchange: <a href="https://stats.stackexchange.com" class="uri">https://stats.stackexchange.com</a></p></li>
+<li><p>R documentation <a href="https://www.rdocumentation.org" class="uri">https://www.rdocumentation.org</a></p></li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>References
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Content pulled from</strong></p>
+<ul>
+<li>swcarpentry: R <a href="https://carpentries-incubator.github.io/bioc-intro/20-r-rstudio.html#why-learn-r" class="uri">https://carpentries-incubator.github.io/bioc-intro/20-r-rstudio.html#why-learn-r</a></li>
+<li>swcarpentry: Project Management <a href="https://swcarpentry.github.io/r-novice-gapminder/instructor/02-project-intro.html" class="uri">https://swcarpentry.github.io/r-novice-gapminder/instructor/02-project-intro.html</a></li>
+</ul>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>As opposed to using R directly from the command line console.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References & Extra Resources",
+    "section": "",
+    "text": "Helpful Reference Materials to Continue your Learning"
+  },
+  {
+    "objectID": "references.html#books",
+    "href": "references.html#books",
+    "title": "References & Extra Resources",
+    "section": "Books",
+    "text": "Books\nR for Data Science\nTidyverse Skills for Data Science\nR Programming for Data Science\nUniversity of Victoria: DAMS302\nR Primers by Andrew Heiss\nTidy Modeling with R\nOSCA with Bioconductor: single cell\nOSTA with Bioconductor: spatial\nThe Art of Data Science\nExploratory Data Analysis with R"
+  },
+  {
+    "objectID": "references.html#online-courses",
+    "href": "references.html#online-courses",
+    "title": "References & Extra Resources",
+    "section": "Online Courses",
+    "text": "Online Courses\n\nSoftware Carpentry & Data Carpentry Courses\nProgramming with R\nR for Reproducible Scientific Analysis\nIntroduction to data analysis with R and Bioconductor\nRNA-seq analysis with Bioconductor\nData Analysis adn Visualization with R for Genomics\n\n\nData Science in a Box\nCourse Content\nNIGMS Sandbox GitHub"
+  },
+  {
+    "objectID": "references.html#oklahoma-resources",
+    "href": "references.html#oklahoma-resources",
+    "title": "References & Extra Resources",
+    "section": "Oklahoma Resources",
+    "text": "Oklahoma Resources\nOklahoma Data Science Workshop"
+  },
+  {
+    "objectID": "references.html#blogspodcasts",
+    "href": "references.html#blogspodcasts",
+    "title": "References & Extra Resources",
+    "section": "Blogs/Podcasts",
+    "text": "Blogs/Podcasts\nBatch Effect by Marco Varrone\nhistoric: Not So Standard Deviations with Roger Peng and Hilary Parker\nhistoric: Simply Statistics"
+  }
+]

@@ -7,16 +7,16 @@ project:
 website:
   title: "Intro to Reproducible Data Analysis Using R"
   navbar:
-    search: true
+    search: false
     right:
       - icon: home
         text: "Home"
         file: index.qmd
       - icon: book-half
-        text: "Course"
+        text: "Lectures"
         href: lectures.qmd
       - icon: box-seam-fill
-        text: "Resources"
+        text: "Materials"
         menu:
           - text: "Pre-reading"
             href: readings.qmd
@@ -25,7 +25,7 @@ website:
           - text: "Assignments"
             href: projects.qmd
       - icon: star
-        text: "References"
+        text: "Resources"
         href: references.qmd
       - icon: github
         href: https://github.com/lindsaynhayes/introR2026
