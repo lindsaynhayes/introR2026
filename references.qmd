@@ -1,0 +1,63 @@
+---
+title: "References & Extra Resources"
+---
+
+Helpful Reference Materials to Continue your Learning
+
+
+
+## Books
+
+[R for Data Science](https://r4ds.hadley.nz)
+
+[Tidyverse Skills for Data Science](https://jhudatascience.org/tidyversecourse/)
+
+[R Programming for Data Science](https://leanpub.com/rprogramming)
+
+[University of Victoria: DAMS302](https://bookdown.org/martin_monkman/DataAnalyticsCodingFundamentals/)
+
+[R Primers by Andrew Heiss](https://r-primers.andrewheiss.com)
+
+[Tidy Modeling with R](https://www.tmwr.org)
+
+[OSCA with Bioconductor: single cell](https://bioconductor.org/books/release/OSCA/)
+
+[OSTA with Bioconductor: spatial](https://bioconductor.org/books/release/OSTA/)
+
+[The Art of Data Science](https://leanpub.com/artofdatascience)
+
+[Exploratory Data Analysis with R](https://leanpub.com/exdata)
+
+## Online Courses
+
+#### Software Carpentry & Data Carpentry Courses
+
+[Programming with R](https://swcarpentry.github.io/r-novice-inflammation/)
+
+[R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/instructor/index.html)
+
+[Introduction to data analysis with R and Bioconductor](https://carpentries-incubator.github.io/bioc-intro/)
+
+[RNA-seq analysis with Bioconductor](https://carpentries-incubator.github.io/bioc-rnaseq/)
+
+[Data Analysis adn Visualization with R for Genomics](https://datacarpentry.github.io/genomics-r-intro/)
+
+#### Data Science in a Box
+
+[Course Content](https://datasciencebox.org/content)
+
+[NIGMS Sandbox GitHub](https://github.com/NIGMS/NIGMS-Sandbox)
+
+## Oklahoma Resources
+
+[Oklahoma Data Science Workshop](https://mediasite.ou.edu/Mediasite/Channel/odsw/browse/null/most-recent/null/0/null)
+
+## Blogs/Podcasts
+
+[Batch Effect by Marco Varrone](https://www.batcheffect.com)
+
+[historic: Not So Standard Deviations with Roger Peng and Hilary Parker](https://nssdeviations.com)
+
+[historic: Simply Statistics](https://simplystatistics.org)
+
+

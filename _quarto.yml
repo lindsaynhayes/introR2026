@@ -24,8 +24,11 @@ website:
             href: activities.qmd
           - text: "Assignments"
             href: projects.qmd
+      - icon: star
+        text: "References"
+        href: references.qmd
       - icon: github
-        href: https://github.com/lindsaynhayes/introR2025
+        href: https://github.com/lindsaynhayes/introR2026
 format:
   html:
     theme: simplex

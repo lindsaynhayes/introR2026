@@ -14,10 +14,10 @@ Intro to Reproducible Data Analysis Using R is a hands-on course that will intro
 
 - Course Staff: [Prof. Lindsay Hayes](https://lindsaynhayes.github.io)
 - Course Staff: TA. Eleana Cabello
-- Lectures: 10:30am-noon
+- Lectures: 9:00am-10:15am
 - Location: BMSB 324
 - Office Hours: by email
 
 ## Course Details
 
-All course details are available on the [Course](lectures.qmd) page. The syllabus is available [online here](syllabus.qmd), [download here](CELL 6351-Intro to R Syllabus_SU2025-updated dates.docx), or on [Canvas](https://canvas.ou.edu).
+All course details are available on the [Course](lectures.qmd) page. The syllabus is available [online here](syllabus.qmd), [download here](CELL 6351-Intro to R Syllabus_SU2026.docx), or on [Canvas](https://canvas.ou.edu).
