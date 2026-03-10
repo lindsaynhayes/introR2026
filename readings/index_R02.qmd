@@ -301,6 +301,7 @@ Its now easier to see the relationship of loudness over time and the variance in
 #| label: fixcols
 #| include: false
 #| eval: true
+
 library(taylor)
 library(cowplot)
 names(album_compare) <- unique(data$album_name)

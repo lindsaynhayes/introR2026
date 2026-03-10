@@ -1,0 +1,15 @@
+{
+  "hash": "9d87bfe748f92f6801c5d49d499548bd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Data Wrangling with tidyverse\"\nauthor: \"Lindsay N. Hayes\"\ndate: 2025-07-08\ndraft: true\neditor_options: \n  chunk_output_type: console\neval: false\n---\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse(starwars)\n\n# lets look at the first row of starwars\nstarwars[1,11:14]\n\nstarwars$starships[1]\n\nstarwars |>\n  select(name, films) |>\n  unnest_longer(films)\n\ntaylor |> select(track_name, lyrics) |> \n  unnest_longer(lyrics)\n```\n:::\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntable(starwars$sex)\n\n\nstarwars |>\n  group_by(sex) \n\n\nstarwars |> count(sex)\n\nstarwars |>\n  group_by(sex) |>\n  summarize(mean_height = mean(height),\n            sd_height = sd(height))\n\n\n\nstarwars |>\n  drop_na(height, sex) |>\n  group_by(sex) |>\n  summarize(mean_height = mean(height),\n            sd_height = sd(height))\n```\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
