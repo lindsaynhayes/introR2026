@@ -19,7 +19,7 @@ knitr: true
 
 I am an Assistant Professor in the [Department of Cell Biology](https://basicsciences.ouhsc.edu/cb/) at the [University of Oklahoma Health Sciences Center](https://www.ouhsc.edu). I am affiliated with the Graduate Programs in [Cell Biology](https://basicsciences.ouhsc.edu/cb/) and [Neuroscience](https://graduate.ouhsc.edu/Programs/PhD-Programs/Graduate-Program-in-Biomedical-Sciences/Programs/Neuroscience) as part of the [Graduate Program in Biomedical Sciences](https://graduate.ouhsc.edu/Graduate-Programs/PhD-Programs/Graduate-Program-in-Biomedical-Sciences).
 
-My research field is in developmental neurobiology and neuroimmunology. My lab studies how developmental inflammation leads to impaired brain development and reprogramming of the brain resident immune cells called microglia. We primarily use mouse model systems, but also use human resources to study how neuroinflammation impacts brain function and contributes to risks for neurodevelopmental and psychiatric disorders. My lab uses big data science primary based on genomics data we generate in the lab, but I encourage my lab members to organize and analyze **ALL** data generated using the principles of reproducible and literate coding.
+My research field is in developmental neurobiology and neuroimmunology. My lab studies how developmental inflammation leads to impaired brain development and reprogramming of the brain resident immune cells called microglia. We primarily use mouse model systems, but also use human resources to study how neuroinflammation impacts brain function and contributes to risks for neurodevelopmental and psychiatric disorders. My lab uses big data science primary based on genomics data we generate in the lab, but I encourage my lab members to organize and analyze aLL data generated using the principles of reproducible and literate coding.
 
 If you want, you can find me on [Bluesky](https://bsky.app/profile/lnhayeslab.bsky.social).
 
@@ -31,8 +31,8 @@ If you want, you can find me on [Bluesky](https://bsky.app/profile/lnhayeslab.bs
 
 ## Important Links
 
--   Course website: <https://lindsaynhayes.github.io/introR2025>
--   GitHub repository with all course material: <https://github.com/lindsaynhayes/introR2025>
+-   Course website: <https://lindsaynhayes.github.io/introR2026>
+-   GitHub repository with all course material: <https://github.com/lindsaynhayes/introR2026>
 
 ## Course Description
 
