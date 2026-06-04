@@ -196,7 +196,7 @@ With respect to writing, as with all sources, proper references and use of quota
 ::: callout-tip
 ## For more information:
 
-Refer to the LLM section of the syllabus on canvas for more information on use of LLMs.
+Refer to the LLM section of the downloadable syllabus for more information on use of LLMs.
 :::
 
 # Academic Ethics and Student Conduct Code

@@ -1,5 +1,11 @@
+## render individual pages by
+quarto::quarto_render("your-page.qmd")
+
 ## Welcome page (Home)
 ./index.qmd
+
+## Syllabus (linked to .qmd file which magically renders the html)
+./syllabus.qmd
 
 ## Course Content (Course)
 # style by:
