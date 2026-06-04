@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Course Content – Intro to Reproducible Data Analysis Using R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0733d8a825269eefe2dee5ff332940e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -140,13 +142,10 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -160,15 +159,15 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link active" href="./lectures.html" aria-current="page"> <i class="bi bi-book-half" role="img">
 </i> 
-<span class="menu-text">Course</span></a>
+<span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-box-seam-fill" role="img">
 </i> 
- <span class="menu-text">Resources</span>
+ <span class="menu-text">Materials</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
     <a class="dropdown-item" href="./readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
@@ -186,7 +185,7 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link" href="./references.html"> <i class="bi bi-star" role="img">
 </i> 
-<span class="menu-text">References</span></a>
+<span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
@@ -251,20 +250,7 @@ Author
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1751346000000" data-listing-file-modified-sort="1750355080960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="470" data-listing-title-sort="Welcome to the Course!" data-listing-filename-sort="index_L01.qmd">
-<td>
-<span class="listing-date">2025-07-01</span>
-</td>
-<td>
-<a href="./lectures/index_L01.html" class="title listing-title">Welcome to the Course!</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-date-sort="1751518800000" data-listing-file-modified-sort="1750355080960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="99" data-listing-title-sort="Navigating Data Types in R" data-listing-filename-sort="index_L02.qmd">
+<tr data-index="0" data-listing-date-sort="1751518800000" data-listing-file-modified-sort="1750355080960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="99" data-listing-title-sort="Navigating Data Types in R" data-listing-filename-sort="index_L02.qmd">
 <td>
 <span class="listing-date">2025-07-03</span>
 </td>
@@ -277,7 +263,7 @@ Author
 
 </tr>
 
-<tr data-index="2" data-listing-date-sort="1751950800000" data-listing-file-modified-sort="1751930716539" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="111" data-listing-title-sort="Data Wrangling with tidyverse" data-listing-filename-sort="index_L03.qmd">
+<tr data-index="1" data-listing-date-sort="1751950800000" data-listing-file-modified-sort="1751930716539" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="111" data-listing-title-sort="Data Wrangling with tidyverse" data-listing-filename-sort="index_L03.qmd">
 <td>
 <span class="listing-date">2025-07-08</span>
 </td>
@@ -290,7 +276,7 @@ Author
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1752123600000" data-listing-file-modified-sort="1751930714822" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160" data-listing-title-sort="Data Visualization with ggplot2" data-listing-filename-sort="index_L04.qmd">
+<tr data-index="2" data-listing-date-sort="1752123600000" data-listing-file-modified-sort="1751930714822" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160" data-listing-title-sort="Data Visualization with ggplot2" data-listing-filename-sort="index_L04.qmd">
 <td>
 <span class="listing-date">2025-07-10</span>
 </td>
@@ -303,7 +289,7 @@ Author
 
 </tr>
 
-<tr data-index="4" data-listing-date-sort="1752469200000" data-listing-file-modified-sort="1752438245546" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246" data-listing-title-sort="Dimension Reduction with tidymodels" data-listing-filename-sort="index_L05.qmd">
+<tr data-index="3" data-listing-date-sort="1752469200000" data-listing-file-modified-sort="1752438245546" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246" data-listing-title-sort="Dimension Reduction with tidymodels" data-listing-filename-sort="index_L05.qmd">
 <td>
 <span class="listing-date">2025-07-14</span>
 </td>
@@ -316,7 +302,7 @@ Author
 
 </tr>
 
-<tr data-index="5" data-listing-date-sort="1752642000000" data-listing-file-modified-sort="1750801169342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81" data-listing-title-sort="Machine Learning with tidymodels" data-listing-filename-sort="index_L06.qmd">
+<tr data-index="4" data-listing-date-sort="1752642000000" data-listing-file-modified-sort="1750801169342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81" data-listing-title-sort="Machine Learning with tidymodels" data-listing-filename-sort="index_L06.qmd">
 <td>
 <span class="listing-date">2025-07-16</span>
 </td>
@@ -329,7 +315,7 @@ Author
 
 </tr>
 
-<tr data-index="6" data-listing-date-sort="1752814800000" data-listing-file-modified-sort="1753197969924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Building a Quarto Website and Using GitHub" data-listing-filename-sort="index_L07.qmd">
+<tr data-index="5" data-listing-date-sort="1752814800000" data-listing-file-modified-sort="1753197969924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Building a Quarto Website and Using GitHub" data-listing-filename-sort="index_L07.qmd">
 <td>
 <span class="listing-date">2025-07-18</span>
 </td>
@@ -338,6 +324,19 @@ Author
 </td>
 <td>
 <span class="listing-author">Eleana Cabello</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-listing-date-sort="1783314000000" data-listing-file-modified-sort="1780597108565" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="446" data-listing-title-sort="Welcome to the Course!" data-listing-filename-sort="index_L01.qmd">
+<td>
+<span class="listing-date">2026-07-06</span>
+</td>
+<td>
+<a href="./lectures/index_L01.html" class="title listing-title">Welcome to the Course!</a>
+</td>
+<td>
+<span class="listing-author">Lindsay Hayes</span>
 </td>
 
 </tr>

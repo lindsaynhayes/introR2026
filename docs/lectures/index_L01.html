@@ -2,16 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lindsay Hayes">
-<meta name="dcterms.date" content="2025-07-01">
+<meta name="dcterms.date" content="2026-07-06">
 <meta name="description" content="Getting Ready for Your First Day!">
 
 <title>Welcome to the Course! – Intro to Reproducible Data Analysis Using R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -35,15 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0733d8a825269eefe2dee5ff332940e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,13 +85,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -103,15 +102,15 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
 </i> 
-<span class="menu-text">Course</span></a>
+<span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-box-seam-fill" role="img">
 </i> 
- <span class="menu-text">Resources</span>
+ <span class="menu-text">Materials</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
     <a class="dropdown-item" href="../readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
@@ -129,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
 </i> 
-<span class="menu-text">References</span></a>
+<span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
@@ -190,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            Department of Cell Biology, OUHSC
+            Department of Cell Biology, OUHC
           </p>
       </div>
   </div>
@@ -201,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2025</p>
+      <p class="date">July 6, 2026</p>
     </div>
   </div>
   
@@ -215,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="pre-lecture-activities" class="level1">
 <h1>Pre-lecture activities</h1>
-<p>The course will <em>exclusively</em> use R in the integrated development environment (IDE) called R Studio. Since the summer semester is only 1 month (10 classes), it is <strong>critical to have your computer set up and ready to go before the first day of class</strong>.</p>
+<p>The course will <em>exclusively</em> use R in the integrated development environment (IDE) called R Studio. Since the summer semester is only 1 month (12 classes), it is <strong>critical to have your computer set up and ready to go before the first day of class</strong>.</p>
 <p>Throughout the course, there will be a set of pre-lecture activities and/or readings for you to complete. <strong>These activities prepare you for the in-class activities</strong>. Failure to complete them will put you behind in an already compressed course.</p>
 <p>To prepare for the first class:</p>
 <ol type="1">
@@ -242,7 +241,7 @@ Tip
 </div>
 </div>
 <ol start="2" type="1">
-<li>In the first class, we will begin to get familiar with R. Complete the <a href="https://lindsaynhayes.github.io/introR2025/readings/index_R01.html">Pre-reading material about R</a>. Pre-reading materials for each class are located under <strong>Resources</strong>. Sometimes, pre-reading materials are direct links to external resources for you to read in advance of the lecture.</li>
+<li>In the first class, we will begin to get familiar with R. Complete the <a href="https://lindsaynhayes.github.io/introR2026/readings/index_R01.html">Pre-reading material about R</a>. Pre-reading materials for each class are located under <strong>Resources</strong>. Sometimes, pre-reading materials are direct links to external resources for you to read in advance of the lecture.</li>
 </ol>
 </section>
 <section id="lecture" class="level1">
@@ -272,8 +271,8 @@ Tip
 <section id="slides" class="level2">
 <h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <ul>
-<li><p><a href="https://docs.google.com/presentation/d/12EGF_lMFltLHzngleEi6jxZ3phncEhTl5vm05-y_cLI/edit?usp=sharing">Lecture 01: Welcome and Introductions</a></p></li>
-<li><p><a href="https://lindsaynhayes.github.io/introR2025/activities/classwork01/palmerpenguins_intro.html">In-Class Activity</a></p></li>
+<li><p><a href="https://docs.google.com/presentation/d/1-0ZFHoh1zAVotEGtIV9ZSPTNda8MAyAjyIKQSla4D9g/edit?usp=sharing">Lecture 01: Welcome and Introductions</a></p></li>
+<li><p><a href="https://lindsaynhayes.github.io/introR2026/activities/classwork01/palmerpenguins_intro.html">In-Class Activity</a></p></li>
 </ul>
 </section>
 <section id="acknowledgements" class="level2">
@@ -290,7 +289,7 @@ Tip
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
-<li>Access all course material on the course website (<a href="https://lindsaynhayes.github.io/introR2025/" class="uri">https://lindsaynhayes.github.io/introR2025/</a>).</li>
+<li>Access all course material on the course website (<a href="https://lindsaynhayes.github.io/introR2026/" class="uri">https://lindsaynhayes.github.io/introR2026/</a>).</li>
 <li><strong>RStudio</strong> makes you a more efficient programmer and gives you easy access to all the components of data analysis.</li>
 <li><strong>Quarto</strong> is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more. During the course we will primarily use the HTML output format.</li>
 </ul>

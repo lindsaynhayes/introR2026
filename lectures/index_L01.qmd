@@ -3,14 +3,14 @@ title: "Welcome to the Course!"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 description: "Getting Ready for Your First Day!"
-date: 2025-07-01
+date: 2026-07-06
 ---
 
 # Pre-lecture activities
 
-The course will *exclusively* use R in the integrated development environment (IDE) called R Studio. Since the summer semester is only 1 month (10 classes), it is **critical to have your computer set up and ready to go before the first day of class**.
+The course will *exclusively* use R in the integrated development environment (IDE) called R Studio. Since the summer semester is only 1 month (12 classes), it is **critical to have your computer set up and ready to go before the first day of class**.
 
 Throughout the course, there will be a set of pre-lecture activities and/or readings for you to complete. **These activities prepare you for the in-class activities**. Failure to complete them will put you behind in an already compressed course.
 
@@ -44,7 +44,7 @@ Swirl is a great tool to learn R interactively that we will use in the course. F
 
 ## Slides
 
-- [Lecture 01: Welcome and Introductions](https://docs.google.com/presentation/d/12EGF_lMFltLHzngleEi6jxZ3phncEhTl5vm05-y_cLI/edit?usp=sharing)
+- [Lecture 01: Welcome and Introductions](https://docs.google.com/presentation/d/1-0ZFHoh1zAVotEGtIV9ZSPTNda8MAyAjyIKQSla4D9g/edit?usp=sharing)
 
 - [In-Class Activity](https://lindsaynhayes.github.io/introR2026/activities/classwork01/palmerpenguins_intro.html)
 
