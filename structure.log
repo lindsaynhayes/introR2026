@@ -1,0 +1,14 @@
+## Welcome page (Home)
+./index.qmd
+
+## Course Content (Course)
+# style by:
+./lectures.qmd
+
+# content by:
+./lectures/index_L01.qmd
+...
+
+# as pages are created they are populated on the course content based on the date on the index_L01 file.
+
+

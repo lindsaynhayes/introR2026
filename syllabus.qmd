@@ -5,11 +5,11 @@ knitr: true
 
 # Course Information
 
--   Location: In person, Summer 2025
--   Dates: 7/1/2025 - 7/28/2025
--   Course time: 10:30am - noon CST
+-   Location: In person, Summer 2026
+-   Dates: 7/6/2026 - 7/31/2026
+-   Course time: 10:00am - 11:30am CST
 -   Course location: BMSB 324
--   Office hours: Tuesdays from 12:00-1:00pm CST
+-   Office hours: by email
 
 ## Instructor
 
@@ -59,7 +59,7 @@ This syllabus is intended as a guide for this course. Dates, assignments, and ev
 
 A **laptop is required** for the course. The laptop requirements set forth by the College of Medicine can be found [here](https://itsupport.ou.edu/TDClient/30/Unified/KB/ArticleDet?ID=2333). Specifically, laptops must be encrypted in accordance with University policy. It is the student’s responsibility to ensure that one’s laptop is connected to the OUHSC wireless network.
 
-In addition, students need to have **R** and **R Studio** installed on their computers before the first class session. Detailed information on this can be found on the course Canvas site.
+In addition, students need to have **R** and **R Studio** installed on their computers before the first class session. Detailed information on this can be found on [swirl](https://swirlstats.com/students.html).
 
 ::: callout-tip
 ### Be Prepared
@@ -95,17 +95,9 @@ Unexcused lateness of more than 10 minutes will be recorded as an absence. Egreg
 
 Students are required to process and analyze data provided during the course. Students are required to write their own scripts and analyze data independently. Students will be required to submit a final project processing their own data or publicly available data using literate programming concepts.
 
-## Canvas
-
-The primary communication for the class will go through Canvas. That is where we will post course announcements, grading, course discussions, and as the primary means of communication between course participants and course instructors.
-
 ## Getting Help
 
-In order of preference, here is a preferred list of ways to get help:
-
-1.  We **strongly encourage** you to use Canvas to ask questions first, before joining office hours. The reason for this is so that other students in the class (who likely have similar questions) can also benefit from the questions and answers asked by your colleagues.
-2.  You are welcome to join office hours to get feedback.
-3.  If you are not able to make the office hours, appointments can be made by email with the instructor.
+Reach out to the TA (Eleana Cabello) or the instructor (Dr. Hayes)
 
 ## Textbook and Other Course Material
 
@@ -123,9 +115,9 @@ We will work primarily in **RStudio** which is an interactive development enviro
 
 -   Homework assignments and final projects will be completed independently by students.
 
--   Turn in Homework on canvas as a quarto markdown file and the corresponding html report.
+-   Turn in Homework through R submssion on swirl.
 
--   The Final project is to identify a data processing problem or question, develop a script to solve the problem, and present the process in a final 10-minute presentation.
+-   The Final project is to identify a data processing problem or question, develop a script to solve the problem, and present the process in a final 10-minute presentation. Provide access to the qmd and report through a website on GitHub.
 
 -   There are no exams in the course.
 
@@ -135,7 +127,7 @@ Grades will be issued via the Canvas grade book.
 
 ### Relative weights
 
-| Assignment    | \% of Final Grade |
+| Assignment    | % of Final Grade  |
 |---------------|-------------------|
 | Homework 1    | 15                |
 | Homework 2    | 15                |
@@ -164,16 +156,18 @@ We will allocate 15 minutes in the last course session for students to perform t
 
 | Date | Class | Topic                               | Homework                    |
 |:----:|:-----:|-------------------------------------|-----------------------------|
-| 7/1  |  01   | Intro to R/RStudio                  |                             |
-| 7/3  |  02   | Navigating Data Types in R          | Homework 1 (due 7/25)       |
-| 7/8  |  03   | Data Wrangling with tidyverse       |                             |
-| 7/10 |  04   | Data Visualization with ggplot2     | Homework 2 (due 7/25)       |
-| 7/14 |  05   | Dimension Reduction with tidymodels | Homework 3 (due 7/25)       |
-| 7/16 |  06   | Machine Learning with tidymodels    |                             |
-| 7/18 |  07   | Building a Portfolio in GitHub      |                             |
-| 7/22 |  08   | In-Class Work on Final              | Final project proposal due  |
-| 7/24 |  09   | Final Project Presentations         | presentation                |
-| 7/28 |  10   | Final Project Presentations         | presentation and evaluation |
+| 7/6  |  01   | Intro to R/RStudio                  |                             |
+| 7/8  |  02   | Coding Syntax                       | Homework 1 (due 7/13)       |
+| 7/10 |  03   | Navigating Data Types in R          |                             |
+| 7/13 |  04   | Data Wrangling with tidyverse       |                             |
+| 7/15 |  05   | Data Visualization with ggplot2     | Homework 2 (due 7/20)       |
+| 7/17 |  06   | Functions and Loops                 |                             |
+| 7/20 |  07   | Dimension Reduction with tidymodels |                             |
+| 7/22 |  08   | Machine Learning with tidymodels    | Homework 3 (due 7/27)       |
+| 7/24 |  09   | Building a Portfolio in GitHub      |                             |
+| 7/27 |  10   | In-Class Work on Final              | Final project proposal due  |
+| 7/29 |  11   | Final Project Presentations         | Presentation                |
+| 7/31 |  12   | Final Project Presentations         | Presentation and evaluation |
 
 # Policies
 
