@@ -1,8 +1,8 @@
 ---
 title: "Navigating Data Types in R"
 author: "Lindsay N. Hayes"
-date: 2025-07-03
-draft: false
+date: 2026-07-09
+draft: true
 editor_options: 
   chunk_output_type: console
 ---
@@ -13,7 +13,7 @@ editor_options:
 
 2)  Download the raw file.
 
-3) Open it in RStudio.
+3)  Open it in RStudio.
 
 We will work our way through this quarto document together during class. The activity will cover using R as a calculator, creating R objects, and exploring the features of a data set.
 
@@ -127,7 +127,6 @@ taylor <- taylor_album_songs
 
 
 ```
-
 
 ### C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
 
