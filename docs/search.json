@@ -291,7 +291,7 @@
     "href": "lectures/index_L01.html#summary",
     "title": "Welcome to the Course!",
     "section": "Summary",
-    "text": "Summary\n\nAccess all course material on the course website (https://lindsaynhayes.github.io/introR2026/).\nRStudio makes you a more efficient programmer and gives you easy access to all the components of data analysis.\nR Projects organizes the analysis environment to keep bundle the working directory, data, analysis, and output files."
+    "text": "Summary\n\nAccess all course material on the course website (https://lindsaynhayes.github.io/introR2026/).\nRStudio makes you a more efficient programmer and gives you easy access to all the components of data analysis.\nR Projects organizes the analysis environment to bundle the working directory, data, analysis, and output files."
   },
   {
     "objectID": "lectures/index_L01.html#additional-practice",

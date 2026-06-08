@@ -61,7 +61,7 @@ Material for this lecture was borrowed and adopted from
 
 - Access all course material on the course website (<https://lindsaynhayes.github.io/introR2026/>).
 - **RStudio** makes you a more efficient programmer and gives you easy access to all the components of data analysis.
-- **R Projects** organizes the analysis environment to keep bundle the working directory, data, analysis, and output files.
+- **R Projects** organizes the analysis environment to bundle the working directory, data, analysis, and output files.
 
 ## Additional practice
 
