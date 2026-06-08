@@ -1,11 +1,11 @@
 ---
-title: "Navigating Data Types in R"
+title: "Navigating R Studio & Quarto"
 description: "Reading for Class 02"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
     affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-03
+date: 2026-07-08
 draft: false
 editor_options: 
   chunk_output_type: console

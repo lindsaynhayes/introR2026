@@ -38,15 +38,15 @@ Swirl is a great tool to learn R interactively that we will use in the course. F
 
 - Get an overview of the course (including staff, format, grading, etc)
 - Be able to recognize and operate an Integrated Developer Environment (IDE).
-- Be able to recognize a Quarto document and describe reasons why to use a unified authoring framework.
-- Be able to create a R project & Quarto document.
+- Be able to create a R project.
+
 :::
 
 ## Slides
 
 - [Lecture 01: Welcome and Introductions](https://docs.google.com/presentation/d/1-0ZFHoh1zAVotEGtIV9ZSPTNda8MAyAjyIKQSla4D9g/edit?usp=sharing)
 
-- [In-Class Activity](https://lindsaynhayes.github.io/introR2026/activities/classwork01/palmerpenguins_intro.html)
+- [In-Class Activity](https://docs.google.com/document/d/14RzWwsUd87geKoHxaM-CTSvxYV5VkCN6IUYo9iVkK7Q/edit?usp=sharing)
 
 ## Acknowledgements
 

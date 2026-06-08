@@ -1,10 +1,10 @@
 ---
-title: "Navigating Data Types in R"
+title: "Navigating R Studio & Quarto"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
     affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-03
+date: 2026-07-08
 draft: false
 editor_options: 
   chunk_output_type: console
@@ -12,15 +12,16 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R02.html).
+Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2026/readings/index_R02.html).
 
 # Lecture
 
 ## Learning objectives
-
+- Be able to recognize a Quarto document and describe reasons why to use a unified authoring framework.
+- Be able to create a R project & Quarto document.
 ::: callout-note
 ### Learning objectives
-
+- **Quarto** is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more. During the course we will primarily use the HTML output format.
 **At the end of class you will be able to:**
 
 -   Generate and navigate a quarto document
@@ -34,6 +35,8 @@ Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/i
 -   [Lecture 02: Data Types](https://docs.google.com/presentation/d/1RLm558R177W1YsYA_WG4J-fTfvFmnejrT4Ccf02t3l0/edit?usp=sharing)
 
 -   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork02/classwork_L02.html) 
+
+- [In-Class Activity](https://lindsaynhayes.github.io/introR2026/activities/classwork01/palmerpenguins_intro.html)
 
 # Post-lecture Practice
 

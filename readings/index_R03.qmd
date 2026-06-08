@@ -1,11 +1,11 @@
 ---
-title: "Data Wrangling with tidyverse"
-description: "Reading for Class 03"
+title: "Navigating Data Types in R"
+description: "Reading for Class 02"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
     affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-08
+date: 2025-07-03
 draft: false
 editor_options: 
   chunk_output_type: console
@@ -15,453 +15,345 @@ editor_options:
 #| echo: false
 #| message: false
 library(here)
+library(cowplot)
 ```
+
+The last class introduced important concepts in data science such as directory structure, working directories, projects, and quarto documents. This lesson will dig deeper into working with data in R. We will cover importing and exporting, data types, and data objects
+
+Spreadsheets are good for data entry. As a scientists, we have a lot of data in spreadsheets. However, data exploration, manipulation, and visualization tools in spreadsheets are extremely limited and cumbersome when performed manually. Much of your time as a researcher will be spent data wrangling to generate the analyses you desire. R makes this process easy and most importantly reproducible.
 
 ::: callout-note
 ### Learning objectives
 
 **At the end of this lesson you will be able to:**
 
--   Recognize and define an untidy dataset
--   Recognize and convert between long and wide data formats
--   Understand when to use both formats
--   Pipe functions together to perform multiple commands in sequence
+-   Generate and navigate a quarto document
+-   Understand what packages are and how to use them
+-   Get data in and out of R
+-   Recognize and create various data types in R
 :::
 
-## The problem with messy data
+# Welcome to Quarto
 
-Most scientists are not trained to collect and organize data using `tidydata` principles. The results are data sets which are hard to follow, difficult to repeat, and challenging to report to journals. Understanding how to organize and store your data and analyses will make your life easier! Moreover, many journals request raw data submissions along with your manuscript. If you've analyzed and organized all your data in `R` using `tidydata` principles this process becomes a super simple, rather than tracking all the data across messy spreadsheets.
+In the first class, we looked at the `PalmerPenguins` data in a very tidy and curated quarto document to see how you can incorporate narrative text, code, outputs, and more in a single document. I hope you can now appreciate the utility of using Quarto to tell the story of the data analysis. The beautiful html outputs can easily be shared with others and helps build the logic of a data analysis pipeline from beginning to end.
 
-> "Tidy datasets are all alike, but every messy dataset is messy in its own way."\
-> --- Hadley Wickham
+Read the [Quarto welcome tutorial](https://quarto.org/docs/get-started/hello/rstudio.html) to learn about some of the cool tools, such as `code-folding`, `echo=false`, and more.
 
-## The principles of `tidydata`
+-   Read through Part 1: "Hello, Quarto"
+-   Read through Part 2: "Computations".
+-   Part 3 is more advanced for generating diverse outputs such as pdf documents feel free to explore, but we won't use these features.
 
-1.  **Treat your raw data as immutable.**
+# Packages
 
-*Try to manipulate the original form of the data as little as possible. The reason is to make the whole data analysis pipeline reproducible and transparent. If you start changing fields on the data spreadsheet you can't track where those values came from. Manipulating data with code also decreases the chances for errors being introduced to the raw data.*
+## What is a package?
 
-2.  **Each variable is a column; each column is a variable.**
+In R, the fundamental unit of shareable code is the **package.** A package bundles together *code*, *data*, *documentation*, and *tests*, and is easy to share with others. There are tens of thousands of R packages that exist. Two main repositories of R packages exist. **CRAN** or the Comprehensive R Archive Network is the public clearing house for R packages and where you went to install R. **Bioconductor** is an open source project that develops and shares open source software for precise and repeatable analysis of biological data. It is this huge variety of packages that R is so successful because the chances are high that someone has already solved a problem that you’re working on.
 
-3.  **Each observation is a row; each row is an observation.**
+## How to get a package?
 
-4.  **Each value is a cell; each cell is a single value.**
+To install packages from CRAN use the `install.packages()` function. Once the package is installed you can load the package using the `library()` function. Installing packages from Bioconductor take a few more steps which we won't cover just yet.
 
-For example, take the following data
-
-```{r}
-#| echo: false
-
-groups <- c("Con_male", "CON_female", "Exp_m", "Exp_F")
-val <- round(rnorm(4, mean = 100, sd = 25),0)
-df <- as.data.frame(cbind(groups, val))
-df
-```
-
-**Why might this data be a problem?**
-
--   combining 2 observations into one field (group and sex).
--   changing the notation styles
-
-Here's another example
-
-```{r}
-#| echo: false
-
-groups <- c("CON", "CON", "EXP", "EXP")
-val <- round(rnorm(4, mean = 100, sd = 25),0)
-val2 <- paste(val, "ug/ul", sep = "_")
-df <- as.data.frame(cbind(groups, val2))
-df
-```
-
-**Why might this data be a problem?**
-
--   the data field contains 2 values the numeric value and the units
-
-The second step after getting your data into R is **data wrangling** in order to modify the data so that you can perform an analysis. Luckily R has a whole suite of tools to makes this process easy and most importantly reproducible. This less will teach you practices for effective data wrangling.
-
-## The Tidyverse
+In Lecture 2, we will use data from the `tidyverse` and `taylor` packages.
 
 <img src="figs/tidy_hex.png" width="50%" style="float:right"/>
 
-The [Tidyverse](https://www.tidyverse.org) which is a collection of R packages that share an underlying design, syntax, and grammer to streamline many main functions used in data science. You can install the complete tidyverse with `install.packages("tidyverse")`, once the package is installed you can load it using `library(tidyverse)`.
+## Tidyverse package
 
-The packages installed in tidyverse include:
+The [Tidyverse](https://www.tidyverse.org) which is a collection of R packages that share an underlying design, syntax, and grammer to streamline many main functions used in data science. You can install the complete tidyverse with `install.packages("tidyverse")`, once the package is installed you can load it using `library(tidyverse)`. 
 
--   `dplyr` and `tidyr` are packages for data manipulation to subset, re-arrange, and format your dataset.
--   `tibble` is a tidy way of displaying data frames that are easier to view.
--   `readr` is a tidy way to input or read in data into R that we covered last class.
--   `purrr` is a functional programming toolkit to handle looping functions.
--   `stringr` is a way of handling text and character strings.
--   `forcats` is a package providing tools to handle categorical variables and discrete (non-continuous) variables.
--   `lubridate` is a package for working with times and dates.
--   `ggplot2` is a graphic package to plot your data. We will cover this package in the next class!
+We will go over more details about all the functions of the tidyverse package next class!
 
-::: callout-important
-There are nice [cheatsheets](https://posit.co/resources/cheatsheets/) for each of the packages to demonstrate what they do in detail!
+## Taylor package
 
-Don't forget to check out the *Help* section in RStudio for any function you come across.
-:::
+The [taylor](https://taylor.wjakethompson.com) package is for accessing and exploring data related to Taylor Swift’s discography, including lyrics and audio characteristics. The data comes from Genius and the Spotify.
 
-## The BIG picture
+# Tidy Syntax
 
-We have now progressed to the Tidy part of the data analysis pipeline!
+The BIG picture of what we do in data science.
 
-<img src="figs/tidy.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"/>
+<img src="figs/base.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"/>
 
 <figcaption>Figure 1: In our model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans.</figcaption>
 
-## Examples of some not so tidy data
+## Import
 
-Have you seen or even generated data that looks like this?
+First we need to import data into R. I prefer to import *.csv* files because it is a good way to indicate a data file and it eliminates any weird formatting that may exist in excel. **Think of your *.csv* files as immutable**, the data stays the same and the code is the reproducible record of data manipulation. If you go and change the raw *.csv* there is no record of that modification, with code you can always know exactly how the data was treated. 
 
-#### example 1
+I am showing 2 ways to import data one using the base R function `read.csv()` and the other using the `readr` function `read_csv()`.
 
-::: img-float
-<img src="figs/untidy1.png" width="90%" style="float:center"/>
-:::
+In base R, the `header` field determines if the first row of the data had column header titles or not. The `stringsAsFactors` determines if the character variables in your data set should be set as a factor variable (set as TRUE) or as character (set to FALSE). The `row.names` field specifies if the first column is data or the names of the rows.
 
-#### example 2
-
-::: img-float
-<img src="figs/untidy2.png" width="90%" style="float:center"/>
-:::
-
-#### example 3
-some of my data! 
-
-::: {.img-float} 
-<img src="figs/untidy3.png" width="90%" style="float:center"/> 
-:::
-
-## Tidy data with `tidyr`
-
-`tidyr` is a package with tools that help you create **tidy data**. `tidyr` functions reform the data so that other R functions can perform manipulation or analysis on it.
-
-### Wide vs Long
-
-Wide data puts many variables for each observation in the same row. An example is a time series, where each time point for an observation is in a different column. Data in this format can be easier to data enter when the data is collected. However, it is difficult for R to then plot or evaluate across time, but we need to convert it in R.
-
-Here is an example of wide data, you can see different metrics across time are represented across the columns for each country.
-
-![](figs/tidyr-wide.png)
-
-This is an example of long data. Now each value is in a single column. The next step would be to split the observation type and the year into 2 separate columns that we'll cover below.
-
-![](figs/tidyr-long.png){fig-align="center" width="341"}
-
-To convert between wide to longer we use the function `pivot_longer()` and to convert between long to wide we use the function `pivot_wider()`. The `pivot_longer()` function takes the main arguments `data`, `cols`, `names_to`, and `values_to`. `data` is the input data (the wide data frame). `cols` is the columns of the data you want to convert, you don't have to use the whole data set you can only select a few columns if you want. `names_to` is what you want to name the header of the new variable you are creating this is often called the "key" or for example the observation type in the above example. `values_to` is what you want to call the actual data "value" this could be the concentration or the units of the measurement.
-
-![](figs/tidyr-wide_long2.png)
-
-Lets look at an example in code!
+In tidyverse, the `col_names` field specifies if the first row is a header. If you want to specify the type of data for each field you have to specify it using the `col_types` field. *I'll show you a cool trick here in class.* There are a lot more options you can look at in the *Help* section. Try typing `read_csv` in the Help query box. 
 
 ```{r}
-#| label: wide2long
-#| message: false
-#| fig-width: 5
-#| fig-height: 4
-
-library(tidyverse)
-
-data <- read_csv("data/wide_data.csv")
-glimpse(data) # first look at the data
-```
-You can see the weight each week but its spread across columns lets convert to long format
-
-Using the `pivot_longer()` function we tell it to take columns 3 through 11 and put the column names into a new column called week and the weights into a new column called grams using this code
-```{r}
-long.data <- data |> 
-  pivot_longer(cols = c(3:11), names_to = "week", values_to = "grams")
-
-glimpse(long.data) # this is what the new data looks like. 
-```
-The data is separated into weeks and weight. Now we could plot it across time.
-
-```{r}
-#| echo: false
-
-ggplot(long.data, aes(x=week, y=grams, group = Dam, color = Group)) + geom_line() + 
-  theme_classic() +
-  scale_color_manual(values = c("black", "springgreen")) +
-  theme(axis.text.x=element_text(angle=45, hjust = 1))
-```
-
-Other times we need the data to be **wide** format if we want to do computations on the data. For example, maybe we want to determine the percent weight change from baseline and plot that instead of the absolute weight. Lets convert it back to wide format using `pivot_wider()`.
-
-We tell `pivot_wider()` it to take the "week" column and make a new columnn for each unique value and put the value of grams in the cells as the values for each unique week column.
-```{r}
-#| label: long2wide
-#| message: false
-
-wide.data <- pivot_wider(long.data, names_from = week, values_from = grams)
-glimpse(wide.data) # look at the data again
-```
-
-Next, we want to calculate the percent weight gain by performing this calculation for each row `Wk8 Weight`/`Baseline Weight` * 100 to determine the percent of weight gain. This computation is done more easily if the data is in wide format.
-
-```{r}
-#| message: false
-#| fig-width: 4
-#| fig-height: 4
-wide.data <- wide.data |> mutate(perc.gain = `Wk8 Weight`/`Baseline Weight`*100)
-glimpse(wide.data) # check it out
-```
-now you can see the new column of data called perc.gain as a new column at the end. We'll talk more about the `mutate()` function below. 
-
-```{r}
-#| message: false
-#| echo: false
-#| fig-width: 4
-#| fig-height: 4
-ggplot(wide.data, aes(x=Group, y=perc.gain, fill = Group)) + geom_boxplot(outlier.shape = NA) + 
-  theme_classic() + geom_point() +
-  scale_fill_manual(values = c("grey", "springgreen")) + 
-  ylab("% Weight Gain") + ylim(90,180)
-```
-
-### Unite vs Separate
-As we saw in countries data above sometimes we get data that has multiple pieces of data in one field. We can fix this problem with `separate_wider_delim()` function that will split a cell into 2 columns based on a specified delimiter. If you've ever used the "text to columns" feature in excel its essentially the same thing.
-
-```{r}
-#| echo: false
-
-library(gapminder)
-data <- gapminder
-data <- pivot_longer(data, cols = c(pop, lifeExp, gdpPercap), names_to = "obstype", values_to = "obs_value")
-data <- unite(data, col = "obstype_year", 4:3, remove = TRUE)
-```
-
-
-```{r}
-#| label: unite.separate
-#| message: false
-
-glimpse(data) # lets look at the countries data.
-```
-As you can see the "obstype_year" has too many pieces of information in it. Before we can `pivot_wider()`, we need to split out the observation by type and the year using the `separate_wider_delim()` function. We tell the function which column to split, what the names of the splits will be, and how the fields are deliminated. 
-
-
-```{r}
-dat <- separate_wider_delim(data, cols = obstype_year, names = c("obstype", "year"), delim = "_")
-glimpse(dat)
-```
-Now the data is in a format that can be put into pivot_wider() to get out each of the observation types.
-
-
-### Nesting and Unnesting
-Another cool function related to spliting data is a function called `unnest_longer`. We talked a little in the first class about a class of data called list which is very flexible on what can be put there, but you need special functions to access that data. Unnest is a way to unnest the listed items that are embedded into a dataframe. Lets look at the taylor swift data as an example.
-
-```{r}
-#| label: unnest
-#| message: false
-
+#| label: setup
+#| include: false
+#| eval: false
 library(taylor)
+library(readr)
 
-taylor <- taylor_album_songs
-glimpse(taylor) # look at some data
+data <- taylor_all_songs
+final <- data[1:314,c(1,3,4,5,12:28)]
+types <- as.character(as.col_spec(final))
+types <- "fDicddididdddddiilfff"
+write_csv(final, file = "data/taylorswift.csv")
 ```
-If you look at the last line the lyrics is a list which is a tibble (or table) that is the all the lines of lyrics for each song. Since each line is a song and the lyrics can be many lines long its a nice way to be able to store a table inside a data frame. cool huh! If you wanted to access the lyrics you need to unnest the lyric data in the table. The function unnest_longer() does that.
 
 ```{r}
-lyr <- taylor |> select(album_name, track_name, lyrics) |> unnest_longer(lyrics)
-dim(lyr) # the dimensions of the data number of rows and number of columns
-head(lyr)
+#| label: importing.data
+#| message: false
+
+library(readr)
+
+# reading in csv is for importing comma-separated files
+
+# base R
+data_base <- read.csv(file = "data/taylorswift.csv", 
+                 header = TRUE, 
+                 sep = ",", 
+                 stringsAsFactors = TRUE)
+
+
+# Tidyverse
+data_tidy <- read_csv(file = "data/taylorswift.csv",
+                 col_names = TRUE)
+
 ```
-You can see the dataframe is much longer (12,151 rows) as each row is a lyric. If you wanted to see how many times specific words were used this is how you could do it.
 
-## Transform data with `dplyr`
+Using `readr` you can also import data directly from excel spreadsheets using `read_excel` or `read_xls` and even google sheets using `read_sheet`. However, we won't use these function in the course. But you are free to explore them on your own from the [readr package](https://readr.tidyverse.org).
 
-<img src="figs/transform.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"/>
+## Export
 
-Once the data is tidy we can do transformation and calculations for downstream analysis. You've already seen some of these tools in action throughout the course. We'll formally go over them now so you'll recognize it when you see it!
+You can also save files using the `write` functions for both csv or tsv files.
 
-The functions we'll use *in combinations* include: 
+```{r}
+#| label: exporting.data
+#| message: false
+#| eval: false
 
-- `select()`
-- `filter()`
-- `arrange()`
-- `distinct()`
-- `count()`
-- `summarize()`
-- `group_by()`
-- `mutate()`
+# base R
+write.csv(data, file = "data/taylorswift.csv")
+
+# Tidyverse
+write_csv(data, file = "data/taylorswift.csv")
+```
+
+## Explore
+
+Anytime you get a data set the first thing you have to do is look at it! Some basic things to look at are:
+
+-   Use the `dim()` function to check the size of the data set or `nrow` to count the rows and `ncol` to count the columns.
+-   Use the `class()` function to determine if an R object is a vector, matrix, or dataframe. And if the data type is in character, numeric, factor, or logic, for example.
+-   Use the`table()` or `count()` functions to tally the data to see how many types of any variable
+-   `glimpse()` is a quick way to view a snapshot of top of the data.
 
 ::: callout-important
-### Remember your pipes!
+## DATA TYPES
 
-`%>%` & `|>` These allow you to link functions together
+Remember these are the main types of data in R:
+
+-   character
+-   numeric
+-   integer
+-   factor
+-   logical
 :::
 
-::: callout-note
-### A note on style
-When using pipes it is tidy style to put everything after a pipe on a new line so each line of code is noting one operation so its easier to understand. This may seem silly when you're only doing one operation, but the standard style is for it to be on a new line. 
-:::
+### data size and types
+Lets look at data types in the `taylorswift` data in R
 
-### Summary functions
-
-#### select()
 ```{r}
-#| label: transform.data
+#| label: data.type
 #| message: false
+#| eval: true
 
-library(palmerpenguins)
-glimpse(penguins) # lets look at the penguins data
-```
-If we only want to look at the penguin body mass we can use the `select()` function to pull out only the data we want to see.
+# first load the packages we are going to need
+library(tidyverse)
 
-```{r}
-penguins |> select(species, island, body_mass_g) #(example, on one line of code)
-```
+# next import some data, as an example we are using the taylorswift data
+data <- read_csv(file = "data/taylorswift.csv",
+                 col_names = TRUE)
 
-#### filter()
-Next, if we want to select only certain rows that meet a specific criteria we use the `filter()` function to filter out only the data we want. We can combine this with `select()` too.
-```{r}
-penguins |> 
-  select(species, island, body_mass_g) |> 
-  filter(body_mass_g > 4000)
-```
+# What kind of data is it? Its a dataframe, in tidyverse a tidy table is called a tibble.
+class(data)
 
-#### arrange()
-arrange will re-order the data based on a specific column or columns. It we want to quickly see the lightest or heaviest penguins, for example.
-```{r}
-# lighest
-penguins |> 
-  select(species, island, body_mass_g) |> 
-  arrange(body_mass_g)
+# Its good to start any data analysis with basic data exploration.
+# how many columns or measurements are there in the data frame?
+ncol(data)
 
-# heaviest using the `desc()` descending function.
-penguins |> 
-  select(species, island, body_mass_g) |> 
-  arrange(desc(body_mass_g))
+# how many rows or observations are there in the data frame?
+nrow(data)
+
+# when we imported the data, what is the type of each measurement in the data columns?
+# one way to look at this is to use the map function which is actually a loop that runs the function class on each column of data.
+as.data.frame(map_chr(data, class))
+
+# another way to to use glimpse to preview each column of data in a tidy way and it also gives an abbreviation of the data class. 
+glimpse(data)
+
 ```
 
-#### distinct()
-distinct is a function similar to unique. It identifies the distinct or unique features across one or multiple columns
-```{r}
-# what are the distinct islands in the data? Note it is not counting the occurances (thats a different function)
-penguins |> 
-  distinct(island)
+### table() & count()
+Lets look at the distribution of some of the data using `table()` and `count()` functions. These functions counts the number of times each variable appears in the data. `table()` and `count()` work great for factor and character variables, but poorly for continuous and numeric variables unless there are only a few options.
 
-# what are the distinct islands and species?
-penguins |> 
-  distinct(island, species)
-```
-
-#### count()
-count is similar to the `table()` function in base R. It will tally the number of times that unique variable is listed. So its similar to distinct, but it includes the count of the number of occurances.
-
-```{r}
-penguins |> 
-  count(island, species)
-```
-
-#### summarize
-summarize is a powerful tool that summarizes many variables across the data. It can calculate mean, median, standard deviation, variance, sum, and many more features. It outputs a new table that includes just the summary data.
-
-```{r}
-# lets look at the average mass of all the penguins
-penguins |> 
-  summarize(avg_mass = mean(body_mass_g))
-# this doesn't work... why? because there are missing values! We have to add a special note to remove the NA values using the na.rm = TRUE setting. We can also look at more than one summary data at a time!
-
-penguins |> 
-  summarize(avg_mass = mean(body_mass_g, na.rm = TRUE),
-            sd = sd(body_mass_g, na.rm=TRUE))
-```
-
-#### group_by
-If we wanted to summarize the data across categorical variables in the data we use the `group_by()` function that will first group the data and then perform a summary function on each grouping.
-```{r}
-
-# just running group_by() you won't see any difference, but under the hood it is sorting the observations.
-penguins |> 
-  group_by(island, species)
-
-penguins |> 
-  group_by(island, species) |> 
-  summarize(mean_mass = mean(body_mass_g, na.rm = TRUE))
-
-# we can also add in multiple variables for spread or count
-penguins |> 
-  group_by(island, species) |> 
-  summarize(n=n(), 
-            mean_mass = mean(body_mass_g, na.rm = TRUE), 
-            sd = sd(body_mass_g, na.rm = TRUE))
-```
-Example calculations you can run in summarize: n(), sum(),mean(), median(), min(), max(), IQR(), sd(), var()
-
-These commands output a new table and did not modify the original data. However, sometimes you need to add a new calculation or mutate how the data is presented you can do that with the mutate function. If you paid attention above when we looked at the percent weight gain on high fat diet we used the `mutate()` function to add the new variable to the data. 
-
-### mutate()
-`mutate()` takes all the same functions that summarize did above. The big difference is that instead of returning a new table or a single value it returns the whole dataset with a new column.
-
-```{r}
-# if we run the same command as above but with mutate instead of summarize look at how the results differ
-penguins |> 
-  group_by(island, species) |> 
-  mutate(mean_mass = mean(body_mass_g, na.rm = TRUE)) |> glimpse()
-```
-
-**Note the mean_mass column that has now put the mean value in every row. Be aware of the type of output you will get out of the functions you implement!!**
-
-#### Lets look at another example
-remember our wide.data that was weight measurements of animals on a high fat diet
-```{r}
-wide.data <- read.csv("data/wide_data.csv")
-glimpse(wide.data)
-
-# mutate is doing the calculation of percent gain for each row so the output is a unique value in each row instead of repeating the mean of a column of data. 
-wide.data |> 
-  mutate(perc.gain = Wk8.Weight/Baseline.Weight*100)
-```
-This is what we wanted a unique variable for every row rather than a summary data such as mean.
-
-
-### rename()
-
-Another cool function is `rename()`. There are many ways to rename columns in R, but `rename()` is in the convenient tidy style. In the weight data the word "weight" is repeated over and over and in the graph it can clutter the axis. We can rename it for brevity. For `rename()` the function takes the format new_name = old_name. Alternatively, you can use the column number too
-
-```{r}
-wide.data |> rename(baseline = Baseline.Weight,
-                    Wk1 = 4,
-                    Wk2 = 5,
-                    Wk3 = 6,
-                    Wk4 = 7,
-                    Wk5 = 8,
-                    Wk6 = 9,
-                    Wk7 = 10,
-                    Wk8 = 11)
-```
-
-## stringr, lubridate, forcats, purrr
-
-These packages contain function to handle other tricky data or processes in R that we won't cover as heavily here. I wanted to just give a few notes. 
-
-#### stringr
-stringr is for handing text and character strings to perform operations such as
-
-- find character strings (ie, find the work "love" in song lyrics)
-- subset strings of characters (ie, extract the first or last 5 characters of a string)
-- join or split charcter strings (ie, extract the year, month, and day from a date string
-
-#### lubridate
-lubridate is used to more easily handle dates and times. It can handle am/pm/24-h time notations, and change dates from yymmdd to mmddyy and more formats.
-
-#### forcats
-forcats is for working with factors and categorical data in R. Some of the functions are factoring or converting a character vector to a factor vector. Setting the levels of the factors, such as which group is the reference group. It can combine 2 sets of factors or reorder how the factors are plotted.
-
-#### purrr
-purrr is a powerful set of functions for performing for loops or iterations of operations across your data either row-wise or column-wise. This is commonly done in data science, but is a slighly more advanced topic. I encourage you to read about purrr and for loops in R. If we have time at the end of the course we can cover this topic.
-
-
+The differences between `table()` and `count()` is the package they are part of and the format of the output. `count()` is part of the tidyvse and uses tidyverse syntax and outputs the results as a tibble. `table()` is part of base R and the output is a table.  The `count()` function uses the tidyverse pipe syntax, "|>". The `table()` function uses the data subsetting synatx "$". Both of these syntaxes are very common.
 
 ::: {.callout-note}
-Do you learn better by listening? Check out these videos covering some of this material.
+Remember: Piping syntax
 
-[Intro to Tidyverse](https://www.youtube.com/watch?v=MKwyauo8nSI)
+`|>` is the same as `%>%`
+:::
 
-[Data Wrangling](https://posit.co/resources/videos/data-wrangling-with-r-and-rstudio/)
-this video is a little older and has some different syntax on the functions, but its all the same logic given by Garrett Grolemund himself (co-author of R for Data Science book)
+Lets look at some examples.
+```{r}
+#| label: table.count
+#| 
+
+# Here is an example using a character vector.
+table(data$key_name)
+data |> count(key_name)
+
+# Here is an example using a numeric vector. 
+table(data$time_signature)
+data |> count(time_signature)
+
+# Here is an example using a logical vector.
+table(data$explicit)
+data |> count(explicit)
+```
+
+As you can see the `NA` values are excluded in the `table()` function and the output is shaped differently. The output form changes how you use it for downstream analyses.
+
+```{r}
+#| error: true
+#| fig-width: 4
+#| fig-height: 3
+
+
+# For example, we can the base R plot() or barplot() functions to look at the table output, but not the count output. 
+barplot(table(data$key_name))
+data |> count(key_name) |> plot()
+
+# For the count() output we use the tidyverse plotting package called ggplot2(). This gives tons more flexibility in how the plot is rendered than the plot() function. 
+
+data |> count(key_name) |> ggplot(aes(x = key_name, y = n)) + geom_col() + theme_cowplot() + ylab("Number of songs") + xlab("key")
+```
+
+If we want to look at the distribution numeric vectors `table()` and `count()` won't work that well instead we can use the `summary()` function. 
+
+
+### summarise and distributions
+
+```{r}
+#| warning: false
+
+# Base R
+summary(data$tempo)
+boxplot(data$tempo, horizontal=TRUE)
+hist(data$tempo, breaks = 20)
+
+# ggplot
+a <- ggplot(data, aes(y = tempo)) + geom_boxplot(fill = "deepskyblue") + theme_cowplot() + scale_x_discrete( )
+b <- ggplot(data, aes(x = tempo)) + geom_histogram(fill = "deepskyblue") + theme_cowplot()
+plot_grid(a,b, nrow = 1, labels = c("A", "B"))
+```
+
+Note: We'll go over the details of ggplot in a future lecture. For not just go along with the magic. 
+
+
+### convert
+Oftentimes text is imported as a **character** variable. However, you may want that to be a **factor** to indicate there are 4 groups,  or a numeric variable should actually be a factor. The most common data type conversions are between: 
+
+1) characters --> factors 
+
+2) numeric --> factors
+
+For example, if you measured something across time: 1, 5, 15, 30, 60, 120, then plotting the data across the expansive axis will make each groups not evenly divided so it can be useful to make the numeric variable a factor so all the data groups plot next to each other. 
+
+We can look at this in the `taylorswift` data. If we plot the album release date as a date we can see the time represented in the distance and sometimes we may want that but other times we may not. 
+
+```{r}
+#| label: ex1
+#| message: false
+#| warning: false
+#| eval: true
+
+# sometimes we want numeric variables as numbers and sometimes we want them to be factors. In this case the x axis is spaced based on the time between album releases.
+
+ggplot(data, aes(x=album_release, y = track_number, color = album_name)) + geom_point()
+
+# However, if we look at the data in a different way having all the data scrunched at one end is hard to visualize when the time variable isn't needed to be viewed over time.
+
+ggplot(data, aes(x=album_release, y = loudness, fill = album_name)) + geom_boxplot()
+
+# It would look better to see the data more evenly distrubuted. To do that we can convert the date variable to a factor variable
+
+data$album_release <- as.factor(data$album_release)
+
+ggplot(data, aes(x=album_release, y = loudness, fill = album_name)) + 
+  geom_boxplot() + 
+  scale_x_discrete(guide = guide_axis(angle = 90))
+```
+
+Its now easier to see the relationship of loudness over time and the variance in each album. 
+
+```{r}
+#| label: fixcols
+#| include: false
+#| eval: true
+
+library(taylor)
+library(cowplot)
+names(album_compare) <- unique(data$album_name)
+```
+
+#### Another example
+
+In another example, can see in the plots above the "album_name" is colored alphabetically, and with so many groups its hard to tell which bar is which album. 
+
+We can instead plot the album_name on the x-axis, but the album_names are plotted alphabetically so you loose the sense of the loudness change over time. 
+
+```{r}
+#| label: ex2
+#| message: false
+#| warning: false
+#| eval: true
+#| fig-width: 8
+#| fig-height: 6
+
+ggplot(data, aes(x=album_name, y = loudness)) +
+  geom_boxplot() + 
+  scale_x_discrete(guide = guide_axis(angle = 45)) + theme_cowplot() 
+```
+
+Solution: Convert the album name to a factor with a specified order of release date!
+
+
+```{r}
+#| label: ex2.2
+#| message: false
+#| warning: false
+#| eval: true
+#| fig-width: 8
+#| fig-height: 6
+
+# Convert the character vector of "album_name" into a factor variable and specify the levels by the album release date.  
+
+data$album_name <- factor(data$album_name, levels = unique(data$album_name[order(data$album_release)]))
+
+ggplot(data, aes(x=album_name, y = loudness, fill=album_name)) +
+  geom_boxplot() + scale_fill_manual(values=album_compare) +
+  scale_x_discrete(guide = guide_axis(angle = 45)) + theme_cowplot() + theme(legend.position="none")
+```
+
+In sum, you've learned about importing and exporting data into/out of R. About how to look at the distribution of different types of data such as categorical and numerical. We looked at a few different plotting strategies to visualize the data distrubution. And finally how to convert to a factor variable to better handle the data. Having numeric variables formated at **numeric** or **factor** can also make a huge difference in how they are treated in certain statistical tests. Keep this in mind during data analysis. 
+
+::: callout-tip
+### Want More?
+
+There are so many great tools to learn R and data science!
+
+-   To explore the tidyverse and data science in more detail check out the *R for Data Science* [textbook](https://r4ds.hadley.nz) written by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+
+-   Want more stats and data science conversations?! Check out the **not so standard deviations** [podcast](https://nssdeviations.com) by Roger Peng and Hilary Parker.
 :::
