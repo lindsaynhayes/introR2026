@@ -12,33 +12,31 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2026/readings/index_R02.html).
+Before class, read the [pre-reading materials](/readings/index_R02.qmd).
 
 # Lecture
 
 ## Learning objectives
-- Be able to recognize a Quarto document and describe reasons why to use a unified authoring framework.
-- Be able to create a R project & Quarto document.
+
 ::: callout-note
 ### Learning objectives
-- **Quarto** is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more. During the course we will primarily use the HTML output format.
+
 **At the end of class you will be able to:**
 
--   Generate and navigate a quarto document
--   Understand what packages are and how to use them
--   Get data in and out of R
--   Recognize and create various data types in R
+- Generate and navigate a quarto document
+- Understand what packages are and how to use them
+- Recognize and create various data types in R
 :::
 
 ## Slides
 
--   [Lecture 02: Data Types](https://docs.google.com/presentation/d/1RLm558R177W1YsYA_WG4J-fTfvFmnejrT4Ccf02t3l0/edit?usp=sharing)
+- [Lecture 02: Literate Coding](https://docs.google.com/presentation/d/1s0s0KC_s9L-uzuz8bf6lOln0Wb591MyoKOxfw1VdQ4A/edit?usp=sharing)
 
--   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork02/classwork_L02.html) 
-
-- [In-Class Activity](https://lindsaynhayes.github.io/introR2026/activities/classwork01/palmerpenguins_intro.html)
+- [In-Class Activity](/activities/classwork02/palmerpenguins_intro.qmd)
 
 # Post-lecture Practice
 
-To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](https://lindsaynhayes.github.io/introR2025/projects/index_A01.html){target="_blank"}
+## Summary
 
+- **Quarto** is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more.
+- **Quarto documents** use a unified authoring framework to present narrative text alongside coding blocks and outcomes.
