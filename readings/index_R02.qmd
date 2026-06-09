@@ -215,9 +215,9 @@ For example, we will look at the structure of some gene expression data
 #| echo: false
 
 library(SummarizedExperiment)
-counts <- read.csv("readings/data/counts.csv", row.names = 1)
-genes <- read.csv("readings/data/gene_metadata.csv")
-samples <- read.csv("readings/data/sample_metadata.csv")
+counts <- read.csv("data/counts.csv", row.names = 1)
+genes <- read.csv("data/gene_metadata.csv")
+samples <- read.csv("data/sample_metadata.csv")
 ```
 
 ```{r}
