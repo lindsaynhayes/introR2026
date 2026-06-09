@@ -1,6 +1,9 @@
 ---
 title: "Introduction to the Palmer Penguins"
 date: 2026-07-06
+format:
+  html:
+    embed-resources: true
 editor: source
 editor_options: 
   chunk_output_type: console
