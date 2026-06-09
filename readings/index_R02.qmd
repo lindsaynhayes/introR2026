@@ -1,5 +1,5 @@
 ---
-title: "Navigating R Studio & Quarto"
+title: "Literate Coding with Quarto"
 description: "Reading for Class 02"
 author: 
   - name: Lindsay Hayes
@@ -18,32 +18,29 @@ library(here)
 library(cowplot)
 ```
 
-The last class introduced important concepts in data science such as directory structure, working directories, projects, and quarto documents. This lesson will dig deeper into working with data in R. We will cover importing and exporting, data types, and data objects
-
-Spreadsheets are good for data entry. As a scientists, we have a lot of data in spreadsheets. However, data exploration, manipulation, and visualization tools in spreadsheets are extremely limited and cumbersome when performed manually. Much of your time as a researcher will be spent data wrangling to generate the analyses you desire. R makes this process easy and most importantly reproducible.
+The last class introduced important concepts in data science such as directory structure, working directories, projects, packages, and data. This lesson will dig deeper into working with data in R. We will cover quarto documents, data types, and data objects
 
 ::: callout-note
 ### Learning objectives
 
 **At the end of this lesson you will be able to:**
 
--   Generate and navigate a quarto document
--   Understand what packages are and how to use them
--   Get data in and out of R
--   Recognize and create various data types in R
+- Generate and navigate a quarto document
+- Recognize and create various data types in R
+- Identify an object from a function in R
 :::
 
 # Welcome to Quarto
 
-In the first class, we looked at the `PalmerPenguins` data in a very tidy and curated quarto document to see how you can incorporate narrative text, code, outputs, and more in a single document. I hope you can now appreciate the utility of using Quarto to tell the story of the data analysis. The beautiful html outputs can easily be shared with others and helps build the logic of a data analysis pipeline from beginning to end.
-
 Read the [Quarto welcome tutorial](https://quarto.org/docs/get-started/hello/rstudio.html) to learn about some of the cool tools, such as `code-folding`, `echo=false`, and more.
 
--   Read through Part 1: "Hello, Quarto"
--   Read through Part 2: "Computations".
--   Part 3 is more advanced for generating diverse outputs such as pdf documents feel free to explore, but we won't use these features.
+- Read through Part 1: "Hello, Quarto"
+- Read through Part 2: "Computations".
+- Part 3 is more advanced for generating diverse outputs such as pdf documents feel free to explore, but we won't use these features.
 
 # Packages
+
+In the first class, we introduced packages in the RStudio panel and installed tidyverse which will be essential to a lot of the tasks we will do in the course as this package contains thousands of functions.
 
 ## What is a package?
 
@@ -51,309 +48,202 @@ In R, the fundamental unit of shareable code is the **package.** A package bundl
 
 ## How to get a package?
 
-To install packages from CRAN use the `install.packages()` function. Once the package is installed you can load the package using the `library()` function. Installing packages from Bioconductor take a few more steps which we won't cover just yet.
+To install packages from CRAN use the `install.packages()` function. Once the package is **installed** you can **load** the package using the `library()` function. Installing packages from Bioconductor take a few more steps which we won't cover just yet.
 
-In Lecture 2, we will use data from the `tidyverse` and `taylor` packages.
+In Lecture 2, we will look at data from the `PalmerPenguins` package which is a very tidy and curated quarto document to see how you can incorporate narrative text, code, outputs, and more in a single document. I hope you will appreciate the utility of using Quarto to tell the story of the data analysis. The beautiful html outputs can easily be shared with others and helps build the logic of a data analysis pipeline from beginning to end.
 
-<img src="figs/tidy_hex.png" width="50%" style="float:right"/>
+<img src="figs/palmerpenguins.png" style="float:right" width="15%"/>
+
+Here are some description of packages we will use in class 02.
+
+## Palmer Penguins
+
+The [PalmerPenguins](https://allisonhorst.github.io/palmerpenguins/) package contains data about Antarctica penguins including their location, breed, and biological metrics.
 
 ## Tidyverse package
 
-The [Tidyverse](https://www.tidyverse.org) which is a collection of R packages that share an underlying design, syntax, and grammer to streamline many main functions used in data science. You can install the complete tidyverse with `install.packages("tidyverse")`, once the package is installed you can load it using `library(tidyverse)`. 
+<img src="figs/tidy_hex.png" style="float:right" width="40%"/>
+
+The [Tidyverse](https://www.tidyverse.org) which is a collection of R packages that share an underlying design, syntax, and grammer to streamline many main functions used in data science. You can install the complete tidyverse with `install.packages("tidyverse")`, once the package is installed you can load it using `library(tidyverse)`. We installed this in class 01, so if that worked in class you don't need to install it again.
 
 We will go over more details about all the functions of the tidyverse package next class!
 
-## Taylor package
+# Data Analysis Workflow
 
-The [taylor](https://taylor.wjakethompson.com) package is for accessing and exploring data related to Taylor Swift’s discography, including lyrics and audio characteristics. The data comes from Genius and the Spotify.
-
-# Tidy Syntax
-
-The BIG picture of what we do in data science.
-
-<img src="figs/base.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"/>
+The BIG picture of what we do in data science. This will be the architecture of the data analysis pipeline we will build during the course. <img src="figs/base.png" width="90%" style="display:block; margin-left: auto; margin-right: auto"/>
 
 <figcaption>Figure 1: In our model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans.</figcaption>
 
-## Import
+## Data: What is it and how to we store and access it in R?
 
-First we need to import data into R. I prefer to import *.csv* files because it is a good way to indicate a data file and it eliminates any weird formatting that may exist in excel. **Think of your *.csv* files as immutable**, the data stays the same and the code is the reproducible record of data manipulation. If you go and change the raw *.csv* there is no record of that modification, with code you can always know exactly how the data was treated. 
-
-I am showing 2 ways to import data one using the base R function `read.csv()` and the other using the `readr` function `read_csv()`.
-
-In base R, the `header` field determines if the first row of the data had column header titles or not. The `stringsAsFactors` determines if the character variables in your data set should be set as a factor variable (set as TRUE) or as character (set to FALSE). The `row.names` field specifies if the first column is data or the names of the rows.
-
-In tidyverse, the `col_names` field specifies if the first row is a header. If you want to specify the type of data for each field you have to specify it using the `col_types` field. *I'll show you a cool trick here in class.* There are a lot more options you can look at in the *Help* section. Try typing `read_csv` in the Help query box. 
-
-```{r}
-#| label: setup
-#| include: false
-#| eval: false
-library(taylor)
-library(readr)
-
-data <- taylor_all_songs
-final <- data[1:314,c(1,3,4,5,12:28)]
-types <- as.character(as.col_spec(final))
-types <- "fDicddididdddddiilfff"
-write_csv(final, file = "data/taylorswift.csv")
-```
-
-```{r}
-#| label: importing.data
-#| message: false
-
-library(readr)
-
-# reading in csv is for importing comma-separated files
-
-# base R
-data_base <- read.csv(file = "data/taylorswift.csv", 
-                 header = TRUE, 
-                 sep = ",", 
-                 stringsAsFactors = TRUE)
-
-
-# Tidyverse
-data_tidy <- read_csv(file = "data/taylorswift.csv",
-                 col_names = TRUE)
-
-```
-
-Using `readr` you can also import data directly from excel spreadsheets using `read_excel` or `read_xls` and even google sheets using `read_sheet`. However, we won't use these function in the course. But you are free to explore them on your own from the [readr package](https://readr.tidyverse.org).
-
-## Export
-
-You can also save files using the `write` functions for both csv or tsv files.
-
-```{r}
-#| label: exporting.data
-#| message: false
-#| eval: false
-
-# base R
-write.csv(data, file = "data/taylorswift.csv")
-
-# Tidyverse
-write_csv(data, file = "data/taylorswift.csv")
-```
-
-## Explore
-
-Anytime you get a data set the first thing you have to do is look at it! Some basic things to look at are:
-
--   Use the `dim()` function to check the size of the data set or `nrow` to count the rows and `ncol` to count the columns.
--   Use the `class()` function to determine if an R object is a vector, matrix, or dataframe. And if the data type is in character, numeric, factor, or logic, for example.
--   Use the`table()` or `count()` functions to tally the data to see how many types of any variable
--   `glimpse()` is a quick way to view a snapshot of top of the data.
-
-::: callout-important
-## DATA TYPES
+To get started a key concept is what the data looks like and what an **operation** or **function** is that can then be applied to the data. ::: callout-important \## DATA TYPES
 
 Remember these are the main types of data in R:
 
--   character
--   numeric
--   integer
--   factor
--   logical
+- character
+- numeric
+- integer
+- factor
+- logical :::
+
+::: callout-tip
+## DATA OBJECTS
+
+Remember data can be stored in multiple types of objects:
+
+- vector
+- matrix
+- data frame
+- array
+- list
 :::
 
-### data size and types
-Lets look at data types in the `taylorswift` data in R
+A **function** in `R` is indicated by have `()` after the command. For example, `mean()`, `sd()`, or `count()`, these are all functions that can be applied to data. But knowing what functions can apply to different types of data is important.
+
+### Vectors
 
 ```{r}
-#| label: data.type
-#| message: false
-#| eval: true
+#| label: vector.data
 
-# first load the packages we are going to need
-library(tidyverse)
+# A vector is like a series that is stored as a single object
 
-# next import some data, as an example we are using the taylorswift data
-data <- read_csv(file = "data/taylorswift.csv",
-                 col_names = TRUE)
+# x is a vector of the numbers 1 to 26
+x <- 1:26
+x
 
-# What kind of data is it? Its a dataframe, in tidyverse a tidy table is called a tibble.
-class(data)
+# y is a vector of the letters a to z
+y <- letters
+y
 
-# Its good to start any data analysis with basic data exploration.
-# how many columns or measurements are there in the data frame?
-ncol(data)
+# the arrow `<-` assigns the variables to an object (x or y) then we when print x or y we get the output.
+# notice we don't use () anywhere as these are objects not functions
 
-# how many rows or observations are there in the data frame?
-nrow(data)
+# we can examine the "class" of the objects using the class function
+class(x)
+class(y)
+length(x)
+length(y)
 
-# when we imported the data, what is the type of each measurement in the data columns?
-# one way to look at this is to use the map function which is actually a loop that runs the function class on each column of data.
-as.data.frame(map_chr(data, class))
+# class() is a function and is running an operation of the data object x and y. class uses () because it is a function or operation.
+# as you can see x is a integer of whole numbers while y is a character vector
 
-# another way to to use glimpse to preview each column of data in a tidy way and it also gives an abbreviation of the data class. 
-glimpse(data)
+# we can also perform operations on these vectors
+mean(x)
+
 
 ```
 
-### table() & count()
-Lets look at the distribution of some of the data using `table()` and `count()` functions. These functions counts the number of times each variable appears in the data. `table()` and `count()` work great for factor and character variables, but poorly for continuous and numeric variables unless there are only a few options.
-
-The differences between `table()` and `count()` is the package they are part of and the format of the output. `count()` is part of the tidyvse and uses tidyverse syntax and outputs the results as a tibble. `table()` is part of base R and the output is a table.  The `count()` function uses the tidyverse pipe syntax, "|>". The `table()` function uses the data subsetting synatx "$". Both of these syntaxes are very common.
-
-::: {.callout-note}
-Remember: Piping syntax
-
-`|>` is the same as `%>%`
-:::
-
-Lets look at some examples.
-```{r}
-#| label: table.count
-#| 
-
-# Here is an example using a character vector.
-table(data$key_name)
-data |> count(key_name)
-
-# Here is an example using a numeric vector. 
-table(data$time_signature)
-data |> count(time_signature)
-
-# Here is an example using a logical vector.
-table(data$explicit)
-data |> count(explicit)
-```
-
-As you can see the `NA` values are excluded in the `table()` function and the output is shaped differently. The output form changes how you use it for downstream analyses.
+### Matrix and Data Frame
 
 ```{r}
-#| error: true
-#| fig-width: 4
-#| fig-height: 3
+#| label: df.data
+
+# A matrix is like an excel document that has and rows and columns of data and all the data must be the same type of data
+# this is a matrix with 10 rows and 5 columns
+
+mat <- matrix(c(1:50), nrow = 10, ncol = 5)
+mat
+
+class(mat) # the mat data object is a matrix or array as shown by the class function
+dim(mat)   
+# we can ask about the dimensions of the matrix using the dim function, rows are always listed first, then columns
 
 
-# For example, we can the base R plot() or barplot() functions to look at the table output, but not the count output. 
-barplot(table(data$key_name))
-data |> count(key_name) |> plot()
+# a dataframe is a specialized matrix that has both numeric and non-numeric data
+# we can combine the x and y vectors to create a data frame using the cbind (or column bind) function
+z <- cbind(x,y)
+z
+class(z)
 
-# For the count() output we use the tidyverse plotting package called ggplot2(). This gives tons more flexibility in how the plot is rendered than the plot() function. 
+# note this still listed as a matrix!!
 
-data |> count(key_name) |> ggplot(aes(x = key_name, y = n)) + geom_col() + theme_cowplot() + ylab("Number of songs") + xlab("key")
+str(z)
+# but if we look at the structure of the data using the str() function we can see it forced the integers to be characters so that all the data types would be the same. Its critical to understand how R is interpreting your data! 
+
+# to keep the mixed datatype we use the data.frame() function
+df <- data.frame(x, y)
+df
+class(df)
+str(df)
+# Now you can see the data.frame,df, has a column of integers and a column of characters.
+
 ```
 
-If we want to look at the distribution numeric vectors `table()` and `count()` won't work that well instead we can use the `summary()` function. 
-
-
-### summarise and distributions
+### Lists
 
 ```{r}
-#| warning: false
+# Lists are a special and highly flexible object in R. We won't cover them in much detail, but they can be very handy if your data doesn't fit the structure of a data frame or array. 
 
-# Base R
-summary(data$tempo)
-boxplot(data$tempo, horizontal=TRUE)
-hist(data$tempo, breaks = 20)
+ number.list <- list(
+      "a" = rnorm(n = 10),
+      "b" = rnorm(n = 5),
+      "c" = rnorm(n = 15))
+ 
+number.list
+class(number.list)
+dim(number.list)
+str(number.list)
 
-# ggplot
-a <- ggplot(data, aes(y = tempo)) + geom_boxplot(fill = "deepskyblue") + theme_cowplot() + scale_x_discrete( )
-b <- ggplot(data, aes(x = tempo)) + geom_histogram(fill = "deepskyblue") + theme_cowplot()
-plot_grid(a,b, nrow = 1, labels = c("A", "B"))
+# as you can see number.list is a "list" object
+# the list doesn't have a dimension because its not in a dataframe shape
+# number.list is a list of 3 numeric vectors of all different lengths named a, b, and c
+# but a list can hold more than just vectors, it can store multiple dataframe or matrices or even arrays or other lists, altogether
+
+test.list <- list(x,y,mat,df,number.list)
+class(test.list)
+test.list
+
+class(number.list[[1]])
+# We can get information on a specific item in the list
+
+# however we can't perform operations without some modification.
+mean(number.list)
+
+# we have to perform a "loop" to apply the specified function to each item in the list. We will cover loops later on. 
+# using the sapply() function we can apply the mean() function to each numeric vector in the list. 
+sapply(number.list, mean)
+
 ```
 
-Note: We'll go over the details of ggplot in a future lecture. For not just go along with the magic. 
+### Arrays
 
+Arrays are very powerful and widely used in analysis of genomics data because it can hold many different dataframes together but unlike a list they can be carefully organized as is useful in transcriptomics analysis. Transcriptomic data usually contains gene expression or count data with the rows as genes and the columns as samples. In addition relevant metadata is stored in which the samples are now the rows with relevant descriptive data as the columns. Moreover, the genes can also have corresponding metadata that is stored with the genes as the rows and the relevant metadata (such as chromosome, strand, start and end sequence, gene type \[microRNA, protein coding ...\], and more). An array can store or link all this information together with relevant R packages to also perform operations on them.
 
-### convert
-Oftentimes text is imported as a **character** variable. However, you may want that to be a **factor** to indicate there are 4 groups,  or a numeric variable should actually be a factor. The most common data type conversions are between: 
-
-1) characters --> factors 
-
-2) numeric --> factors
-
-For example, if you measured something across time: 1, 5, 15, 30, 60, 120, then plotting the data across the expansive axis will make each groups not evenly divided so it can be useful to make the numeric variable a factor so all the data groups plot next to each other. 
-
-We can look at this in the `taylorswift` data. If we plot the album release date as a date we can see the time represented in the distance and sometimes we may want that but other times we may not. 
+For example, we will look at the structure of some gene expression data
 
 ```{r}
-#| label: ex1
-#| message: false
-#| warning: false
-#| eval: true
+#| echo: false
 
-# sometimes we want numeric variables as numbers and sometimes we want them to be factors. In this case the x axis is spaced based on the time between album releases.
-
-ggplot(data, aes(x=album_release, y = track_number, color = album_name)) + geom_point()
-
-# However, if we look at the data in a different way having all the data scrunched at one end is hard to visualize when the time variable isn't needed to be viewed over time.
-
-ggplot(data, aes(x=album_release, y = loudness, fill = album_name)) + geom_boxplot()
-
-# It would look better to see the data more evenly distrubuted. To do that we can convert the date variable to a factor variable
-
-data$album_release <- as.factor(data$album_release)
-
-ggplot(data, aes(x=album_release, y = loudness, fill = album_name)) + 
-  geom_boxplot() + 
-  scale_x_discrete(guide = guide_axis(angle = 90))
+library(SummarizedExperiment)
+counts <- read.csv("readings/data/counts.csv", row.names = 1)
+genes <- read.csv("readings/data/gene_metadata.csv")
+samples <- read.csv("readings/data/sample_metadata.csv")
 ```
-
-Its now easier to see the relationship of loudness over time and the variance in each album. 
 
 ```{r}
-#| label: fixcols
-#| include: false
-#| eval: true
+head(counts)
+head(genes)
+head(samples)
 
-library(taylor)
-library(cowplot)
-names(album_compare) <- unique(data$album_name)
+se <- SummarizedExperiment(
+  assays = list(counts = counts),
+  colData = samples,
+  rowData = genes)
+
+se
+class(se)
+
+# the se object is a special type of array that is called a Summarized Experiment Class
+# the se object has counts with specified rownames (genes), rowData which is a dataframe about the genes, and colData which is another dataframe with information about the samples. 
+
 ```
 
-#### Another example
-
-In another example, can see in the plots above the "album_name" is colored alphabetically, and with so many groups its hard to tell which bar is which album. 
-
-We can instead plot the album_name on the x-axis, but the album_names are plotted alphabetically so you loose the sense of the loudness change over time. 
-
-```{r}
-#| label: ex2
-#| message: false
-#| warning: false
-#| eval: true
-#| fig-width: 8
-#| fig-height: 6
-
-ggplot(data, aes(x=album_name, y = loudness)) +
-  geom_boxplot() + 
-  scale_x_discrete(guide = guide_axis(angle = 45)) + theme_cowplot() 
-```
-
-Solution: Convert the album name to a factor with a specified order of release date!
-
-
-```{r}
-#| label: ex2.2
-#| message: false
-#| warning: false
-#| eval: true
-#| fig-width: 8
-#| fig-height: 6
-
-# Convert the character vector of "album_name" into a factor variable and specify the levels by the album release date.  
-
-data$album_name <- factor(data$album_name, levels = unique(data$album_name[order(data$album_release)]))
-
-ggplot(data, aes(x=album_name, y = loudness, fill=album_name)) +
-  geom_boxplot() + scale_fill_manual(values=album_compare) +
-  scale_x_discrete(guide = guide_axis(angle = 45)) + theme_cowplot() + theme(legend.position="none")
-```
-
-In sum, you've learned about importing and exporting data into/out of R. About how to look at the distribution of different types of data such as categorical and numerical. We looked at a few different plotting strategies to visualize the data distrubution. And finally how to convert to a factor variable to better handle the data. Having numeric variables formated at **numeric** or **factor** can also make a huge difference in how they are treated in certain statistical tests. Keep this in mind during data analysis. 
+We won't cover lists and arrays in this class because most data fits within the structure of a dataframe, but it is important for you to be aware of these other types of data objects and essential if you plan on doing any kind of genomics data science.
 
 ::: callout-tip
 ### Want More?
 
 There are so many great tools to learn R and data science!
 
--   To explore the tidyverse and data science in more detail check out the *R for Data Science* [textbook](https://r4ds.hadley.nz) written by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
-
--   Want more stats and data science conversations?! Check out the **not so standard deviations** [podcast](https://nssdeviations.com) by Roger Peng and Hilary Parker.
+- Learn More about the Summarized Experiment Class [here](https://carpentries-incubator.github.io/bioc-project/09-summarizedexperiment.html) and [on Bioconductor](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html)
 :::

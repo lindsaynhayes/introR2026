@@ -39,6 +39,7 @@ Swirl is a great tool to learn R interactively that we will use in the course. F
 - Get an overview of the course (including staff, format, grading, etc)
 - Be able to recognize and operate an Integrated Developer Environment (IDE).
 - Be able to create a R project.
+- Understand what packages are and how to use them
 
 :::
 

@@ -24,9 +24,9 @@ What is R and RStudio and why is it important to learn and implement in all your
 
 **At the end of this lesson you will:**
 
--   Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.
--   Organize files and directories for a set of analyses as an R project.
--   Use the built-in RStudio help interface to search for more information on R functions.
+- Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.
+- Organize files and directories for a set of analyses as an R project.
+- Use the built-in RStudio help interface to search for more information on R functions.
 :::
 
 ## What is R & Why learn it??
@@ -89,10 +89,10 @@ We will use the RStudio IDE to write code, navigate the files on our computer, i
 
 The RStudio window is divided into 4 “Panes”:
 
--   Source code for your scripts and documents (top-left)
--   Environment/History (top-right)
--   Files/Plots/Packages/Help/Viewer (bottom-right)
--   R Console, or outputs (bottom-left).
+- Source code for your scripts and documents (top-left)
+- Environment/History (top-right)
+- Files/Plots/Packages/Help/Viewer (bottom-right)
+- R Console, or outputs (bottom-left).
 
 The placement of these panes and their content can be customized *(Tools \> Global Options \> Pane Layout)*.
 
@@ -108,33 +108,35 @@ Most people tend to organize their projects like this:
 
 ![Bad File Structure](../images/L01/bad_layout.png) There are many reasons why we should ALWAYS avoid this:
 
--   It is hard to tell which version of the data is the original and which is the modified.
--   It is messy because it mixes files with various extensions together.
--   It takes a lot of time to actually find things, and relate the correct figures to the exact code used to generate it.
+- It is hard to tell which version of the data is the original and which is the modified.
+- It is messy because it mixes files with various extensions together.
+- It takes a lot of time to actually find things, and relate the correct figures to the exact code used to generate it.
 
 **A good project layout will ultimately make your life easier!!**
 
--   It ensure the integrity of your data.
--   It is simpler to share your code with someone else (a lab-mate, collaborator, supervisor, and most importantly the future-you!).
--   It allows you to easily upload your data and code with your manuscript submission.
--   It makes it easier to pick the project back up after a break.
+- It ensure the integrity of your data.
+- It is simpler to share your code with someone else (a lab-mate, collaborator, supervisor, and most importantly the future-you!).
+- It allows you to easily upload your data and code with your manuscript submission.
+- It makes it easier to pick the project back up after a break.
 
 ### The Solutions
 
-1.  One day, you will need to quit R, go do something else, and return to your analysis later. Creating an `RStudio project` will keep your data analysis environment organized and accessible. Creating a `RStudio project` file will:
+1.  One day, you will need to quit R, go do something else, and return to your analysis later. **Creating an `RStudio project`** will keep your data analysis environment organized and accessible. Creating a `RStudio project` file will:
 
--   Create a `.Rproj` file.
--   Opens a RStudio session and sets the directory as the working directory.
--   Loads any `.RData` files to restore previously imported data.
--   Loads an open scripts from the previous session.
--   Loads a `.Rhistory` file to save the history of previous commands used.
--   Restores any RStudio settings.
+- Create a `.Rproj` file.
+- Opens a RStudio session and sets the directory as the working directory.
+- Loads any `.RData` files to restore previously imported data.
+- Loads an open scripts from the previous session.
+- Loads a `.Rhistory` file to save the history of previous commands used.
+- Restores any RStudio settings.
 
 ::: callout-note
 With Rstudio projects you don't have to keep your session running all the time. You can easily pick up where you left off.
 :::
 
-Read about how to create a [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects)
+How to Create a [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects)
+
+![](figs/Create_RStudio_Project.gif){width="100%\"/" style="float:right" fig-align="center"}
 
 2.  R Project Directory Structure (for data science and for life)
 
@@ -142,16 +144,15 @@ Here's an example of a tidy project data management.
 
 ![File Structure for Data Analysis](../images/L01/tree1.png){width="300"}
 
-
 ::: callout-important
 Advice on File Naming
 
--   Avoid spaces in a name (ie: project 1.Rproj)
--   Do use dashes (-), underscores (\_), or periods (filename_project1.qmd)
--   Avoid quotes and special characters (", \$, #)
--   Use dates in year-month-day format for better file sorting (250701_plot.png)
--   Use a numbering system to order steps in a pipeline (1.first.qmd, 2.second.qmd, 3.third.qmd)
--   📢 **ANNOTATE, LOG, and NOTEKEEP**
+- Avoid spaces in a name (ie: project 1.Rproj)
+- Do use dashes (-), underscores (\_), or periods (filename_project1.qmd)
+- Avoid quotes and special characters (", \$, #)
+- Use dates in year-month-day format for better file sorting (250701_plot.png)
+- Use a numbering system to order steps in a pipeline (1.first.qmd, 2.second.qmd, 3.third.qmd)
+- 📢 **ANNOTATE, LOG, and NOTEKEEP**
 :::
 
 ## Getting Help
@@ -160,17 +161,17 @@ Finally, there are many ways to get help in the R community. The first choice is
 
 Second you can reach out to many online communities. Most of your questions have probably already been asked so a quick google search will yield many results. Here a few of those resources:
 
--   Stack Overflow: <https://stackoverflow.com/questions>
+- Stack Overflow: <https://stackoverflow.com/questions>
 
-    -   be sure to read the instructions on [how to ask a good question](https://stackoverflow.com/help/how-to-ask)
+  - be sure to read the instructions on [how to ask a good question](https://stackoverflow.com/help/how-to-ask)
 
--   Posit Community: <https://forum.posit.co/t/rstudio-community-find-help-guide/86831>
+- Posit Community: <https://forum.posit.co/t/rstudio-community-find-help-guide/86831>
 
--   Bioconductor: <https://bioconductor.org/help/>
+- Bioconductor: <https://bioconductor.org/help/>
 
--   Stats specific (not R specific): Stack Exchange: <https://stats.stackexchange.com>
+- Stats specific (not R specific): Stack Exchange: <https://stats.stackexchange.com>
 
--   R documentation <https://www.rdocumentation.org>
+- R documentation <https://www.rdocumentation.org>
 
 ## References
 
@@ -179,6 +180,6 @@ Second you can reach out to many online communities. Most of your questions have
 
 **Content pulled from**
 
--   swcarpentry: R <https://carpentries-incubator.github.io/bioc-intro/20-r-rstudio.html#why-learn-r>
--   swcarpentry: Project Management <https://swcarpentry.github.io/r-novice-gapminder/instructor/02-project-intro.html>
+- swcarpentry: R <https://carpentries-incubator.github.io/bioc-intro/20-r-rstudio.html#why-learn-r>
+- swcarpentry: Project Management <https://swcarpentry.github.io/r-novice-gapminder/instructor/02-project-intro.html>
 :::

@@ -1,5 +1,5 @@
 ---
-title: "Navigating R Studio & Quarto"
+title: "Literate Coding with Quarto"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
@@ -24,8 +24,8 @@ Before class, read the [pre-reading materials](/readings/index_R02.qmd).
 **At the end of class you will be able to:**
 
 - Generate and navigate a quarto document
-- Understand what packages are and how to use them
 - Recognize and create various data types in R
+- Identify an object from a function in R
 :::
 
 ## Slides
