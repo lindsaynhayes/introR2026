@@ -52,11 +52,11 @@ To install packages from CRAN use the `install.packages()` function. Once the pa
 
 In Lecture 2, we will look at data from the `PalmerPenguins` package which is a very tidy and curated quarto document to see how you can incorporate narrative text, code, outputs, and more in a single document. I hope you will appreciate the utility of using Quarto to tell the story of the data analysis. The beautiful html outputs can easily be shared with others and helps build the logic of a data analysis pipeline from beginning to end.
 
-<img src="figs/palmerpenguins.png" style="float:right" width="15%"/>
-
 Here are some description of packages we will use in class 02.
 
 ## Palmer Penguins
+
+<img src="figs/palmerpenguins.png" style="float:right" width="15%"/>
 
 The [PalmerPenguins](https://allisonhorst.github.io/palmerpenguins/) package contains data about Antarctica penguins including their location, breed, and biological metrics.
 
@@ -76,7 +76,8 @@ The BIG picture of what we do in data science. This will be the architecture of 
 
 ## Data: What is it and how to we store and access it in R?
 
-To get started a key concept is what the data looks like and what an **operation** or **function** is that can then be applied to the data. ::: callout-important \## DATA TYPES
+To get started a key concept is what the data looks like and what an **operation** or **function** is that can then be applied to the data. 
+::: callout-important \## DATA TYPES
 
 Remember these are the main types of data in R:
 
@@ -213,6 +214,7 @@ For example, we will look at the structure of some gene expression data
 
 ```{r}
 #| echo: false
+#| message: false
 
 library(SummarizedExperiment)
 counts <- read.csv("data/counts.csv", row.names = 1)

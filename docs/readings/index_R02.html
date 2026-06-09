@@ -292,11 +292,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="how-to-get-a-package">How to get a package?</h2>
 <p>To install packages from CRAN use the <code>install.packages()</code> function. Once the package is <strong>installed</strong> you can <strong>load</strong> the package using the <code>library()</code> function. Installing packages from Bioconductor take a few more steps which we won’t cover just yet.</p>
 <p>In Lecture 2, we will look at data from the <code>PalmerPenguins</code> package which is a very tidy and curated quarto document to see how you can incorporate narrative text, code, outputs, and more in a single document. I hope you will appreciate the utility of using Quarto to tell the story of the data analysis. The beautiful html outputs can easily be shared with others and helps build the logic of a data analysis pipeline from beginning to end.</p>
-<p><img src="figs/palmerpenguins.png" style="float:right" width="15%"></p>
 <p>Here are some description of packages we will use in class 02.</p>
 </section>
 <section id="palmer-penguins" class="level2">
 <h2 class="anchored" data-anchor-id="palmer-penguins">Palmer Penguins</h2>
+<p><img src="figs/palmerpenguins.png" style="float:right" width="15%"></p>
 <p>The <a href="https://allisonhorst.github.io/palmerpenguins/">PalmerPenguins</a> package contains data about Antarctica penguins including their location, breed, and biological metrics.</p>
 </section>
 <section id="tidyverse-package" class="level2">
@@ -531,16 +531,16 @@ Figure 1: In our model of the data science process, you start with data import a
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>number.list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$a
- [1] -1.4397890 -1.0973034  1.0763367  1.4609189  1.4425646 -1.2710692
- [7] -0.9018346  1.0418688  1.3835595  0.5336778
+ [1] -0.70014233  0.47574788 -1.69742971  0.12512709 -0.21600653  0.02730749
+ [7]  0.16782345  0.89629471 -1.07886503 -1.05614824
 
 $b
-[1] -3.079460e-01  1.312078e+00  8.765806e-01 -7.800969e-05 -2.367891e-01
+[1]  0.3228389 -0.2390643 -0.8028586 -0.5334349 -0.4773295
 
 $c
- [1] -0.11031135  1.33458321  1.40784876 -0.40332985 -1.02085243 -1.49752659
- [7] -0.40829818 -0.38873880 -0.95523053 -1.16819963  0.32780544 -0.02772137
-[13] -2.01652536 -0.55372002  1.68165661</code></pre>
+ [1]  0.8812046 -1.0129981  0.1584627 -0.6265443 -0.0760192 -0.8568491
+ [7]  0.2854610  0.7042369 -1.2883995  0.2645421  0.2518566 -1.6497191
+[13]  1.6583548  1.2252456  0.6658237</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -553,9 +553,9 @@ $c
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
- $ a: num [1:10] -1.44 -1.1 1.08 1.46 1.44 ...
- $ b: num [1:5] -0.307946 1.312078 0.876581 -0.000078 -0.236789
- $ c: num [1:15] -0.11 1.335 1.408 -0.403 -1.021 ...</code></pre>
+ $ a: num [1:10] -0.7 0.476 -1.697 0.125 -0.216 ...
+ $ b: num [1:5] 0.323 -0.239 -0.803 -0.533 -0.477
+ $ c: num [1:15] 0.881 -1.013 0.158 -0.627 -0.076 ...</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as you can see number.list is a "list" object</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the list doesn't have a dimension because its not in a dataframe shape</span></span>
@@ -621,16 +621,16 @@ $c
 
 [[5]]
 [[5]]$a
- [1] -1.4397890 -1.0973034  1.0763367  1.4609189  1.4425646 -1.2710692
- [7] -0.9018346  1.0418688  1.3835595  0.5336778
+ [1] -0.70014233  0.47574788 -1.69742971  0.12512709 -0.21600653  0.02730749
+ [7]  0.16782345  0.89629471 -1.07886503 -1.05614824
 
 [[5]]$b
-[1] -3.079460e-01  1.312078e+00  8.765806e-01 -7.800969e-05 -2.367891e-01
+[1]  0.3228389 -0.2390643 -0.8028586 -0.5334349 -0.4773295
 
 [[5]]$c
- [1] -0.11031135  1.33458321  1.40784876 -0.40332985 -1.02085243 -1.49752659
- [7] -0.40829818 -0.38873880 -0.95523053 -1.16819963  0.32780544 -0.02772137
-[13] -2.01652536 -0.55372002  1.68165661</code></pre>
+ [1]  0.8812046 -1.0129981  0.1584627 -0.6265443 -0.0760192 -0.8568491
+ [7]  0.2854610  0.7042369 -1.2883995  0.2645421  0.2518566 -1.6497191
+[13]  1.6583548  1.2252456  0.6658237</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -651,8 +651,8 @@ returning NA</code></pre>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using the sapply() function we can apply the mean() function to each numeric vector in the list. </span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(number.list, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         a          b          c 
- 0.2228930  0.3287690 -0.2532373 </code></pre>
+<pre><code>          a           b           c 
+-0.30562912 -0.34596968  0.03897725 </code></pre>
 </div>
 </div>
 </section>
@@ -661,126 +661,7 @@ returning NA</code></pre>
 <p>Arrays are very powerful and widely used in analysis of genomics data because it can hold many different dataframes together but unlike a list they can be carefully organized as is useful in transcriptomics analysis. Transcriptomic data usually contains gene expression or count data with the rows as genes and the columns as samples. In addition relevant metadata is stored in which the samples are now the rows with relevant descriptive data as the columns. Moreover, the genes can also have corresponding metadata that is stored with the genes as the rows and the relevant metadata (such as chromosome, strand, start and end sequence, gene type [microRNA, protein coding …], and more). An array can store or link all this information together with relevant R packages to also perform operations on them.</p>
 <p>For example, we will look at the structure of some gene expression data</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: MatrixGenerics</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: matrixStats</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'MatrixGenerics'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:matrixStats':
-
-    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-    colWeightedMeans, colWeightedMedians, colWeightedSds,
-    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-    rowWeightedSds, rowWeightedVars</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: GenomicRanges</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: stats4</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: BiocGenerics</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: generics</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'generics'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
-    setequal, union</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'BiocGenerics'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    IQR, mad, sd, var, xtabs</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
-    unsplit, which.max, which.min</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: S4Vectors</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'S4Vectors'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:utils':
-
-    findMatches</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    expand.grid, I, unname</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: IRanges</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: Seqinfo</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: Biobase</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages 'citation("pkgname")'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'Biobase'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:MatrixGenerics':
-
-    rowMedians</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:matrixStats':
-
-    anyMissing, rowMedians</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       sample_1 sample_2 sample_3 sample_4
 gene_1      109       84       91      105
@@ -790,7 +671,7 @@ gene_4      105      109      122      101
 gene_5       82       97      112       83
 gene_6       89       96       90      116</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      id chromosome
 1 gene_1          4
@@ -800,7 +681,7 @@ gene_6       89       96       90      116</code></pre>
 5 gene_5          5
 6 gene_6          1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(samples)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(samples)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        id condition batch
 1 sample_1         A     1
@@ -808,12 +689,12 @@ gene_6       89       96       90      116</code></pre>
 3 sample_3         B     1
 4 sample_4         B     2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">SummarizedExperiment</span>(</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">assays =</span> <span class="fu">list</span>(<span class="at">counts =</span> counts),</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colData =</span> samples,</span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rowData =</span> genes)</span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>se</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">SummarizedExperiment</span>(</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">assays =</span> <span class="fu">list</span>(<span class="at">counts =</span> counts),</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colData =</span> samples,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rowData =</span> genes)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>se</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: SummarizedExperiment 
 dim: 25 4 
@@ -824,14 +705,14 @@ rowData names(2): id chromosome
 colnames(4): sample_1 sample_2 sample_3 sample_4
 colData names(3): id condition batch</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "SummarizedExperiment"
 attr(,"package")
 [1] "SummarizedExperiment"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the se object is a special type of array that is called a Summarized Experiment Class</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the se object has counts with specified rownames (genes), rowData which is a dataframe about the genes, and colData which is another dataframe with information about the samples. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the se object is a special type of array that is called a Summarized Experiment Class</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the se object has counts with specified rownames (genes), rowData which is a dataframe about the genes, and colData which is another dataframe with information about the samples. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We won’t cover lists and arrays in this class because most data fits within the structure of a dataframe, but it is important for you to be aware of these other types of data objects and essential if you plan on doing any kind of genomics data science.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
