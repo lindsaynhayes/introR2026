@@ -37,6 +37,6 @@ Before class, read the [pre-reading materials](/readings/index_R02.qmd).
 # Post-lecture Practice
 
 ## Summary
-
+- Literate Coding can be accomplished by using Quarto documents to incorporate, code, narrative text, and storytelling in tidy html reports. 
 - **Quarto** is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more.
 - **Quarto documents** use a unified authoring framework to present narrative text alongside coding blocks and outcomes.

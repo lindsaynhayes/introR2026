@@ -97,7 +97,7 @@ penguins |>
 
 ```{r}
 # Count penguins for each species / island
-penguins %>%
+penguins |>
   count(species, island, .drop = FALSE)
 
 table(penguins$species, penguins$island)
