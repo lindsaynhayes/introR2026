@@ -74,10 +74,12 @@ The BIG picture of what we do in data science. This will be the architecture of 
 
 <figcaption>Figure 1: In our model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans.</figcaption>
 
-## Data: What is it and how to we store and access it in R?
+## Data: What is it and how to store and access it in R?
 
-To get started a key concept is what the data looks like and what an **operation** or **function** is that can then be applied to the data. 
-::: callout-important \## DATA TYPES
+To get started a key concept is what the data looks like and what an **operation** or **function** is that can then be applied to the data.
+
+::: callout-important
+## DATA TYPES
 
 Remember these are the main types of data in R:
 
@@ -85,7 +87,8 @@ Remember these are the main types of data in R:
 - numeric
 - integer
 - factor
-- logical :::
+- logical 
+:::
 
 ::: callout-tip
 ## DATA OBJECTS
@@ -99,7 +102,7 @@ Remember data can be stored in multiple types of objects:
 - list
 :::
 
-A **function** in `R` is indicated by have `()` after the command. For example, `mean()`, `sd()`, or `count()`, these are all functions that can be applied to data. But knowing what functions can apply to different types of data is important.
+A **function** in `R` is indicated by having `()` after the command. For example, `mean()`, `sd()`, or `count()`, these are all functions that can be applied to data. But knowing what functions can apply to different types of data is important.
 
 ### Vectors
 

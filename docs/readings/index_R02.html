@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#data-analysis-workflow" id="toc-data-analysis-workflow" class="nav-link" data-scroll-target="#data-analysis-workflow">Data Analysis Workflow</a>
   <ul class="collapse">
-  <li><a href="#data-what-is-it-and-how-to-we-store-and-access-it-in-r" id="toc-data-what-is-it-and-how-to-we-store-and-access-it-in-r" class="nav-link" data-scroll-target="#data-what-is-it-and-how-to-we-store-and-access-it-in-r">Data: What is it and how to we store and access it in R?</a>
+  <li><a href="#data-what-is-it-and-how-to-store-and-access-it-in-r" id="toc-data-what-is-it-and-how-to-store-and-access-it-in-r" class="nav-link" data-scroll-target="#data-what-is-it-and-how-to-store-and-access-it-in-r">Data: What is it and how to store and access it in R?</a>
   <ul class="collapse">
   <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
   <li><a href="#matrix-and-data-frame" id="toc-matrix-and-data-frame" class="nav-link" data-scroll-target="#matrix-and-data-frame">Matrix and Data Frame</a></li>
@@ -312,17 +312,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>
 Figure 1: In our model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans.
 </figcaption>
-<section id="data-what-is-it-and-how-to-we-store-and-access-it-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="data-what-is-it-and-how-to-we-store-and-access-it-in-r">Data: What is it and how to we store and access it in R?</h2>
-<p>To get started a key concept is what the data looks like and what an <strong>operation</strong> or <strong>function</strong> is that can then be applied to the data. ::: callout-important ## DATA TYPES</p>
+<section id="data-what-is-it-and-how-to-store-and-access-it-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="data-what-is-it-and-how-to-store-and-access-it-in-r">Data: What is it and how to store and access it in R?</h2>
+<p>To get started a key concept is what the data looks like and what an <strong>operation</strong> or <strong>function</strong> is that can then be applied to the data.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>DATA TYPES
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Remember these are the main types of data in R:</p>
 <ul>
 <li>character</li>
 <li>numeric</li>
 <li>integer</li>
 <li>factor</li>
-<li>logical :::</li>
+<li>logical</li>
 </ul>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -343,7 +355,7 @@ Figure 1: In our model of the data science process, you start with data import a
 </ul>
 </div>
 </div>
-<p>A <strong>function</strong> in <code>R</code> is indicated by have <code>()</code> after the command. For example, <code>mean()</code>, <code>sd()</code>, or <code>count()</code>, these are all functions that can be applied to data. But knowing what functions can apply to different types of data is important.</p>
+<p>A <strong>function</strong> in <code>R</code> is indicated by having <code>()</code> after the command. For example, <code>mean()</code>, <code>sd()</code>, or <code>count()</code>, these are all functions that can be applied to data. But knowing what functions can apply to different types of data is important.</p>
 <section id="vectors" class="level3">
 <h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
 <div class="cell">
@@ -531,16 +543,16 @@ Figure 1: In our model of the data science process, you start with data import a
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>number.list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$a
- [1] -0.70014233  0.47574788 -1.69742971  0.12512709 -0.21600653  0.02730749
- [7]  0.16782345  0.89629471 -1.07886503 -1.05614824
+ [1]  0.24042444 -0.01816782 -1.07706153  0.04134886  0.69722355  1.76889654
+ [7]  0.67346840  0.92087269  1.16092093  1.93321484
 
 $b
-[1]  0.3228389 -0.2390643 -0.8028586 -0.5334349 -0.4773295
+[1]  0.9058846 -0.6588016 -0.8839957  0.3522153  0.7684979
 
 $c
- [1]  0.8812046 -1.0129981  0.1584627 -0.6265443 -0.0760192 -0.8568491
- [7]  0.2854610  0.7042369 -1.2883995  0.2645421  0.2518566 -1.6497191
-[13]  1.6583548  1.2252456  0.6658237</code></pre>
+ [1]  0.3931361 -0.5843599 -1.4386030 -1.0561855 -1.1740069  0.4304458
+ [7] -0.1657004 -1.2627422 -1.3821549 -0.3408559  0.1051737 -1.7003542
+[13]  1.0341403  0.4949866 -0.8982614</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -553,9 +565,9 @@ $c
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
- $ a: num [1:10] -0.7 0.476 -1.697 0.125 -0.216 ...
- $ b: num [1:5] 0.323 -0.239 -0.803 -0.533 -0.477
- $ c: num [1:15] 0.881 -1.013 0.158 -0.627 -0.076 ...</code></pre>
+ $ a: num [1:10] 0.2404 -0.0182 -1.0771 0.0413 0.6972 ...
+ $ b: num [1:5] 0.906 -0.659 -0.884 0.352 0.768
+ $ c: num [1:15] 0.393 -0.584 -1.439 -1.056 -1.174 ...</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as you can see number.list is a "list" object</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the list doesn't have a dimension because its not in a dataframe shape</span></span>
@@ -621,16 +633,16 @@ $c
 
 [[5]]
 [[5]]$a
- [1] -0.70014233  0.47574788 -1.69742971  0.12512709 -0.21600653  0.02730749
- [7]  0.16782345  0.89629471 -1.07886503 -1.05614824
+ [1]  0.24042444 -0.01816782 -1.07706153  0.04134886  0.69722355  1.76889654
+ [7]  0.67346840  0.92087269  1.16092093  1.93321484
 
 [[5]]$b
-[1]  0.3228389 -0.2390643 -0.8028586 -0.5334349 -0.4773295
+[1]  0.9058846 -0.6588016 -0.8839957  0.3522153  0.7684979
 
 [[5]]$c
- [1]  0.8812046 -1.0129981  0.1584627 -0.6265443 -0.0760192 -0.8568491
- [7]  0.2854610  0.7042369 -1.2883995  0.2645421  0.2518566 -1.6497191
-[13]  1.6583548  1.2252456  0.6658237</code></pre>
+ [1]  0.3931361 -0.5843599 -1.4386030 -1.0561855 -1.1740069  0.4304458
+ [7] -0.1657004 -1.2627422 -1.3821549 -0.3408559  0.1051737 -1.7003542
+[13]  1.0341403  0.4949866 -0.8982614</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -652,7 +664,7 @@ returning NA</code></pre>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(number.list, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          a           b           c 
--0.30562912 -0.34596968  0.03897725 </code></pre>
+ 0.63411409  0.09676012 -0.50302278 </code></pre>
 </div>
 </div>
 </section>
