@@ -256,7 +256,7 @@
     "href": "lectures.html",
     "title": "Course Content",
     "section": "",
-    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2025-07-08\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-10\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-14\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-16\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-18\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nNavigating R Studio & Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
+    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2025-07-08\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-10\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-14\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-16\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-18\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/index_L01.html",
@@ -429,28 +429,28 @@
   {
     "objectID": "lectures/index_L02.html",
     "href": "lectures/index_L02.html",
-    "title": "Navigating R Studio & Quarto",
+    "title": "Literate Coding with Quarto",
     "section": "",
     "text": "Before class, read the pre-reading materials."
   },
   {
     "objectID": "lectures/index_L02.html#learning-objectives",
     "href": "lectures/index_L02.html#learning-objectives",
-    "title": "Navigating R Studio & Quarto",
+    "title": "Literate Coding with Quarto",
     "section": "Learning objectives",
-    "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of class you will be able to:\n\nGenerate and navigate a quarto document\nUnderstand what packages are and how to use them\nRecognize and create various data types in R"
+    "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of class you will be able to:\n\nGenerate and navigate a quarto document\nRecognize and create various data types in R\nIdentify an object from a function in R"
   },
   {
     "objectID": "lectures/index_L02.html#slides",
     "href": "lectures/index_L02.html#slides",
-    "title": "Navigating R Studio & Quarto",
+    "title": "Literate Coding with Quarto",
     "section": "Slides",
     "text": "Slides\n\nLecture 02: Literate Coding\nIn-Class Activity"
   },
   {
     "objectID": "lectures/index_L02.html#summary",
     "href": "lectures/index_L02.html#summary",
-    "title": "Navigating R Studio & Quarto",
+    "title": "Literate Coding with Quarto",
     "section": "Summary",
     "text": "Summary\n\nQuarto is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more.\nQuarto documents use a unified authoring framework to present narrative text alongside coding blocks and outcomes."
   },
