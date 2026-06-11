@@ -2,26 +2,28 @@
   {
     "listing": "/lectures.html",
     "items": [
-      "/lectures/index_L03.html",
-      "/lectures/index_L04.html",
-      "/lectures/index_L05.html",
-      "/lectures/index_L06.html",
-      "/lectures/index_L07.html",
+      "/lectures/index_L03o.html",
+      "/lectures/index_L04o.html",
+      "/lectures/index_L05o.html",
+      "/lectures/index_L06o.html",
+      "/lectures/index_L07o.html",
       "/lectures/index_L01.html",
-      "/lectures/index_L02.html"
+      "/lectures/index_L02.html",
+      "/lectures/index_L03.html"
     ]
   },
   {
     "listing": "/readings.html",
     "items": [
-      "/readings/index_R03.html",
       "/readings/index_R03o.html",
       "/readings/index_R04o.html",
       "/readings/index_R05o.html",
       "/readings/index_R06o.html",
       "/readings/index_R07o.html",
       "/readings/index_R01.html",
-      "/readings/index_R02.html"
+      "/readings/index_R02.html",
+      "/readings/index_R03.html",
+      "/readings/index_R03_archive.html"
     ]
   },
   {

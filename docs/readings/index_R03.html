@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lindsay Hayes">
+<meta name="dcterms.date" content="2026-07-10">
+<meta name="description" content="Reading for Class 02">
 
-<title>Course Content – Intro to Reproducible Data Analysis Using R</title>
+<title>Exploratory Data Analysis (EDA) – Intro to Reproducible Data Analysis Using R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +29,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,67 +73,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lecture-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lecture-listings'] = new List('listing-lecture-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -142,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
@@ -152,12 +95,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> <i class="bi bi-home" role="img">
+    <a class="nav-link" href="../index.html"> <i class="bi bi-home" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lectures.html" aria-current="page"> <i class="bi bi-book-half" role="img">
+    <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
 </i> 
 <span class="menu-text">Lectures</span></a>
   </li>  
@@ -169,21 +112,21 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
-    <a class="dropdown-item" href="./readings.html">
+    <a class="dropdown-item" href="../readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./activities.html">
+    <a class="dropdown-item" href="../activities.html">
  <span class="dropdown-text">In-Class Activities</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./projects.html">
+    <a class="dropdown-item" href="../projects.html">
  <span class="dropdown-text">Assignments</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./references.html"> <i class="bi bi-star" role="img">
+    <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
 </i> 
 <span class="menu-text">Resources</span></a>
   </li>  
@@ -200,25 +143,49 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course Content</h1>
+<h1 class="title">Exploratory Data Analysis (EDA)</h1>
 </div>
 
+<div>
+  <div class="description">
+    Reading for Class 02
+  </div>
+</div>
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://lindsaynhayes.github.io">Lindsay Hayes</a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Cell Biology, OUHSC
+          </p>
+      </div>
+  </div>
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
-    
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 10, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -228,137 +195,11 @@ window.Quarto = {
 </header>
 
 
-<p>Course content for each lecture is below:</p>
-<div id="listing-lecture-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Author
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1751950800000" data-listing-file-modified-sort="1781201837201" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145" data-listing-title-sort="Data Wrangling with tidyverse" data-listing-filename-sort="index_L03o.qmd">
-<td>
-<span class="listing-date">2025-07-08</span>
-</td>
-<td>
-<a href="./lectures/index_L03o.html" class="title listing-title">Data Wrangling with tidyverse</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-date-sort="1752123600000" data-listing-file-modified-sort="1751930714822" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160" data-listing-title-sort="Data Visualization with ggplot2" data-listing-filename-sort="index_L04o.qmd">
-<td>
-<span class="listing-date">2025-07-10</span>
-</td>
-<td>
-<a href="./lectures/index_L04o.html" class="title listing-title">Data Visualization with ggplot2</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-date-sort="1752469200000" data-listing-file-modified-sort="1752438245546" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246" data-listing-title-sort="Dimension Reduction with tidymodels" data-listing-filename-sort="index_L05o.qmd">
-<td>
-<span class="listing-date">2025-07-14</span>
-</td>
-<td>
-<a href="./lectures/index_L05o.html" class="title listing-title">Dimension Reduction with tidymodels</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-date-sort="1752642000000" data-listing-file-modified-sort="1750801169342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81" data-listing-title-sort="Machine Learning with tidymodels" data-listing-filename-sort="index_L06o.qmd">
-<td>
-<span class="listing-date">2025-07-16</span>
-</td>
-<td>
-<a href="./lectures/index_L06o.html" class="title listing-title">Machine Learning with tidymodels</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-date-sort="1752814800000" data-listing-file-modified-sort="1753197969924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Building a Quarto Website and Using GitHub" data-listing-filename-sort="index_L07o.qmd">
-<td>
-<span class="listing-date">2025-07-18</span>
-</td>
-<td>
-<a href="./lectures/index_L07o.html" class="title listing-title">Building a Quarto Website and Using GitHub</a>
-</td>
-<td>
-<span class="listing-author">Eleana Cabello</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-date-sort="1783314000000" data-listing-file-modified-sort="1780958386817" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="420" data-listing-title-sort="Welcome to the Course!" data-listing-filename-sort="index_L01.qmd">
-<td>
-<span class="listing-date">2026-07-06</span>
-</td>
-<td>
-<a href="./lectures/index_L01.html" class="title listing-title">Welcome to the Course!</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-date-sort="1783486800000" data-listing-file-modified-sort="1781044289717" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110" data-listing-title-sort="Literate Coding with Quarto" data-listing-filename-sort="index_L02.qmd">
-<td>
-<span class="listing-date">2026-07-08</span>
-</td>
-<td>
-<a href="./lectures/index_L02.html" class="title listing-title">Literate Coding with Quarto</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1783659600000" data-listing-file-modified-sort="1781201860278" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="89" data-listing-title-sort="Coding Syntax" data-listing-filename-sort="index_L03.qmd">
-<td>
-<span class="listing-date">2026-07-10</span>
-</td>
-<td>
-<a href="./lectures/index_L03.html" class="title listing-title">Coding Syntax</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-
+<p>In preparation for our discussion on exploratory data analysis read these great articles on EDA.</p>
+<p>The first one is written for business analytics but all the principles are the same. You can skip the example at the end.</p>
+<p><a href="https://querio.ai/blogs/what-is-exploratory-data-analysis">What is EDA?</a></p>
+<p>The second one is from the R for Data Science Text book:</p>
+<p><a href="https://r4ds.had.co.nz/exploratory-data-analysis.html"><em>Exploratory Data Analysis</em> in R for Data Science</a></p>
 
 
 

@@ -543,16 +543,16 @@ Figure 1: In our model of the data science process, you start with data import a
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>number.list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$a
- [1]  0.24042444 -0.01816782 -1.07706153  0.04134886  0.69722355  1.76889654
- [7]  0.67346840  0.92087269  1.16092093  1.93321484
+ [1] -0.43445812 -0.32160454  0.01022217 -1.23351997  0.05101673  1.59060351
+ [7]  1.43028951 -1.61339047  0.04101914 -0.05042455
 
 $b
-[1]  0.9058846 -0.6588016 -0.8839957  0.3522153  0.7684979
+[1] -0.97317460 -2.57865106 -0.13580994  2.34979228  0.08478451
 
 $c
- [1]  0.3931361 -0.5843599 -1.4386030 -1.0561855 -1.1740069  0.4304458
- [7] -0.1657004 -1.2627422 -1.3821549 -0.3408559  0.1051737 -1.7003542
-[13]  1.0341403  0.4949866 -0.8982614</code></pre>
+ [1]  0.5663508  0.4403484  0.1981241  0.9902038  1.7645067 -1.0215013
+ [7]  0.4643751 -0.2787504  0.2230531 -1.1268796  1.6562911  0.8929221
+[13]  1.6700547 -0.4159072 -0.2826772</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -565,9 +565,9 @@ $c
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(number.list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
- $ a: num [1:10] 0.2404 -0.0182 -1.0771 0.0413 0.6972 ...
- $ b: num [1:5] 0.906 -0.659 -0.884 0.352 0.768
- $ c: num [1:15] 0.393 -0.584 -1.439 -1.056 -1.174 ...</code></pre>
+ $ a: num [1:10] -0.4345 -0.3216 0.0102 -1.2335 0.051 ...
+ $ b: num [1:5] -0.9732 -2.5787 -0.1358 2.3498 0.0848
+ $ c: num [1:15] 0.566 0.44 0.198 0.99 1.765 ...</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as you can see number.list is a "list" object</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the list doesn't have a dimension because its not in a dataframe shape</span></span>
@@ -633,16 +633,16 @@ $c
 
 [[5]]
 [[5]]$a
- [1]  0.24042444 -0.01816782 -1.07706153  0.04134886  0.69722355  1.76889654
- [7]  0.67346840  0.92087269  1.16092093  1.93321484
+ [1] -0.43445812 -0.32160454  0.01022217 -1.23351997  0.05101673  1.59060351
+ [7]  1.43028951 -1.61339047  0.04101914 -0.05042455
 
 [[5]]$b
-[1]  0.9058846 -0.6588016 -0.8839957  0.3522153  0.7684979
+[1] -0.97317460 -2.57865106 -0.13580994  2.34979228  0.08478451
 
 [[5]]$c
- [1]  0.3931361 -0.5843599 -1.4386030 -1.0561855 -1.1740069  0.4304458
- [7] -0.1657004 -1.2627422 -1.3821549 -0.3408559  0.1051737 -1.7003542
-[13]  1.0341403  0.4949866 -0.8982614</code></pre>
+ [1]  0.5663508  0.4403484  0.1981241  0.9902038  1.7645067 -1.0215013
+ [7]  0.4643751 -0.2787504  0.2230531 -1.1268796  1.6562911  0.8929221
+[13]  1.6700547 -0.4159072 -0.2826772</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(number.list[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -664,7 +664,7 @@ returning NA</code></pre>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(number.list, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          a           b           c 
- 0.63411409  0.09676012 -0.50302278 </code></pre>
+-0.05302466 -0.25061176  0.38270094 </code></pre>
 </div>
 </div>
 </section>

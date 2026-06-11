@@ -1,10 +1,10 @@
 ---
-title: "Data Wrangling with tidyverse"
+title: "Coding Syntax"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-08
+    affiliation: Department of Cell Biology, OUHC
+date: 2026-07-10
 draft: false
 editor_options: 
   chunk_output_type: console
@@ -12,7 +12,11 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R03.html).
+Familiarize yourself with the logic behind Exploratory Data Analysis (EDA) by reading the following [pre-reading materials](/readings/index_R03.qmd):
+
+[What is EDA?](https://querio.ai/blogs/what-is-exploratory-data-analysis)
+
+[*Exploratory Data Analysis* in R for Data Science](https://r4ds.had.co.nz/exploratory-data-analysis.html)
 
 # Lecture
 
@@ -22,23 +26,20 @@ Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/i
 ### Learning objectives
 
 **At the end of class you will be able to:**
--   Get data in and out of R
--   Recognize and define an untidy dataset
--   Recognize and convert between long and wide data formats
--   Understand when to use both formats
--   Pipe functions together to perform multiple commands in sequence
+
+- Define EDA
+- State the purpose of EDA
+- Describe the goals and procedures underlying EDA
 :::
 
 ## Slides
 
--   [Lecture 03: Data Wrangling](https://docs.google.com/presentation/d/1CvrEcEF3C8ONxAdxeeFEl-AS_QRERKnlYdNjv6HGkm4/edit?slide=id.g34006f07791_0_0#slide=id.g34006f07791_0_0)
+- [Lecture 03: Syntax](https://docs.google.com/presentation/d/1-HQR7r_EBE_R-QIRumYmWX30fQr1rH1uUq_KJ9xdyYQ/edit?usp=sharing)
 
--   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork03/classwork_L03.html)
+- [In-Class Activity](/activities/classwork03/classwork_L03.qmd)
 
 # Post-lecture Practice
 
-- Want to learn by listening? David Robinson a Data Scientist has a free lecture on [DataCamp](https://app.datacamp.com/learn/courses/exploratory-data-analysis-in-r-case-study). The first lecture on Data cleaning and summarizing with dplyr is free. You do need to sign up for a free datacamp account.
-
+## Homework
 
 To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](https://lindsaynhayes.github.io/introR2025/projects/index_A01.html){target="_blank"}
-

@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lindsay Hayes">
-<meta name="dcterms.date" content="2025-07-08">
+<meta name="dcterms.date" content="2026-07-10">
 
-<title>Data Wrangling with tidyverse – Intro to Reproducible Data Analysis Using R</title>
+<title>Coding Syntax – Intro to Reproducible Data Analysis Using R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0733d8a825269eefe2dee5ff332940e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,13 +84,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -102,15 +101,15 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
 </i> 
-<span class="menu-text">Course</span></a>
+<span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-box-seam-fill" role="img">
 </i> 
- <span class="menu-text">Resources</span>
+ <span class="menu-text">Materials</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
     <a class="dropdown-item" href="../readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
@@ -128,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
 </i> 
-<span class="menu-text">References</span></a>
+<span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
@@ -157,7 +156,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
   </ul></li>
-  <li><a href="#post-lecture-practice" id="toc-post-lecture-practice" class="nav-link" data-scroll-target="#post-lecture-practice">Post-lecture Practice</a></li>
+  <li><a href="#post-lecture-practice" id="toc-post-lecture-practice" class="nav-link" data-scroll-target="#post-lecture-practice">Post-lecture Practice</a>
+  <ul class="collapse">
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -166,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Wrangling with tidyverse</h1>
+<h1 class="title">Coding Syntax</h1>
 </div>
 
 
@@ -179,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            Department of Cell Biology, OUHSC
+            Department of Cell Biology, OUHC
           </p>
       </div>
   </div>
@@ -190,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 8, 2025</p>
+      <p class="date">July 10, 2026</p>
     </div>
   </div>
   
@@ -204,7 +206,9 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="pre-lecture-activities" class="level1">
 <h1>Pre-lecture activities</h1>
-<p>Before class, read the <a href="https://lindsaynhayes.github.io/introR2025/readings/index_R03.html">pre-reading materials</a>.</p>
+<p>Familiarize yourself with the logic behind Exploratory Data Analysis (EDA) by reading the following <a href="../readings/index_R03.html">pre-reading materials</a>:</p>
+<p><a href="https://querio.ai/blogs/what-is-exploratory-data-analysis">What is EDA?</a></p>
+<p><a href="https://r4ds.had.co.nz/exploratory-data-analysis.html"><em>Exploratory Data Analysis</em> in R for Data Science</a></p>
 </section>
 <section id="lecture" class="level1">
 <h1>Lecture</h1>
@@ -222,10 +226,9 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p><strong>At the end of class you will be able to:</strong></p>
 <ul>
-<li>Recognize and define an untidy dataset</li>
-<li>Recognize and convert between long and wide data formats</li>
-<li>Understand when to use both formats</li>
-<li>Pipe functions together to perform multiple commands in sequence</li>
+<li>Define EDA</li>
+<li>State the purpose of EDA</li>
+<li>Describe the goals and procedures underlying EDA</li>
 </ul>
 </div>
 </div>
@@ -233,18 +236,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="slides" class="level2">
 <h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <ul>
-<li><p><a href="https://docs.google.com/presentation/d/1CvrEcEF3C8ONxAdxeeFEl-AS_QRERKnlYdNjv6HGkm4/edit?slide=id.g34006f07791_0_0#slide=id.g34006f07791_0_0">Lecture 03: Data Wrangling</a></p></li>
-<li><p><a href="https://lindsaynhayes.github.io/introR2025/activities/classwork03/classwork_L03.html">In-Class Activity</a></p></li>
+<li><p><a href="https://docs.google.com/presentation/d/1-HQR7r_EBE_R-QIRumYmWX30fQr1rH1uUq_KJ9xdyYQ/edit?usp=sharing">Lecture 03: Syntax</a></p></li>
+<li><p>In-Class Activity</p></li>
 </ul>
 </section>
 </section>
 <section id="post-lecture-practice" class="level1">
 <h1>Post-lecture Practice</h1>
-<ul>
-<li>Want to learn by listening? David Robinson a Data Scientist has a free lecture on <a href="https://app.datacamp.com/learn/courses/exploratory-data-analysis-in-r-case-study">DataCamp</a>. The first lecture on Data cleaning and summarizing with dplyr is free. You do need to sign up for a free datacamp account.</li>
-</ul>
+<section id="homework" class="level2">
+<h2 class="anchored" data-anchor-id="homework">Homework</h2>
+<p>To get more practice working with data in R complete the following homework. You will be asked to <strong>upload your activities for a course grade</strong>: <a href="https://lindsaynhayes.github.io/introR2025/projects/index_A01.html" target="_blank">Assignment 1</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -158,7 +158,7 @@ We will allocate 15 minutes in the last course session for students to perform t
 |:----:|:-----:|-------------------------------------|-----------------------------|
 | 7/6  |  01   | Intro to R/RStudio                  |                             |
 | 7/8  |  02   | Literate Coding with Quarto         |                             |
-| 7/10 |  03   | Coding Syntax                       | Homework 1 (due 7/13)       |
+| 7/10 |  03   | EDA & Coding Syntax                 | Homework 1 (due 7/13)       |
 | 7/13 |  04   | Data Wrangling with tidyverse       |                             |
 | 7/15 |  05   | Data Visualization with ggplot2     | Homework 2 (due 7/20)       |
 | 7/17 |  06   | Functions and Loops                 |                             |
