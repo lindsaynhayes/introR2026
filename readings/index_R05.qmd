@@ -6,7 +6,7 @@ author:
     url: https://lindsaynhayes.github.io
     affiliation: Department of Cell Biology, OUHSC
 date: 2026-07-15
-draft: true
+draft: false
 editor_options: 
   chunk_output_type: console
 ---
