@@ -42,4 +42,4 @@ Familiarize yourself with the logic behind Exploratory Data Analysis (EDA) by re
 
 ## Homework
 
-To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](https://lindsaynhayes.github.io/introR2025/projects/index_A01.html){target="_blank"}
+To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](https://lindsaynhayes.github.io/introR2026/projects/index_A01.html){target="_blank"}
