@@ -256,7 +256,7 @@
     "href": "lectures.html",
     "title": "Course Content",
     "section": "",
-    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2025-07-08\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-10\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-14\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-16\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-18\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nCoding Syntax\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
+    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2025-07-08\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-10\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-14\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-16\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2025-07-18\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nExploratory Data Analysis\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/index_L01.html",
@@ -569,28 +569,28 @@
   {
     "objectID": "lectures/index_L03.html",
     "href": "lectures/index_L03.html",
-    "title": "Coding Syntax",
+    "title": "Exploratory Data Analysis",
     "section": "",
     "text": "Familiarize yourself with the logic behind Exploratory Data Analysis (EDA) by reading the following pre-reading materials:\nWhat is EDA?\nExploratory Data Analysis in R for Data Science"
   },
   {
     "objectID": "lectures/index_L03.html#learning-objectives",
     "href": "lectures/index_L03.html#learning-objectives",
-    "title": "Coding Syntax",
+    "title": "Exploratory Data Analysis",
     "section": "Learning objectives",
     "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of class you will be able to:\n\nDefine EDA\nState the purpose of EDA\nDescribe the goals and procedures underlying EDA"
   },
   {
     "objectID": "lectures/index_L03.html#slides",
     "href": "lectures/index_L03.html#slides",
-    "title": "Coding Syntax",
+    "title": "Exploratory Data Analysis",
     "section": "Slides",
     "text": "Slides\n\nLecture 03: Syntax\nIn-Class Activity"
   },
   {
     "objectID": "lectures/index_L03.html#homework",
     "href": "lectures/index_L03.html#homework",
-    "title": "Coding Syntax",
+    "title": "Exploratory Data Analysis",
     "section": "Homework",
     "text": "Homework\nTo get more practice working with data in R complete the following homework. You will be asked to upload your activities for a course grade: Assignment 1"
   },
