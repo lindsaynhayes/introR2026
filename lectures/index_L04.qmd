@@ -4,7 +4,7 @@ author:
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
     affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-08
+date: 2026-07-13
 draft: false
 editor_options: 
   chunk_output_type: console
@@ -12,7 +12,7 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R03.html).
+Before class, read the [pre-reading materials](/readings/index_R04.qmd):
 
 # Lecture
 
@@ -31,14 +31,11 @@ Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/i
 
 ## Slides
 
--   [Lecture 03: Data Wrangling](https://docs.google.com/presentation/d/1CvrEcEF3C8ONxAdxeeFEl-AS_QRERKnlYdNjv6HGkm4/edit?slide=id.g34006f07791_0_0#slide=id.g34006f07791_0_0)
+-   [Lecture 04: Data Wrangling](https://docs.google.com/presentation/d/1Mz8Beb0KwJc6kDyX-DpwMsosjezn2D86bbsYu9N2lOU/edit?usp=sharing)
 
--   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork03/classwork_L03.html)
+-   [In-Class Activity](/activities/classwork04/classwork_L04.qmd)
 
 # Post-lecture Practice
 
 Want to learn by listening? David Robinson a Data Scientist has a free lecture on [DataCamp](https://app.datacamp.com/learn/courses/exploratory-data-analysis-in-r-case-study). The first lecture on Data cleaning and summarizing with dplyr is free. You do need to sign up for a free datacamp account.
-
-
-To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](https://lindsaynhayes.github.io/introR2025/projects/index_A01.html){target="_blank"}
 

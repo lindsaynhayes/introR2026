@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lindsay Hayes">
-<meta name="dcterms.date" content="2025-07-10">
+<meta name="dcterms.date" content="2026-07-13">
 
-<title>Data Visualization with ggplot2 – Intro to Reproducible Data Analysis Using R</title>
+<title>Data Wrangling with tidyverse – Intro to Reproducible Data Analysis Using R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,15 +37,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0733d8a825269eefe2dee5ff332940e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,13 +84,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -102,15 +101,15 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
 </i> 
-<span class="menu-text">Course</span></a>
+<span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-box-seam-fill" role="img">
 </i> 
- <span class="menu-text">Resources</span>
+ <span class="menu-text">Materials</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
     <a class="dropdown-item" href="../readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
@@ -128,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
 </i> 
-<span class="menu-text">References</span></a>
+<span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
@@ -166,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Visualization with ggplot2</h1>
+<h1 class="title">Data Wrangling with tidyverse</h1>
 </div>
 
 
@@ -190,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 10, 2025</p>
+      <p class="date">July 13, 2026</p>
     </div>
   </div>
   
@@ -204,15 +203,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="pre-lecture-activities" class="level1">
 <h1>Pre-lecture activities</h1>
-<p>Before class, read chapter 4 titled <em>“Visualizing Data in the Tidyverse”</em> from the <strong>Tidyverse Skills for Data Science</strong> Book by Carrie Wright, Shannon E. Ellis, Stephanie C. Hicks, and Roger D. Peng.</p>
-<p>Reading: <a href="https://jhudatascience.org/tidyversecourse/dataviz.html">Visualizing Data in the Tidyverse</a></p>
-<p>For more examples, you can checkout a YouTube video series on ggplot from Dr.&nbsp;Lace Padilla.</p>
-<ol type="1">
-<li><a href="https://youtu.be/iYGDhcNCWDI?si=npvVMpihW-0puqy1">Mastering ggplot2 in R</a> [17 min]</li>
-<li><a href="https://youtu.be/Iw3LEa7nxQE?si=B0UTEifi9y1-vLIz">Mastering Axes in ggplot2</a> [16 min]</li>
-<li><a href="https://youtu.be/50o5UQHbkdI?si=WeGH8WBP2pNRkTsz">Color Magic in ggplot2</a> [12.5 min]</li>
-<li><a href="https://youtu.be/U7i5FozHkW8?si=7wkiGp65r_lQgdit">Mastering Facet_Wrap in ggplot2</a> [15 min]</li>
-</ol>
+<p>Before class, read the <a href="../readings/index_R04.html">pre-reading materials</a>:</p>
 </section>
 <section id="lecture" class="level1">
 <h1>Lecture</h1>
@@ -228,29 +219,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>At the end of class you will be able to:</strong></p>
-<ul>
-<li>Distinguish between good and bad plots</li>
-<li>Match the type of plots with the type of data input</li>
-<li>List the features of the grammer of graphics</li>
-<li>Build complex graphics in ggplot2</li>
-</ul>
+<p><strong>At the end of class you will be able to:</strong> - Get data in and out of R - Recognize and define an untidy dataset - Recognize and convert between long and wide data formats - Understand when to use both formats - Pipe functions together to perform multiple commands in sequence</p>
 </div>
 </div>
 </section>
 <section id="slides" class="level2">
 <h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <ul>
-<li><p><a href="https://docs.google.com/presentation/d/1zNF0ai86dW9eLUCRKn1eRx1YoD4RD0CmGsN_gBSduXI/edit?slide=id.g32d8d3ac599_0_501#slide=id.g32d8d3ac599_0_501">Lecture 04: Data Visualization in ggplot</a></p></li>
-<li><p><a href="https://lindsaynhayes.github.io/introR2025/activities/classwork04/classwork_L04.html">In-Class Activity</a></p></li>
+<li><p><a href="https://docs.google.com/presentation/d/1Mz8Beb0KwJc6kDyX-DpwMsosjezn2D86bbsYu9N2lOU/edit?usp=sharing">Lecture 04: Data Wrangling</a></p></li>
+<li><p><a href="../activities/classwork04/classwork_L04.html">In-Class Activity</a></p></li>
 </ul>
 </section>
 </section>
 <section id="post-lecture-practice" class="level1">
 <h1>Post-lecture Practice</h1>
-<ul>
-<li>Please complete the following assignment: <a href="https://lindsaynhayes.github.io/introR2025/projects/index_A02.html" target="_blank">Assignment 2</a></li>
-</ul>
+<p>Want to learn by listening? David Robinson a Data Scientist has a free lecture on <a href="https://app.datacamp.com/learn/courses/exploratory-data-analysis-in-r-case-study">DataCamp</a>. The first lecture on Data cleaning and summarizing with dplyr is free. You do need to sign up for a free datacamp account.</p>
 
 
 </section>
