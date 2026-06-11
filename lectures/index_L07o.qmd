@@ -3,7 +3,7 @@ title: "Building a Quarto Website and Using GitHub"
 author: 
   - name: Eleana Cabello
 date: 2025-07-18
-draft: false
+draft: true
 ---
 
 # Pre-lecture activities
