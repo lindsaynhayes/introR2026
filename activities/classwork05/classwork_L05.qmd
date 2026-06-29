@@ -9,7 +9,7 @@ editor_options:
 
 ## About the activity
 
-1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork04/classwork_L04.qmd).
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork05/classwork_L05.qmd).
 
 2)  Download the raw file.
 

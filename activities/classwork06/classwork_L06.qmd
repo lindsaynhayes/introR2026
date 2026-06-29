@@ -1,0 +1,29 @@
+---
+title: "Interations and Conditional Statements"
+author: "Lindsay N. Hayes"
+date: 2026-07-17
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork05/classwork_L06.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover plotting data with ggplot2!
+
+## Load the Packages
+The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. We will use data from the `palmerpenguins` and the `taylor` packages.
+```{r}
+#| label: packages
+#| message: false
+
+library(tidyverse)
+library(cowplot)
+library(palmerpenguins)
+library(taylor)
+```
