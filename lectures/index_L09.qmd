@@ -2,7 +2,7 @@
 title: "Building a Quarto Website and Using GitHub"
 author: 
   - name: Eleana Cabello
-date: 2025-07-18
+date: 2026-07-24
 draft: true
 ---
 
