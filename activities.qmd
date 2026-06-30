@@ -9,7 +9,7 @@ listing:
   sort-ui: false
   filter-ui: false
   exclude:
-    title: "*answers"
+    title: "Lecture_Commands*"
 page-layout: full
 title-block-banner: false
 date-format: iso

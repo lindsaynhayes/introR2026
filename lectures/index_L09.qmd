@@ -8,7 +8,7 @@ draft: true
 
 # Pre-lecture activities
 
-Before class, complete the tasks listed in the [pre-reading materials](/readings/index_R07.qmd).
+Before class, complete the tasks listed in the [pre-reading materials](/readings/index_R09.qmd).
 
 # Lecture
 
