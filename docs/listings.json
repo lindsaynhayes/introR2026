@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/lectures.html",
-    "items": [
-      "/lectures/index_L01.html",
-      "/lectures/index_L02.html",
-      "/lectures/index_L03.html",
-      "/lectures/index_L04.html",
-      "/lectures/index_L05.html"
-    ]
-  },
-  {
     "listing": "/readings.html",
     "items": [
       "/readings/index_R01.html",
@@ -20,14 +10,35 @@
     ]
   },
   {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/index_A01.html",
+      "/projects/index_A02.html",
+      "/projects/index_A03.html",
+      "/projects/index_P01.html"
+    ]
+  },
+  {
     "listing": "/activities.html",
     "items": [
-      "/activities/classwork05o/dimred_Penguins.html",
-      "/activities/classwork06o/Pred_Penguins.html",
-      "/activities/classwork07o/index_L07_slides.html",
+      "/activities/classwork07/dimred_Penguins.html",
+      "/activities/classwork08/Pred_Penguins.html",
+      "/activities/classwork09/index_L07_slides.html",
       "/activities/classwork02/palmerpenguins_intro.html",
       "/activities/classwork04/classwork_L04.html",
-      "/activities/classwork05/classwork_L05.html"
+      "/activities/classwork05/classwork_L05.html",
+      "/activities/classwork06/classwork_L06.html"
+    ]
+  },
+  {
+    "listing": "/lectures.html",
+    "items": [
+      "/lectures/index_L01.html",
+      "/lectures/index_L02.html",
+      "/lectures/index_L03.html",
+      "/lectures/index_L04.html",
+      "/lectures/index_L05.html",
+      "/lectures/index_L06.html"
     ]
   }
 ]

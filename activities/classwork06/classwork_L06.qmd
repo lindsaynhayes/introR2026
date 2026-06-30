@@ -1,5 +1,5 @@
 ---
-title: "Interations and Conditional Statements"
+title: "Iterations and Conditional Statements"
 author: "Lindsay N. Hayes"
 date: 2026-07-17
 draft: false
@@ -8,17 +8,18 @@ editor_options:
 ---
 ## About the activity
 
-1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork05/classwork_L06.qmd).
+1)  Access the Quarto document.
 
-2)  Download the raw file.
+2)  Download the quarto file and data files. [here](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork06/)
 
 3) Open it in RStudio.
+
+4) Check your working directory!
 
 We will work our way through this quarto document together during class. The activity will cover writing and evaluating different types of iterative loops.
 
 ## Load the Packages
-The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. 
-We will use data from the `palmerpenguins` and the `taylor` packages.
+The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. We will use data provided on GitHub rather than a package. 
 ```{r}
 #| label: packages
 #| message: false
@@ -27,7 +28,6 @@ library(tidyverse)
 library(cowplot)
 library(palmerpenguins)
 library(taylor)
-library(here)
 ```
 
 
@@ -35,8 +35,8 @@ library(here)
 ```{r}
 
 ## Load Sample Data
-norm.counts <- read.csv(here("activities/classwork06/norm.counts.csv"), row.names = 1)
-head(norm.counts)
+norm.counts <- read.csv("norm.counts.csv", row.names = 1)
+norm.counts[1:5,1:10]
 
 ## Generate Plot Loop
 goi <- c("P2ry12", "Hexb", "C1qa", "Cst3")
@@ -53,39 +53,97 @@ p <- ggplot(df, aes(x = group, y = exp, fill = group)) + geom_boxplot() + geom_p
   labs(subtitle = i) + ylab("normalized expression")
 
 print(p)
-#ggsave(filename=here(paste("plots/", i,".jpeg", sep = "")), width = 80, height = 80, units = "mm")
+#ggsave(filename=paste("plots/", i,".jpeg", sep = ""), width = 80, height = 80, units = "mm")
 }
 
 ```
 
 ## try it with some other genes of your interest, try saving the outputs
 
-## mutate to assign DEGs
-In the next example, we have 2 sets of differentially expressed genes between treated and untreated for example. We want to see what our control and experimental groups have in common or differences in their response to treatment.
+
+
+## Read in a lot of files to generate a master dataframe
 ```{r}
-# first read in the data
-con <- read.csv(here("activities/classwork06/deg_con.csv"), row.names = 1)
-exp <- read.csv(here("activities/classwork06/deg_exp.csv"), row.names = 1)
 
-# this is typical data you get from a differential expression analysis with fold change, stat, pvalue, and adjusted p-value. 
+total_files=list.files("data_files/")
+total_files
 
+df<-read.csv(paste0("data_files/", total_files[1]), header = FALSE)
 
-
-
-
-
-
-
+for(i in 2:length(total_files)){
+  tmp <- read.csv(paste0("data_files/", total_files[i]), header=FALSE)
+  df <- rbind(df, tmp)
+  print(i)
+}
+colnames(df) <- c("filename","no.intersections","radius.um","x")
+df
+# write.csv(df,"data/Sholl.csv")
 ```
 
 
 
 
 
+## mutate to assign DEGs
+In the next example, we have 2 sets of differentially expressed genes between treated and untreated for example. We want to see what our control and experimental groups have in common or differences in their response to treatment.
+```{r}
+# first read in the data
+con <- read.csv("deg_con.csv", row.names = 1)
+exp <- read.csv("deg_exp.csv", row.names = 1)
+
+# this is typical data you get from a differential expression analysis with fold change, stat, pvalue, and adjusted p-value. 
+
+# Lets combine the two dataframes
+all.equal(rownames(con), rownames(exp)) # first check that the rows are properly aligned
+
+df <- cbind(con, exp) # combine both analyses into one dataframe, use inner_join() if the rows don't match perfectly.
+df$gene.name <- rownames(df)
+#rename the columns to be more useful
+colnames(df) <- c("baseMean.CON","log2FC.CON","lfcSE.CON","stat.CON","pval.CON","padj.CON","baseMean.EXP","log2FC.EXP","lfcSE.EXP","stat.EXP","pval.EXP","padj.EXP", "gene.name")
+
+# lets take a look before we create groups
+
+ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = padj.CON)) + geom_point() + theme_cowplot()
+ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = padj.EXP)) + geom_point() + theme_cowplot()
+
+# now we are ready to create our groups!
+
+tmp <- df |> mutate(cat = case_when(
+                   padj.CON < 0.05 & padj.EXP > 0.05 ~ "CON only",
+                   padj.CON > 0.05 & padj.EXP < 0.05 ~ "EXP only",
+                   padj.CON < 0.05 & padj.EXP < 0.05 ~ "both",
+                   .default = "neither"))
+table(tmp$cat)
+
+# There are NAs generated in the data analysis so this can be inaccurate we can write a more careful version
+
+df <- df |> mutate(CON.sig = ifelse(padj.CON < 0.05 & !is.na(padj.CON), "YES", "NO"),
+                    EXP.sig = ifelse(padj.EXP < 0.05 & !is.na(padj.EXP), "YES", "NO"),
+                    cat = case_when(CON.sig == "YES" & EXP.sig == "NO" ~ "CON only",
+                                    CON.sig == "NO" & EXP.sig == "YES" ~ "EXP only",
+                                    CON.sig == "YES" & EXP.sig == "YES" ~ "both",
+                                    .default = "neither"))
+
+table(df$cat)
+
+# lets plot it now that we have the group
+ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = cat)) + geom_point() + theme_cowplot()
+
+# the neither is in the way lets clear it out
+df |> filter(cat != "neither") |>
+  ggplot(aes(x = log2FC.CON, log2FC.EXP, color = cat)) + geom_point() + theme_cowplot()
+
+```
+
+
+## Now write a loop to identify the genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
+
+```{r}
 
 
 
 
+```
 
 
 
