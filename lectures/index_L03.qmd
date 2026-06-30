@@ -36,10 +36,10 @@ Familiarize yourself with the logic behind Exploratory Data Analysis (EDA) by re
 
 - [Lecture 03: EDA & Syntax](https://docs.google.com/presentation/d/1-HQR7r_EBE_R-QIRumYmWX30fQr1rH1uUq_KJ9xdyYQ/edit?usp=sharing)
 
-- [In-Class Activity](/activities/classwork03/classwork_L03.qmd)
+- [In-Class Activity](../activities/classwork03/classwork_L03.qmd)
 
 # Post-lecture Practice
 
 ## Homework
 
-To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](projects/index_A01.html){target="_blank"}
+To get more practice working with data in R complete the following homework. You will be asked to **upload your activities for a course grade**: [Assignment 1](../projects/index_A01.html){target="_blank"}
