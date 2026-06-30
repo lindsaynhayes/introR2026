@@ -36,7 +36,7 @@ library(taylor)
 
 ## Load Sample Data
 norm.counts <- read.csv("norm.counts.csv", row.names = 1)
-norm.counts[1:5,1:10]
+norm.counts[1:5,1:6]
 
 ## Generate Plot Loop
 goi <- c("P2ry12", "Hexb", "C1qa", "Cst3")
@@ -58,13 +58,13 @@ print(p)
 
 ```
 
-## try it with some other genes of your interest, try saving the outputs
+### try it with some other genes of your interest, try saving the outputs
 
 
 
-## Read in a lot of files to generate a master dataframe
+## Read in a multiple files
+This kind of loop is useful when you generated hundreds of files that need to be pooled together into one master data sheet. Such as in image analysis with ImageJ or Imaris. 
 ```{r}
-
 total_files=list.files("data_files/")
 total_files
 
@@ -76,12 +76,9 @@ for(i in 2:length(total_files)){
   print(i)
 }
 colnames(df) <- c("filename","no.intersections","radius.um","x")
-df
+head(df)
 # write.csv(df,"data/Sholl.csv")
 ```
-
-
-
 
 
 ## mutate to assign DEGs
@@ -136,7 +133,7 @@ df |> filter(cat != "neither") |>
 ```
 
 
-## Now write a loop to identify the genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
+### Now write a loop to identify the genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
 
 ```{r}
 
