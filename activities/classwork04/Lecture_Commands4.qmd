@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling with tidyverse"
+title: "Lecture Commands - Data Wrangling with tidyverse"
 author: "Lindsay N. Hayes"
 date: 2025-07-08
 draft: true
