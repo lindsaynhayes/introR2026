@@ -12,7 +12,7 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R06.html).
+Before class, read the [pre-reading materials](/readings/index_R08.qmd).
 
 # Lecture
 
@@ -30,9 +30,9 @@ Before class, read the [pre-reading materials](https://lindsaynhayes.github.io/i
 
 ## Slides
 
--   [Lecture 06: Predictive Modeling with tidymodels](https://docs.google.com/presentation/d/1PF5USoyCYBt0-duq5GpOYyXYueUf7LxiA23my4zJXsk/edit?slide=id.g3601b4bb65a_0_9#slide=id.g3601b4bb65a_0_9)
+-   [Lecture 06: Predictive Modeling with tidymodels](https://docs.google.com/presentation/d/1C4iaUiOLZhw9qm84J83sAQ1OWlkPGMvoiX8Kz9BLnPE/edit?usp=sharing)
 
--   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork06/Pred_Penguins.html)
+-   [In-Class Activity](/activities/classwork08/Pred_Penguins.qmd)
 
 
 # Post-lecture Practice

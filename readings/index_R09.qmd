@@ -1,6 +1,6 @@
 ---
 title: "Building a Quarto Website and Using GitHub"
-description: "Reading for Class 07"
+description: "Reading for Class 09"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io

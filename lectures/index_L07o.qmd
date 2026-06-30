@@ -35,12 +35,12 @@ Before class, watch this [video](https://juliasilge.com/blog/best-hip-hop/) from
 
 ## Slides
 
--   [Lecture 05: Dimension Reduction in tidymodels](https://docs.google.com/presentation/d/1qXvqQSIotCCkQNO3O-3AIlM9QfIXIwzCjKL35xqYwPk/edit?usp=sharing)
+-   [Lecture 07: Dimension Reduction in tidymodels](https://docs.google.com/presentation/d/1Dxs0VZFp7LxoW78FX-hPXFVVjWcRS-axJ2rlFY1fNJs/edit?usp=sharing)
 
--   [In-Class Activity](https://lindsaynhayes.github.io/introR2025/activities/classwork05/dimred_Penguins.html)
+-   [In-Class Activity](/activities/classwork07/dimred_Penguins.qmd)
 
 
 # Post-lecture Practice
-- Homework Assigment 3 will cover a tutorial on PCA and dimension reduction. [here](https://lindsaynhayes.github.io/introR2025/projects/index_A03.html)
+- Homework Assigment 3 will cover a tutorial on PCA and dimension reduction. [here](/projects/index_A03.qmd)
 - If that wasn't enough dimension reduction you can read more [here](https://www.tmwr.org/dimensionality), [here](https://juliasilge.com/blog/cocktail-recipes-umap/), or [here](https://www.alexcookson.com/post/2020-11-19-applying-pca-to-fictional-character-personalities/).
 

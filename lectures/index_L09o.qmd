@@ -8,7 +8,7 @@ draft: true
 
 # Pre-lecture activities
 
-Before class, complete the tasks listed in the [pre-reading materials](https://lindsaynhayes.github.io/introR2025/readings/index_R07.html).
+Before class, complete the tasks listed in the [pre-reading materials](/readings/index_R07.qmd).
 
 # Lecture
 
@@ -27,4 +27,4 @@ Before class, complete the tasks listed in the [pre-reading materials](https://l
 
 ## Slides
 
--   [Lecture 07: Building a Quarto Website and Using GitHub](https://lindsaynhayes.github.io/introR2025/activities/classwork07/index_L07_slides.html)
+-   [Lecture 07: Building a Quarto Website and Using GitHub]()

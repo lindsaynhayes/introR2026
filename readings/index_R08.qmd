@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning with tidymodels"
-description: "Reading for Class 06"
+description: "Reading for Class 08"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
