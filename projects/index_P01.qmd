@@ -3,7 +3,7 @@ title: "Final Project"
 author: 
   - name: Eleana Cabello
     affiliation: Department of Microbiology and Immunology, OUHS
-date: 2025-7-18
+date: 2026-7-20
 draft: FALSE
 ---
 
@@ -21,8 +21,8 @@ The goal of the final project is to give you an opportunity to put these skills 
 
 ::: {.callout-important}
 
-- Submit a brief paragraph of your project proposal to Canvas by July 21, 2024.
-- Present your project proposal in 2-3 sentences to the class on July 22, 2024.
+- Submit a brief paragraph of your project proposal to Canvas by July 22, 2026.
+- Present your project proposal in 2-3 sentences to the class on July 24, 2026.
 
 :::
 

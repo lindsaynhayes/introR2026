@@ -4,12 +4,12 @@ author:
   - name: Eleana Cabello
     affiliation: Department of Microbiology and Immunology, OUHS
 description: "Week 1 Practice - Basics in R Programming"
-date: 2025-7-03
+date: 2026-7-06
 ---
 
 # Overview
 
-**Due date: 07/08/25 at 11:59pm**
+**Due date: 07/13/26 at 11:59pm**
 
 Most programming languages are similar in their underlying logic, but differ in execution, efficiency, and, more importantly, their syntax. R is one of the most popular languages used for data analysis in biomedical research. Its programming syntax is unique and differs from other popular languages in the same category as it like Python. Gaining a better understanding of R's core features and becoming familiar with its syntax will help you perform analyses more effectively and efficiently.
 
@@ -32,7 +32,7 @@ In the Swirl lessons for this week, you will learn the following:
 
     `library("swirl")`
 
-2.  **Navigate** to this [link](https://github.com/lindsaynhayes/introR2025/tree/main/swirl). **Download** the Swirl lesson file `1_R_Programming.swc`. **Move** it into your working directory for the class.
+2.  **Navigate** to this [link](https://github.com/lindsaynhayes/introR2026/tree/main/swirl). **Download** the Swirl lesson file `1_R_Programming.swc`. **Move** it into your working directory for the class.
 
 3.  Once you have the file in your working directory, in the console of RStudio type the command below and after the `swc_path =` type `"` and then hit `tab` to interactively choose the `1_R_Programming.swc` file you just downloaded from your working directory. The command will look something like `install_course(swc_path = "1_R_Programming.swc")`. Run the command to install the course.
 

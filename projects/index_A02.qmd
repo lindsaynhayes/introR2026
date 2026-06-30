@@ -4,12 +4,12 @@ author:
   - name: Eleana Cabello
     affiliation: Department of Microbiology and Immunology, OUHS
 description: "Week 2 Practice - Exploratory Data Analysis"
-date: 2025-7-10
+date: 2026-7-13
 ---
 
 # Overview
 
-**Due date: 07/15/25 at 11:59pm**
+**Due date: 07/20/26 at 11:59pm**
 
 This week we introduced the Tidyverse collection of R packages. The packages covered are commonly used in biomedical research data analysis. These packages are well-documented online by their creators and user communities. If you have a question about any of the packages, googling will likely give you a solution from a forum of someone else having the same question or issue.
 
@@ -27,7 +27,7 @@ Through the lessons for this week, you will learn the following:
 
     `library("swirl")`
 
-2.  **Navigate** to this [link](https://github.com/lindsaynhayes/introR2025/tree/main/swirl). **Download** the Swirl lesson file `2_Exploratory_Data_Analysis.swc`. **Move** it into your working directory for the class.
+2.  **Navigate** to this [link](https://github.com/lindsaynhayes/introR2026/tree/main/swirl). **Download** the Swirl lesson file `2_Exploratory_Data_Analysis.swc`. **Move** it into your working directory for the class.
 
 3.  Once you have the file in your working directory, in the console of RStudio type the command below and after the `swc_path =` type `"` and then hit `tab` to interactively choose the `2_Exploratory_Data_Analysis.swc` file you just downloaded from your working directory. The command will look something like `install_course(swc_path = "2_Exploratory_Data_Analysis.swc")`. Run the command to install the course.
 
