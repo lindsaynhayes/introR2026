@@ -12,16 +12,6 @@ editor_options:
 
 # Pre-lecture activities
 
-Before class, read chapter 4 titled *"Visualizing Data in the Tidyverse"* from the **Tidyverse Skills for Data Science** Book by Carrie Wright, Shannon E. Ellis, Stephanie C. Hicks, and Roger D. Peng.
-
-Reading: [Visualizing Data in the Tidyverse](https://jhudatascience.org/tidyversecourse/dataviz.html)
-
-For more examples, you can checkout a YouTube video series on ggplot from Dr. Lace Padilla.
-
-1. [Mastering ggplot2 in R](https://youtu.be/iYGDhcNCWDI?si=npvVMpihW-0puqy1)     [17 min]
-2. [Mastering Axes in ggplot2](https://youtu.be/Iw3LEa7nxQE?si=B0UTEifi9y1-vLIz)  [16 min]
-3. [Color Magic in ggplot2](https://youtu.be/50o5UQHbkdI?si=WeGH8WBP2pNRkTsz)     [12.5 min]
-4. [Mastering Facet_Wrap in ggplot2](https://youtu.be/U7i5FozHkW8?si=7wkiGp65r_lQgdit) [15 min]
 
 
 # Lecture
@@ -47,6 +37,4 @@ For more examples, you can checkout a YouTube video series on ggplot from Dr. La
 -   [In-Class Activity](/activities/classwork05/classwork_L05.qmd)
 
 # Post-lecture Practice
-
-- Please complete the following assignment: [Assignment 2](/projects/index_A02.html){target="_blank"}
 
