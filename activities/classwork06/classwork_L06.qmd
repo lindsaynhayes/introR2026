@@ -14,10 +14,11 @@ editor_options:
 
 3) Open it in RStudio.
 
-We will work our way through this quarto document together during class. The activity will cover plotting data with ggplot2!
+We will work our way through this quarto document together during class. The activity will cover writing and evaluating different types of iterative loops.
 
 ## Load the Packages
-The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. We will use data from the `palmerpenguins` and the `taylor` packages.
+The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. 
+We will use data from the `palmerpenguins` and the `taylor` packages.
 ```{r}
 #| label: packages
 #| message: false
@@ -26,4 +27,67 @@ library(tidyverse)
 library(cowplot)
 library(palmerpenguins)
 library(taylor)
+library(here)
 ```
+
+
+## Looping Plots
+```{r}
+
+## Load Sample Data
+norm.counts <- read.csv(here("activities/classwork06/norm.counts.csv"), row.names = 1)
+head(norm.counts)
+
+## Generate Plot Loop
+goi <- c("P2ry12", "Hexb", "C1qa", "Cst3")
+
+for (i in goi){
+pgene = which(row.names(norm.counts) == i)
+exp <- as.numeric(t(norm.counts[pgene,]))
+group <- as.character(rep(c("CON", "EXP"), each = 24))
+df <- data.frame(group, exp)
+
+p <- ggplot(df, aes(x = group, y = exp, fill = group)) + geom_boxplot() + geom_point() + 
+  scale_fill_manual(values = c("cornflowerblue", "magenta3")) +
+  theme_cowplot() +
+  labs(subtitle = i) + ylab("normalized expression")
+
+print(p)
+#ggsave(filename=here(paste("plots/", i,".jpeg", sep = "")), width = 80, height = 80, units = "mm")
+}
+
+```
+
+## try it with some other genes of your interest, try saving the outputs
+
+## mutate to assign DEGs
+In the next example, we have 2 sets of differentially expressed genes between treated and untreated for example. We want to see what our control and experimental groups have in common or differences in their response to treatment.
+```{r}
+# first read in the data
+con <- read.csv(here("activities/classwork06/deg_con.csv"), row.names = 1)
+exp <- read.csv(here("activities/classwork06/deg_exp.csv"), row.names = 1)
+
+# this is typical data you get from a differential expression analysis with fold change, stat, pvalue, and adjusted p-value. 
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

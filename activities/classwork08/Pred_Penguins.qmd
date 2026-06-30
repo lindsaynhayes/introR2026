@@ -1,0 +1,214 @@
+---
+title: "Machine Learning using tidymodels"
+author: "Lindsay N. Hayes"
+date: 2025-07-16
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork06/Pred_Penguins.qmd).
+
+2)  Download the raw file.
+
+3) Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will using 2 classification models to predict the species of penguin based on the penguin biometric data. 
+
+## Load the Packages
+```{r}
+#| message: false
+#| error: false
+
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+library(ranger)
+
+```
+
+## Explore the Data
+```{r}
+
+glimpse(penguins)
+penguins |> count(species)
+
+```
+
+## Prep the Data
+```{r}
+# set a seed in order to make the analysis reproducible.
+set.seed(462)
+
+# split the data into training and testing sets. We will train the model on the training set and then test how well it worked on the testing data.
+
+# split the data 70% for training and 30% for testing. The bulk of the data is usually used for training the models. 
+split_data <- initial_split(penguins, prop=0.7, strata = species)
+data_training <- training(split_data)
+data_testing <- testing(split_data)
+
+# lets check it did the split correctly, if a different seed was used a the splits would be slightly different.  
+
+data_training |> 
+  group_by(species) |>
+  summarise( count = n(),
+             percent = n()/nrow(data_training) * 100)
+  
+data_testing |> 
+  group_by(species) |>
+  summarise( count = n(),
+             percent = n()/nrow(data_testing) * 100)
+
+# The recipe sets up what data we are going to use and how it to be treated before doing the modeling.
+penguin_recipe <-
+  recipe( species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g, data = penguins) |>
+  step_normalize(all_predictors())
+
+penguin_recipe
+
+# The prep step pulls in all the variables from the recipe based on the dataset we give it. 
+data_prep <- prep(penguin_recipe, data_training)
+data_prep
+
+
+# the bake steps preforms the prep steps and in this case normalizes all the data.
+data_bake <- bake(data_prep, new_data = NULL)
+data_bake
+```
+
+
+## Define the models
+
+**Random Forest** uses the command `rand_forest()` which takes the following arguments. We will use the defaults for some values. 
+
+- **mode** options are "unknown", "regression", "classification", or "censored regression"
+- **engine** options are "ranger", "randomForest", or "spark"
+- **mtry** the number of predictors that will be randomly sampled at each split when creating the tree model. 
+- **trees** the number of trees to build. 
+- **min_n** the minimum number of data points in a node to stop splitting
+
+
+```{r}
+# MODEL 1 Random Forest
+rf_model <- 
+  
+  # specify model
+  rand_forest() |>
+  
+  # mode as classification not continuous
+  set_mode("classification") |>
+  
+  # engine/package that underlies the model (ranger is default)
+  set_engine("ranger") |>
+  
+  # we only have 4 predictors so mtry can't be more than 4
+  set_args(mtry = 4, trees = 200)
+  
+
+# Put everything together 
+rf_wflow <- 
+  workflow() |>
+  add_recipe(penguin_recipe) |>
+  add_model(rf_model)
+
+
+# train the model
+rf_fit <- fit(rf_wflow, data_training)
+```
+
+
+**Logistic Regression** uses the command `multinom_reg()` which takes the following arguments. We will use the defaults for some values. 
+
+- **mode** only "classification" is available
+- **engine** options are "nnet", "brulee", "glmnet", "h2o", "keras", "spark"
+- **penalty** only used in keras models
+- **mixture** only used in keras models
+
+```{r}
+
+# MODEL 2 Logistic Regression
+lr_model <- 
+  
+  # specify that the model is a multinom_reg
+  multinom_reg() |>
+  
+  # mode as classification not continuous
+  set_mode("classification") |>
+  
+  # select the engine/package that underlies the model (nnet is default)
+  set_engine("nnet")
+  
+
+# Put everything together 
+lr_wflow <- 
+  workflow() |>
+  add_recipe(penguin_recipe) |>
+  add_model(lr_model)
+
+# train the model
+lr_fit <- fit(lr_wflow, data_training)
+```
+
+## Compare the performance of the two models
+```{r}
+
+# predict the species of the testing data we held back for each model
+rf.predict <- predict(rf_fit, data_testing)
+lr.predict <- predict(lr_fit, data_testing)
+
+# create a table comparing the predicted species from the true species
+rf.outcome <- rf.predict %>%
+  transmute(pred = .pred_class,
+            truth = data_testing$species)
+
+# confusion matrix
+rf.outcome |> conf_mat(pred, truth)
+
+# accuracy
+rf.outcome |> accuracy(pred, truth) -> rf.acc
+
+# specificity
+rf.outcome |> spec(pred, truth) -> rf.spec
+
+# sensitivity
+rf.outcome |> sens(pred, truth) -> rf.sens
+
+# precision
+rf.outcome |> precision(pred, truth) -> rf.prec
+
+rf.eval <- c(rf.acc$.estimate, rf.spec$.estimate, rf.sens$.estimate, rf.prec$.estimate)
+names(rf.eval) <- c("accuracy", "specificity", "sensitivity", "precision")
+
+# create a table comparing the predicted species from the true species
+lr.outcome <- lr.predict %>%
+  transmute(pred = .pred_class,
+            truth = data_testing$species)
+
+# confusion matrix
+lr.outcome |> conf_mat(pred, truth)
+
+# accuracy
+lr.outcome |> accuracy(pred, truth) -> lr.acc
+
+# specificity
+lr.outcome |> spec(pred, truth) -> lr.spec
+
+# sensitivity
+lr.outcome |> sens(pred, truth) -> lr.sens
+
+# precision
+lr.outcome |> precision(pred, truth) -> lr.prec
+
+lr.eval = c(lr.acc$.estimate, lr.spec$.estimate, lr.sens$.estimate, lr.prec$.estimate)
+names(lr.eval) <- c("accuracy", "specificity", "sensitivity", "precision")
+
+rbind(rf.eval, lr.eval)
+
+```
+
+```{r}
+sessionInfo()
+```
+

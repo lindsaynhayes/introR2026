@@ -1,0 +1,415 @@
+---
+title: "Building a Quarto Website and Using GitHub"
+author: "Eleana Cabello"
+date: 2025-07-18
+format: revealjs
+draft: false
+slide-number: true
+title-slide-attributes:
+  data-background-image: figures/template/title_2.png
+---
+
+## Class Reminders {background-image="figures/template/border_1.png" .center}
+
+- **Final Project Proposal** 
+  - Submit to Canvas by July 22nd
+  - ~5 min presentation on July 22nd
+
+- **[Final Project Presentations](https://lindsaynhayes.github.io/introR2025/projects/index_P01.html
+)**
+  - Dates - July 24th and 28th 
+  - 5-10 min walkthrough of your .qmd file from your website
+
+- **Assignment 1-3 due July 25th!**
+
+---
+
+## Github {background-image="figures/template/border_1.png" .center}
+
+- Online based platform that is used, along with git, for version control of software projects and makes collaboration easier between developers
+
+- Version control means tracking modifications, creations, and deletions of project files
+
+- Connects your local development enviroment, or local repository, to online/cloud based storage, remote repository, to keep track of modifications and make it easier to share with others
+
+---
+
+## Quarto {background-image="figures/template/border_1.png" .center}
+
+- Open-source scientific and technical publishing system that allows for the use of narrative text with code
+
+- However not just limited to a singular file, allows for easy setup of other types of project like websites, presentations, dashboards, books, etc. 
+
+- The ability to change formats easily and incoporate other languages than only R removes previous limitations and allows for better communication of projects and workflows 
+
+---
+
+## Project Benefits of using Github and Quarto {background-image="figures/template/border_1.png" .center}
+
+- **Easier Publication Submission** - Everything is together and well documented (hopefully🤞) to be submitted for publication
+
+- **Reproducibility** - allows others to easily have access to how an analysis was done and be able to replicate it
+
+- **Branding** - Having an online resume/cv of all your projects and those you have collaborated on with others
+
+---
+
+## Example Websites {background-image="figures/template/border_1.png" .center}
+
+- [Dr. Hayes Website](https://lindsaynhayes.github.io/){target="_blank"}
+- [Course Website](https://sta210-s22.github.io/website/){target="_blank"}
+- [Community and Sharing Information](https://realworlddatascience.net/){target="_blank"}
+- [Gallery of Quarto Websites](https://quarto.org/docs/gallery/#websites){target="_blank"}
+
+## Setting Up Your First Quarto Website on GitHub {.center background-image="figures/template/title_1.png"}
+
+## 0 - Create a GitHub Folder for all your future projects {.center}
+
+## 1 - Setup Repository Online {.scrollable}
+
+Log in to your GitHub account. 
+
+Click on the New Repo button.
+
+![](figures/L07/slides/github_new_repo_button.png){width=900 fig-align=center}
+
+Name your repo with purpose (your name for a personal website, a project name, a course name, etc.)
+
+Click the Create Repository button.
+
+![](figures/L07/slides/github_repo_create.png){width=900 fig-align=center}
+
+Once on the page below, click Set up in Desktop.
+
+![](figures/L07/slides/github_repo_setup.png){width=900 fig-align=center}
+
+## 2 - Set Up Remote Repository Locally through Github Desktop {.scrollable}
+
+Once in Github Desktop, pick what directory you would like to store the repository locally. This action will create a remote repository connecting it to the one you have online.
+
+Try to keep organized and do this in a directory dedicated to your GitHub projects.
+
+![](figures/L07/slides/github_desktop_setup.png){height=500 fig-align=center}
+
+## 3 - Open RStudio and Set Repository as Working Directory {.scrollable}
+
+Navigate to your remote repository through the files window.
+
+![](figures/L07/slides/rstudio_files_window.png){width=900 fig-align=center}
+
+Once in the remote repository, click the gears icon and Set As Working Directory.
+
+![](figures/L07/slides/rstudio_set_wd.png){width=900 fig-align=center}
+
+---
+
+## 4 - Setting Up Quarto Website Project in Repository {.scrollable}
+
+**Make sure your working directory is in your local repository**
+
+Find the terminal tab in your RStudio window:
+
+![](figures/L07/slides/quarto_create_project_terminal.png){width=900 fig-align=center}  
+
+---
+
+## 4 - Setting Up Quarto Website Project in Repository {.scrollable}
+
+Type the following command in the terminal to create an RProject and setup a quarto website, a new window of RStudio will appear:
+
+```{.bash}
+quarto create project website
+```
+
+When asked for **Directory** put `.` for the current directory and when asked for a **Title** give it the title of your project with no spaces (use _ instead):
+
+![](figures/L07/slides/quarto_project_qs.png){height=200 fig-align=center}
+
+On the new Rstudio window refresh and check out the new files by refreshing the files window:
+
+  - _quarto.yml
+  - index.qmd
+  - about.qmd
+  - styles.css
+
+---
+
+## 5 - Commiting and Pushing to Github Repository {.scrollable}
+
+In Github desktop type a commit message and commit to main.
+  
+![](figures/L07/slides/github_desktop_commit.png){width=900 fig-align=center}
+
+After commiting your changes and message, hit publish to origin.
+
+![](figures/L07/slides/github_desktop_publish.png){width=900 fig-align=center}
+
+Back in your GitHub account, you should see the brown circle indicating GitHub is going through your workflow file and setting up your website:
+
+![](figures/L07/slides/publish_progress.png){width=900 fig-align=center}
+
+After it has completed successfully the brown circle should turn to a green check mark, if it is not successful it will turn into a red x: 
+
+![](figures/L07/slides/publish_completed.png){width=900 fig-align=center}
+
+---
+
+## 6 - Setting Up to Publish to Github Pages using a gh-pages branch {.scrollable}
+In Github website refresh and view all branches in the repository by following the steps below:
+  
+![](figures/L07/slides/branch_button.png){width=900 fig-align=center}
+
+![](figures/L07/slides/branch_new_button.png){width=900 fig-align=center}
+
+Make sure to name it gh-pages, it has to be named this in order for your website to work. 
+
+![](figures/L07/slides/branch_create_button.png){width=900 fig-align=center}
+
+---
+
+## 7 - Setting Up Github Pages and Workflows Locally {.scrollable}
+
+Back in R studio do the following:
+    
+  - Create text file named `.nojekyll`, it does not need to contain anything
+  
+![](figures/L07/slides/select_text_file.png){width=500 fig-align=center}
+
+![](figures/L07/slides/nojekyll_naming.png){width=800 fig-align=center}
+    
+  - Create `.github` folder in your working directory
+  
+  - Create a folder named `workflows` inside the `.github` folder
+  
+  - Create a text file named `publish.yml` inside the folder `.github/workflows`
+    
+  - Copy and paste below into the `publish.yml`:
+  
+```{.bash filename="publish.yml"}
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+name: Quarto Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+---
+
+## 8 - Commit and Push Changes to Host Website on Github Pages {.center}
+
+---
+
+## 9 - Check Settings and Website {.scrollable}
+Navigate to settings of your repository.
+  
+![](figures/L07/slides/repo_settings.png){width=900 fig-align=center}
+
+Then navigate to pages.
+
+![](figures/L07/slides/repo_pages.png){width=900 fig-align=center}
+
+In pages make sure that under Build and Deployment Source is Deploy from Branch. Also make sure that under Branch that gh-pages is selected from /(root) like below:
+
+![](figures/L07/slides/repo_pages_setup.png){width=900 fig-align=center}
+
+---
+
+## 10 - Visit Your Website! {.center}
+
+![](figures/L07/slides/website_link.png){width=900 fig-align=center}
+
+---
+
+## Customizing Your Website {.center background-image="figures/template/title_1.png"}
+
+## Lets edit your Home Page: `index.qmd` { background-image="figures/template/border_2.png" .center}
+
+```{.bash filename="index.qmd"}
+---
+title: "NAME"
+toc: false
+about:
+  template: trestles
+  links:
+    - text: GitHub
+      href: link
+    - text: Email
+      href: link
+---
+
+::: {.column-page}
+
+## Bio
+
+## Research Goals
+
+## Experience
+
+:::
+```
+
+---
+
+## Setting up your project {.scrollable background-image="figures/template/border_2.png"}
+
+- Create a new Quarto document named projects - `projects.qmd` - with the following content:
+
+```{.bash filename="projects.qmd"}
+---
+title: "Projects"
+listing:
+  id: projects-listings
+  contents: projects
+  sort: "date asc"
+  type: table
+  categories: false
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: false
+date-format: "MM-DD-YYYY"
+---
+
+::: {#Projects-listings}
+:::
+```
+
+- Create a **projects** folder
+
+- Move `about.qmd` to the projects folder and rename it to your **project_title.qmd** (Change to your project title or something descriptive!)
+
+- Now change the listing in the `_quarto.yml`:
+
+```{.bash filename="_quarto.yml"}
+website:
+  title: "Test_website"
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+```
+
+- **Change the title of your website here as well!**
+
+## Changing your `publish.yml` to run R code {.scrollable background-image="figures/template/border_2.png"}
+
+To run your Quarto R code cells/blocks and have their output displayed on your website (without errors) you must add R enviroment development step to your workflow file:
+
+```{.bash filename="publish.yml"}
+name: Quarto Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+    
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2'
+      
+      - name: Set up R Dependencies 
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::knitr
+            any::rmarkdown
+            any::tidyverse
+            any::tidymodels
+            any::GGally
+            any::ggstats
+            any::cowplot
+            any::lme4
+            any::lmerTest
+            any::psycModel 
+            
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+## Add your dataset to your working directory {.center background-image="figures/template/border_2.png"}
+
+## Since we have time - Make it more personal {.scrollable background-image="figures/template/border_3.png"}
+
+- Change .css to .scss and change the file to the following:
+
+```{.bash filename="styles.scss"}
+/*-- scss:defaults --*/
+
+// Colors
+$dark-green: #596b57;
+$light-green: #D1D9CE;
+$cream: #FDFBF7;
+$gray: #64605f;
+$orange: #ad7237;
+$black: #151617;
+
+// Base document colors
+$navbar-bg: $dark-green; // navbar
+$navbar-fg: $cream; // navbar foreground elements
+$navbar-hl: $light-green; // highlight color when hovering over navbar links
+$body-bg: $cream; // page background 
+$body-color: $black; // page text 
+$footer-bg: $cream; // footer 
+
+// Inline code
+$code-bg: $cream; // inline code background color
+$code-color: $orange; // inline code text color
+```
+
+- In `_quarto.yml` change the following:
+
+```{.bash filename="_quarto.yml"}
+format:
+  html:
+    theme: styles.scss
+    toc: true
+```
+
+---
+
+## Other Resources {.center background-image="figures/template/border_2.png"}
+
+- [Quarto Guide](https://quarto.org/docs/websites/)
+
+- [UCSB Guide](https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide)
+
+## {background-image="figures/template/title_2.png"}
