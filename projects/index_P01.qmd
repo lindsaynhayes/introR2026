@@ -36,17 +36,17 @@ Below are key dates and deadlines:
 ```{=html}
 <table style="width:100%">
     <tr>
-    <th style="width:20%">07/22/25</th>
+    <th style="width:20%">07/22/26</th>
     <th style="width:30%">Project Proposal</th>
-    <th style="width:50%">**DUE**: Brief paragraph on the data set you will be using for the project including goals of the analysis</th>
+    <th style="width:50%"> <b>DUE</b>: Brief paragraph on the data set you will be using for the project including goals of the analysis</th>
     </tr>
     <tr>
-    <td>07/22/25</td>
+    <td>07/27/26</td>
     <td>Project Work Day</td>
     <td>Get help from instructors on any tasks you may be stuck on</td>
     </tr>
     <tr>
-    <td>07/24/25 07/28/25</td>
+    <td>07/29/26 07/31/26</td>
     <td>Presentations </td>
     <td>5-10 min limit</td>
     </tr>
@@ -55,6 +55,12 @@ Below are key dates and deadlines:
 # Submission
 
 Project submission will be done through your Github website that you will create. Have your project file (.qmd file) in your website directory. However you would like to accomplish this: copying file into the directory, creating a new file and copying text over into the new file, or creating new qmd file in the directory and redoing your project). Whichever method is used what matters is you push the new file changes (your new project file) to your Github repository, where these changes will be changed to HTML files and displayed on your website. Afterwards, **submit a link to your project page on your website to Canvas**. Alternatively, you can submit the zipped qmd, folder, and html output to Canvas.
+
+Please submit both your project proposal and your website link using their respective Google Forms provided below.
+
+**Project Proposal**: https://forms.gle/zKpdkUWSCNWjQADy9
+
+**Project Website Link**: https://forms.gle/JWLCkGretuZ7bqk37
 
 # Need More Data?
 
