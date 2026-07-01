@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Hayes">
+<meta name="dcterms.date" content="2026-07-17">
+<meta name="description" content="Reading for Class 06">
+
+<title>Conditional Statements &amp; Iterations – Intro to Reproducible Data Analysis Using R</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> <i class="bi bi-home" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
+</i> 
+<span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-box-seam-fill" role="img">
+</i> 
+ <span class="menu-text">Materials</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
+        <li>
+    <a class="dropdown-item" href="../readings.html">
+ <span class="dropdown-text">Pre-reading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../activities.html">
+ <span class="dropdown-text">In-Class Activities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
+</i> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lindsaynhayes/introR2026"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#definition-of-terms" id="toc-definition-of-terms" class="nav-link active" data-scroll-target="#definition-of-terms">Definition of terms</a></li>
+  <li><a href="#use-case" id="toc-use-case" class="nav-link" data-scroll-target="#use-case">Use Case</a></li>
+  <li><a href="#if-else" id="toc-if-else" class="nav-link" data-scroll-target="#if-else"><code>if</code> / <code>else</code></a>
+  <ul class="collapse">
+  <li><a href="#if-else-statements-are-used-as-a-scalar-not-for-vectorization.-meaning-they-output-one-value-and-are-not-looping-by-themselves-unlike-ifelse-which-is-vectorized" id="toc-if-else-statements-are-used-as-a-scalar-not-for-vectorization.-meaning-they-output-one-value-and-are-not-looping-by-themselves-unlike-ifelse-which-is-vectorized" class="nav-link" data-scroll-target="#if-else-statements-are-used-as-a-scalar-not-for-vectorization.-meaning-they-output-one-value-and-are-not-looping-by-themselves-unlike-ifelse-which-is-vectorized"><code>If</code> &amp; <code>Else</code> statements are used as a scalar not for vectorization. Meaning they output one value and are not looping by themselves (unlike <code>ifelse</code> which is vectorized)</a></li>
+  </ul></li>
+  <li><a href="#ifelse" id="toc-ifelse" class="nav-link" data-scroll-target="#ifelse"><code>ifelse</code></a></li>
+  <li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><code>case_when</code></a></li>
+  <li><a href="#for-loop" id="toc-for-loop" class="nav-link" data-scroll-target="#for-loop"><code>For</code> loop</a></li>
+  <li><a href="#map-function-in-the-purrr-package." id="toc-map-function-in-the-purrr-package." class="nav-link" data-scroll-target="#map-function-in-the-purrr-package."><code>map</code> function in the purrr package.</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Conditional Statements &amp; Iterations</h1>
+</div>
+
+<div>
+  <div class="description">
+    Reading for Class 06
+  </div>
+</div>
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://lindsaynhayes.github.io">Lindsay Hayes</a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Cell Biology, OUHC
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>At the end of this lesson you will be able to:</strong></p>
+<ul>
+<li>Identify when a loop can benefit your analysis pipeline.</li>
+<li>Distinguish between scalar and vectorized conditional logic in R and select the appropriate tool.</li>
+<li>Apply tools to recode column data based on single or multiple rules across the data.</li>
+<li>Understand when to apply a column iteration or a row iteration.</li>
+<li>List the components and basic structure of a function.</li>
+</ul>
+</div>
+</div>
+<section id="definition-of-terms" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-terms">Definition of terms</h2>
+<p>Before we begin, there are several new concepts we need to introduce.</p>
+<p><strong>Conditional statements</strong> are statements that evaluates whether a logical condition is TRUE or FALSE and executes different code or assigns different values depending on the outcome.</p>
+<p><strong>Iteration or Looping</strong> is the process of repeating the same operation across a sequence of inputs — rows, files, genes, values — automatically, without copy-pasting code.</p>
+<p><strong>Function</strong> is a named (or unnamed), reusable block of code that takes one or more inputs (called arguments), performs a defined operation, and returns an output. Functions are the core building block of R — everything from mean() to read_csv() to ggplot() is a function.</p>
+</section>
+<section id="use-case" class="level2">
+<h2 class="anchored" data-anchor-id="use-case">Use Case</h2>
+<p>I introduced in an earlier lecture the data type of logical (TRUE/FALSE). Its not a feature you think you’ll use until you start working on bigger datasets and then they turn out to be incredibly useful. We use the logical data type when we write condition statements. Something as simple as filtering out all the data from one sample is a conditional statement under the hood. For example, the function <code>filter(df, group == "CON")</code> is asking the question of every row if the entry for group is “CON” or or not the output of that is <code>TRUE</code> or <code>FALSE</code> and then only the <code>TRUE</code> elements are returned. You will be using logical all the time whether you realize it or not.</p>
+<p>However, sometimes you need to perform operations that are more complicated than the base R functions. In that case you can perform looping iterations that will perform a specific operation in a vectorized way, or across each row or column of the dataframe. In this case you will use specialized functions including <code>if</code>, <code>else</code>, <code>ifelse</code>, <code>case_when</code>, <code>for</code> loops, or <code>purrr:map</code> functions. Lets go through each one and talk about how and when to use.</p>
+<p>Writing conditional statements and loops is kind of like navigaing a decision tree you’d see on a buzzfeed quiz. Give answer TRUE/FALSE then perform one operation or another.</p>
+<p><img src="https://discdown.org/rprogramming/images/07/07_flowchart_homework_graphjam.jpg" class="img-fluid" width="300"></p>
+<p>Lets go through the different types of operations and how to use them.</p>
+</section>
+<section id="if-else" class="level2">
+<h2 class="anchored" data-anchor-id="if-else"><code>if</code> / <code>else</code></h2>
+<p><strong>If statements:</strong> Single expression with corresponding instruction.</p>
+<ul>
+<li><p><strong>If</strong> you are hungry: Eat something.</p></li>
+<li><p><strong>If</strong> the alarm clock rings: Get up.</p></li>
+</ul>
+<p><strong>If-else statements:</strong> Single expression with corresponding instruction and alternative “else” instruction.</p>
+<ul>
+<li><p><strong>If</strong> the traffic light is green: Walk. <strong>Else:</strong> Stop.</p></li>
+<li><p><strong>If</strong> the coffee cup is empty: Refill. <strong>Else:</strong> Drink.</p></li>
+</ul>
+<p><strong>Multiple if statements:</strong> Multiple expressions with corresponding to multiple different instructions.</p>
+<ul>
+<li><strong>If</strong> warm and dry outside: Wear a T-shirt. <strong>Else if</strong> warm and rainy: T-shirt and a jacket. <strong>Else if</strong> cold and dry: Sweater. <strong>Else:</strong> Stay home.</li>
+</ul>
+<p>In order to write these as code you have to understand relational and logical operators.</p>
+<p><strong>Operators:</strong></p>
+<ul>
+<li><em>Relational operators</em>: <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>.</li>
+<li><em>Logical operators</em>: <code>!</code>, <code>&amp;</code>, <code>|</code></li>
+<li><em>Value matching</em>: <code>%in%</code>, this is like ctrl+F find operation.</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Relational operators (<code>x &gt; y</code>).</li>
+<li>Logical operators (<code>x &amp; y</code>).</li>
+<li>Value matching (<code>"Marc" %in% names</code>).</li>
+<li><code>all()</code>, <code>any()</code>, <code>all.equal()</code>.</li>
+<li>Combinations of them (e.g., <code>all(y &lt; 0) | "Marc" %in% names</code>).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>l2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>l1 <span class="sc">&amp;</span> l2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="sc">|</span> l2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE</code></pre>
+</div>
+</div>
+<section id="if-else-statements-are-used-as-a-scalar-not-for-vectorization.-meaning-they-output-one-value-and-are-not-looping-by-themselves-unlike-ifelse-which-is-vectorized" class="level3">
+<h3 class="anchored" data-anchor-id="if-else-statements-are-used-as-a-scalar-not-for-vectorization.-meaning-they-output-one-value-and-are-not-looping-by-themselves-unlike-ifelse-which-is-vectorized"><code>If</code> &amp; <code>Else</code> statements are used as a scalar not for vectorization. Meaning they output one value and are not looping by themselves (unlike <code>ifelse</code> which is vectorized)</h3>
+<p>Here is an example of an if/else statement</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">9</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">0</span>) {<span class="fu">cat</span>(<span class="st">"'x' is larger than zero"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {<span class="fu">cat</span>(<span class="st">"'x' is not larger than zero"</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'x' is not larger than zero</code></pre>
+</div>
+</div>
+<p>This is a common use of an if/else statement because its only meant to evaluate one thing. It is often used to determine if the input to a function is correct before proceeding otherwise it halts the command and returns an error message.</p>
+</section>
+</section>
+<section id="ifelse" class="level2">
+<h2 class="anchored" data-anchor-id="ifelse"><code>ifelse</code></h2>
+<p><code>ifelse</code> <strong>PROS</strong> it can be used for vectorization meaning it will iterate across the whole dataframe or matrix without additional specification. <strong>CONS</strong> it cannot run partial objects - it always iterates over the entire item, and it will not compound the results. Each iteration has to be independent of each other. If you need to concatenate each iteration then a for loop is the best approach.</p>
+<p>Lets look at an example</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1989</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># first generate a sample dataset</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gene =</span> <span class="fu">c</span>(letters, LETTERS),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">log2FC =</span> <span class="fu">rnorm</span>(<span class="dv">52</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">padj =</span> <span class="fu">runif</span>(<span class="dv">52</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="fl">0.5</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(results) <span class="co"># take a peak at the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 52
+Columns: 3
+$ gene   &lt;chr&gt; "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"…
+$ log2FC &lt;dbl&gt; 0.220515654, 0.223579299, -0.363620378, -0.038882805, -0.122639…
+$ padj   &lt;dbl&gt; 0.13973937, 0.48324554, 0.39379335, 0.20967915, 0.46198393, 0.1…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now lets run a iteration to see which of the genes are significant. </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>sig <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(results<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"SIG"</span>, <span class="st">"NS"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># on each row the padj is evaluated if its less than 0.05 if TRUE then sig is assigned as SIG, otherwise its labeled at NS.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gene       log2FC       padj sig
+1     a  0.220515654 0.13973937  NS
+2     b  0.223579299 0.48324554  NS
+3     c -0.363620378 0.39379335  NS
+4     d -0.038882805 0.20967915  NS
+5     e -0.122639119 0.46198393  NS
+6     f -0.069253451 0.17572482  NS
+7     g  0.055591769 0.16204730  NS
+8     h  0.106908518 0.04578202 SIG
+9     i  0.028512707 0.08698606  NS
+10    j -0.138847489 0.29367083  NS
+11    k  0.272392422 0.33385264  NS
+12    l  0.255230207 0.12165327  NS
+13    m -0.059394427 0.20998607  NS
+14    n  0.391781320 0.30667834  NS
+15    o -0.486191976 0.06832674  NS
+16    p  0.095942884 0.37535620  NS
+17    q  0.003681366 0.16637750  NS
+18    r -0.270493741 0.30117517  NS
+19    s  0.208548697 0.33613667  NS
+20    t -0.264628739 0.38923752  NS
+21    u -0.092259798 0.25403948  NS
+22    v  0.360357448 0.16600402  NS
+23    w -0.307031820 0.07436635  NS
+24    x -0.456959560 0.35088821  NS
+25    y  0.154106926 0.23112047  NS
+26    z  0.193836128 0.47992304  NS
+27    A -0.337559119 0.30707132  NS
+28    B -0.097381586 0.20150183  NS
+29    C -0.328591737 0.03740502 SIG
+30    D  0.196689650 0.26918183  NS
+31    E -0.266362579 0.31915909  NS
+32    F  0.009033840 0.14880959  NS
+33    G -0.118699538 0.06326126  NS
+34    H  0.142720184 0.38547004  NS
+35    I -0.112747270 0.27902564  NS
+36    J  0.108802302 0.15344469  NS
+37    K -0.213728118 0.08474852  NS
+38    L -0.258550975 0.22421500  NS
+39    M -0.234286260 0.23168772  NS
+40    N -0.069505950 0.22588297  NS
+41    O  0.249651244 0.35317847  NS
+42    P  0.032806980 0.28868436  NS
+43    Q  0.194750568 0.14382009  NS
+44    R -0.128155731 0.28636009  NS
+45    S  0.183853021 0.46793827  NS
+46    T  0.214306267 0.40619477  NS
+47    U  0.349810639 0.12175051  NS
+48    V  0.362106703 0.43365522  NS
+49    W -0.272488535 0.01757417 SIG
+50    X -0.023696308 0.14526114  NS
+51    Y  0.014779577 0.06663001  NS
+52    Z -0.116706736 0.46807580  NS</code></pre>
+</div>
+</div>
+<p><code>ifelse</code> is the right tool because we want to run the operation for every gene, each row is independent of the other, and there are only 2 possible outcomes which are logicals (TRUE or FALSE) that are converted into SIG and NS.</p>
+<p>What if you have more than 2 options (not just TRUE/FALSE or you want to assign more than just SIG or NS? This is where tidyverse <code>case_when</code> is useful.</p>
+</section>
+<section id="case_when" class="level2">
+<h2 class="anchored" data-anchor-id="case_when"><code>case_when</code></h2>
+<p><code>case_when</code> can easily take multiple outcome options not just 2 groups we used in the <code>ifelse</code> example. You can do this with nested <code>ifelse</code> statements but it is not as readable and its easier to make mistakes in the syntax.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets take the same example and now classify the up and down regulated genes. </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> results <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> log2FC <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"up"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> log2FC <span class="sc">&lt;</span><span class="dv">0</span> <span class="sc">~</span> <span class="st">"down"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">.default =</span> <span class="st">"NS"</span>))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># In this case it is looking at 2 fields padj adn log2FC and if both meet criteria and are TRUE then its assigned "up" otherwise its kicked to the next command, if that condition is TRUE then its assigned "down" otherwise if both conditions are FALSE it assigns "NS". </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gene       log2FC       padj sig  cat
+1     a  0.220515654 0.13973937  NS   NS
+2     b  0.223579299 0.48324554  NS   NS
+3     c -0.363620378 0.39379335  NS   NS
+4     d -0.038882805 0.20967915  NS   NS
+5     e -0.122639119 0.46198393  NS   NS
+6     f -0.069253451 0.17572482  NS   NS
+7     g  0.055591769 0.16204730  NS   NS
+8     h  0.106908518 0.04578202 SIG   up
+9     i  0.028512707 0.08698606  NS   NS
+10    j -0.138847489 0.29367083  NS   NS
+11    k  0.272392422 0.33385264  NS   NS
+12    l  0.255230207 0.12165327  NS   NS
+13    m -0.059394427 0.20998607  NS   NS
+14    n  0.391781320 0.30667834  NS   NS
+15    o -0.486191976 0.06832674  NS   NS
+16    p  0.095942884 0.37535620  NS   NS
+17    q  0.003681366 0.16637750  NS   NS
+18    r -0.270493741 0.30117517  NS   NS
+19    s  0.208548697 0.33613667  NS   NS
+20    t -0.264628739 0.38923752  NS   NS
+21    u -0.092259798 0.25403948  NS   NS
+22    v  0.360357448 0.16600402  NS   NS
+23    w -0.307031820 0.07436635  NS   NS
+24    x -0.456959560 0.35088821  NS   NS
+25    y  0.154106926 0.23112047  NS   NS
+26    z  0.193836128 0.47992304  NS   NS
+27    A -0.337559119 0.30707132  NS   NS
+28    B -0.097381586 0.20150183  NS   NS
+29    C -0.328591737 0.03740502 SIG down
+30    D  0.196689650 0.26918183  NS   NS
+31    E -0.266362579 0.31915909  NS   NS
+32    F  0.009033840 0.14880959  NS   NS
+33    G -0.118699538 0.06326126  NS   NS
+34    H  0.142720184 0.38547004  NS   NS
+35    I -0.112747270 0.27902564  NS   NS
+36    J  0.108802302 0.15344469  NS   NS
+37    K -0.213728118 0.08474852  NS   NS
+38    L -0.258550975 0.22421500  NS   NS
+39    M -0.234286260 0.23168772  NS   NS
+40    N -0.069505950 0.22588297  NS   NS
+41    O  0.249651244 0.35317847  NS   NS
+42    P  0.032806980 0.28868436  NS   NS
+43    Q  0.194750568 0.14382009  NS   NS
+44    R -0.128155731 0.28636009  NS   NS
+45    S  0.183853021 0.46793827  NS   NS
+46    T  0.214306267 0.40619477  NS   NS
+47    U  0.349810639 0.12175051  NS   NS
+48    V  0.362106703 0.43365522  NS   NS
+49    W -0.272488535 0.01757417 SIG down
+50    X -0.023696308 0.14526114  NS   NS
+51    Y  0.014779577 0.06663001  NS   NS
+52    Z -0.116706736 0.46807580  NS   NS</code></pre>
+</div>
+</div>
+<p>As you can see this is a much tidier way to write multiple designations. You can write the same thing with <code>ifelse</code> but it requires nesting in which you put on <code>ifelse</code> inside of another <code>ifelse</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>cat <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(results<span class="sc">$</span>padj <span class="sc">&gt;</span> <span class="fl">0.05</span>, <span class="st">"NS"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(results<span class="sc">$</span>log2FC <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"up"</span>, <span class="st">"down"</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The syntax was written differently to creat more binary divisions, but can be easier to make mistakes because each assignment isn't explicitly written. </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gene       log2FC       padj sig  cat
+1     a  0.220515654 0.13973937  NS   NS
+2     b  0.223579299 0.48324554  NS   NS
+3     c -0.363620378 0.39379335  NS   NS
+4     d -0.038882805 0.20967915  NS   NS
+5     e -0.122639119 0.46198393  NS   NS
+6     f -0.069253451 0.17572482  NS   NS
+7     g  0.055591769 0.16204730  NS   NS
+8     h  0.106908518 0.04578202 SIG   up
+9     i  0.028512707 0.08698606  NS   NS
+10    j -0.138847489 0.29367083  NS   NS
+11    k  0.272392422 0.33385264  NS   NS
+12    l  0.255230207 0.12165327  NS   NS
+13    m -0.059394427 0.20998607  NS   NS
+14    n  0.391781320 0.30667834  NS   NS
+15    o -0.486191976 0.06832674  NS   NS
+16    p  0.095942884 0.37535620  NS   NS
+17    q  0.003681366 0.16637750  NS   NS
+18    r -0.270493741 0.30117517  NS   NS
+19    s  0.208548697 0.33613667  NS   NS
+20    t -0.264628739 0.38923752  NS   NS
+21    u -0.092259798 0.25403948  NS   NS
+22    v  0.360357448 0.16600402  NS   NS
+23    w -0.307031820 0.07436635  NS   NS
+24    x -0.456959560 0.35088821  NS   NS
+25    y  0.154106926 0.23112047  NS   NS
+26    z  0.193836128 0.47992304  NS   NS
+27    A -0.337559119 0.30707132  NS   NS
+28    B -0.097381586 0.20150183  NS   NS
+29    C -0.328591737 0.03740502 SIG down
+30    D  0.196689650 0.26918183  NS   NS
+31    E -0.266362579 0.31915909  NS   NS
+32    F  0.009033840 0.14880959  NS   NS
+33    G -0.118699538 0.06326126  NS   NS
+34    H  0.142720184 0.38547004  NS   NS
+35    I -0.112747270 0.27902564  NS   NS
+36    J  0.108802302 0.15344469  NS   NS
+37    K -0.213728118 0.08474852  NS   NS
+38    L -0.258550975 0.22421500  NS   NS
+39    M -0.234286260 0.23168772  NS   NS
+40    N -0.069505950 0.22588297  NS   NS
+41    O  0.249651244 0.35317847  NS   NS
+42    P  0.032806980 0.28868436  NS   NS
+43    Q  0.194750568 0.14382009  NS   NS
+44    R -0.128155731 0.28636009  NS   NS
+45    S  0.183853021 0.46793827  NS   NS
+46    T  0.214306267 0.40619477  NS   NS
+47    U  0.349810639 0.12175051  NS   NS
+48    V  0.362106703 0.43365522  NS   NS
+49    W -0.272488535 0.01757417 SIG down
+50    X -0.023696308 0.14526114  NS   NS
+51    Y  0.014779577 0.06663001  NS   NS
+52    Z -0.116706736 0.46807580  NS   NS</code></pre>
+</div>
+</div>
+</section>
+<section id="for-loop" class="level2">
+<h2 class="anchored" data-anchor-id="for-loop"><code>For</code> loop</h2>
+<p>The classic method for performing iteration is the for loop. The advantage here is the operations can be <strong>iterative</strong> and <strong>dependent</strong>. If you need to <strong>build a new dataframe</strong> by compiling data each round this is the correct tool. If you need to output separate files for each iteration then this is the correct tool. The functions above can’t do either of these functions. An easy to understand example from finance is compounding interest if you are building a loop to increase the interest each year for each loop you have to use the output of the previous loop - each iteration is not independent. Another good use of a for loop is to read in individual files or save out individual files, you want to iterate the process of <code>read.csv</code> over each file in a specific directory or save out plots using <code>ggsave</code>. These are a good uses of a for loop. If you want to do iterations across columns instead of rows for loop is the correct too. The tools discussed above more easily iterate across rows.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compounding interest example</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You invest $1,000 at 5% annual return, </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># but if your balance ever exceeds $1500, you get greedy </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and move to a liberal 7% return for all remaining years.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>balance <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># have to generate an empty data.frame to capture the results of each iteration. </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>finance.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">integer</span>(), </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">balance =</span> <span class="fu">numeric</span>(), </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rate_used =</span> <span class="fu">numeric</span>())</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check condition BEFORE applying this year's growth</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (balance <span class="sc">&gt;</span> <span class="dv">1500</span>) {rate <span class="ot">&lt;-</span> <span class="fl">0.07</span>}</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  balance <span class="ot">&lt;-</span> balance <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> rate) <span class="co"># increase the balance by the stated rate. </span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the year's result as a new row in the empty data frame. </span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  finance.data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(finance.data, </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">data.frame</span>(<span class="at">year      =</span> year, </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>                              <span class="at">balance   =</span> <span class="fu">round</span>(balance, <span class="dv">2</span>), </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">rate_used =</span> rate))</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>finance.data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year balance rate_used
+1     1 1050.00      0.05
+2     2 1102.50      0.05
+3     3 1157.62      0.05
+4     4 1215.51      0.05
+5     5 1276.28      0.05
+6     6 1340.10      0.05
+7     7 1407.10      0.05
+8     8 1477.46      0.05
+9     9 1551.33      0.05
+10   10 1659.92      0.07
+11   11 1776.12      0.07
+12   12 1900.44      0.07
+13   13 2033.47      0.07
+14   14 2175.82      0.07
+15   15 2328.13      0.07
+16   16 2491.09      0.07
+17   17 2665.47      0.07
+18   18 2852.05      0.07
+19   19 3051.70      0.07
+20   20 3265.32      0.07</code></pre>
+</div>
+</div>
+<p>The balance increases at each iteration thus each loop in dependent on the output of the previous. In each iteration the length of finance.data grows by 1 row. So the output data is cumulatively collected.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparing linear regression models across a dataset</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we can take the mtcars dataset and if we want to know if horsepower (hp) can predict the miles per gallon (mpg) across different cyclinders of cars. We can run a linear regression for each of the different cylinders to compare the relationship. </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(mtcars<span class="sc">$</span>cyl)) <span class="co"># 4, 6, and 8 cyl cars. </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>() <span class="co"># in for loops you always need an empty dataframe to build out the results from each loop</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> groups){</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> <span class="fu">filter</span>(cyl <span class="sc">==</span> i) <span class="co"># subset the data</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(hp <span class="sc">~</span> mpg, <span class="at">data =</span> sub) <span class="co"># run the model for the subset data</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># collect the model metrics of slope, r2, and pvalue</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  slope   <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(model)[<span class="st">"mpg"</span>], <span class="dv">4</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  r2      <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">summary</span>(model)<span class="sc">$</span>r.squared, <span class="dv">3</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  pval    <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">summary</span>(model)<span class="sc">$</span>coefficients[<span class="st">"mpg"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">4</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># put all the results together. Each iteration is a new row of data using rbind.</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">data.frame</span>(<span class="at">cyl   =</span> i,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                              <span class="at">slope =</span> slope,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                              <span class="at">r2    =</span> r2,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                              <span class="at">pval  =</span> pval))</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     cyl   slope    r2   pval
+mpg    4 -2.4301 0.274 0.0984
+mpg1   6 -2.1208 0.016 0.7860
+mpg2   8 -5.6479 0.080 0.3258</code></pre>
+</div>
+</div>
+<p>In the second example each round you are adding to results dataframe. This is something for loops excel at.</p>
+</section>
+<section id="map-function-in-the-purrr-package." class="level2">
+<h2 class="anchored" data-anchor-id="map-function-in-the-purrr-package."><code>map</code> function in the purrr package.</h2>
+<p>Purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors.</p>
+<p>Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the <a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a> functions is the <a href="https://r4ds.hadley.nz/iteration">iteration chapter</a> in R for Data Science.</p>
+<p>Purrr has the <a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a> functions which allow you to replace many for loops with code that is both more succinct and easier to read.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will do a column based loop to take the mean of every column of the mtcars data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(mtcars, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       mpg        cyl       disp         hp       drat         wt       qsec 
+ 20.090625   6.187500 230.721875 146.687500   3.596563   3.217250  17.848750 
+        vs         am       gear       carb 
+  0.437500   0.406250   3.687500   2.812500 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you need to read in a lot of files that have the same columns map makes it very tidy</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data/gapminder"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">map</span>(paths, read_csv)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this generates a list and each element of the list is one of the input files</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>pooled <span class="ot">&lt;-</span> <span class="fu">list_rbind</span>(files)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># you can then pool all the items of the list into one master data.frame by row using list_rbind</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li><p><strong>if/else</strong> → one logical value</p></li>
+<li><p><strong>ifelse()</strong> → vectorized two-way split, fine for quick simple codes using base R</p></li>
+<li><p><strong>for loop</strong> → sequential dependency, simulation, outside object effects (files, printing)</p></li>
+<li><p><strong>mutate() + case_when()</strong> → the default for creating/recoding columns from conditions in a data frame — readable, vectorized, chainable</p></li>
+</ul>
+<p><strong>When in doubt:</strong> ask whether rows are independent. If yes, vectorize (ifelse/case_when). If no, you probably need the loop.</p>
+<p><strong>The real test isn’t “which tool can solve this” — almost all of them can.</strong> It’s “which tool matches the shape of the problem: one value, independent rows, or dependent steps?”</p>
+<p>As the Portugese saying goes “He who has no dog, hunts with a cat”.<br>
+R has many tools to accomplish the same goal, find the one that works well for you.</p>
+<p><img src="images/clipboard-4144535937.jpeg" class="img-fluid" width="300"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
