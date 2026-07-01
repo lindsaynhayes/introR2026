@@ -1,40 +1,25 @@
 ---
-title: "Loops and Logics"
+title: "Conditional Statements & Iterations"
+description: "Reading for Class 06"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 date: 2026-07-17
 draft: false
 editor_options: 
   chunk_output_type: console
 ---
 
-# Pre-lecture activities
-
-Before class, read the [pre-reading materials](/readings/index_R06.qmd):
-
-# Lecture
-
-## Learning objectives
-
 ::: callout-note
 ### Learning objectives
 
-**At the end of class you will be able to:**
+**At the end of this lesson you will be able to:**
 
 -   Identify when a loop can benefit your analysis pipeline. 
 -   Distinguish between scalar and vectorized conditional logic in R and select the appropriate tool. 
 -   Apply tools to recode column data based on single or multiple rules across the data.
 -   Understand when to apply a column iteration or a row iteration. 
-
 :::
 
-## Slides
-
--   [Lecture 06: For Loops & Logic Statments](https://docs.google.com/presentation/d/1Cbpp-wkWYC38NzphxTLbpbmllb17gq1I3e5x9PxxvNQ/edit?usp=sharing)
-
--   [In-Class Activity](/activities/classwork06/classwork_L06.qmd)
-
-# Post-lecture Practice
 

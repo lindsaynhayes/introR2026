@@ -80,6 +80,16 @@ head(df)
 # write.csv(df,"data/Sholl.csv")
 ```
 
+```{r}
+## Tidyverse Version
+
+paths <- list.files("data_files/", full.names = TRUE)
+df2 <- paths |> map(\(path) read_csv(path, col_names = FALSE)) |> list_rbind() # \(x) is called an anonymous function
+colnames(df2) <- c("filename","no.intersections","radius.um","x")
+
+## this is wildly tidy, just 3 lines!
+```
+
 
 ## mutate to assign DEGs
 In the next example, we have 2 sets of differentially expressed genes between treated and untreated for example. We want to see what our control and experimental groups have in common or differences in their response to treatment.

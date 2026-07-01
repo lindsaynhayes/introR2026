@@ -522,7 +522,7 @@
     "href": "activities/classwork06/classwork_L06.html#load-the-packages",
     "title": "Iterations and Conditional Statements",
     "section": "Load the Packages",
-    "text": "Load the Packages\nThe tidyverse library includes ggplot2 and I added cowplot to make the plots prettier. We will use data provided on GitHub rather than a package.\n\nlibrary(tidyverse)\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nWarning: package 'tidyr' was built under R version 4.4.3\n\n\nWarning: package 'readr' was built under R version 4.4.3\n\nlibrary(cowplot)\nlibrary(palmerpenguins)\nlibrary(taylor)"
+    "text": "Load the Packages\nThe tidyverse library includes ggplot2 and I added cowplot to make the plots prettier. We will use data provided on GitHub rather than a package.\n\nlibrary(tidyverse)\nlibrary(cowplot)\nlibrary(palmerpenguins)\nlibrary(taylor)"
   },
   {
     "objectID": "activities/classwork06/classwork_L06.html#looping-plots",
