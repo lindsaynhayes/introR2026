@@ -105,7 +105,7 @@ This is a common use of an if/else statement because its only meant to evaluate 
 Lets look at an example
 
 ```{r}
-
+library(tidyverse)
 set.seed(1989)
 
 # first generate a sample dataset
