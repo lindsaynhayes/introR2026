@@ -16,10 +16,248 @@ editor_options:
 
 **At the end of this lesson you will be able to:**
 
--   Identify when a loop can benefit your analysis pipeline. 
--   Distinguish between scalar and vectorized conditional logic in R and select the appropriate tool. 
--   Apply tools to recode column data based on single or multiple rules across the data.
--   Understand when to apply a column iteration or a row iteration. 
+- Identify when a loop can benefit your analysis pipeline.
+- Distinguish between scalar and vectorized conditional logic in R and select the appropriate tool.
+- Apply tools to recode column data based on single or multiple rules across the data.
+- Understand when to apply a column iteration or a row iteration.
+- List the components and basic structure of a function.
 :::
 
+## Definition of terms
 
+Before we begin, there are several new concepts we need to introduce.
+
+**Conditional statements** are conditional statements that evaluates whether a logical condition is TRUE or FALSE and executes different code or assigns different values depending on the outcome.
+
+**Iteration or Looping** is the process of repeating the same operation across a sequence of inputs — rows, files, genes, values — automatically, without copy-pasting code.
+
+**Function** is a named (or unnamed), reusable block of code that takes one or more inputs (called arguments), performs a defined operation, and returns an output. Functions are the core building block of R — everything from mean() to read_csv() to ggplot() is a function.
+
+## Use Case
+
+I introduced in an earlier lecture the data type of logical (TRUE/FALSE). Its not a feature you think you'll use until you start working on bigger datasets and then they turn out to be incredibly useful. We use the logical data type when we write condition statements. Something as simple as filtering out all the data from one sample is a conditional statement under the hood. For example, the function `filter(df, group == "CON")` is asking the question of every row if the entry for group is "CON" or or not the output of that is `TRUE` or `FALSE` and then only the `TRUE` elements are returned. You will be using logical all the time whether you realize it or not.
+
+However, sometimes you need to perform operations that are more complicated than the base R functions. In that case you can perform looping iterations that will perform a specific operation in a vectorized way, or across each row or column of the dataframe. In this case you will use specialized functions including `if`, `else`, `ifelse`, `case_when`, `for` loops, or `purrr:map` functions. Lets go through each one and talk about how and when to use.
+
+Writing conditional statements and loops is kind of like navigaing a decision tree you'd see on a buzzfeed quiz. Give answer TRUE/FALSE then perform one operation or another.
+
+![](https://discdown.org/rprogramming/images/07/07_flowchart_homework_graphjam.jpg){width="300"}
+
+Lets go through the different types of operations and how to use them.
+
+## `if` / `else`
+
+**If statements:** Single expression with corresponding instruction.
+
+- **If** you are hungry: Eat something.
+
+- **If** the alarm clock rings: Get up.
+
+**If-else statements:** Single expression with corresponding instruction and alternative “else” instruction.
+
+- **If** the traffic light is green: Walk. **Else:** Stop.
+
+- **If** the coffee cup is empty: Refill. **Else:** Drink.
+
+**Multiple if statements:** Multiple expressions with corresponding to multiple different instructions.
+
+- **If** warm and dry outside: Wear a T-shirt. **Else if** warm and rainy: T-shirt and a jacket. **Else if** cold and dry: Sweater. **Else:** Stay home.
+
+In order to write these as code you have to understand relational and logical operators.
+
+**Operators:**
+
+- *Relational operators*: `<`, `>`, `<=`, `>=`, `==`, `!=`.
+- *Logical operators*: `!`, `&`, `|`
+- *Value matching*: `%in%`, this is like ctrl+F find operation.
+
+**Examples:**
+
+- Relational operators (`x > y`).
+- Logical operators (`x & y`).
+- Value matching (`"Marc" %in% names`).
+- `all()`, `any()`, `all.equal()`.
+- Combinations of them (e.g., `all(y < 0) | "Marc" %in% names`).
+
+```{r}
+l1 <- c(TRUE, TRUE, FALSE, FALSE)
+l2 <- c(TRUE, FALSE, TRUE, FALSE)
+l1 & l2
+l1 | l2
+```
+
+### `If` & `Else` statements are used as a scalar not for vectorization. Meaning they output one value and are not looping by themselves (unlike `ifesle` which is vectorized)
+
+Here is an example of an if/else statement
+
+```{r}
+x <- -9
+if (!is.na(x) & x > 0) {cat("'x' is larger than zero\n")
+  } else {cat("'x' is not larger than zero")}
+```
+
+This is a common use of an if/else statement because its only meant to evaluate one thing its often used to determine if the input to a function is correct before proceeding otherwise it halts the command and returns an error message.
+
+## `ifelse`
+
+`ifelse` **PROS** it can be used for vectorization meaning it will iterate across the whole dataframe or matrix without additional specification. **CONS** it cannot run partial objects - it always iterates over the entire item, and it will not compound the results. Each iteration has to be independent of each other. If you need to concatenate each iteration then a for loop is the best approach.
+
+Lets look at an example
+
+```{r}
+
+set.seed(1989)
+
+# first generate a sample dataset
+results <- data.frame(
+  gene = c(letters, LETTERS),
+  log2FC = rnorm(52, mean = 0, sd = 0.2),
+  padj = runif(52, min = 0, max = 0.5))
+
+glimpse(results) # take a peak at the data
+
+# now lets run a iteration to see which of the genes are significant. 
+results$sig <- ifelse(results$padj < 0.05, "SIG", "NS")
+results
+```
+
+`ifelse` is the right tool because we want to run the operation for every gene, each row is independent of the other, and there are only 2 possible outcomes which are logicals (TRUE or FALSE) that are converted into SIG and NS.
+
+What if you have more than 2 options (not just TRUE/FALSE or you want to assign more than just SIG or NS? This is where tidyverse `case_when` is useful.
+
+## `case_when`
+
+`case_when` can easily take multiple outcome options not just 2 groups we used in the `ifelse` example. You can do this with nested `ifelse` statements but it is not as readable and its easier to make mistakes in the syntax.
+
+```{r}
+
+#Lets take the same example and now classify the up and down regulated genes. 
+
+results <- results |>
+              mutate(cat = case_when(
+                padj < 0.05 & log2FC > 0 ~ "up",
+                padj < 0.05 & log2FC <0 ~ "down",
+                .default = "NS"))
+results
+```
+
+As you can see this is a much tidier way to write multiple designations. You can write the same thing with `ifelse` but it requires nesting in which you put on `ifelse` inside of another `ifelse`.
+
+```{r}
+
+results$cat <- ifelse(results$padj > 0.05, "not significant",
+                            ifelse(results$log2FC > 0, "up", "down"))
+results
+
+# this syntax isn't as explicitly written and is thus easier to make mistakes. 
+
+```
+
+## `For` loop
+
+The classic method for performing iteration is the for loop. The advantage here is the operations can be **iterative** and **dependent**. If you need to **build a new dataframe** by compiling data each round this is the correct tool. If you need to output separate files for each iteration then this is the correct tool. The functions above can't do either of these functions. An easy to understand example from finance is compounding interest if you are building a loop to increase the interest each year for each loop you have to use the output of the previous loop - each iteration is not independent. Another good use of a for loop is to read in individual files or save out individual files, you want to iterate the process of `read.csv` over each file in a specific directory or save out plots using `ggsave`. These are a good uses of a for loop. If you want to do iterations across rows instead of columns for loop is the correct too. The tools discussed above more easily iterate across rows.
+
+```{r}
+
+# Compounding interest example
+# You invest $1,000 at 5% annual return, 
+# but if your balance ever exceeds $1500, you get greedy 
+# and move to a liberal 7% return for all remaining years.
+
+balance <- 1000
+rate <- 0.05
+finance.data <- data.frame(year = integer(), 
+                      balance = numeric(), 
+                      rate_used = numeric())
+
+for (year in 1:20) {
+  # Check condition BEFORE applying this year's growth
+  if (balance > 1500) {rate <- 0.07}
+  
+  balance <- balance * (1 + rate)
+  
+  # Store the year's result as a new row
+  finance.data <- rbind(finance.data, 
+                   data.frame(year      = year, 
+                              balance   = round(balance, 2), 
+                              rate_used = rate))
+}
+
+finance.data
+```
+
+The balance increases at each iteration thus each loop in dependent on the output of the previous. In each iteration the length of finance.data grows by 1 row. So the output data is cumulative collected.
+
+```{r}
+# Comparing linear regression models across a dataset
+# we can take the mtcars dataset and if we want to know if horsepower (hp) can predict the miles per gallon (mpg) across different cyclinders of cars. We can run a linear regression for each of the different horse power to compare the relationship across cylinders. 
+
+groups <- sort(unique(mtcars$cyl))
+results <- data.frame() # in for loops you always need an empty dataframe to build out the results in each loop
+
+for (i in groups){
+  sub <- mtcars |> filter(cyl == i) # subset the data
+  model <- lm(mpg ~ hp, data = sub) # run the model for the subset data
+  
+  # collect the model metrics of slope, r2, and pvalue
+  slope   <- round(coef(model)["hp"], 4)
+  r2      <- round(summary(model)$r.squared, 3)
+  pval    <- round(summary(model)$coefficients["hp", "Pr(>|t|)"], 4)
+
+  # put all the results together. Each iteration is a new row of data using rbind.
+  results <- rbind(results,
+                   data.frame(cyl   = i,
+                              slope = slope,
+                              r2    = r2,
+                              pval  = pval))
+    
+}
+
+results
+```
+
+In the second example each round you are adding to results dataframe. This is something for loops excel at.
+
+## `map` function in the purrr package.
+
+Purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors.
+
+Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions is the [iteration chapter](https://r4ds.hadley.nz/iteration) in R for Data Science.
+
+Purrr has the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions which allow you to replace many for loops with code that is both more succinct and easier to read.
+
+```{r}
+# this will do a column based loop to take the mean of every column of the mtcars data
+map_dbl(mtcars, mean)
+```
+
+```{r}
+#| eval: FALSE
+
+# if you need to read in a lot of files that have the same columns map makes it very tidy
+paths <- list.files("data/gapminder", full.names = TRUE)
+files <- map(paths, read_csv)
+# this generates a list and each element of the list is one of the input files
+
+pooled <- list_rbind(files)
+# you can then pool all the items of the list into one master data.frame by row using list_rbind
+```
+
+## Summary
+
+- **if/else** → one logical value
+
+- **ifelse()** → vectorized two-way split, fine for quick simple codes using base R 
+
+- **for loop** → sequential dependency, simulation, outside object effects (files, printing)
+
+- **mutate() + case_when()** → the default for creating/recoding columns from conditions in a data frame — readable, vectorized, chainable
+
+**When in doubt:** ask whether rows are independent. If yes, vectorize (ifelse/case_when). If no, you probably need the loop.
+
+**The real test isn’t “which tool can solve this” — almost all of them can.** It’s “which tool matches the shape of the problem: one value, independent rows, or dependent steps?”
+
+As the Portugese saying goes "He who has no dog, hunts with a cat". \
+R has many tools to accomplish the same goal, find the one that works well for you.
+
+![](images/clipboard-4144535937.jpeg){width="300"}
