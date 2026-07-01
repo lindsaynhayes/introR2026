@@ -3,9 +3,9 @@ title: "Machine Learning with tidymodels"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 date: 2026-07-22
-draft: true
+draft: false
 editor_options: 
   chunk_output_type: console
 ---
@@ -30,7 +30,7 @@ Before class, read the [pre-reading materials](/readings/index_R08.qmd).
 
 ## Slides
 
--   [Lecture 06: Predictive Modeling with tidymodels](https://docs.google.com/presentation/d/1C4iaUiOLZhw9qm84J83sAQ1OWlkPGMvoiX8Kz9BLnPE/edit?usp=sharing)
+-   [Lecture 08: Predictive Modeling with tidymodels](https://docs.google.com/presentation/d/1C4iaUiOLZhw9qm84J83sAQ1OWlkPGMvoiX8Kz9BLnPE/edit?usp=sharing)
 
 -   [In-Class Activity](/activities/classwork08/Pred_Penguins.qmd)
 

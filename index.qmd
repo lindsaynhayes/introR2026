@@ -14,7 +14,8 @@ Intro to Reproducible Data Analysis Using R is a hands-on course that will intro
 
 - Course Staff: [Prof. Lindsay Hayes](https://lindsaynhayes.github.io)
 - Course Staff: TA. Eleana Cabello
-- Lectures: 10:00am-11:30am
+- Dates: 7/6/2026 - 7/31/2026
+- Lectures: M-W-F @ 10:00am-11:30am
 - Location: BMSB 324
 - Office Hours: by email
 

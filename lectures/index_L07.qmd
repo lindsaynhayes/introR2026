@@ -3,9 +3,9 @@ title: "Dimension Reduction with tidymodels"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 date: 2026-07-20
-draft: true
+draft: false
 editor_options: 
   chunk_output_type: console
 ---
@@ -41,6 +41,6 @@ Before class, watch this [video](https://juliasilge.com/blog/best-hip-hop/) from
 
 
 # Post-lecture Practice
-- Homework Assigment 3 will cover a tutorial on PCA and dimension reduction. [here](/projects/index_A03.qmd)
+- Homework Assignment 3 will cover a tutorial on PCA and dimension reduction. [here](/projects/index_A03.qmd)
 - If that wasn't enough dimension reduction you can read more [here](https://www.tmwr.org/dimensionality), [here](https://juliasilge.com/blog/cocktail-recipes-umap/), or [here](https://www.alexcookson.com/post/2020-11-19-applying-pca-to-fictional-character-personalities/).
 

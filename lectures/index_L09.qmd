@@ -27,4 +27,4 @@ Before class, complete the tasks listed in the [pre-reading materials](/readings
 
 ## Slides
 
--   [Lecture 07: Building a Quarto Website and Using GitHub]()
+-   [Lecture 09: Building a Quarto Website and Using GitHub]()

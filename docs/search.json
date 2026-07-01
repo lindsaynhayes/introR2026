@@ -515,7 +515,7 @@
     "href": "lectures.html",
     "title": "Course Content",
     "section": "",
-    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nExploratory Data Analysis\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-13\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-15\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-17\n\n\nLoops and Logics\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
+    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nExploratory Data Analysis\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-13\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-15\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-17\n\n\nLoops and Logics\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-20\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-22\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activities/classwork09/index_L07_slides.html#class-reminders",
@@ -1012,7 +1012,7 @@
     "href": "index.html#course-information",
     "title": "Welcome",
     "section": "Course Information",
-    "text": "Course Information\n\nCourse Staff: Prof. Lindsay Hayes\nCourse Staff: TA. Eleana Cabello\nLectures: 10:00am-11:30am\nLocation: BMSB 324\nOffice Hours: by email"
+    "text": "Course Information\n\nCourse Staff: Prof. Lindsay Hayes\nCourse Staff: TA. Eleana Cabello\nDates: 7/6/2026 - 7/31/2026\nLectures: M-W-F @ 10:00am-11:30am\nLocation: BMSB 324\nOffice Hours: by email"
   },
   {
     "objectID": "index.html#course-details",
@@ -1258,5 +1258,68 @@
     "title": "References & Extra Resources",
     "section": "Blogs/Podcasts",
     "text": "Blogs/Podcasts\nBatch Effect by Marco Varrone\nhistoric: Not So Standard Deviations with Roger Peng and Hilary Parker\nhistoric: Simply Statistics"
+  },
+  {
+    "objectID": "lectures/index_L07.html",
+    "href": "lectures/index_L07.html",
+    "title": "Dimension Reduction with tidymodels",
+    "section": "",
+    "text": "Before class, watch this video from Data Scientists Julie Silge from RStudio. She does a real-time data analysis using Principal Component Analysis (PCA) of the best hip hop songs of all time according to critics ratings. This video is not a detailed explanation of what PCA is or how it works (there is a lot of that maths on the internet if you want). In contrast, it is a live, real-time, analysis that asks the question what song features make a hip hop song the best. I want you to see that PCA is often a first line of inquiry when exploring a dataset.\n\nFor background, TidyTuesday is a weekly podcast and community activity that brings an interesting dataset to the data science community each week to do some cool plotting or analysis on. It provides interesting data to use for teaching purposes or code testing.\nThis video goes pretty fast but all the code she uses is below the video."
+  },
+  {
+    "objectID": "lectures/index_L07.html#learning-objectives",
+    "href": "lectures/index_L07.html#learning-objectives",
+    "title": "Dimension Reduction with tidymodels",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of class you will be able to:\n\nDefine dimension reduction\nExplain why dimension reduction is used\nBuild a model to perform PCA on a dataset"
+  },
+  {
+    "objectID": "lectures/index_L07.html#slides",
+    "href": "lectures/index_L07.html#slides",
+    "title": "Dimension Reduction with tidymodels",
+    "section": "Slides",
+    "text": "Slides\n\nLecture 07: Dimension Reduction in tidymodels\nIn-Class Activity"
+  },
+  {
+    "objectID": "lectures/index_L08.html",
+    "href": "lectures/index_L08.html",
+    "title": "Machine Learning with tidymodels",
+    "section": "",
+    "text": "Before class, read the pre-reading materials."
+  },
+  {
+    "objectID": "lectures/index_L08.html#learning-objectives",
+    "href": "lectures/index_L08.html#learning-objectives",
+    "title": "Machine Learning with tidymodels",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of class you will be able to:\n\nUnderstand the purpose of data modeling, specifically machine learning classification.\nIdentify the packages and tools used to implement machine learning algorithms for data analysis."
+  },
+  {
+    "objectID": "lectures/index_L08.html#slides",
+    "href": "lectures/index_L08.html#slides",
+    "title": "Machine Learning with tidymodels",
+    "section": "Slides",
+    "text": "Slides\n\nLecture 08: Predictive Modeling with tidymodels\nIn-Class Activity"
+  },
+  {
+    "objectID": "lectures/index_L09.html",
+    "href": "lectures/index_L09.html",
+    "title": "Building a Quarto Website and Using GitHub",
+    "section": "",
+    "text": "Before class, complete the tasks listed in the pre-reading materials."
+  },
+  {
+    "objectID": "lectures/index_L09.html#learning-objectives",
+    "href": "lectures/index_L09.html#learning-objectives",
+    "title": "Building a Quarto Website and Using GitHub",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\n\n\n\n\n\nNoteLearning objectives\n\n\n\nAt the end of this lesson you will be able to:\n\nCreate a Github repository\nSetup a Quarto Website\nPublish your Quarto website through Github Pages\nCustomize your Quarto Website"
+  },
+  {
+    "objectID": "lectures/index_L09.html#slides",
+    "href": "lectures/index_L09.html#slides",
+    "title": "Building a Quarto Website and Using GitHub",
+    "section": "Slides",
+    "text": "Slides\n\nLecture 09: Building a Quarto Website and Using GitHub"
   }
 ]
