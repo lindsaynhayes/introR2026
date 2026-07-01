@@ -30,6 +30,8 @@ Helpful Reference Materials to Continue your Learning
 
 ## Online Courses
 
+[An Introduction to R: Course & Book](https://alexd106.github.io/intro2R/)
+
 #### Software Carpentry & Data Carpentry Courses
 
 [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/)

@@ -12,7 +12,7 @@ editor_options:
 
 # Pre-lecture activities
 
-
+Before class, read the [pre-reading materials](/readings/index_R06.qmd):
 
 # Lecture
 
@@ -23,18 +23,18 @@ editor_options:
 
 **At the end of class you will be able to:**
 
--   Distinguish between good and bad plots
--   Match the type of plots with the type of data input
--   List the features of the grammer of graphics
--   Build complex graphics in ggplot2
+-   Identify when a loop can benefit your analysis pipeline. 
+-   Distinguish between scalar and vectorized conditional logic in R and select the appropriate tool. 
+-   Apply tools to recode column data based on single or multiple rules across the data.
+-   Understand when to apply a column iteration or a row iteration. 
 
 :::
 
 ## Slides
 
--   [Lecture 06: For Loops & Logic Statments](https://docs.google.com/presentation/d/1YAMQgNnX7dXNagIrRlfb62nl-MyLGrOEWRDBebtKciU/edit?usp=sharing)
+-   [Lecture 06: For Loops & Logic Statments](https://docs.google.com/presentation/d/1Cbpp-wkWYC38NzphxTLbpbmllb17gq1I3e5x9PxxvNQ/edit?usp=sharing)
 
--   [In-Class Activity](/activities/classwork05/classwork_L05.qmd)
+-   [In-Class Activity](/activities/classwork06/classwork_L06.qmd)
 
 # Post-lecture Practice
 
