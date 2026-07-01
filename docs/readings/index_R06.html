@@ -667,8 +667,8 @@ mpg2   8 -5.6479 0.080 0.3258</code></pre>
 <section id="map-function-in-the-purrr-package." class="level2">
 <h2 class="anchored" data-anchor-id="map-function-in-the-purrr-package."><code>map</code> function in the purrr package.</h2>
 <p>Purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors.</p>
-<p>Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the&nbsp;<a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a>&nbsp;functions is the&nbsp;<a href="https://r4ds.hadley.nz/iteration">iteration chapter</a>&nbsp;in R for Data Science.</p>
-<p>Purrr has the&nbsp;<a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a>&nbsp;functions which allow you to replace many for loops with code that is both more succinct and easier to read.</p>
+<p>Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the <a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a> functions is the <a href="https://r4ds.hadley.nz/iteration">iteration chapter</a> in R for Data Science.</p>
+<p>Purrr has the <a href="https://purrr.tidyverse.org/reference/map.html"><code>map()</code></a> functions which allow you to replace many for loops with code that is both more succinct and easier to read.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will do a column based loop to take the mean of every column of the mtcars data</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(mtcars, mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -693,7 +693,7 @@ mpg2   8 -5.6479 0.080 0.3258</code></pre>
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
 <li><p><strong>if/else</strong> → one logical value</p></li>
-<li><p><strong>ifelse()</strong> → vectorized two-way split, fine for quick simple codes using base R&nbsp;</p></li>
+<li><p><strong>ifelse()</strong> → vectorized two-way split, fine for quick simple codes using base R</p></li>
 <li><p><strong>for loop</strong> → sequential dependency, simulation, outside object effects (files, printing)</p></li>
 <li><p><strong>mutate() + case_when()</strong> → the default for creating/recoding columns from conditions in a data frame — readable, vectorized, chainable</p></li>
 </ul>

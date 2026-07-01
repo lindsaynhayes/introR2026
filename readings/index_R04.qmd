@@ -4,7 +4,7 @@ description: "Reading for Class 04"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 date: 2026-07-13
 draft: false
 editor_options: 

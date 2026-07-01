@@ -4,9 +4,9 @@ description: "Reading for Class 08"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
-date: 2025-07-16
-draft: true
+    affiliation: Department of Cell Biology, OUHC
+date: 2026-07-22
+draft: false
 editor_options: 
   chunk_output_type: console
 bibliography: references.bib

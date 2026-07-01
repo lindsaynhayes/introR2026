@@ -1,15 +1,15 @@
 ---
 title: "Navigating Data Types in R"
 author: "Lindsay N. Hayes"
-date: 2026-07-09
-draft: true
+date: 2026-07-10
+draft: false
 editor_options: 
   chunk_output_type: console
 ---
 
 ## About the activity
 
-1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork02/classwork_L02.qmd).
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork03/classwork_L03.qmd).
 
 2)  Download the raw file.
 

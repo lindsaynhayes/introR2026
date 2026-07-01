@@ -1,10 +1,10 @@
 ---
 title: "Exploratory Data Analysis (EDA)"
-description: "Reading for Class 02"
+description: "Reading for Class 03"
 author: 
   - name: Lindsay Hayes
     url: https://lindsaynhayes.github.io
-    affiliation: Department of Cell Biology, OUHSC
+    affiliation: Department of Cell Biology, OUHC
 date: 2026-07-10
 draft: false
 editor_options: 

@@ -230,9 +230,9 @@ In the second example each round you are adding to results dataframe. This is so
 
 Purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors.
 
-Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions is the [iteration chapter](https://r4ds.hadley.nz/iteration) in R for Data Science.
+Purrr functions are simpler but also more advanced. I want to introduce them a bit here, but for a beginner getting a handle on the traditional looping functions above are a better place to start and after those are mastered you can turn to purrr. The best place to learn about the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions is the [iteration chapter](https://r4ds.hadley.nz/iteration) in R for Data Science.
 
-Purrr has the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions which allow you to replace many for loops with code that is both more succinct and easier to read.
+Purrr has the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions which allow you to replace many for loops with code that is both more succinct and easier to read.
 
 ```{r}
 # this will do a column based loop to take the mean of every column of the mtcars data
@@ -255,7 +255,7 @@ pooled <- list_rbind(files)
 
 - **if/else** → one logical value
 
-- **ifelse()** → vectorized two-way split, fine for quick simple codes using base R 
+- **ifelse()** → vectorized two-way split, fine for quick simple codes using base R
 
 - **for loop** → sequential dependency, simulation, outside object effects (files, printing)
 

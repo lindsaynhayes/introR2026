@@ -16,6 +16,7 @@
     "listing": "/activities.html",
     "items": [
       "/activities/classwork02/palmerpenguins_intro.html",
+      "/activities/classwork03/classwork_L03.html",
       "/activities/classwork04/classwork_L04.html",
       "/activities/classwork05/classwork_L05.html",
       "/activities/classwork06/classwork_L06.html",
@@ -41,7 +42,10 @@
       "/readings/index_R03.html",
       "/readings/index_R04.html",
       "/readings/index_R05.html",
-      "/readings/index_R06.html"
+      "/readings/index_R06.html",
+      "/readings/index_R07.html",
+      "/readings/index_R08.html",
+      "/readings/index_R09.html"
     ]
   }
 ]
