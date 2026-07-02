@@ -162,8 +162,8 @@ We will allocate 15 minutes in the last course session for students to perform t
 | 7/13 |  04   | Data Wrangling with tidyverse       |                             |
 | 7/15 |  05   | Data Visualization with ggplot2     | Homework 2 (due 7/20)       |
 | 7/17 |  06   | Functions and Loops                 |                             |
-| 7/20 |  07   | Dimension Reduction with tidymodels |                             |
-| 7/22 |  08   | Machine Learning with tidymodels    | Homework 3 (due 7/27)       |
+| 7/20 |  07   | Dimension Reduction with tidymodels | Homework 3 (due 7/27)       |
+| 7/22 |  08   | Machine Learning with tidymodels    |                             |
 | 7/24 |  09   | Building a Portfolio in GitHub      |                             |
 | 7/27 |  10   | In-Class Work on Final              | Final project proposal due  |
 | 7/29 |  11   | Final Project Presentations         | Presentation                |
