@@ -11,7 +11,7 @@ editor_options:
 
 ## About the activity
 
-This is a Quarto document that you can [download](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork01/palmerpenguins_intro.qmd) from the [github repository for the course](https://github.com/lindsaynhayes/introR2026), and as you see below there is a combination of narrative text, code chunks, code outputs, citations/references, embedded links, and even embedded static images. Quarto documents are highly customizable and the purpose is to generate a story-telling narrative of data by incorporating all these components into a single document.
+This is a Quarto document that you can [download](https://github.com/lindsaynhayes/introR2026/blob/main/activities/classwork02/palmerpenguins_intro.qmd) from the [github repository for the course](https://github.com/lindsaynhayes/introR2026), and as you see below there is a combination of narrative text, code chunks, code outputs, citations/references, embedded links, and even embedded static images. Quarto documents are highly customizable and the purpose is to generate a story-telling narrative of data by incorporating all these components into a single document.
 
 In order to jump into data analysis we first need **data**! R has several datasets readily available to start explore including:
 
