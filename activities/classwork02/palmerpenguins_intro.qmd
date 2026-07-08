@@ -30,6 +30,7 @@ knitr::opts_chunk$set(
   message = FALSE)
 
 library(palmerpenguins)
+library(cowplot)
 ```
 
 ### Today we will investigate the `palmerpenguins` dataset.
@@ -134,9 +135,8 @@ penguins |>
 #| fig-height: 4
 ggplot(penguins, aes(x = sex, fill = species)) +
   geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"), 
-                    guide = FALSE) +
-  theme_minimal() +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  theme_cowplot() +
   facet_wrap(~species, ncol = 1) +
   coord_flip()
 ```
@@ -199,6 +199,7 @@ ggplot(penguins, aes(x = flipper_length_mm,
   scale_color_manual(values = c("deeppink2","cornflowerblue"), 
                      na.translate = FALSE) + # removes the "NA" values
   facet_wrap(~species)
+  
 
 ```
 
@@ -238,7 +239,9 @@ ggplot(data = penguins, aes(x = species, y = bill_length_mm)) +
               alpha = 0.7, na.rm = TRUE,
               show.legend = FALSE) +
   scale_color_manual(values = c("darkorange2","darkorchid","cyan4")) +
-  scale_fill_manual(values = c("orange","orchid","cyan3"))
+  scale_fill_manual(values = c("orange","orchid","cyan3")) +
+  theme_classic() +
+  ylim(30,60)
 
 # Histogram example: flipper length by species
 ggplot(data = penguins, aes(x = flipper_length_mm)) +
