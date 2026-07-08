@@ -3,7 +3,7 @@ title: "Final Project"
 author: 
   - name: Eleana Cabello
     affiliation: Department of Microbiology and Immunology, OUHS
-date: 2026-7-20
+date: 2026-7-24
 draft: FALSE
 ---
 
@@ -21,7 +21,7 @@ The goal of the final project is to give you an opportunity to put these skills 
 
 ::: {.callout-important}
 
-- Submit a brief paragraph of your project proposal to Canvas by July 22, 2026.
+- Submit a brief paragraph of your project proposal on the google form by July 22, 2026.
 - Present your project proposal in 2-3 sentences to the class on July 24, 2026.
 
 :::
@@ -54,7 +54,7 @@ Below are key dates and deadlines:
 ```
 # Submission
 
-Project submission will be done through your Github website that you will create. Have your project file (.qmd file) in your website directory. However you would like to accomplish this: copying file into the directory, creating a new file and copying text over into the new file, or creating new qmd file in the directory and redoing your project). Whichever method is used what matters is you push the new file changes (your new project file) to your Github repository, where these changes will be changed to HTML files and displayed on your website. Afterwards, **submit a link to your project page on your website to Canvas**. Alternatively, you can submit the zipped qmd, folder, and html output to Canvas.
+Project submission will be done through your Github website that you will create. Have your project file (.qmd file) in your website directory. However you would like to accomplish this: copying file into the directory, creating a new file and copying text over into the new file, or creating new qmd file in the directory and redoing your project). Whichever method is used what matters is you push the new file changes (your new project file) to your Github repository, where these changes will be changed to HTML files and displayed on your website. Afterwards, **submit a link to your project page on the google form**. Alternatively, you can submit the zipped qmd, folder, and html output to Canvas.
 
 Please submit both your project proposal and your website link using their respective Google Forms provided below.
 
