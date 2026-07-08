@@ -2,7 +2,7 @@
 title: "Final Project"
 author: 
   - name: Eleana Cabello
-    affiliation: Department of Microbiology and Immunology, OUHS
+    affiliation: Department of Microbiology and Immunology, OUHC
 date: 2026-7-20
 draft: FALSE
 ---

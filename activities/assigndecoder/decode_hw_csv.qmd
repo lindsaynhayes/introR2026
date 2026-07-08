@@ -1,0 +1,87 @@
+---
+title: "Homework Decoder"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(stringr)
+library(base64enc)
+library(cowplot)
+```
+
+
+```{r}
+########################
+
+csv_file_name = "Intro to R - Homework Submission.csv"
+
+########################
+
+decoding_google_form <- function(path_to_file) {
+  
+  data = read.csv(path_to_file)
+  decoded <- list()
+  
+  for(i in 1:nrow(data)){
+    decoded[[i]] <- suppressMessages(
+      read_csv(
+        rawToChar(
+          base64decode(
+            as.character(data[i,3])))))
+    decoded[[i]]$email <- data[i,2] 
+  }
+  
+  result <- as.data.frame(do.call("rbind", decoded))
+  attributes(result)$spec <- NULL
+  attributes(result)$row.names <- 1:nrow(result)
+  class(result$datetime) = c('POSIXt','POSIXct')
+  
+  return(result)
+}
+
+decoded_df <- decoding_google_form(csv_file_name)
+
+filt_decoded_df_1 <- decoded_df |> filter(course_name == "R Programming") %>% arrange(user, course_name)
+filt_decoded_df_2 <- decoded_df |> filter(course_name == "Exploratory_Data_Analysis") %>% arrange(user, course_name)
+
+lesson_counts_1 <- aggregate(
+  data = filt_decoded_df_1,
+  lesson_name ~ user,
+  FUN = function(x) length(unique(x))
+) |> arrange(lesson_name) |> rename(lesson_counts = lesson_name) |> mutate(perct_done = round(lesson_counts/8*100, 2))
+
+lesson_counts_2 <- aggregate(
+  data = filt_decoded_df_2,
+  lesson_name ~ user,
+  FUN = function(x) length(unique(x))
+) |> arrange(lesson_name) |> rename(lesson_counts = lesson_name) |> mutate(perct_done = round(lesson_counts/10*100, 2))
+```
+
+
+```{r}
+ggplot(lesson_counts_1, aes(user, lesson_counts)) +
+  geom_col() +
+  theme_cowplot() +
+  labs(x = "Student", y = "lesson counts of 1") +
+  ylim(0,8)
+
+ggplot(lesson_counts_1, aes(user, perct_done)) +
+  geom_col() +
+  labs(x = "Student", y = "percent complete of 1") +
+  theme_cowplot() +
+  ylim(0,100)
+
+ggplot(lesson_counts_2, aes(user, lesson_counts)) +
+  geom_col() +
+  theme_cowplot() +
+  labs(x = "Student", y = "lesson counts of 2") +
+  ylim(0,10)
+
+ggplot(lesson_counts_2, aes(user, perct_done)) +
+  geom_col() +
+  labs(x = "Student", y = "percent complete of 2") +
+  theme_cowplot() +
+  ylim(0,100)
+```
