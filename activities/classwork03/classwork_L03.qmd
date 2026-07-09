@@ -74,13 +74,13 @@ table(over100)
 # how many worlds are there? hint: use the unique function
 
 
+# which world has the most characters?
+
+
 # is there a world called "Ohio"? how would you test this with code?
 
 
-# How many characters live on Naboo?
-
-
-# Who lives on Naboo? (hint use the "names" variable in the starwars data and the "which" function)
+# Who grew up on Naboo? (hint use the "names" variable in the starwars data)
 
 ```
 
@@ -96,10 +96,6 @@ library(taylor)
 taylor <- taylor_album_songs
 
 # what is the "class" of the object taylor?
-
-
-
-# what is the "class" of the object taylor_album_songs?
 
 
 
