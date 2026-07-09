@@ -2,6 +2,7 @@
 title: "Homework Decoder"
 format: html
 editor: visual
+eval: false
 ---
 
 ```{r}
@@ -10,7 +11,6 @@ library(stringr)
 library(base64enc)
 library(cowplot)
 ```
-
 
 ```{r}
 ########################
@@ -58,7 +58,6 @@ lesson_counts_2 <- aggregate(
   FUN = function(x) length(unique(x))
 ) |> arrange(lesson_name) |> rename(lesson_counts = lesson_name) |> mutate(perct_done = round(lesson_counts/10*100, 2))
 ```
-
 
 ```{r}
 ggplot(lesson_counts_1, aes(user, lesson_counts)) +
