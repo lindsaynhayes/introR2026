@@ -865,14 +865,14 @@
     "href": "activities/classwork03/classwork_L03.html#a.-explore-the-starwars-dataset.",
     "title": "Navigating Data Types in R",
     "section": "A. Explore the starwars dataset.",
-    "text": "A. Explore the starwars dataset.\n\n# create vector called \"homeworlds\" and assign it the value \"homeworld\" from the starwars data set\n\n\n# how many worlds are there? hint: use the unique function\n\n\n# is there a world called \"Ohio\"? how would you test this with code?\n\n\n# How many characters live on Naboo?\n\n\n# Who lives on Naboo? (hint use the \"names\" variable in the starwars data and the \"which\" function)"
+    "text": "A. Explore the starwars dataset.\n\n# create vector called \"homeworlds\" and assign it the value \"homeworld\" from the starwars data set\n\n\n# how many worlds are there? hint: use the unique function\n\n\n# which world has the most characters?\n\n\n# is there a world called \"Ohio\"? how would you test this with code?\n\n\n# Who grew up on Naboo? (hint use the \"names\" variable in the starwars data)"
   },
   {
     "objectID": "activities/classwork03/classwork_L03.html#b.-import-the-taylor-package-and-explore-the-taylor_album_songs-dataframe",
     "href": "activities/classwork03/classwork_L03.html#b.-import-the-taylor-package-and-explore-the-taylor_album_songs-dataframe",
     "title": "Navigating Data Types in R",
     "section": "B. Import the taylor package and explore the taylor_album_songs dataframe",
-    "text": "B. Import the taylor package and explore the taylor_album_songs dataframe\n\n# Try loading in the taylor package and viewing the taylor_album_songs dataframe\n\n# install.packages(\"taylor\")\n\nlibrary(taylor)\ntaylor &lt;- taylor_album_songs\n\n# what is the \"class\" of the object taylor?\n\n\n\n# what is the \"class\" of the object taylor_album_songs?\n\n\n\n# what types of data are in the object taylor_album_songs?\n\n\n\n# change the \"key_mode\" from class \"character\" to class \"factor\"\n\n\n\n# How many albums are in the data set & how many songs on each album?"
+    "text": "B. Import the taylor package and explore the taylor_album_songs dataframe\n\n# Try loading in the taylor package and viewing the taylor_album_songs dataframe\n\n# install.packages(\"taylor\")\n\nlibrary(taylor)\ntaylor &lt;- taylor_album_songs\n\n# what is the \"class\" of the object taylor?\n\n\n\n# what types of data are in the object taylor_album_songs?\n\n\n\n# change the \"key_mode\" from class \"character\" to class \"factor\"\n\n\n\n# How many albums are in the data set & how many songs on each album?"
   },
   {
     "objectID": "activities/classwork03/classwork_L03.html#c.-which-numeric-song-features-are-correlated-with-one-another-hint-create-a-correlation-matrix.",
