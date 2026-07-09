@@ -62,9 +62,9 @@ over100 <- x > 100
 table(over100)
 ```
 
-### Your Turn
+# Your Turn
 
-### A. Create a vector of all the `homeworlds` in starwars using the `starwars` data.
+## A. Explore the `starwars` dataset.
 
 ```{r}
 
@@ -84,7 +84,7 @@ table(over100)
 
 ```
 
-### B. Import the `taylor` package and explore the `taylor_album_songs` dataframe
+## B. Import the `taylor` package and explore the `taylor_album_songs` dataframe
 
 ```{r}
 
@@ -117,9 +117,11 @@ taylor <- taylor_album_songs
 
 ```
 
-### C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
+## C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
 
 ```{r}
+# install.packages("GGally")
+
 # look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)
 
 # create a matrix of those features
