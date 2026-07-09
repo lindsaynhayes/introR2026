@@ -21,7 +21,9 @@ We will work our way through this quarto document together during class. The act
 
 ```{r}
 #| label: packages
+
 library(tidyverse)
+library(cowplot)
 ```
 
 ## Ways to Use R
@@ -36,6 +38,8 @@ library(tidyverse)
 50/250 * 100
 
 # activity: assign the variable my_age as the current year minus your year of birth. 
+
+
 
 ```
 
@@ -66,37 +70,18 @@ table(over100)
 
 # create vector called "homeworlds" and assign it the value "homeworld" from the starwars data set
 
-glimpse(starwars)
-
-homeworlds <- starwars$homeworld
-
-homeworlds
 
 # how many worlds are there? hint: use the unique function
 
-unique(homeworlds)
-
-starwars |> count(homeworld) # NOTE IT INCLUDES missing values (NA)
 
 # is there a world called "Ohio"? how would you test this with code?
-
-starwars |> count(homeworld == "Ohio")
-
-table(homeworlds == "Ohio")
 
 
 # How many characters live on Naboo?
 
-table(homeworlds == "Naboo")
-starwars |> filter(homeworld == "Naboo") |> count(homeworld)
 
 # Who lives on Naboo? (hint use the "names" variable in the starwars data and the "which" function)
 
-starwars |> filter(homeworld == "Naboo") |> select(name)
-
-homeworlds == "Naboo"
-which(homeworlds == "Naboo")
-starwars$name[which(homeworlds == "Naboo")]
 ```
 
 ### B. Import the `taylor` package and explore the `taylor_album_songs` dataframe
@@ -117,13 +102,17 @@ taylor <- taylor_album_songs
 # what is the "class" of the object taylor_album_songs?
 
 
+
 # what types of data are in the object taylor_album_songs?
+
 
 
 # change the "key_mode" from class "character" to class "factor"
 
 
+
 # How many albums are in the data set & how many songs on each album?
+
 
 
 ```

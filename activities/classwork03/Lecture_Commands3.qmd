@@ -2,7 +2,7 @@
 title: "Lecture Commands - Navigating Data Types in R"
 description: "commands used in lecture"
 author: "Lindsay N. Hayes"
-date: 2025-07-03
+date: 2026-07-10
 draft: true
 editor_options: 
   chunk_output_type: inline
@@ -13,29 +13,7 @@ eval: false
 
 ```{r}
 library(tidyverse)
-```
-
-import
-
-```{r}
-data <- read.csv(file = "activities/a/taylorswift.csv",
-                      header = TRUE, 
-                      sep = ",", 
-                      stringsAsFactors = TRUE)
-
-
-data <- read_csv(file = "activities/a/taylorswift.csv",
-                      col_names = TRUE)
-```
-
-export
-
-```{r}
-# base R
-write.csv(data, file = "data/taylorswift.csv")
-
-# Tidyverse
-write_csv(data, file = "data/taylorswift.csv")
+library(cowplot)
 ```
 
 R Syntax 1
@@ -86,9 +64,6 @@ penguins$species
 # You can also access parts of the data using “[]”
 dim(penguins)
 
-x <- 1:10
-
-
 
 
 # there are 344 rows of data and 8 observations
@@ -96,9 +71,6 @@ penguins[1:5, 1:2]
 penguins[5,] 
 penguins[,4] 
 penguins[,"species"] 
-
-
-
 
 ```
 
@@ -121,11 +93,9 @@ which(penguins$bill_length_mm > 50)
 penguins[which(penguins$bill_length_mm > 50),]
 
 
-
-
 ```
 
-EXPLORE 1
+EXPLORE 1: Categorical
 
 ```{r}
 # Categorical data: characters and factors
@@ -143,12 +113,9 @@ penguins |>
   ggplot(aes(x=species, y=n)) + 
     geom_col(, fill = "red")
 
-
-
-
 ```
 
-EXPLORE 2
+EXPLORE 2: Distributions
 
 ```{r}
 summary(penguins$body_mass_g)
@@ -182,19 +149,17 @@ months_factor <- factor(months_factor, levels = c("Jan", "Feb", "Mar", "Apr", "M
 
 
 # numeric, i.e. time uneven spacing
-
 hours <- c(0, 0.5, 1, 3, 6, 12, 18, 24, 48, 72, 96, 200)
-hours <- factor(hours)
+data <- log(hours+1) * 5
+df <- data.frame(hours, data)
+ggplot(df, aes(x = hours, y = data)) + geom_point()
+
+df$hours <- as.factor(df$hours)
+ggplot(df, aes(x = hours, y = data)) + geom_point()
 
 
-
-# numeric, i.e. group assignments, treatment data
-
+# factor, even spacing
 group <- c(1,2,1,2,1,2,1,2,1,2,1,2)
 group <- factor(group)
-
-
-
-data$album_name <- factor(data$album_name, levels = unique(data$album_name[order(data$album_release)]))
 
 ```

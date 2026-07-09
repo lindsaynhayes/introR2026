@@ -9,6 +9,29 @@ eval: false
 ---
 
 
+import
+
+```{r}
+data <- read.csv(file = "activities/a/taylorswift.csv",
+                      header = TRUE, 
+                      sep = ",", 
+                      stringsAsFactors = TRUE)
+
+
+data <- read_csv(file = "activities/a/taylorswift.csv",
+                      col_names = TRUE)
+```
+
+export
+
+```{r}
+# base R
+write.csv(data, file = "data/taylorswift.csv")
+
+# Tidyverse
+write_csv(data, file = "data/taylorswift.csv")
+```
+
 ```{r}
 
 glimpse(starwars)

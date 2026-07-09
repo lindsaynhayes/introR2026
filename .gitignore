@@ -7,3 +7,6 @@
 **/*.quarto_ipynb
 _freeze/
 .DS_store
+
+activities/a/*
+activities/assigndecoder/*
