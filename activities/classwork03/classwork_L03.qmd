@@ -137,6 +137,9 @@ taylor |> count(album_name)
 ## C. Which numeric song features are correlated with one another? Hint create a correlation matrix.
 
 ```{r}
+#| warning: false
+#| message: false
+
 # install.packages("GGally")
 
 # look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)
