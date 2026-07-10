@@ -328,69 +328,675 @@ FALSE  TRUE
 <h2 class="anchored" data-anchor-id="a.-explore-the-starwars-dataset.">A. Explore the <code>starwars</code> dataset.</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector called "homeworlds" and assign it the value "homeworld" from the starwars data set</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># how many worlds are there? hint: use the unique function</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># which world has the most characters?</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># is there a world called "Ohio"? how would you test this with code?</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Who grew up on Naboo? (hint use the "names" variable in the starwars data)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 87
+Columns: 14
+$ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+$ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+$ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
+$ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+$ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
+$ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
+$ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+$ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+$ films      &lt;list&gt; &lt;"A New Hope", "The Empire Strikes Back", "Return of the J…
+$ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
+$ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>homeworlds <span class="ot">&lt;-</span> starwars<span class="sc">$</span>homeworld</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># how many worlds are there? hint: use the unique function</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note there is a missing value (NA) see how different functions treat missing values</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(homeworlds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Tatooine"       "Naboo"          "Alderaan"       "Stewjon"       
+ [5] "Eriadu"         "Kashyyyk"       "Corellia"       "Rodia"         
+ [9] "Nal Hutta"      "Bestine IV"     NA               "Kamino"        
+[13] "Trandosha"      "Socorro"        "Bespin"         "Mon Cala"      
+[17] "Chandrila"      "Endor"          "Sullust"        "Cato Neimoidia"
+[21] "Coruscant"      "Toydaria"       "Malastare"      "Dathomir"      
+[25] "Ryloth"         "Aleen Minor"    "Vulpter"        "Troiken"       
+[29] "Tund"           "Haruun Kal"     "Cerea"          "Glee Anselm"   
+[33] "Iridonia"       "Iktotch"        "Quermia"        "Dorin"         
+[37] "Champala"       "Geonosis"       "Mirial"         "Serenno"       
+[41] "Concord Dawn"   "Zolan"          "Ojom"           "Skako"         
+[45] "Muunilinst"     "Shili"          "Kalee"          "Umbara"        
+[49] "Utapau"        </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(homeworlds))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">table</span>(homeworlds))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which world has the most characters?</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(homeworlds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>homeworlds
+      Alderaan    Aleen Minor         Bespin     Bestine IV Cato Neimoidia 
+             3              1              1              1              1 
+         Cerea       Champala      Chandrila   Concord Dawn       Corellia 
+             1              1              1              1              2 
+     Coruscant       Dathomir          Dorin          Endor         Eriadu 
+             3              1              1              1              1 
+      Geonosis    Glee Anselm     Haruun Kal        Iktotch       Iridonia 
+             1              1              1              1              1 
+         Kalee         Kamino       Kashyyyk      Malastare         Mirial 
+             1              3              2              1              2 
+      Mon Cala     Muunilinst          Naboo      Nal Hutta           Ojom 
+             1              1             11              1              1 
+       Quermia          Rodia         Ryloth        Serenno          Shili 
+             1              1              2              1              1 
+         Skako        Socorro        Stewjon        Sullust       Tatooine 
+             1              1              1              1             10 
+      Toydaria      Trandosha        Troiken           Tund         Umbara 
+             1              1              1              1              1 
+        Utapau        Vulpter          Zolan 
+             1              1              1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">count</span>(homeworld)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49 × 2
+   homeworld          n
+   &lt;chr&gt;          &lt;int&gt;
+ 1 Alderaan           3
+ 2 Aleen Minor        1
+ 3 Bespin             1
+ 4 Bestine IV         1
+ 5 Cato Neimoidia     1
+ 6 Cerea              1
+ 7 Champala           1
+ 8 Chandrila          1
+ 9 Concord Dawn       1
+10 Corellia           2
+# ℹ 39 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">count</span>(homeworld, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="co"># </span><span class="al">NOTE</span><span class="co"> IT INCLUDES missing values (NA)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49 × 2
+   homeworld     n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 Naboo        11
+ 2 Tatooine     10
+ 3 &lt;NA&gt;         10
+ 4 Alderaan      3
+ 5 Coruscant     3
+ 6 Kamino        3
+ 7 Corellia      2
+ 8 Kashyyyk      2
+ 9 Mirial        2
+10 Ryloth        2
+# ℹ 39 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(homeworld)) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(homeworld, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 2
+   homeworld       n
+   &lt;chr&gt;       &lt;int&gt;
+ 1 Naboo          11
+ 2 Tatooine       10
+ 3 Alderaan        3
+ 4 Coruscant       3
+ 5 Kamino          3
+ 6 Corellia        2
+ 7 Kashyyyk        2
+ 8 Mirial          2
+ 9 Ryloth          2
+10 Aleen Minor     1
+# ℹ 38 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># is there a world called "Ohio"? how would you test this with code?</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">count</span>(homeworld <span class="sc">==</span> <span class="st">"Ohio"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `homeworld == "Ohio"`     n
+  &lt;lgl&gt;                 &lt;int&gt;
+1 FALSE                    77
+2 NA                       10</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(starwars<span class="sc">$</span>homeworld <span class="sc">==</span> <span class="st">"Ohio"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE 
+   77 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Who grew up on Naboo? (hint use the "names" variable in the starwars data)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(homeworld <span class="sc">==</span> <span class="st">"Naboo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 1
+   name         
+   &lt;chr&gt;        
+ 1 R2-D2        
+ 2 Palpatine    
+ 3 Padmé Amidala
+ 4 Jar Jar Binks
+ 5 Roos Tarpals 
+ 6 Rugor Nass   
+ 7 Ric Olié     
+ 8 Quarsh Panaka
+ 9 Gregar Typho 
+10 Cordé        
+11 Dormé        </code></pre>
+</div>
 </div>
 </section>
 <section id="b.-import-the-taylor-package-and-explore-the-taylor_album_songs-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="b.-import-the-taylor-package-and-explore-the-taylor_album_songs-dataframe">B. Import the <code>taylor</code> package and explore the <code>taylor_album_songs</code> dataframe</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try loading in the taylor package and viewing the taylor_album_songs dataframe</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("taylor")</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taylor)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>taylor <span class="ot">&lt;-</span> taylor_album_songs</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># what is the "class" of the object taylor?</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># what types of data are in the object taylor_album_songs?</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># change the "key_mode" from class "character" to class "factor"</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># How many albums are in the data set &amp; how many songs on each album?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try loading in the taylor package and viewing the taylor_album_songs dataframe</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("taylor")</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taylor)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>taylor <span class="ot">&lt;-</span> taylor_album_songs</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># what is the "class" of the object taylor?</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(taylor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(taylor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 26
+  album_name   ep    album_release track_number track_name      artist featuring
+  &lt;chr&gt;        &lt;lgl&gt; &lt;date&gt;               &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt;    
+1 Taylor Swift FALSE 2006-10-24               1 Tim McGraw      Taylo… &lt;NA&gt;     
+2 Taylor Swift FALSE 2006-10-24               2 Picture To Burn Taylo… &lt;NA&gt;     
+3 Taylor Swift FALSE 2006-10-24               3 Teardrops On M… Taylo… &lt;NA&gt;     
+4 Taylor Swift FALSE 2006-10-24               4 A Place In Thi… Taylo… &lt;NA&gt;     
+5 Taylor Swift FALSE 2006-10-24               5 Cold As You     Taylo… &lt;NA&gt;     
+6 Taylor Swift FALSE 2006-10-24               6 The Outside     Taylo… &lt;NA&gt;     
+# ℹ 19 more variables: bonus_track &lt;lgl&gt;, promotional_release &lt;date&gt;,
+#   single_release &lt;date&gt;, track_release &lt;date&gt;, danceability &lt;dbl&gt;,
+#   energy &lt;dbl&gt;, loudness &lt;dbl&gt;, acousticness &lt;dbl&gt;, instrumentalness &lt;dbl&gt;,
+#   valence &lt;dbl&gt;, tempo &lt;dbl&gt;, duration_ms &lt;int&gt;, explicit &lt;lgl&gt;, key &lt;int&gt;,
+#   mode &lt;int&gt;, key_name &lt;chr&gt;, mode_name &lt;chr&gt;, key_mode &lt;chr&gt;, lyrics &lt;list&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what types of data are in the object taylor_album_songs?</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(taylor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 332
+Columns: 26
+$ album_name          &lt;chr&gt; "Taylor Swift", "Taylor Swift", "Taylor Swift", "T…
+$ ep                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+$ album_release       &lt;date&gt; 2006-10-24, 2006-10-24, 2006-10-24, 2006-10-24, 2…
+$ track_number        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
+$ track_name          &lt;chr&gt; "Tim McGraw", "Picture To Burn", "Teardrops On My …
+$ artist              &lt;chr&gt; "Taylor Swift", "Taylor Swift", "Taylor Swift", "T…
+$ featuring           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ bonus_track         &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…
+$ promotional_release &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ single_release      &lt;date&gt; 2006-06-19, 2008-02-03, 2007-02-19, NA, NA, NA, N…
+$ track_release       &lt;date&gt; 2006-06-19, 2006-10-24, 2006-10-24, 2006-10-24, 2…
+$ danceability        &lt;dbl&gt; 0.41, 0.43, 0.45, 0.48, 0.44, 0.44, 0.49, 0.48, 0.…
+$ energy              &lt;dbl&gt; 0.35, 0.41, 0.32, 0.38, 0.35, 0.40, 0.36, 0.34, 0.…
+$ loudness            &lt;dbl&gt; 0.22, 0.13, 0.25, 0.14, 0.21, 0.12, 0.15, 0.23, 0.…
+$ acousticness        &lt;dbl&gt; 0.95, 0.91, 0.96, 0.94, 0.95, 0.93, 0.95, 0.95, 0.…
+$ instrumentalness    &lt;dbl&gt; 0.75, 0.75, 0.76, 0.74, 0.75, 0.74, 0.74, 0.75, 0.…
+$ valence             &lt;dbl&gt; 0.78, 0.80, 0.48, 0.79, 0.78, 0.50, 0.80, 0.50, 0.…
+$ tempo               &lt;dbl&gt; 76.00, 105.47, 99.38, 114.84, 87.59, 112.35, 143.5…
+$ duration_ms         &lt;int&gt; 232106, 173066, 203040, 199200, 239013, 207106, 24…
+$ explicit            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+$ key                 &lt;int&gt; 0, 2, 5, 9, 0, 5, 4, 8, 2, 9, 9, 3, 7, 11, 10, 5, …
+$ mode                &lt;int&gt; 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1,…
+$ key_name            &lt;chr&gt; "C", "D", "F", "A", "C", "F", "E", "G#", "D", "A",…
+$ mode_name           &lt;chr&gt; "major", "major", "minor", "major", "major", "mino…
+$ key_mode            &lt;chr&gt; "C major", "D major", "F minor", "A major", "C maj…
+$ lyrics              &lt;list&gt; [&lt;tbl_df[55 x 4]&gt;], [&lt;tbl_df[33 x 4]&gt;], [&lt;tbl_df[…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">map_chr</span>(taylor, class))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    map_chr(taylor, class)
+album_name                       character
+ep                                 logical
+album_release                         Date
+track_number                       integer
+track_name                       character
+artist                           character
+featuring                        character
+bonus_track                        logical
+promotional_release                   Date
+single_release                        Date
+track_release                         Date
+danceability                       numeric
+energy                             numeric
+loudness                           numeric
+acousticness                       numeric
+instrumentalness                   numeric
+valence                            numeric
+tempo                              numeric
+duration_ms                        integer
+explicit                           logical
+key                                integer
+mode                               integer
+key_name                         character
+mode_name                        character
+key_mode                         character
+lyrics                                list</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the "key_mode" from class "character" to class "factor"</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>taylor<span class="sc">$</span>key_mode <span class="ot">&lt;-</span> <span class="fu">factor</span>(taylor<span class="sc">$</span>key_mode)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># How many albums are in the data set &amp; how many songs on each album?</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>taylor <span class="sc">|&gt;</span> <span class="fu">count</span>(album_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   album_name                        n
+   &lt;chr&gt;                         &lt;int&gt;
+ 1 1989                             19
+ 2 1989 (Taylor's Version)          23
+ 3 Fearless                         19
+ 4 Fearless (Taylor's Version)      26
+ 5 Lover                            18
+ 6 Midnights                        26
+ 7 Red                              22
+ 8 Red (Taylor's Version)           30
+ 9 Speak Now                        20
+10 Speak Now (Taylor's Version)     22
+11 THE TORTURED POETS DEPARTMENT    31
+12 Taylor Swift                     15
+13 The Life of a Showgirl           12
+14 evermore                         17
+15 folklore                         17
+16 reputation                       15</code></pre>
+</div>
 </div>
 </section>
 <section id="c.-which-numeric-song-features-are-correlated-with-one-another-hint-create-a-correlation-matrix." class="level2">
 <h2 class="anchored" data-anchor-id="c.-which-numeric-song-features-are-correlated-with-one-another-hint-create-a-correlation-matrix.">C. Which numeric song features are correlated with one another? Hint create a correlation matrix.</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("GGally")</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a matrix of those features</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># pipe the matrix into GGally::ggpairs(), evaluate the correlation matrix</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Which values show a positive correlation? Which values show a negative correlation?</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#var1 &lt;-</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#var2 &lt;-</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#var3 &lt;- </span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#var4 &lt;- </span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the correlations</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(taylor_album_songs, aes(x=var1, y=var2)) + geom_point(size=3)</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(taylor_album_songs, aes(x=var3, y=var4)) + geom_point(size=3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("GGally")</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>taylor <span class="sc">|&gt;</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 332
+Columns: 11
+$ track_number     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1,…
+$ danceability     &lt;dbl&gt; 0.41, 0.43, 0.45, 0.48, 0.44, 0.44, 0.49, 0.48, 0.38,…
+$ energy           &lt;dbl&gt; 0.35, 0.41, 0.32, 0.38, 0.35, 0.40, 0.36, 0.34, 0.37,…
+$ loudness         &lt;dbl&gt; 0.22, 0.13, 0.25, 0.14, 0.21, 0.12, 0.15, 0.23, 0.16,…
+$ acousticness     &lt;dbl&gt; 0.95, 0.91, 0.96, 0.94, 0.95, 0.93, 0.95, 0.95, 0.95,…
+$ instrumentalness &lt;dbl&gt; 0.75, 0.75, 0.76, 0.74, 0.75, 0.74, 0.74, 0.75, 0.74,…
+$ valence          &lt;dbl&gt; 0.78, 0.80, 0.48, 0.79, 0.78, 0.50, 0.80, 0.50, 0.78,…
+$ tempo            &lt;dbl&gt; 76.00, 105.47, 99.38, 114.84, 87.59, 112.35, 143.55, …
+$ duration_ms      &lt;int&gt; 232106, 173066, 203040, 199200, 239013, 207106, 24810…
+$ key              &lt;int&gt; 0, 2, 5, 9, 0, 5, 4, 8, 2, 9, 9, 3, 7, 11, 10, 5, 7, …
+$ mode             &lt;int&gt; 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1,…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a matrix of those features</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> taylor <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># pipe the matrix into GGally::ggpairs(), evaluate the correlation matrix</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(mat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values
+Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which values show a positive correlation? Which values show a negative correlation?</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="co">#var1 &lt;-</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">#var2 &lt;-</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co">#var3 &lt;- </span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">#var4 &lt;- </span></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the correlations</span></span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(taylor_album_songs, aes(x=var1, y=var2)) + geom_point(size=3)</span></span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(taylor_album_songs, aes(x=var3, y=var4)) + geom_point(size=3)</span></span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(taylor, <span class="fu">aes</span>(<span class="at">x =</span> instrumentalness, <span class="at">y =</span> energy, <span class="at">color =</span> album_name)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_albums</span>() <span class="sc">+</span></span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>album_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot loudness vs energy</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(taylor, <span class="fu">aes</span>(<span class="at">x=</span>loudness, <span class="at">y=</span>energy)) <span class="sc">+</span> </span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot danceability vs tempo</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(taylor, <span class="fu">aes</span>(<span class="at">x=</span>danceability, <span class="at">y=</span>tempo)) <span class="sc">+</span> </span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot loudness vs energy, color by album, facet by album</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(taylor, <span class="fu">aes</span>(<span class="at">x=</span>loudness, <span class="at">y=</span>energy, <span class="at">color =</span> album_name)) <span class="sc">+</span> </span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_albums</span>() <span class="sc">+</span> </span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>album_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot danceability vs tempo, color by album, facet by album</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(taylor, <span class="fu">aes</span>(<span class="at">x=</span>danceability, <span class="at">y=</span>tempo, <span class="at">color =</span> album_name)) <span class="sc">+</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_albums</span>() <span class="sc">+</span> </span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>album_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="classwork_L03_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
