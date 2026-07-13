@@ -51,7 +51,7 @@ glimpse(starwars)
 starwars[1,]
 starwars[1,11:14]
 
-starwars$starships[1]
+starwars$films[1]
 
 starwars |>
   select(name, films) |>
@@ -86,7 +86,6 @@ table(starwars$sex)
 
 starwars |>
   group_by(sex) 
-
 
 starwars |> count(sex)
 

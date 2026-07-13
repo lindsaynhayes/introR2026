@@ -98,35 +98,30 @@ head(ChickWeight)
 ```
 
 
-# How much weight gain from each Diet
+# How much weight was gained from each Diet
 ```{r}
-
-data <- ChickWeight |> 
-  pivot_wider(names_from = Time, names_prefix = "day_", values_from = weight)
-
-
-data <- data |> mutate(weight.gain = day_18 - day_0)
-
-data |>
-  ggplot(aes(x = Diet, y = weight.gain, fill = Diet)) + 
-  geom_boxplot() + 
-  geom_point()
+#| eval: FALSE
 
 
 
+
+
+
+# some stats
 mod <- aov(weight.gain ~ Diet, data = data)
-
 summary(mod)
 TukeyHSD(mod)
-pairwise.t.test(data$weight.gain, data$Diet, p.adjust.method = "BH")
 
+
+# linear modeling
 
 library(lme4)
 library(lmerTest)
 
-
-mod2 <- lmer(weight ~ Diet * Time + (1 | Chick), data = ChickWeight)
+mod1 <- lmer(weight ~ Diet * Time + (1 | Chick), data = dat) # only random intercept
+mod2 <- lmer(weight ~ Diet * Time + (1 + Time | Chick), data = dat) # random slope and intercept
 summary(mod2)
+anova(mod1, mod2)
 
 ```
 

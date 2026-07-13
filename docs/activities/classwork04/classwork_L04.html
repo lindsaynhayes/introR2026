@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-the-tidyverse-package" id="toc-load-the-tidyverse-package" class="nav-link" data-scroll-target="#load-the-tidyverse-package">Load the Tidyverse Package</a></li>
   <li><a href="#reshaping-and-summarizing-data" id="toc-reshaping-and-summarizing-data" class="nav-link" data-scroll-target="#reshaping-and-summarizing-data">Reshaping and Summarizing Data</a>
   <ul class="collapse">
-  <li><a href="#which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" id="toc-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" class="nav-link" data-scroll-target="#which-month-had-the-most-and-least-passengers-in-the-airpassengers-data">1. Which month had the most and least passengers in the <code>AirPassengers</code> data?</a>
+  <li><a href="#on-average-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" id="toc-on-average-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" class="nav-link" data-scroll-target="#on-average-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data">1. On average which month had the most and least passengers in the <code>AirPassengers</code> data?</a>
   <ul class="collapse">
   <li><a href="#a.-is-the-data-long-or-wide-what-form-does-it-need-to-be-in-how-can-you-convert-to-the-form-you-need" id="toc-a.-is-the-data-long-or-wide-what-form-does-it-need-to-be-in-how-can-you-convert-to-the-form-you-need" class="nav-link" data-scroll-target="#a.-is-the-data-long-or-wide-what-form-does-it-need-to-be-in-how-can-you-convert-to-the-form-you-need">A. Is the data long or wide? What form does it need to be in? How can you convert to the form you need?</a></li>
   <li><a href="#b.-how-can-we-extract-the-the-most-and-least-traveled-months-each-year" id="toc-b.-how-can-we-extract-the-the-most-and-least-traveled-months-each-year" class="nav-link" data-scroll-target="#b.-how-can-we-extract-the-the-most-and-least-traveled-months-each-year">B. How can we extract the the most and least traveled months each year?</a></li>
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#b.-now-figure-out-which-diet-leads-to-the-heaviest-chicks." id="toc-b.-now-figure-out-which-diet-leads-to-the-heaviest-chicks." class="nav-link" data-scroll-target="#b.-now-figure-out-which-diet-leads-to-the-heaviest-chicks.">B. Now figure out which diet leads to the heaviest chicks.</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#how-much-weight-gain-from-each-diet" id="toc-how-much-weight-gain-from-each-diet" class="nav-link" data-scroll-target="#how-much-weight-gain-from-each-diet">How much weight gain from each Diet</a></li>
+  <li><a href="#how-much-weight-was-gained-from-each-diet" id="toc-how-much-weight-was-gained-from-each-diet" class="nav-link" data-scroll-target="#how-much-weight-was-gained-from-each-diet">How much weight was gained from each Diet</a></li>
   </ul>
 </nav>
     </div>
@@ -259,11 +259,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Reshaping and Summarizing Data</h1>
 <p>A common type of data that requires reshaping is time course data.</p>
 <p>Using tidyverse principles answer the questions below:</p>
-<section id="which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" class="level2">
-<h2 class="anchored" data-anchor-id="which-month-had-the-most-and-least-passengers-in-the-airpassengers-data">1. Which month had the most and least passengers in the <code>AirPassengers</code> data?</h2>
+<section id="on-average-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data" class="level2">
+<h2 class="anchored" data-anchor-id="on-average-which-month-had-the-most-and-least-passengers-in-the-airpassengers-data">1. On average which month had the most and least passengers in the <code>AirPassengers</code> data?</h2>
 <p>The <code>AirPassengers</code> data which is a time-series of data representing the monthly international airline passenger numbers from January 1949 to December 1960. Search for AirPassengers in the <code>Help</code> to learn more about the dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and inspect the data, a little reshaping here to get in to an easy to read format for you.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and inspect the data, a little reshaping here to get in to an easy to read format for you.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>AP_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(AirPassengers, <span class="at">nrow =</span> <span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">floor</span>(<span class="fu">time</span>(AirPassengers)))), <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(AP_matrix) <span class="ot">&lt;-</span> month.abb</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(AP_matrix) <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">floor</span>(<span class="fu">time</span>(AirPassengers)))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>AP_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(AP_matrix)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>AP_df<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">rownames</span>(AP_matrix)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(AP_matrix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="a.-is-the-data-long-or-wide-what-form-does-it-need-to-be-in-how-can-you-convert-to-the-form-you-need" class="level3">
 <h3 class="anchored" data-anchor-id="a.-is-the-data-long-or-wide-what-form-does-it-need-to-be-in-how-can-you-convert-to-the-form-you-need">A. Is the data long or wide? What form does it need to be in? How can you convert to the form you need?</h3>
@@ -284,185 +291,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="which-diet-lead-to-heavier-chicks">3. Which diet lead to heavier chicks?</h2>
 <p>We will use the <code>ChickWeight</code> data. Use the help to read more about the data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First look at the data.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First look at the data.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ChickWeight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 578
+Columns: 4
+$ weight &lt;dbl&gt; 42, 51, 59, 64, 76, 93, 106, 125, 149, 171, 199, 205, 40, 49, 5…
+$ Time   &lt;dbl&gt; 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 0, 2, 4, 6, 8, 10, 1…
+$ Chick  &lt;ord&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ Diet   &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ChickWeight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  weight Time Chick Diet
+1     42    0     1    1
+2     51    2     1    1
+3     59    4     1    1
+4     64    6     1    1
+5     76    8     1    1
+6     93   10     1    1</code></pre>
+</div>
 </div>
 <section id="a.-count-how-many-timepoints-were-measured-and-how-many-chicks-were-on-each-diet." class="level3">
 <h3 class="anchored" data-anchor-id="a.-count-how-many-timepoints-were-measured-and-how-many-chicks-were-on-each-diet.">A. Count how many timepoints were measured and how many chicks were on each Diet.</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How can you count the timepoints, chicks, and diets, and chicks nested in diets?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How can you count the timepoints, chicks, and diets, and chicks nested in diets?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="b.-now-figure-out-which-diet-leads-to-the-heaviest-chicks." class="level3">
 <h3 class="anchored" data-anchor-id="b.-now-figure-out-which-diet-leads-to-the-heaviest-chicks.">B. Now figure out which diet leads to the heaviest chicks.</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can plot it to get a first view</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight, <span class="at">group =</span> Chick, <span class="at">color =</span> Diet)) <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L04_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight, <span class="at">group =</span> Chick, <span class="at">color =</span> Diet)) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Diet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L04_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can plot it to get a first view</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
 </section>
-<section id="how-much-weight-gain-from-each-diet" class="level1">
-<h1>How much weight gain from each Diet</h1>
+<section id="how-much-weight-was-gained-from-each-diet" class="level1">
+<h1>How much weight was gained from each Diet</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> ChickWeight <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Time, <span class="at">names_prefix =</span> <span class="st">"day_"</span>, <span class="at">values_from =</span> weight)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">weight.gain =</span> day_18 <span class="sc">-</span> day_0)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Diet, <span class="at">y =</span> weight.gain, <span class="at">fill =</span> Diet)) <span class="sc">+</span> </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 3 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 3 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L04_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight.gain <span class="sc">~</span> Diet, <span class="at">data =</span> data)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-Diet         3  37479   12493    4.63 0.00682 **
-Residuals   43 116029    2698                   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-3 observations deleted due to missingness</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(mod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Tukey multiple comparisons of means
-    95% family-wise confidence level
-
-Fit: aov(formula = weight.gain ~ Diet, data = data)
-
-$Diet
-         diff       lwr       upr     p adj
-2-1  29.64706 -25.67665  84.97077 0.4867633
-3-1  74.94706  19.62335 130.27077 0.0041372
-4-1  44.54706 -10.77665  99.87077 0.1533433
-3-2  45.30000 -16.78246 107.38246 0.2229497
-4-2  14.90000 -47.18246  76.98246 0.9179605
-4-3 -30.40000 -92.48246  31.68246 0.5626028</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(data<span class="sc">$</span>weight.gain, data<span class="sc">$</span>Diet, <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pairwise comparisons using t tests with pooled SD 
-
-data:  data$weight.gain and data$Diet 
-
-  1      2      3     
-2 0.2371 -      -     
-3 0.0046 0.1154 -     
-4 0.1112 0.5247 0.2371
-
-P value adjustment method: BH </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: Matrix</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'Matrix'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:tidyr':
-
-    expand, pack, unpack</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'lmerTest'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:lme4':
-
-    lmer</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    step</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(weight <span class="sc">~</span> Diet <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Chick), <span class="at">data =</span> ChickWeight)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-lmerModLmerTest]
-Formula: weight ~ Diet * Time + (1 | Chick)
-   Data: ChickWeight
-
-REML criterion at convergence: 5466.9
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--3.3158 -0.5900 -0.0693  0.5361  3.6024 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- Chick    (Intercept) 545.7    23.36   
- Residual             643.3    25.36   
-Number of obs: 578, groups:  Chick, 50
-
-Fixed effects:
-            Estimate Std. Error       df t value Pr(&gt;|t|)    
-(Intercept)  31.5143     6.1163  70.7030   5.152 2.23e-06 ***
-Diet2        -2.8807    10.5479  69.6438  -0.273    0.786    
-Diet3       -13.2640    10.5479  69.6438  -1.258    0.213    
-Diet4        -0.4016    10.5565  69.8601  -0.038    0.970    
-Time          6.7115     0.2584 532.8900  25.976  &lt; 2e-16 ***
-Diet2:Time    1.8977     0.4284 527.6886   4.430 1.15e-05 ***
-Diet3:Time    4.7114     0.4284 527.6886  10.998  &lt; 2e-16 ***
-Diet4:Time    2.9506     0.4340 528.0372   6.799 2.86e-11 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Correlation of Fixed Effects:
-           (Intr) Diet2  Diet3  Diet4  Time   Dt2:Tm Dt3:Tm
-Diet2      -0.580                                          
-Diet3      -0.580  0.336                                   
-Diet4      -0.579  0.336  0.336                            
-Time       -0.426  0.247  0.247  0.247                     
-Diet2:Time  0.257 -0.431 -0.149 -0.149 -0.603              
-Diet3:Time  0.257 -0.149 -0.431 -0.149 -0.603  0.364       
-Diet4:Time  0.254 -0.147 -0.147 -0.432 -0.595  0.359  0.359</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some stats</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight.gain <span class="sc">~</span> Diet, <span class="at">data =</span> data)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(mod)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># linear modeling</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(weight <span class="sc">~</span> Diet <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Chick), <span class="at">data =</span> dat) <span class="co"># only random intercept</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(weight <span class="sc">~</span> Diet <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Time <span class="sc">|</span> Chick), <span class="at">data =</span> dat) <span class="co"># random slope and intercept</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod1, mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
