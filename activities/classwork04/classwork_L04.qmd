@@ -49,25 +49,46 @@ rm(AP_matrix)
 
 ### A. Is the data long or wide? What form does it need to be in? How can you convert to the form you need?
 ```{r}
+AP_df
 
-
-
+AP_long <- AP_df |> pivot_longer(cols = 1:12, names_to = "months", values_to = "no.passengers")
 
 ```
 
 ### B. How can we extract the the most and least traveled months each year? 
 ```{r}
 
+AP_long |> 
+  group_by(months) |>
+  summarize(avg = mean(no.passengers)) |>
+    arrange(avg)
 
+AP_long |> 
+  ggplot(aes(x = months, y = no.passengers, fill = months)) + 
+  geom_boxplot() + geom_point() +
+  theme_cowplot()
+  
+AP_long$months <- factor(AP_long$months, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+AP_long |> 
+  ggplot(aes(x = months, y = no.passengers, fill = months)) + 
+  geom_boxplot() + geom_point(size = 1) +
+  theme_cowplot() +
+  ylim(0, 650)
 
 ```
 
 ## 2. What was the percent increase in passengers each year between Aug and Nov?
 ```{r}
-# To answer this question we need to find the ratio of Aug and Nov travelers. We need the data in the wide format.
+AP_long
 
-# how can we add the ratio to get the percent increase?
+AP_df |> mutate(ratio = ((Aug/Nov)-1) *100) |>
+  select(ratio, Year)
 
+AP_df |> mutate(ratio = ((Aug/Nov)-1) *100) |>
+  select(ratio, Year) |>
+  ggplot(aes(x = Year, y = ratio)) + geom_col() + theme_cowplot() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
 ```
 
@@ -84,47 +105,74 @@ head(ChickWeight)
 ```{r}
 # How can you count the timepoints, chicks, and diets, and chicks nested in diets?
 
+ChickWeight |> count(Diet)
 
+ChickWeight |> count(Time)
+
+ChickWeight |> count(Chick)
+
+
+ChickWeight |> 
+  filter(Time == "0") |>
+  count(Diet) 
+
+ChickWeight |>
+  group_by(Diet) |>
+  summarise(no.chicks = n_distinct(Chick))
+
+table(ChickWeight$Time, ChickWeight$Diet)
 ```
 
 
 ### B. Now figure out which diet leads to the heaviest chicks.
 ```{r}
 # we can plot it to get a first view
+ChickWeight |>
+  ggplot(aes(x = Time, y = weight, group = Chick, color = Diet)) + 
+  geom_line() +
+  theme_cowplot()
 
-
+ChickWeight |>
+  ggplot(aes(x = Time, y = weight, group = Chick, color = Diet)) + 
+  geom_line() +
+  theme_cowplot() +
+  facet_wrap(~ Diet)
 
 
 ```
 
 
-# How much weight was gained from each Diet
+# How much weight gain from each Diet
 ```{r}
-#| eval: FALSE
+head(ChickWeight)
+
+data <- ChickWeight |> 
+  pivot_wider(names_from = Time, names_prefix = "day_", values_from = weight)
 
 
+data <- data |> mutate(weight.gain = day_18 - day_0)
 
+data |>
+  ggplot(aes(x = Diet, y = weight.gain, fill = Diet)) + 
+  geom_boxplot() + 
+  geom_point() +
+  theme_cowplot()
 
-
-
-# some stats
 mod <- aov(weight.gain ~ Diet, data = data)
 summary(mod)
 TukeyHSD(mod)
 
-
-# linear modeling
+# But we can model all the data too!
 
 library(lme4)
 library(lmerTest)
 
-mod1 <- lmer(weight ~ Diet * Time + (1 | Chick), data = dat) # only random intercept
-mod2 <- lmer(weight ~ Diet * Time + (1 + Time | Chick), data = dat) # random slope and intercept
+mod1 <- lmer(weight ~ Diet * Time + (1 | Chick), data = ChickWeight) # only random intercept
+mod2 <- lmer(weight ~ Diet * Time + (1 + Time | Chick), data = ChickWeight) # random slope and intercept
+mod3 <- lmer(weight ~ Diet * Time + (0 + Time | Chick), data = ChickWeight) # random slope only
+anova(mod3, mod2)
 summary(mod2)
-anova(mod1, mod2)
-
 ```
-
 
 
 

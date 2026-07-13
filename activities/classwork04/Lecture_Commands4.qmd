@@ -74,7 +74,7 @@ taylor_album_songs |>
   ggplot(aes(x = factor(album_release), y = track_number, colour = album_name)) +
   geom_point(size = 2) +
   ylab("number of tracks") + xlab("release date") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+
   scale_color_albums() + theme(legend.position = "none")
 ```
 

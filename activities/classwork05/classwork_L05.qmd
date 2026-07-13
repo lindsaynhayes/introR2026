@@ -2,7 +2,7 @@
 title: "Data Visualization with ggplot2"
 author: "Lindsay N. Hayes"
 date: 2026-07-15
-draft: false
+draft: true
 editor_options: 
   chunk_output_type: console
 ---
