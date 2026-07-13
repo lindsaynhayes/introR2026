@@ -54,7 +54,7 @@ The lesson will cover using `tidymodels` for:
 
 # Submission
 
-6.  Submit a screenshot of the final UMAP plot to canvas for homework #3.
+6.  Submit a screenshot of the final UMAP plot to the [Google Form](https://forms.gle/nPs4xQVSsPVifuc99) for homework #3.
 
 
 ::: callout-note
