@@ -1,7 +1,7 @@
 ---
 title: "Lecture Commands - Data Wrangling with tidyverse"
 author: "Lindsay N. Hayes"
-date: 2025-07-08
+date: 2026-07-13
 draft: true
 editor_options: 
   chunk_output_type: console
@@ -12,13 +12,13 @@ eval: false
 import
 
 ```{r}
-data <- read.csv(file = "activities/a/taylorswift.csv",
+data <- read.csv(file = "taylorswift.csv",
                       header = TRUE, 
                       sep = ",", 
                       stringsAsFactors = TRUE)
 
 
-data <- read_csv(file = "activities/a/taylorswift.csv",
+data <- read_csv(file = "taylorswift.csv",
                       col_names = TRUE)
 ```
 
