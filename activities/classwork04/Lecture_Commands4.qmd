@@ -8,6 +8,10 @@ editor_options:
 eval: false
 ---
 
+```{r}
+library(tidyverse)
+```
+
 
 import
 
@@ -17,9 +21,14 @@ data <- read.csv(file = "taylorswift.csv",
                       sep = ",", 
                       stringsAsFactors = TRUE)
 
+class(data)
+head(data)
 
 data <- read_csv(file = "taylorswift.csv",
                       col_names = TRUE)
+class(data)
+head(data)
+
 ```
 
 export
@@ -32,11 +41,14 @@ write.csv(data, file = "data/taylorswift.csv")
 write_csv(data, file = "data/taylorswift.csv")
 ```
 
+
+## Unnest
 ```{r}
 
 glimpse(starwars)
 
 # lets look at the first row of starwars
+starwars[1,]
 starwars[1,11:14]
 
 starwars$starships[1]
@@ -45,12 +57,29 @@ starwars |>
   select(name, films) |>
   unnest_longer(films)
 
-taylor |> select(track_name, lyrics) |> 
+library(taylor)
+taylor_album_songs |> select(track_name, lyrics) |> 
   unnest_longer(lyrics)
 
 ```
 
+## count
+```{r}
+taylor_album_songs |> count(album_name, sort = TRUE)
 
+taylor_album_songs |> ggplot(aes(x = album_release, y = track_number, colour = album_name)) +
+  geom_point()
+
+taylor_album_songs |> 
+  ggplot(aes(x = factor(album_release), y = track_number, colour = album_name)) +
+  geom_point(size = 2) +
+  ylab("number of tracks") + xlab("release date") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  scale_color_albums() + theme(legend.position = "none")
+```
+
+
+## group_by & summarize
 ```{r}
 table(starwars$sex)
 
@@ -66,8 +95,6 @@ starwars |>
   summarize(mean_height = mean(height),
             sd_height = sd(height))
 
-
-
 starwars |>
   drop_na(height, sex) |>
   group_by(sex) |>
@@ -75,4 +102,27 @@ starwars |>
             sd_height = sd(height))
 
 ```
+
+## mutate
+```{r}
+
+datasets::Orange |> glimpse()
+head(Orange)
+
+## Calculate a rate of growth
+Orange |> mutate(mm.per.day = circumference/age)
+
+Orange |> mutate(mm.per.day = circumference/age) |>
+  ggplot(aes(x = Tree, y = mm.per.day)) + 
+  geom_boxplot() + 
+  geom_point()
+
+
+Orange |> ggplot(aes(x = age, y = circumference, color = Tree, group = Tree))  +
+  geom_line(size = 2) + 
+  theme_cowplot() + 
+  scale_color_brewer(palette = "Set1")
+
+```
+
 
