@@ -2,7 +2,7 @@
 title: "Data Visualization with ggplot2"
 author: "Lindsay N. Hayes"
 date: 2026-07-15
-draft: true
+draft: false
 editor_options: 
   chunk_output_type: console
 ---
@@ -215,7 +215,7 @@ iris |> head()
 ```
 
 
+#### 8. Use a Scatterplot to plot all 4 features of the penguins dataset across species
 ```{r}
-sessionInfo()
-```
 
+```
