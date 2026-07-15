@@ -34,7 +34,6 @@ Lets use the `palmerpenguins` data to plot some histograms. Histograms are good 
 
 #### 1. How would you describe the distribution? Is it uni-modal or bi-modal?
 ```{r}
-
 penguins |> head()
 
 # plot the distribution of the penguins' body mass using geom_histogram()
@@ -66,67 +65,16 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 #### 2. Plot the other penguin bill and flipper measurements? What are their distribution? How does the binwidth change the interpretation of the distributions?
 ```{r}
-
-penguins |> head()
-
-# try 3
-ggplot(penguins, aes(x = bill_length_mm)) + 
-  geom_histogram(binwidth = 1, fill = "purple") + 
-  theme_cowplot() +
-  labs(title = "Distribution of Penguin Bill Length",
-         x = "Bill Length (mm)",
-         y ="Count")
+# try 3 others
 
 
-ggplot(penguins, aes(x = bill_depth_mm)) + 
-  geom_histogram(binwidth = 0.3, fill = "springgreen") + 
-  theme_cowplot() +
-  labs(title = "Distribution of Penguin Bill Depth",
-         x = "Bill Depth (mm)",
-         y ="Count")
-
-ggplot(penguins, aes(x = flipper_length_mm)) + 
-  geom_histogram(binwidth = 1, fill = "gold") + 
-  theme_cowplot() +
-  labs(title = "Distribution of Penguin Flipper Length",
-         x = "Flipper Length (mm)",
-         y ="Count")
 
 ```
 
-#### 3. A benefit of geom_density() is that the plots are not dependent on the binsize. Compare the histograms and the density plots for each data feature.
+#### 3. A benefit of `geom_density()` is that the plots are not dependent on the binsize. Compare the `geom_histogram` and `geom_density()` plots for each data feature.
 ```{r}
 
-a <- ggplot(penguins, aes(x = body_mass_g)) + 
-  geom_density(fill = "deeppink") + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Body Mass",
-         x = "Body Mass (g)",
-         y ="Density")
 
-b <- ggplot(penguins, aes(x = bill_length_mm)) + 
-  geom_density(fill = "purple") + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Bill Length",
-         x = "Bill Length (mm)",
-         y ="Density")
-
-
-c <- ggplot(penguins, aes(x = bill_depth_mm)) + 
-  geom_density(fill = "springgreen") + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Bill Depth",
-         x = "Bill Depth (mm)",
-         y ="Density")
-
-d <- ggplot(penguins, aes(x = flipper_length_mm)) + 
-  geom_density(fill = "gold") + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Flipper Length",
-         x = "Flipper Length (mm)",
-         y ="Density")
-
-plot_grid(a,b,c,d, labels = c("A", "B", "C", "D"))
 
 ```
 
@@ -136,39 +84,12 @@ plot_grid(a,b,c,d, labels = c("A", "B", "C", "D"))
 #| fig-height: 6
 #| warning: false
  
-
 # add an `alpha` to the geom_density to sets the opacity of the density plots. 
 
-a <- ggplot(penguins, aes(x = body_mass_g, fill = species)) + 
-  geom_density(alpha = 0.5) + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Body Mass",
-         x = "Body Mass (g)",
-         y ="Density")
-
-b <- ggplot(penguins, aes(x = bill_length_mm, fill = species)) + 
-  geom_density(alpha = 0.5) + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Bill Length",
-         x = "Bill Length (mm)",
-         y ="Density")
 
 
-c <- ggplot(penguins, aes(x = bill_depth_mm, fill = species)) + 
-  geom_density(alpha = 0.5) + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Bill Depth",
-         x = "Bill Depth (mm)",
-         y ="Density")
 
-d <- ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + 
-  geom_density(alpha = 0.5) + 
-  theme_cowplot() +
-  labs(subtitle = "Distribution of Penguin Flipper Length",
-         x = "Flipper Length (mm)",
-         y ="Density")
 
-plot_grid(a,b,c,d, labels = c("A", "B", "C", "D"))
 ```
 
 
@@ -185,22 +106,12 @@ Another type of distribution and count data is of categorical data. Count data f
 taylor_album_songs$key <- str_sub(taylor_album_songs$key_name, 1, 1)
 taylor_album_songs$album_name <- fct_inorder(taylor_album_songs$album_name)
 
-# You can see both the difference in the number of songs per album, but also in the numbers in each key. 
+# Create a `geom_bar()` plot to show the distribution of different "key_name" across all the "album_name"
 
-ggplot(taylor_album_songs, aes(y = album_name, fill = key)) + 
-  geom_bar() +
-  theme_cowplot() +
-  labs(title = "Keys of TS albums",
-       x = "Count", 
-       y = "") + scale_fill_brewer(palette="Set2")
 
-# Now lest look at the proportions
-ggplot(taylor_album_songs, aes(y = album_name, fill = key)) + 
-  geom_bar(position = "fill") +
-  theme_cowplot() +
-  labs(title = "Keys of TS albums",
-       x = "Proportion", 
-       y = "") + scale_fill_brewer(palette="Set2")
+
+# Now lest look at the proportions instead of the count by adding `position = "fill"` to the geom_bar.
+
 
 ```
 
@@ -225,7 +136,7 @@ c <- ggplot(diamonds, aes(y = clarity, fill = clarity)) +
 
 plot_grid(a,b,c)
 
-# Which plots show the effect best?
+# What is the interpretation of each plot? 
 a1 <- ggplot(diamonds, aes(y = color, fill = cut)) + 
   geom_bar(position = "fill") +
   theme_cowplot() 
@@ -244,7 +155,7 @@ a4 <- ggplot(diamonds, aes(y = cut, fill = clarity)) +
   geom_bar(position = "fill") +
   theme_cowplot() 
 
-
+# Be careful about how you plot can shape your interpretation. Plot a lot of ways to make sure you understand your data. 
 
 plot_grid(a1, a2, a3, a4)
 ```
@@ -270,37 +181,18 @@ d <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + geom_
 plot_grid(a,b,c,d)
 ```
 ```{r}
-# make a nice plot
-ggplot(penguins, aes(x = species, y = bill_length_mm, fill = species)) + 
+# Now make a pretty version
+
+penguins |> drop_na(sex)|>
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) + 
   geom_boxplot(outlier.shape = NA) + 
-  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
-  theme_cowplot() +
-  ylim(30,60) +
-  labs(y = "Bill Length (mm)", x = "", subtitle = "Bill Length across Species")
-
-
-ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) + 
-  geom_boxplot(outlier.shape = NA) + 
-  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
-  theme_cowplot() +
-  ylim(10,25) +
-  labs(y = "Bill Depth (mm)", x = "", subtitle = "Bill Depth across Species")
-
-
-ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) + 
-  geom_boxplot(outlier.shape = NA) + 
-  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
-  theme_cowplot() +
-  ylim(150,250) +
-  labs(y = "Flipper Length (mm)", x = "", subtitle = "Flipper Length across Species")
-
-
-ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + 
-  geom_boxplot(outlier.shape = NA) + 
-  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
+  geom_point(size = 1.5, aes(shape = sex), position = position_jitter(width = 0.1)) +
   theme_cowplot() +
   ylim(2500,7000) +
   labs(y = "Mass (g)", x = "", subtitle = "Mass across Species")
+
+
+# Now make it for the other bill measurements (if you're feeling adventurous try geom_violin)
 
 ```
 
@@ -312,38 +204,12 @@ ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 ## Scatter and Line Plots 
 Looking at 2 continuous variables and their relationship to one another. 
 
-#### 7. Using the `iris` dataset use to find out the relationship between `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and Petal.Width` and how that relationship changes across different `Species` of iris flowers. 
+#### 7. Using the `iris` dataset use to find out the relationship between `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width` and how that relationship changes across different `Species` of iris flowers. 
 
 
 ```{r}
 
 iris |> head()
-
-
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) + 
-  geom_point() + 
-  geom_smooth(method = lm) +
-  theme_cowplot() +
-  labs( x = "Sepal Length (mm)", y= "Sepal Width (mm)")
-
-
-
-ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species, group = Species)) + 
-  geom_point() + 
-  geom_smooth(method = lm) +
-  theme_cowplot() +
-  labs( x = "Petal Length (mm)", y= "Petal Width (mm)")
-
-
-```
-
-
-#### 8. Now use the `ChickWeight` data to determine which `Diet` lead to the greatest `weight` gain over `Time.` Remember to take into account repeated measures across `Chick`
-
-
-```{r}
-
-
 
 
 ```
