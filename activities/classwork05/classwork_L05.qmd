@@ -13,12 +13,14 @@ editor_options:
 
 2)  Download the raw file.
 
-3) Open it in RStudio.
+3)  Open it in RStudio.
 
 We will work our way through this quarto document together during class. The activity will cover plotting data with ggplot2!
 
 ## Load the Packages
+
 The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. We will use data from the `palmerpenguins` and the `taylor` packages.
+
 ```{r}
 #| label: packages
 #| message: false
@@ -30,9 +32,11 @@ library(taylor)
 ```
 
 ## Histogram & Density plots
+
 Lets use the `palmerpenguins` data to plot some histograms. Histograms are good for evaluating the distribution of continuous data.
 
 #### 1. How would you describe the distribution? Is it uni-modal or bi-modal?
+
 ```{r}
 penguins |> head()
 
@@ -54,31 +58,96 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 # add some more labels
 
-ggplot(penguins, aes(x = body_mass_g)) + 
+a <- ggplot(penguins, aes(x = body_mass_g)) + 
   geom_histogram(binwidth = 50, fill = "deeppink") + 
   theme_cowplot() +
-  labs(title = "Distribution of Penguin Body Mass",
+  labs(subtitle = "Distribution of Penguin Body Mass",
          x = "Body Mass (g)",
          y ="Count")
 
 ```
 
 #### 2. Plot the other penguin bill and flipper measurements? What are their distribution? How does the binwidth change the interpretation of the distributions?
+
 ```{r}
 # try 3 others
 
+b <- ggplot(penguins, aes(x = bill_length_mm)) + 
+  geom_histogram(binwidth = 1, fill = "purple") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Length",
+         x = "Bill Length (mm)",
+         y ="Count")
 
+
+c <- ggplot(penguins, aes(x = bill_depth_mm)) + 
+  geom_histogram(binwidth = 0.3, fill = "springgreen") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Depth",
+         x = "Bill Depth (mm)",
+         y ="Count")
+
+d <- ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram(binwidth = 1, fill = "gold") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Flipper Length",
+         x = "Flipper Length (mm)",
+         y ="Count")
+
+plot_grid(a,b,c,d)
+
+
+ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_histogram(binwidth = 1, fill = "gold") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Flipper Length",
+         x = "Flipper Length (mm)",
+         y ="Count") +
+  facet_wrap(~sex)
 
 ```
 
 #### 3. A benefit of `geom_density()` is that the plots are not dependent on the binsize. Compare the `geom_histogram` and `geom_density()` plots for each data feature.
+
 ```{r}
+
+a <- ggplot(penguins, aes(x = body_mass_g)) + 
+  geom_density(fill = "deeppink") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Body Mass",
+         x = "Body Mass (g)",
+         y ="Density")
+
+b <- ggplot(penguins, aes(x = bill_length_mm)) + 
+  geom_density(fill = "purple") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Length",
+         x = "Bill Length (mm)",
+         y ="Density")
+
+
+c <- ggplot(penguins, aes(x = bill_depth_mm)) + 
+  geom_density(fill = "springgreen") + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Depth",
+         x = "Bill Depth (mm)",
+         y ="Density")
+
+d <- ggplot(penguins, aes(x = flipper_length_mm)) + 
+  geom_density(fill = "gold") + 
+  theme_classic() +
+  labs(subtitle = "Distribution of Penguin Flipper Length",
+         x = "Flipper Length (mm)",
+         y ="Density")
+
+plot_grid(a,b,c,d, labels = c("a", "b", "c", "d"))
 
 
 
 ```
 
-#### 4. Where do you think the bimodal distributions may come from? Lets check the distribution across different species. Add `fill = species` to the `aes()` so we can see how the distributions change across species of penguins. 
+#### 4. Where do you think the bimodal distributions may come from? Lets check the distribution across different species. Add `fill = species` to the `aes()` so we can see how the distributions change across species of penguins.
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 6
@@ -86,16 +155,45 @@ ggplot(penguins, aes(x = body_mass_g)) +
  
 # add an `alpha` to the geom_density to sets the opacity of the density plots. 
 
+a <- ggplot(penguins, aes(x = body_mass_g, fill = species)) + 
+  geom_density(alpha = 0.5) + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Body Mass",
+         x = "Body Mass (g)",
+         y ="Density") +
+  theme(legend.position = "none")
+
+b <- ggplot(penguins, aes(x = bill_length_mm, fill = species)) + 
+  geom_density(alpha = 0.5) + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Length",
+         x = "Bill Length (mm)",
+         y ="Density") +
+  theme(legend.position = "none")
 
 
+c <- ggplot(penguins, aes(x = bill_depth_mm, fill = species)) + 
+  geom_density(alpha = 0.5) + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Bill Depth",
+         x = "Bill Depth (mm)",
+         y ="Density") +
+  theme(legend.position = "none")
 
+d <- ggplot(penguins, aes(x = flipper_length_mm, fill = species)) + 
+  geom_density(alpha = 0.5) + 
+  theme_cowplot() +
+  labs(subtitle = "Distribution of Penguin Flipper Length",
+         x = "Flipper Length (mm)",
+         y ="Density") +
+  theme(legend.position = "none")
+
+plot_grid(a,b,c,d, labels = c("A", "B", "C", "D"))
 
 ```
 
-
-
-
 ## Barplots of Categorical data
+
 Another type of distribution and count data is of categorical data. Count data for categorical data is best displayed in barplots
 
 ```{r}
@@ -107,16 +205,30 @@ taylor_album_songs$key <- str_sub(taylor_album_songs$key_name, 1, 1)
 taylor_album_songs$album_name <- fct_inorder(taylor_album_songs$album_name)
 
 # Create a `geom_bar()` plot to show the distribution of different "key_name" across all the "album_name"
+glimpse(taylor_album_songs)
 
+ggplot(taylor_album_songs, aes(x = key_name)) + geom_bar()
+ggplot(taylor_album_songs, aes(x = key_name, fill = album_name)) + geom_bar()
+
+ggplot(taylor_album_songs, aes(y = album_name, fill = key_name)) + geom_bar()
+
+taylor_album_songs |> drop_na(key) |>
+  ggplot(aes(y = album_name, fill = key)) + geom_bar()
 
 
 # Now lest look at the proportions instead of the count by adding `position = "fill"` to the geom_bar.
 
+taylor_album_songs |> drop_na(key) |>
+  ggplot(aes(y = album_name, fill = key)) + 
+  geom_bar(position = "fill")
+
 
 ```
 
-#### 5. What factors distinguish Ideal cut versus Good cut diamonds? 
+#### 5. What factors distinguish Ideal cut versus Good cut diamonds?
+
 Using the `diamonds` dataset, determine the distribution of the `cut`, `color`, and `clarity` of diamonds.
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 7
@@ -160,13 +272,13 @@ a4 <- ggplot(diamonds, aes(y = cut, fill = clarity)) +
 plot_grid(a1, a2, a3, a4)
 ```
 
+## Boxplots!
 
-## Boxplots! 
 The best way to view group differences.
 
-#### 6. Does the bill length and depth, the flipper length, or the body mass differ across species of penguins? 
+#### 6. Does the bill length and depth, the flipper length, or the body mass differ across species of penguins?
 
-Using the `penguins` dataset use geom_boxplot() to find out if there is a difference in the penguin features between different species of penguins 
+Using the `penguins` dataset use geom_boxplot() to find out if there is a difference in the penguin features between different species of penguins
 
 ```{r}
 #| fig-width: 8
@@ -180,19 +292,47 @@ d <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) + geom_
 
 plot_grid(a,b,c,d)
 ```
+
 ```{r}
 # Now make a pretty version
 
+# make a nice plot
 penguins |> drop_na(sex)|>
-  ggplot(aes(x = species, y = body_mass_g, fill = species)) + 
+  ggplot(aes(x = species, y = bill_length_mm, fill = species)) + 
   geom_boxplot(outlier.shape = NA) + 
-  geom_point(size = 1.5, aes(shape = sex), position = position_jitter(width = 0.1)) +
+  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
+  theme_cowplot() +
+  ylim(30,60) +
+  labs(y = "Bill Length (mm)", x = "", subtitle = "Bill Length across Species")
+
+
+penguins |> drop_na(sex)|>
+  ggplot( aes(x = species, y = bill_depth_mm, fill = species)) + 
+  geom_boxplot(outlier.shape = NA) + 
+  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
+  theme_cowplot() +
+  ylim(10,25) +
+  labs(y = "Bill Depth (mm)", x = "", subtitle = "Bill Depth across Species")
+
+
+penguins |> drop_na(sex)|>
+  ggplot( aes(x = species, y = flipper_length_mm, fill = species)) + 
+  geom_boxplot(outlier.shape = NA) + 
+  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
+  theme_cowplot() +
+  ylim(150,250) +
+  labs(y = "Flipper Length (mm)", x = "", subtitle = "Flipper Length across Species")
+
+
+penguins |> drop_na(sex)|>
+  ggplot( aes(x = species, y = body_mass_g, fill = species)) + 
+  geom_boxplot(outlier.shape = NA) + 
+  geom_point(size = 2, aes(shape = sex), position = position_jitter(width = 0.1)) +
   theme_cowplot() +
   ylim(2500,7000) +
   labs(y = "Mass (g)", x = "", subtitle = "Mass across Species")
 
 
-# Now make it for the other bill measurements (if you're feeling adventurous try geom_violin)
 
 ```
 
@@ -200,33 +340,54 @@ penguins |> drop_na(sex)|>
 
 **Note: `geom_violin()` can also be a good alternative to a boxplot if you have a very large sample size, such as in single cell RNA sequencing or flow cytometry data. Try the plots as a `geom_violin()` instead of `geom_boxplot()`.**
 
+## Scatter and Line Plots
 
-## Scatter and Line Plots 
-Looking at 2 continuous variables and their relationship to one another. 
+Looking at 2 continuous variables and their relationship to one another.
 
-#### 7. Using the `iris` dataset use to find out the relationship between `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width` and how that relationship changes across different `Species` of iris flowers. 
-
+#### 7. Using the `iris` dataset use to find out the relationship between `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width` and how that relationship changes across different `Species` of iris flowers.
 
 ```{r}
 
 iris |> head()
 
 
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  theme_cowplot() +
+  labs( x = "Sepal Length (mm)", y= "Sepal Width (mm)")
+
+
+
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species, group = Species)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  theme_cowplot() +
+  labs( x = "Petal Length (mm)", y= "Petal Width (mm)")
+
+
+
 ```
 
-
 #### 8. Use a Scatterplot to plot all 4 features of the penguins dataset across species
+
 ```{r}
 glimpse(penguins)
 
-penguins |> ggplot(aes(
-  x = , 
-  y = , 
-  color = , 
-  size = , 
-  shape = )) + 
+penguins |> ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = flipper_length_mm, size = body_mass_g, shape = species)) + 
   geom_point() +
   scale_color_viridis_c()
+
+penguins |> drop_na(sex) |>
+  ggplot(aes(
+  x = bill_length_mm, 
+  y = bill_depth_mm, 
+  color = flipper_length_mm, 
+  size = body_mass_g, 
+  shape = species)) + 
+  geom_point() +
+  scale_color_viridis_c() +
+  facet_wrap(~sex)
 
 
 
