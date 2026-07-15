@@ -217,5 +217,18 @@ iris |> head()
 
 #### 8. Use a Scatterplot to plot all 4 features of the penguins dataset across species
 ```{r}
+glimpse(penguins)
+
+penguins |> ggplot(aes(
+  x = , 
+  y = , 
+  color = , 
+  size = , 
+  shape = )) + 
+  geom_point() +
+  scale_color_viridis_c()
+
+
+
 
 ```
