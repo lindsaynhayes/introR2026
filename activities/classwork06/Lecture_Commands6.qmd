@@ -1,0 +1,150 @@
+---
+title: "Lecture Commands - Loops"
+description: "commands used in lecture"
+author: "Lindsay N. Hayes"
+date: 2026-07-17
+draft: true
+editor_options: 
+  chunk_output_type: console
+eval: false
+---
+
+# Lecture
+
+```{r}
+library(tidyverse)
+library(cowplot)
+```
+
+
+## if & else
+```{r}
+eggs <- TRUE # Whether there were eggs in the store
+
+if (eggs == TRUE) {n.milk <- 6} else {n.milk <- 1} 
+
+n.milk
+
+```
+
+
+## ifelse
+```{r}
+eggs <- TRUE
+n.milk <- ifelse(eggs == TRUE, yes = 6, no = 1)
+n.milk
+
+
+eggs <- sample(c(rep(TRUE, 7), rep(FALSE, 3)), 10 ,replace = F)
+df <- data.frame(eggs)
+df
+df$n.milk <- ifelse(df$eggs == TRUE, yes = 6, no = 1)
+df
+
+
+# this fails because its more than 1 line
+if (df$eggs == TRUE) {df$n.milk <- 6} else {df$n.milk <- 1} 
+
+```
+
+```{r}
+mtcars$efficient <- ifelse(mtcars$mpg > 20, "yes", "no")
+table(mtcars$efficient)
+
+mtcars$cat <- ifelse(mtcars$mpg > 25, "high",
+              ifelse(mtcars$mpg > 15, "medium", "low"))
+table(mtcars$cat)
+
+
+```
+
+## mutate & case_when
+```{r}
+library(dplyr)
+mtcars <- mtcars |> 
+  mutate(cat = case_when(
+    			mpg > 25 ~ "high",
+    			mpg > 15 ~ "medium",
+    			.default = "low"))
+
+table(mtcars$cat)
+
+# mutate is only going to modify the existing dataframe
+
+```
+
+## for loop
+```{r}
+mpg_category <- character(nrow(mtcars)) # create an empty vector
+
+for (i in 1:nrow(mtcars)) {
+  if (mtcars$mpg[i] > 25) {
+    mpg_category[i] <- "high"} 
+  else if (mtcars$mpg[i] > 15) {
+    mpg_category[i] <- "medium"} 
+  else {
+    mpg_category[i] <- "low"}
+}
+
+table(mpg_category)
+
+
+```
+
+## column-wise iterations
+```{r}
+# df is a matrix with 4 columns of data
+df <- matrix(rnorm(200,10), nrow = 50, ncol = 4)
+colnames(df) <- c("one", "two", "three", "four")
+df <- as.data.frame(df)
+df
+
+output <- vector("double", ncol(df))   # 1. output
+names(output) <- colnames(df)
+
+for (i in 1:ncol(df)) {                # 2. sequence
+  output[i] <- median(df[,i])          # 3. body
+}
+
+output
+
+
+
+```
+
+
+## purr
+```{r}
+library(purrr)
+
+map_dbl(df, median)
+
+
+df$group <- rep(c("CON", "EXP"), each = 25)
+df
+
+df |> select_if(is.numeric) |>
+  map(~t.test(. ~ df$group)$p.value)
+
+```
+
+## functions
+```{r}
+NameFunction <- function(argument1, argument2, ...) {expression}
+multiply_columns <- function(x, y) {return(x * y)}
+
+multiply_columns <- function(x, y) {
+  temp_var <- x * y
+  if (any(is.na(temp_var))) {
+    warning("The function has produced NAs")
+    return(temp_var)} 
+  else {return(temp_var)}
+}
+
+multiply_columns(df$one, df$two)
+
+df |> mutate(mp = one*two) |> select(mp)
+
+```
+
+

@@ -26,8 +26,6 @@ The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plo
 
 library(tidyverse)
 library(cowplot)
-library(palmerpenguins)
-library(taylor)
 ```
 
 
@@ -59,6 +57,11 @@ print(p)
 ```
 
 ### try it with some other genes of your interest, try saving the outputs
+```{r}
+
+
+
+```
 
 
 
@@ -69,6 +72,7 @@ total_files=list.files("data_files/")
 total_files
 
 df<-read.csv(paste0("data_files/", total_files[1]), header = FALSE)
+head(df)
 
 for(i in 2:length(total_files)){
   tmp <- read.csv(paste0("data_files/", total_files[i]), header=FALSE)
@@ -76,17 +80,20 @@ for(i in 2:length(total_files)){
   print(i)
 }
 colnames(df) <- c("filename","no.intersections","radius.um","x")
-head(df)
+dim(df)
 # write.csv(df,"data/Sholl.csv")
 ```
 
 ```{r}
 ## Tidyverse Version
 
-paths <- list.files("data_files/", full.names = TRUE)
-df2 <- paths |> map(\(path) read_csv(path, col_names = FALSE)) |> list_rbind() # \(x) is called an anonymous function
-colnames(df2) <- c("filename","no.intersections","radius.um","x")
+paths <- list.files("data_files", full.names = TRUE)
+paths
 
+# \(x) is called an anonymous function
+df2 <- paths |> map(\(path) read_csv(path, col_names = FALSE)) |> list_rbind() 
+
+dim(df2)
 ## this is wildly tidy, just 3 lines!
 ```
 
@@ -111,9 +118,9 @@ colnames(df) <- c("baseMean.CON","log2FC.CON","lfcSE.CON","stat.CON","pval.CON",
 # lets take a look before we create groups
 
 ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = padj.CON)) + geom_point() + theme_cowplot()
-ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = padj.EXP)) + geom_point() + theme_cowplot()
 
 # now we are ready to create our groups!
+glimpse(df)
 
 tmp <- df |> mutate(cat = case_when(
                    padj.CON < 0.05 & padj.EXP > 0.05 ~ "CON only",
@@ -125,8 +132,8 @@ table(tmp$cat)
 # There are NAs generated in the data analysis so this can be inaccurate we can write a more careful version
 
 df <- df |> mutate(CON.sig = ifelse(padj.CON < 0.05 & !is.na(padj.CON), "YES", "NO"),
-                    EXP.sig = ifelse(padj.EXP < 0.05 & !is.na(padj.EXP), "YES", "NO"),
-                    cat = case_when(CON.sig == "YES" & EXP.sig == "NO" ~ "CON only",
+                   EXP.sig = ifelse(padj.EXP < 0.05 & !is.na(padj.EXP), "YES", "NO"),
+                   cat = case_when(CON.sig == "YES" & EXP.sig == "NO" ~ "CON only",
                                     CON.sig == "NO" & EXP.sig == "YES" ~ "EXP only",
                                     CON.sig == "YES" & EXP.sig == "YES" ~ "both",
                                     .default = "neither"))
