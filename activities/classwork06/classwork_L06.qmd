@@ -150,7 +150,7 @@ df |> filter(cat != "neither") |>
 ```
 
 
-### Now write a loop to identify the genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
+### Now write a loop to identify the significant genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
 
 ```{r}
 
