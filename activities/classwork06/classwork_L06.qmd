@@ -37,7 +37,7 @@ norm.counts <- read.csv("norm.counts.csv", row.names = 1)
 norm.counts[1:5,1:6]
 
 ## Generate Plot Loop
-goi <- c("P2ry12", "Hexb", "C1qa", "Cst3")
+goi <- c("Dat")
 
 for (i in goi){
 pgene = which(row.names(norm.counts) == i)
@@ -145,18 +145,36 @@ ggplot(df, aes(x = log2FC.CON, log2FC.EXP, color = cat)) + geom_point() + theme_
 
 # the neither is in the way lets clear it out
 df |> filter(cat != "neither") |>
-  ggplot(aes(x = log2FC.CON, log2FC.EXP, color = cat)) + geom_point() + theme_cowplot()
+  ggplot(aes(x = log2FC.CON, log2FC.EXP, color = cat)) + geom_point() + theme_cowplot() +
+  geom_hline(yintercept = 5) +
+  geom_vline(xintercept = 5)
 
 ```
 
 
-### Now write a loop to identify the significant genes that are up-regulated > 3x fold change and DE in either both groups, only control, or only exp
+### Now write a loop to identify the significant genes that are up-regulated > 5x fold change and DE in either both groups, only control, or only exp
 
 ```{r}
 
+# tidy version
+df |> mutate(keep = log2FC.CON >5 | log2FC.EXP>5) |> count(keep, cat)
+
+# most right version
+df |> mutate(Up5xsig = case_when(cat == "CON only" & log2FC.CON > 5  ~ "UP in CON, sig CON",
+                                 cat == "EXP only" & log2FC.EXP > 5  ~ "UP in EXP, sig EXP",
+                                 cat == "both"     & log2FC.CON > 5  ~ "UP in CON, DE both",
+                                 cat == "both"     & log2FC.EXP > 5  ~ "UP in EXP, DE both",
+                                 .default = "neither")) |>
+      count(Up5xsig)
 
 
+df<-df |> mutate(Up5xsig = case_when(cat == "CON only" & log2FC.CON > 5  ~ "UP in CON, sig CON",
+                                 cat == "EXP only" & log2FC.EXP > 5  ~ "UP in EXP, sig EXP",
+                                 cat == "both"     & log2FC.CON > 5  ~ "UP in CON, DE both",
+                                 cat == "both"     & log2FC.EXP > 5  ~ "UP in EXP, DE both",
+                                 .default = "neither"))
 
+df$gene.name[which(df$Up5xsig != "neither")]
 ```
 
 

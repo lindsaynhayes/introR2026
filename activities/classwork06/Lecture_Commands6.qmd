@@ -19,7 +19,7 @@ library(cowplot)
 
 ## if & else
 ```{r}
-eggs <- TRUE # Whether there were eggs in the store
+eggs <- FALSE # Whether there were eggs in the store
 
 if (eggs == TRUE) {n.milk <- 6} else {n.milk <- 1} 
 
@@ -30,7 +30,7 @@ n.milk
 
 ## ifelse
 ```{r}
-eggs <- TRUE
+eggs <- FALSE
 n.milk <- ifelse(eggs == TRUE, yes = 6, no = 1)
 n.milk
 
@@ -78,6 +78,7 @@ table(mtcars$cat)
 mpg_category <- character(nrow(mtcars)) # create an empty vector
 
 for (i in 1:nrow(mtcars)) {
+  print(i)
   if (mtcars$mpg[i] > 25) {
     mpg_category[i] <- "high"} 
   else if (mtcars$mpg[i] > 15) {
@@ -103,6 +104,7 @@ output <- vector("double", ncol(df))   # 1. output
 names(output) <- colnames(df)
 
 for (i in 1:ncol(df)) {                # 2. sequence
+  print(i)
   output[i] <- median(df[,i])          # 3. body
 }
 
@@ -124,7 +126,7 @@ df$group <- rep(c("CON", "EXP"), each = 25)
 df
 
 df |> select_if(is.numeric) |>
-  map(~t.test(. ~ df$group)$p.value)
+  map(~t.test(. ~ df$group))
 
 ```
 
