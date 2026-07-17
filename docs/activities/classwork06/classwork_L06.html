@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#read-in-a-multiple-files" id="toc-read-in-a-multiple-files" class="nav-link" data-scroll-target="#read-in-a-multiple-files">Read in a multiple files</a></li>
   <li><a href="#mutate-to-assign-degs" id="toc-mutate-to-assign-degs" class="nav-link" data-scroll-target="#mutate-to-assign-degs">mutate to assign DEGs</a>
   <ul class="collapse">
-  <li><a href="#now-write-a-loop-to-identify-the-genes-that-are-up-regulated-3x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" id="toc-now-write-a-loop-to-identify-the-genes-that-are-up-regulated-3x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" class="nav-link" data-scroll-target="#now-write-a-loop-to-identify-the-genes-that-are-up-regulated-3x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp">Now write a loop to identify the genes that are up-regulated &gt; 3x fold change and DE in either both groups, only control, or only exp</a></li>
+  <li><a href="#now-write-a-loop-to-identify-the-significant-genes-that-are-up-regulated-5x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" id="toc-now-write-a-loop-to-identify-the-significant-genes-that-are-up-regulated-5x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" class="nav-link" data-scroll-target="#now-write-a-loop-to-identify-the-significant-genes-that-are-up-regulated-5x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp">Now write a loop to identify the significant genes that are up-regulated &gt; 5x fold change and DE in either both groups, only control, or only exp</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -256,60 +256,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load Sample Data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>norm.counts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"norm.counts.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>norm.counts[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                   MA01        MA02       MA03      MA04       MA05       MA06
-0610005C13Rik   0.00000    0.000000   1.490984   0.00000   8.958237   8.644648
-0610009B22Rik 711.79739 1128.370079 545.172232 657.00195 483.477864 704.040018
-0610009E02Rik  11.22142    3.121206   0.000000   0.00000  29.754923  18.953182
-0610009L18Rik  61.81119   26.001512  32.207597  15.02679  16.246837  34.932658
-0610010F05Rik 790.92106  331.750066 475.831510 569.68964 624.273693 758.372701</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate Plot Loop</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>goi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"P2ry12"</span>, <span class="st">"Hexb"</span>, <span class="st">"C1qa"</span>, <span class="st">"Cst3"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> goi){</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>pgene <span class="ot">=</span> <span class="fu">which</span>(<span class="fu">row.names</span>(norm.counts) <span class="sc">==</span> i)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(norm.counts[pgene,]))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"CON"</span>, <span class="st">"EXP"</span>), <span class="at">each =</span> <span class="dv">24</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(group, exp)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> exp, <span class="at">fill =</span> group)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflowerblue"</span>, <span class="st">"magenta3"</span>)) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> i) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"normalized expression"</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename=paste("plots/", i,".jpeg", sep = ""), width = 80, height = 80, units = "mm")</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>norm.counts[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate Plot Loop</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>goi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Dat"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> goi){</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>pgene <span class="ot">=</span> <span class="fu">which</span>(<span class="fu">row.names</span>(norm.counts) <span class="sc">==</span> i)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(norm.counts[pgene,]))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"CON"</span>, <span class="st">"EXP"</span>), <span class="at">each =</span> <span class="dv">24</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(group, exp)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> exp, <span class="at">fill =</span> group)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflowerblue"</span>, <span class="st">"magenta3"</span>)) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> i) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"normalized expression"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename=paste("plots/", i,".jpeg", sep = ""), width = 80, height = 80, units = "mm")</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="try-it-with-some-other-genes-of-your-interest-try-saving-the-outputs" class="level3">
 <h3 class="anchored" data-anchor-id="try-it-with-some-other-genes-of-your-interest-try-saving-the-outputs">try it with some other genes of your interest, try saving the outputs</h3>
@@ -319,211 +284,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="read-in-a-multiple-files">Read in a multiple files</h2>
 <p>This kind of loop is useful when you generated hundreds of files that need to be pooled together into one master data sheet. Such as in image analysis with ImageJ or Imaris.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>total_files<span class="ot">=</span><span class="fu">list.files</span>(<span class="st">"data_files/"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>total_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "21-1_2_100x_HPC1_CA1_c1_Detailed.csv.trim.csv"
-[2] "21-1_2_100x_HPC1_DG1_c1_Detailed.csv.trim.csv"
-[3] "21-1_2_100x_HPC2_CA2_c1_Detailed.csv.trim.csv"
-[4] "21-1_2_100x_HPC2_CA2_c2_Detailed.csv.trim.csv"
-[5] "21-1_2_100x_HPC2_DG2_c1_Detailed.csv.trim.csv"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"data_files/"</span>, total_files[<span class="dv">1</span>]), <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                                                                                                   V1
-1 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-2 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-3 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-4 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-5 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-6 ./240715_MG/21-01-02/Imaris/21-1-2_100x_HPC1_CA1_c1_Statistics/21-1_2_100x_HPC1_CA1_c1_Detailed.csv
-  V2 V3        V4
-1  0  0 100000000
-2  0  1 100000000
-3  0  2 100000000
-4  5  3 100000000
-5  8  4 100000000
-6 10  5 100000000</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(total_files)){</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"data_files/"</span>, total_files[i]), <span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, tmp)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2
-[1] 3
-[1] 4
-[1] 5</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"filename"</span>,<span class="st">"no.intersections"</span>,<span class="st">"radius.um"</span>,<span class="st">"x"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 210   4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write.csv(df,"data/Sholl.csv")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>total_files<span class="ot">=</span><span class="fu">list.files</span>(<span class="st">"data_files/"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>total_files</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"data_files/"</span>, total_files[<span class="dv">1</span>]), <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(total_files)){</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"data_files/"</span>, total_files[i]), <span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, tmp)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"filename"</span>,<span class="st">"no.intersections"</span>,<span class="st">"radius.um"</span>,<span class="st">"x"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># write.csv(df,"data/Sholl.csv")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Tidyverse Version</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data_files"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>paths</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "data_files/21-1_2_100x_HPC1_CA1_c1_Detailed.csv.trim.csv"
-[2] "data_files/21-1_2_100x_HPC1_DG1_c1_Detailed.csv.trim.csv"
-[3] "data_files/21-1_2_100x_HPC2_CA2_c1_Detailed.csv.trim.csv"
-[4] "data_files/21-1_2_100x_HPC2_CA2_c2_Detailed.csv.trim.csv"
-[5] "data_files/21-1_2_100x_HPC2_DG2_c1_Detailed.csv.trim.csv"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># \(x) is called an anonymous function</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> paths <span class="sc">|&gt;</span> <span class="fu">map</span>(\(path) <span class="fu">read_csv</span>(path, <span class="at">col_names =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span> <span class="fu">list_rbind</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 39 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): X1
-dbl (3): X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 47 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): X1
-dbl (3): X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 33 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): X1
-dbl (3): X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 52 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): X1
-dbl (3): X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Rows: 39 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): X1
-dbl (3): X2, X3, X4
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 210   4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## this is wildly tidy, just 3 lines!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Tidyverse Version</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data_files"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>paths</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># \(x) is called an anonymous function</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> paths <span class="sc">|&gt;</span> <span class="fu">map</span>(\(path) <span class="fu">read_csv</span>(path, <span class="at">col_names =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span> <span class="fu">list_rbind</span>() </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df2)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## this is wildly tidy, just 3 lines!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="mutate-to-assign-degs" class="level2">
 <h2 class="anchored" data-anchor-id="mutate-to-assign-degs">mutate to assign DEGs</h2>
 <p>In the next example, we have 2 sets of differentially expressed genes between treated and untreated for example. We want to see what our control and experimental groups have in common or differences in their response to treatment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first read in the data</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"deg_con.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"deg_exp.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this is typical data you get from a differential expression analysis with fold change, stat, pvalue, and adjusted p-value. </span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets combine the two dataframes</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">rownames</span>(con), <span class="fu">rownames</span>(exp)) <span class="co"># first check that the rows are properly aligned</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first read in the data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"deg_con.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"deg_exp.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this is typical data you get from a differential expression analysis with fold change, stat, pvalue, and adjusted p-value. </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets combine the two dataframes</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">rownames</span>(con), <span class="fu">rownames</span>(exp)) <span class="co"># first check that the rows are properly aligned</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(con, exp) <span class="co"># combine both analyses into one dataframe, use inner_join() if the rows don't match perfectly.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>gene.name <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#rename the columns to be more useful</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"baseMean.CON"</span>,<span class="st">"log2FC.CON"</span>,<span class="st">"lfcSE.CON"</span>,<span class="st">"stat.CON"</span>,<span class="st">"pval.CON"</span>,<span class="st">"padj.CON"</span>,<span class="st">"baseMean.EXP"</span>,<span class="st">"log2FC.EXP"</span>,<span class="st">"lfcSE.EXP"</span>,<span class="st">"stat.EXP"</span>,<span class="st">"pval.EXP"</span>,<span class="st">"padj.EXP"</span>, <span class="st">"gene.name"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lets take a look before we create groups</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> padj.CON)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># now we are ready to create our groups!</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&gt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"CON only"</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&gt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"EXP only"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"both"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.default =</span> <span class="st">"neither"</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tmp<span class="sc">$</span>cat)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># There are NAs generated in the data analysis so this can be inaccurate we can write a more careful version</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">CON.sig =</span> <span class="fu">ifelse</span>(padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(padj.CON), <span class="st">"YES"</span>, <span class="st">"NO"</span>),</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                   <span class="at">EXP.sig =</span> <span class="fu">ifelse</span>(padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(padj.EXP), <span class="st">"YES"</span>, <span class="st">"NO"</span>),</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cat =</span> <span class="fu">case_when</span>(CON.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"NO"</span> <span class="sc">~</span> <span class="st">"CON only"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>                                    CON.sig <span class="sc">==</span> <span class="st">"NO"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">~</span> <span class="st">"EXP only"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                                    CON.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">~</span> <span class="st">"both"</span>,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">.default =</span> <span class="st">"neither"</span>))</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>cat)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># lets plot it now that we have the group</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> cat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># the neither is in the way lets clear it out</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(cat <span class="sc">!=</span> <span class="st">"neither"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> cat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(con, exp) <span class="co"># combine both analyses into one dataframe, use inner_join() if the rows don't match perfectly.</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>gene.name <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#rename the columns to be more useful</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"baseMean.CON"</span>,<span class="st">"log2FC.CON"</span>,<span class="st">"lfcSE.CON"</span>,<span class="st">"stat.CON"</span>,<span class="st">"pval.CON"</span>,<span class="st">"padj.CON"</span>,<span class="st">"baseMean.EXP"</span>,<span class="st">"log2FC.EXP"</span>,<span class="st">"lfcSE.EXP"</span>,<span class="st">"stat.EXP"</span>,<span class="st">"pval.EXP"</span>,<span class="st">"padj.EXP"</span>, <span class="st">"gene.name"</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># lets take a look before we create groups</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> padj.CON)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<section id="now-write-a-loop-to-identify-the-significant-genes-that-are-up-regulated-5x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" class="level3">
+<h3 class="anchored" data-anchor-id="now-write-a-loop-to-identify-the-significant-genes-that-are-up-regulated-5x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp">Now write a loop to identify the significant genes that are up-regulated &gt; 5x fold change and DE in either both groups, only control, or only exp</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy version</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">keep =</span> log2FC.CON <span class="sc">&gt;</span><span class="dv">5</span> <span class="sc">|</span> log2FC.EXP<span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">count</span>(keep, cat)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># most right version</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Up5xsig =</span> <span class="fu">case_when</span>(cat <span class="sc">==</span> <span class="st">"CON only"</span> <span class="sc">&amp;</span> log2FC.CON <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in CON, sig CON"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"EXP only"</span> <span class="sc">&amp;</span> log2FC.EXP <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in EXP, sig EXP"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"both"</span>     <span class="sc">&amp;</span> log2FC.CON <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in CON, DE both"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"both"</span>     <span class="sc">&amp;</span> log2FC.EXP <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in EXP, DE both"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.default =</span> <span class="st">"neither"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">count</span>(Up5xsig)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Up5xsig =</span> <span class="fu">case_when</span>(cat <span class="sc">==</span> <span class="st">"CON only"</span> <span class="sc">&amp;</span> log2FC.CON <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in CON, sig CON"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"EXP only"</span> <span class="sc">&amp;</span> log2FC.EXP <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in EXP, sig EXP"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"both"</span>     <span class="sc">&amp;</span> log2FC.CON <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in CON, DE both"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                 cat <span class="sc">==</span> <span class="st">"both"</span>     <span class="sc">&amp;</span> log2FC.EXP <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="sc">~</span> <span class="st">"UP in EXP, DE both"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.default =</span> <span class="st">"neither"</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>gene.name[<span class="fu">which</span>(df<span class="sc">$</span>Up5xsig <span class="sc">!=</span> <span class="st">"neither"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now we are ready to create our groups!</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 14,237
-Columns: 13
-$ baseMean.CON &lt;dbl&gt; 6.142801, 749.853572, 10.508865, 31.732609, 453.365498, 1…
-$ log2FC.CON   &lt;dbl&gt; -0.858954033, 0.005288497, 0.327062754, 0.878185274, 0.16…
-$ lfcSE.CON    &lt;dbl&gt; 1.3601938, 0.1557986, 0.9230543, 0.3719718, 0.2367920, 0.…
-$ stat.CON     &lt;dbl&gt; -0.63149385, 0.03394443, 0.35432669, 2.36089238, 0.704491…
-$ pval.CON     &lt;dbl&gt; 5.277177e-01, 9.729215e-01, 7.230941e-01, 1.823102e-02, 4…
-$ padj.CON     &lt;dbl&gt; 0.7433174202, 0.9889029387, 0.8683239137, 0.0800660078, 0…
-$ baseMean.EXP &lt;dbl&gt; 6.142801, 749.853572, 10.508865, 31.732609, 453.365498, 1…
-$ log2FC.EXP   &lt;dbl&gt; -0.049624368, -0.198380515, 3.467992325, 0.371120933, 0.3…
-$ lfcSE.EXP    &lt;dbl&gt; 1.29870100, 0.15120754, 1.05880386, 0.35804024, 0.2284908…
-$ stat.EXP     &lt;dbl&gt; -0.03821077, -1.31197506, 3.27538694, 1.03653414, 1.49694…
-$ pval.EXP     &lt;dbl&gt; 9.695196e-01, 1.895285e-01, 1.055173e-03, 2.999530e-01, 1…
-$ padj.EXP     &lt;dbl&gt; 9.910278e-01, 5.122794e-01, 1.486400e-02, 6.417386e-01, 4…
-$ gene.name    &lt;chr&gt; "0610005C13Rik", "0610009B22Rik", "0610009E02Rik", "06100…</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&gt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"CON only"</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&gt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"EXP only"</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                   padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"both"</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.default =</span> <span class="st">"neither"</span>))</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tmp<span class="sc">$</span>cat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    both CON only EXP only  neither 
-    1080     1524      392    11241 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are NAs generated in the data analysis so this can be inaccurate we can write a more careful version</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">CON.sig =</span> <span class="fu">ifelse</span>(padj.CON <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(padj.CON), <span class="st">"YES"</span>, <span class="st">"NO"</span>),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">EXP.sig =</span> <span class="fu">ifelse</span>(padj.EXP <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(padj.EXP), <span class="st">"YES"</span>, <span class="st">"NO"</span>),</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cat =</span> <span class="fu">case_when</span>(CON.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"NO"</span> <span class="sc">~</span> <span class="st">"CON only"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                                    CON.sig <span class="sc">==</span> <span class="st">"NO"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">~</span> <span class="st">"EXP only"</span>,</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                                    CON.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">&amp;</span> EXP.sig <span class="sc">==</span> <span class="st">"YES"</span> <span class="sc">~</span> <span class="st">"both"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">.default =</span> <span class="st">"neither"</span>))</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>cat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    both CON only EXP only  neither 
-    1080     1524      400    11233 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets plot it now that we have the group</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> cat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the neither is in the way lets clear it out</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(cat <span class="sc">!=</span> <span class="st">"neither"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> log2FC.CON, log2FC.EXP, <span class="at">color =</span> cat)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="classwork_L06_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="now-write-a-loop-to-identify-the-genes-that-are-up-regulated-3x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp" class="level3">
-<h3 class="anchored" data-anchor-id="now-write-a-loop-to-identify-the-genes-that-are-up-regulated-3x-fold-change-and-de-in-either-both-groups-only-control-or-only-exp">Now write a loop to identify the genes that are up-regulated &gt; 3x fold change and DE in either both groups, only control, or only exp</h3>
 
 
 </section>

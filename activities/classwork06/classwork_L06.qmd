@@ -3,6 +3,7 @@ title: "Iterations and Conditional Statements"
 author: "Lindsay N. Hayes"
 date: 2026-07-17
 draft: false
+eval: false
 editor_options: 
   chunk_output_type: console
 ---
