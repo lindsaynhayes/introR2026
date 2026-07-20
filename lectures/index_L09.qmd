@@ -3,7 +3,7 @@ title: "Building a Quarto Website and Using GitHub"
 author: 
   - name: Eleana Cabello
 date: 2026-07-24
-draft: true
+draft: false
 ---
 
 # Pre-lecture activities
@@ -27,4 +27,4 @@ Before class, complete the tasks listed in the [pre-reading materials](/readings
 
 ## Slides
 
--   [Lecture 09: Building a Quarto Website and Using GitHub]()
+-   [Lecture 09: Building a Quarto Website and Using GitHub](https://docs.google.com/presentation/d/1bSFU_7b-FuMKt67UOpjzPAulceG7h-DNkWac2nQF7xg/edit?usp=sharing)

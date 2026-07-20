@@ -3,7 +3,7 @@ title: "Building a Quarto Website and Using GitHub"
 author: "Eleana Cabello"
 date: 2026-07-24
 format: revealjs
-draft: false
+draft: true
 slide-number: true
 title-slide-attributes:
   data-background-image: figures/template/title_2.png

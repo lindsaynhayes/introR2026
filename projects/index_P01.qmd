@@ -21,8 +21,8 @@ The goal of the final project is to give you an opportunity to put these skills 
 
 ::: {.callout-important}
 
-- Submit a brief paragraph of your project proposal on the google form by July 22, 2026.
-- Present your project proposal in 2-3 sentences to the class on July 24, 2026.
+- Submit a brief paragraph of your project proposal on the google form by July 24, 2026.
+- Present your project proposal in 2-3 sentences to the class on July 27, 2026.
 
 :::
 
@@ -36,7 +36,7 @@ Below are key dates and deadlines:
 ```{=html}
 <table style="width:100%">
     <tr>
-    <th style="width:20%">07/22/26</th>
+    <th style="width:20%">07/24/26</th>
     <th style="width:30%">Project Proposal</th>
     <th style="width:50%"> <b>DUE</b>: Brief paragraph on the data set you will be using for the project including goals of the analysis</th>
     </tr>
