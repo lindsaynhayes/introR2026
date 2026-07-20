@@ -18,6 +18,17 @@ editor_options:
 We will work our way through this quarto document together during class. The activity will cover Principal Component Analysis (PCA) and UMAP using tidymodels.
 
 
+## Install Tidymodels
+```{r}
+#| message: false
+#| error: false
+#| eval: false
+
+install.packages("tidymodels")
+
+```
+
+
 ## Load the Packages
 ```{r}
 #| message: false
@@ -190,6 +201,7 @@ glimpse(penguins)
 penguin_recipe <-
   recipe(species ~ ., data = penguins) |> 
   update_role(species, island, sex, new_role = "id") |> 
+  step_rm(year) |>
   step_naomit(all_predictors()) |> 
   step_normalize(all_predictors()) |>
   step_umap(all_numeric_predictors(), num_comp = 3)
@@ -216,10 +228,10 @@ penguin_bake
 penguin_bake |> ggplot(aes(x = UMAP1, y = UMAP2, color = species)) +
   geom_point(alpha = .5)
 
-penguin_bake |> ggplot(aes(x = UMAP1, y = UMAP3, color = species)) +
+penguin_bake |> ggplot(aes(x = UMAP1, y = UMAP3, color = sex)) +
   geom_point(alpha = .5)
 
-penguin_bake |> ggplot(aes(x = UMAP2, y = UMAP3, color = species)) +
+penguin_bake |> ggplot(aes(x = UMAP2, y = UMAP3, color = sex)) +
   geom_point(alpha = .5)
 
 
