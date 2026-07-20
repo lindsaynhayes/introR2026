@@ -90,9 +90,9 @@ penguin_bake
 # Plot the percent of variance explained by each principal component
 penguin_prep |> 
   tidy(id = "pca", type = "variance") |> 
-  dplyr::filter(terms == "percent variance") |> 
+  filter(terms == "percent variance") |> 
   ggplot(aes(x = component, y = value)) + 
-  geom_col(fill = "#b6dfe2") + 
+  geom_col(fill = "skyblue") + 
   xlim(c(0, 5)) + 
   ylab("% of total variance") +
   geom_text(aes(label=round(value,1)), vjust = 1.5)
@@ -124,7 +124,7 @@ pca_plot <- penguin_bake |>
   scale_colour_manual(values = c("darkorange","purple","cyan4")) +
   theme_bw()
 
-pca_plot
+ pca_plot
 
 
 # Add the vectors for how the variables are explained by each PC
@@ -190,7 +190,6 @@ glimpse(penguins)
 penguin_recipe <-
   recipe(species ~ ., data = penguins) |> 
   update_role(species, island, sex, new_role = "id") |> 
-  step_rm(year) |>
   step_naomit(all_predictors()) |> 
   step_normalize(all_predictors()) |>
   step_umap(all_numeric_predictors(), num_comp = 3)
