@@ -9,4 +9,4 @@ _freeze/
 .DS_store
 
 activities/a/*
-activities/assigndecoder/*
+activities/assigndecoder/decode_hw_csv.qmd
