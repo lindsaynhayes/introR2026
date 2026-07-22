@@ -116,6 +116,8 @@ rf_wflow <-
 
 # train the model
 rf_fit <- fit(rf_wflow, data_training)
+
+
 ```
 
 
@@ -166,6 +168,9 @@ rf.outcome <- rf.predict %>%
 # confusion matrix
 rf.outcome |> conf_mat(pred, truth)
 
+conf_mat(rf.outcome, truth = truth, estimate = pred) %>%
+  autoplot(type = "heatmap")
+
 # accuracy
 rf.outcome |> accuracy(pred, truth) -> rf.acc
 
@@ -189,6 +194,9 @@ lr.outcome <- lr.predict %>%
 # confusion matrix
 lr.outcome |> conf_mat(pred, truth)
 
+conf_mat(lr.outcome, truth = truth, estimate = pred) %>%
+  autoplot(type = "heatmap")
+
 # accuracy
 lr.outcome |> accuracy(pred, truth) -> lr.acc
 
@@ -207,6 +215,11 @@ names(lr.eval) <- c("accuracy", "specificity", "sensitivity", "precision")
 rbind(rf.eval, lr.eval)
 
 ```
+
+```{r}
+
+```
+
 
 ```{r}
 sessionInfo()
