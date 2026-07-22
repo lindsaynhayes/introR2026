@@ -101,7 +101,7 @@ rf_model <-
   set_mode("classification") |>
   
   # engine/package that underlies the model (ranger is default)
-  set_engine("ranger") |>
+  set_engine("ranger", importance = "impurity") |>
   
   # we only have 4 predictors so mtry can't be more than 4
   set_args(mtry = 4, trees = 200)
@@ -116,7 +116,6 @@ rf_wflow <-
 
 # train the model
 rf_fit <- fit(rf_wflow, data_training)
-
 
 ```
 
@@ -151,6 +150,7 @@ lr_wflow <-
 
 # train the model
 lr_fit <- fit(lr_wflow, data_training)
+
 ```
 
 ## Compare the performance of the two models
@@ -215,11 +215,6 @@ names(lr.eval) <- c("accuracy", "specificity", "sensitivity", "precision")
 rbind(rf.eval, lr.eval)
 
 ```
-
-```{r}
-
-```
-
 
 ```{r}
 sessionInfo()
