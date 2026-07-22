@@ -63,7 +63,7 @@ data_testing |>
 
 # The recipe sets up what data we are going to use and how it to be treated before doing the modeling.
 penguin_recipe <-
-  recipe( species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g, data = penguins) |>
+  recipe(species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g, data = penguins) |>
   step_naomit(all_predictors()) |> 
   step_normalize(all_predictors()) 
 
@@ -214,6 +214,9 @@ lr.eval = c(lr.acc$.estimate, lr.spec$.estimate, lr.sens$.estimate, lr.prec$.est
 names(lr.eval) <- c("accuracy", "specificity", "sensitivity", "precision")
 
 rbind(rf.eval, lr.eval)
+
+
+
 
 ```
 
