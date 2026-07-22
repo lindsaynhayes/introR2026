@@ -170,7 +170,7 @@ rf.outcome <- rf.predict %>%
 rf.outcome |> conf_mat(pred, truth)
 
 conf_mat(rf.outcome, truth = truth, estimate = pred) %>%
-  autoplot(type = "heatmap")
+  autoplot(type = "heatmap") + labs(subtitle = "random forest")
 
 # accuracy
 rf.outcome |> accuracy(pred, truth) -> rf.acc
@@ -196,7 +196,7 @@ lr.outcome <- lr.predict %>%
 lr.outcome |> conf_mat(pred, truth)
 
 conf_mat(lr.outcome, truth = truth, estimate = pred) %>%
-  autoplot(type = "heatmap")
+  autoplot(type = "heatmap") + labs(subtitle = "logistic regression")
 
 # accuracy
 lr.outcome |> accuracy(pred, truth) -> lr.acc
