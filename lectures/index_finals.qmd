@@ -1,0 +1,33 @@
+---
+title: "Final Presentations!"
+draft: false
+format: html
+tbl-colwidths: [5,10,5]
+editor_options: 
+  chunk_output_type: console
+---
+
+### Wednesday 7/29
+
+| Order | Presenter | Link |
+|---|-----------------|-----------------|
+| 1 | Kasia Cizio     | [link](https://cizialke.github.io/katcizio.github.io/projects/final-report.html) |
+| 2 | Anna Usoltseva  | [link️](https://annausoltsevapost.github.io/AnnaUsoltseva.github.io/projects/final-report.html) |
+| 3 | Amber Memon     | [link️](https://amberayazmemon.github.io/ambermemon.github.io/projects/final-report.html) |
+| 4 | Sherif Hamidu   | [link️](https://shamidu028-svg.github.io/sherifhamidu.github.io/) |
+| 5 | Jeng Shi Kong   | [link](https://js-kong1121.github.io/jengshikong.github.io/) |
+| 6 | Eli Mendenhall  | [link](https://emendenhall0321.github.io/Elias-Mendenhall/projects/final-report.html) |
+| 7 | Silvano Ross    | [link️](https://silvanoross.github.io/silvano_ross.github.io/) |
+| 8 | Jadance Black   | [link](https://jadanceblack.github.io/projects/final-report.html) |
+
+### Friday 7/31
+
+| Order | Presenter              | Link   |
+|-------|------------------------|--------|
+| 9     | Abigail Morgan         | [⚒️]() |
+| 10    | Monika Kawecka         | [⚒️]() |
+| 11    | Brototi Chakrabarty    | [⚒️]() |
+| 12    | Siva Sai Chandragiri   | [⚒️]() |
+| 13    | Swati Choudhary        | [⚒️]() |
+| 14    | Natalia Ramirez-Sotelo | [⚒️]() |
+| 15    | Morgan Yashchenko      | [⚒️]() |

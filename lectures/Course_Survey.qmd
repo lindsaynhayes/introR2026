@@ -10,16 +10,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Survey for Fan Favorite Final Presentation
+## Vote for Your Favorite Presentation
 
-*hope you like my made up titles*
-
-[survey](https://ousurvey.qualtrics.com/jfe/form/SV_5oiKzZOwwTfRqIe)
+[survey](https://qualtrics.ou.edu/jfe/form/SV_0kPz68OMQJIA6Ds)
 
 ![](images/FanFavorite.png)
 
 ## Course Survey
 
-[survey](https://ousurvey.qualtrics.com/jfe/form/SV_9RJm8pIuPnUEcxU)
+[survey](https://qualtrics.ou.edu/jfe/form/SV_d73dAWYVAO9nIsm)
 
 ![](images/CourseSurvey_QR.png)

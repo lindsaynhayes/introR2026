@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Course Content – Intro to Reproducible Data Analysis Using R</title>
+<title>Final Presentations! – Intro to Reproducible Data Analysis Using R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fd0e6b991c9841115f99ec6603b0f128.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,67 +70,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lecture-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lecture-listings'] = new List('listing-lecture-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -142,7 +82,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Intro to Reproducible Data Analysis Using R</span>
     </a>
   </div>
@@ -152,12 +92,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> <i class="bi bi-home" role="img">
+    <a class="nav-link" href="../index.html"> <i class="bi bi-home" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lectures.html" aria-current="page"> <i class="bi bi-book-half" role="img">
+    <a class="nav-link" href="../lectures.html"> <i class="bi bi-book-half" role="img">
 </i> 
 <span class="menu-text">Lectures</span></a>
   </li>  
@@ -169,21 +109,21 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
         <li>
-    <a class="dropdown-item" href="./readings.html">
+    <a class="dropdown-item" href="../readings.html">
  <span class="dropdown-text">Pre-reading</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./activities.html">
+    <a class="dropdown-item" href="../activities.html">
  <span class="dropdown-text">In-Class Activities</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./projects.html">
+    <a class="dropdown-item" href="../projects.html">
  <span class="dropdown-text">Assignments</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./references.html"> <i class="bi bi-star" role="img">
+    <a class="nav-link" href="../references.html"> <i class="bi bi-star" role="img">
 </i> 
 <span class="menu-text">Resources</span></a>
   </li>  
@@ -200,23 +140,30 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wednesday-729" id="toc-wednesday-729" class="nav-link active" data-scroll-target="#wednesday-729">Wednesday 7/29</a></li>
+  <li><a href="#friday-731" id="toc-friday-731" class="nav-link" data-scroll-target="#friday-731">Friday 7/31</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course Content</h1>
+<h1 class="title">Final Presentations!</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -228,165 +175,121 @@ window.Quarto = {
 </header>
 
 
-<p>Course content for each lecture is below:</p>
-<div id="listing-lecture-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
+<section id="wednesday-729" class="level3">
+<h3 class="anchored" data-anchor-id="wednesday-729">Wednesday 7/29</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Author
-</th>
-
+<tr class="header">
+<th>Order</th>
+<th>Presenter</th>
+<th>Link</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1783314000000" data-listing-file-modified-sort="1780958386817" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="420" data-listing-title-sort="Welcome to the Course!" data-listing-filename-sort="index_L01.qmd">
-<td>
-<span class="listing-date">2026-07-06</span>
-</td>
-<td>
-<a href="./lectures/index_L01.html" class="title listing-title">Welcome to the Course!</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Kasia Cizio</td>
+<td><a href="https://cizialke.github.io/katcizio.github.io/projects/final-report.html">link</a></td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1783486800000" data-listing-file-modified-sort="1782941672949" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110" data-listing-title-sort="Literate Coding with Quarto" data-listing-filename-sort="index_L02.qmd">
-<td>
-<span class="listing-date">2026-07-08</span>
-</td>
-<td>
-<a href="./lectures/index_L02.html" class="title listing-title">Literate Coding with Quarto</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="even">
+<td>2</td>
+<td>Anna Usoltseva</td>
+<td><a href="https://annausoltsevapost.github.io/AnnaUsoltseva.github.io/projects/final-report.html">link️</a></td>
 </tr>
-
-<tr data-index="2" data-listing-date-sort="1783659600000" data-listing-file-modified-sort="1782854226072" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="91" data-listing-title-sort="Exploratory Data Analysis" data-listing-filename-sort="index_L03.qmd">
-<td>
-<span class="listing-date">2026-07-10</span>
-</td>
-<td>
-<a href="./lectures/index_L03.html" class="title listing-title">Exploratory Data Analysis</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="odd">
+<td>3</td>
+<td>Amber Memon</td>
+<td><a href="https://amberayazmemon.github.io/ambermemon.github.io/projects/final-report.html">link️</a></td>
 </tr>
-
-<tr data-index="3" data-listing-date-sort="1783918800000" data-listing-file-modified-sort="1782941672250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="119" data-listing-title-sort="Data Wrangling with tidyverse" data-listing-filename-sort="index_L04.qmd">
-<td>
-<span class="listing-date">2026-07-13</span>
-</td>
-<td>
-<a href="./lectures/index_L04.html" class="title listing-title">Data Wrangling with tidyverse</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="even">
+<td>4</td>
+<td>Sherif Hamidu</td>
+<td><a href="https://shamidu028-svg.github.io/sherifhamidu.github.io/">link️</a></td>
 </tr>
-
-<tr data-index="4" data-listing-date-sort="1784091600000" data-listing-file-modified-sort="1782941671401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160" data-listing-title-sort="Data Visualization with ggplot2" data-listing-filename-sort="index_L05.qmd">
-<td>
-<span class="listing-date">2026-07-15</span>
-</td>
-<td>
-<a href="./lectures/index_L05.html" class="title listing-title">Data Visualization with ggplot2</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="odd">
+<td>5</td>
+<td>Jeng Shi Kong</td>
+<td><a href="https://js-kong1121.github.io/jengshikong.github.io/">link</a></td>
 </tr>
-
-<tr data-index="5" data-listing-date-sort="1784264400000" data-listing-file-modified-sort="1782939062402" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="117" data-listing-title-sort="Loops and Logics" data-listing-filename-sort="index_L06.qmd">
-<td>
-<span class="listing-date">2026-07-17</span>
-</td>
-<td>
-<a href="./lectures/index_L06.html" class="title listing-title">Loops and Logics</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="even">
+<td>6</td>
+<td>Eli Mendenhall</td>
+<td><a href="https://emendenhall0321.github.io/Elias-Mendenhall/projects/final-report.html">link</a></td>
 </tr>
-
-<tr data-index="6" data-listing-date-sort="1784523600000" data-listing-file-modified-sort="1782941670473" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246" data-listing-title-sort="Dimension Reduction with tidymodels" data-listing-filename-sort="index_L07.qmd">
-<td>
-<span class="listing-date">2026-07-20</span>
-</td>
-<td>
-<a href="./lectures/index_L07.html" class="title listing-title">Dimension Reduction with tidymodels</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="odd">
+<td>7</td>
+<td>Silvano Ross</td>
+<td><a href="https://silvanoross.github.io/silvano_ross.github.io/">link️</a></td>
 </tr>
-
-<tr data-index="7" data-listing-date-sort="1784696400000" data-listing-file-modified-sort="1782941667280" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81" data-listing-title-sort="Machine Learning with tidymodels" data-listing-filename-sort="index_L08.qmd">
-<td>
-<span class="listing-date">2026-07-22</span>
-</td>
-<td>
-<a href="./lectures/index_L08.html" class="title listing-title">Machine Learning with tidymodels</a>
-</td>
-<td>
-<span class="listing-author">Lindsay Hayes</span>
-</td>
-
+<tr class="even">
+<td>8</td>
+<td>Jadance Black</td>
+<td><a href="https://jadanceblack.github.io/projects/final-report.html">link</a></td>
 </tr>
-
-<tr data-index="8" data-listing-date-sort="1784869200000" data-listing-file-modified-sort="1784661634802" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Building a Quarto Website and Using GitHub" data-listing-filename-sort="index_L09.qmd">
-<td>
-<span class="listing-date">2026-07-24</span>
-</td>
-<td>
-<a href="./lectures/index_L09.html" class="title listing-title">Building a Quarto Website and Using GitHub</a>
-</td>
-<td>
-<span class="listing-author">Eleana Cabello</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-file-modified-sort="1785332192705" data-listing-reading-time-sort="2" data-listing-word-count-sort="211" data-listing-title-sort="Final Presentations!" data-listing-filename-sort="index_finals.qmd">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./lectures/index_finals.html" class="title listing-title">Final Presentations!</a>
-</td>
-<td>
-<span class="listing-author">&nbsp;</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
+</section>
+<section id="friday-731" class="level3">
+<h3 class="anchored" data-anchor-id="friday-731">Friday 7/31</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Order</th>
+<th>Presenter</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9</td>
+<td>Abigail Morgan</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Monika Kawecka</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Brototi Chakrabarty</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Siva Sai Chandragiri</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Swati Choudhary</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Natalia Ramirez-Sotelo</td>
+<td><a href="">⚒️</a></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>Morgan Yashchenko</td>
+<td><a href="">⚒️</a></td>
+</tr>
+</tbody>
+</table>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
