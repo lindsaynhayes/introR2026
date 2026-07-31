@@ -24,10 +24,10 @@ editor_options:
 
 | Order | Presenter              | Link   |
 |-------|------------------------|--------|
-| 9     | Abigail Morgan         | [⚒️]() |
-| 10    | Monika Kawecka         | [⚒️]() |
-| 11    | Brototi Chakrabarty    | [⚒️]() |
-| 12    | Siva Sai Chandragiri   | [⚒️]() |
+| 9     | Abigail Morgan         | [link](https://amorgan-140.github.io/AbbiMorgan2.github.io/) |
+| 10    | Monika Kawecka         | [link](https://moniuszki.github.io/monikakkawecka.github.io/) |
+| 11    | Brototi Chakrabarty    | [link](https://brototi-chakrabarty.github.io/Brototi-Chakrabarty./) |
+| 12    | Siva Sai Chandragiri   | [link](https://sivasaic.github.io/sivasaichandragiri.github.io/) |
 | 13    | Swati Choudhary        | [⚒️]() |
-| 14    | Natalia Ramirez-Sotelo | [⚒️]() |
-| 15    | Morgan Yashchenko      | [⚒️]() |
+| 14    | Natalia Ramirez-Sotelo | [link](https://ramireznataliaok.github.io/NataliaRamirez.github.io/ ) |
+| 15    | Morgan Yashchenko      | [link](https://myashche528-creator.github.io/morganyashchenko.github.io/) |

@@ -375,7 +375,7 @@
     "href": "lectures/index_finals.html",
     "title": "Final Presentations!",
     "section": "",
-    "text": "Wednesday 7/29\n\n\n\n\n\n\n\n\nOrder\nPresenter\nLink\n\n\n\n\n1\nKasia Cizio\nlink\n\n\n2\nAnna Usoltseva\nlink️\n\n\n3\nAmber Memon\nlink️\n\n\n4\nSherif Hamidu\nlink️\n\n\n5\nJeng Shi Kong\nlink\n\n\n6\nEli Mendenhall\nlink\n\n\n7\nSilvano Ross\nlink️\n\n\n8\nJadance Black\nlink\n\n\n\n\n\nFriday 7/31\n\n\n\n\n\n\n\n\nOrder\nPresenter\nLink\n\n\n\n\n9\nAbigail Morgan\n⚒️\n\n\n10\nMonika Kawecka\n⚒️\n\n\n11\nBrototi Chakrabarty\n⚒️\n\n\n12\nSiva Sai Chandragiri\n⚒️\n\n\n13\nSwati Choudhary\n⚒️\n\n\n14\nNatalia Ramirez-Sotelo\n⚒️\n\n\n15\nMorgan Yashchenko\n⚒️"
+    "text": "Wednesday 7/29\n\n\n\n\n\n\n\n\nOrder\nPresenter\nLink\n\n\n\n\n1\nKasia Cizio\nlink\n\n\n2\nAnna Usoltseva\nlink️\n\n\n3\nAmber Memon\nlink️\n\n\n4\nSherif Hamidu\nlink️\n\n\n5\nJeng Shi Kong\nlink\n\n\n6\nEli Mendenhall\nlink\n\n\n7\nSilvano Ross\nlink️\n\n\n8\nJadance Black\nlink\n\n\n\n\n\nFriday 7/31\n\n\n\n\n\n\n\n\nOrder\nPresenter\nLink\n\n\n\n\n9\nAbigail Morgan\nlink\n\n\n10\nMonika Kawecka\nlink\n\n\n11\nBrototi Chakrabarty\nlink\n\n\n12\nSiva Sai Chandragiri\nlink\n\n\n13\nSwati Choudhary\n⚒️\n\n\n14\nNatalia Ramirez-Sotelo\nlink\n\n\n15\nMorgan Yashchenko\nlink"
   },
   {
     "objectID": "lectures/index_L08.html",
@@ -467,6 +467,27 @@
     "title": "Literate Coding with Quarto",
     "section": "Summary",
     "text": "Summary\n\nLiterate Coding can be accomplished by using Quarto documents to incorporate, code, narrative text, and storytelling in tidy html reports.\nQuarto is an open-source scientific and technical publishing system to create reproducible, production quality data analysis reports and much more.\nQuarto documents use a unified authoring framework to present narrative text alongside coding blocks and outcomes."
+  },
+  {
+    "objectID": "lectures/Course_Survey.html",
+    "href": "lectures/Course_Survey.html",
+    "title": "Fan Favorite & Course Evaluation",
+    "section": "",
+    "text": "survey"
+  },
+  {
+    "objectID": "lectures/Course_Survey.html#vote-for-your-favorite-presentation",
+    "href": "lectures/Course_Survey.html#vote-for-your-favorite-presentation",
+    "title": "Fan Favorite & Course Evaluation",
+    "section": "",
+    "text": "survey"
+  },
+  {
+    "objectID": "lectures/Course_Survey.html#course-survey",
+    "href": "lectures/Course_Survey.html#course-survey",
+    "title": "Fan Favorite & Course Evaluation",
+    "section": "Course Survey",
+    "text": "Course Survey\nsurvey"
   },
   {
     "objectID": "index.html",
@@ -858,7 +879,7 @@
     "href": "lectures.html",
     "title": "Course Content",
     "section": "",
-    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nExploratory Data Analysis\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-13\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-15\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-17\n\n\nLoops and Logics\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-20\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-22\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-24\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n \n\n\nFinal Presentations!\n\n\n \n\n\n\n\n\n\nNo matching items"
+    "text": "Course content for each lecture is below:\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n2026-07-06\n\n\nWelcome to the Course!\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-08\n\n\nLiterate Coding with Quarto\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-10\n\n\nExploratory Data Analysis\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-13\n\n\nData Wrangling with tidyverse\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-15\n\n\nData Visualization with ggplot2\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-17\n\n\nLoops and Logics\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-20\n\n\nDimension Reduction with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-22\n\n\nMachine Learning with tidymodels\n\n\nLindsay Hayes\n\n\n\n\n\n\n2026-07-24\n\n\nBuilding a Quarto Website and Using GitHub\n\n\nEleana Cabello\n\n\n\n\n\n\n2026-07-31\n\n\nFan Favorite & Course Evaluation\n\n\nLindsay Hayes\n\n\n\n\n\n\n \n\n\nFinal Presentations!\n\n\n \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/index_L01.html",
