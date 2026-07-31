@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+feedback.pdf
 
 /.quarto/
 **/*.quarto_ipynb
